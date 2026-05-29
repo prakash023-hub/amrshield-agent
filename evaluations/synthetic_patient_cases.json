@@ -1,0 +1,77 @@
+[
+  {
+    "case_id": "EVAL-UTI-001",
+    "description": "Uncomplicated UTI in elderly female with reduced renal function",
+    "patient_profile": {
+      "age": 72, "sex": "female", "weight": 54, "serum_creatinine": 1.9,
+      "diagnosis": "Urinary Tract Infection", "infection_site": "UTI",
+      "suspected_pathogen": "E. coli", "allergies": [],
+      "current_medications": ["amlodipine", "metformin"]
+    },
+    "expected_outcome": {
+      "antibiotic": "nitrofurantoin",
+      "aware_tier": "Access",
+      "note": "Avoid nitrofurantoin if CrCl <30 — at 28 mL/min, should switch to fosfomycin"
+    }
+  },
+  {
+    "case_id": "EVAL-CAP-001",
+    "description": "Community-acquired pneumonia, penicillin allergic",
+    "patient_profile": {
+      "age": 45, "sex": "male", "weight": 78, "serum_creatinine": 0.9,
+      "diagnosis": "Community-Acquired Pneumonia", "infection_site": "pneumonia",
+      "suspected_pathogen": "Streptococcus pneumoniae",
+      "allergies": ["penicillin"], "current_medications": ["atorvastatin"]
+    },
+    "expected_outcome": {
+      "antibiotic": "doxycycline",
+      "aware_tier": "Access",
+      "note": "Penicillin allergy — macrolide or doxycycline per IDSA CAP guidelines"
+    }
+  },
+  {
+    "case_id": "EVAL-SSTI-001",
+    "description": "Skin infection, suspected MRSA",
+    "patient_profile": {
+      "age": 38, "sex": "male", "weight": 92, "serum_creatinine": 0.8,
+      "diagnosis": "Skin & Soft Tissue Infection", "infection_site": "skin",
+      "suspected_pathogen": "MRSA", "allergies": [],
+      "current_medications": []
+    },
+    "expected_outcome": {
+      "antibiotic": "co-trimoxazole",
+      "aware_tier": "Access",
+      "note": "Outpatient MRSA SSTI — TMP-SMX preferred per IDSA SSTI guidelines"
+    }
+  },
+  {
+    "case_id": "EVAL-SEPSIS-001",
+    "description": "Sepsis unknown source, ICU admission",
+    "patient_profile": {
+      "age": 65, "sex": "female", "weight": 61, "serum_creatinine": 2.1,
+      "diagnosis": "Sepsis (unknown source)", "infection_site": "bloodstream",
+      "suspected_pathogen": "Unknown (empirical)", "allergies": [],
+      "current_medications": ["vancomycin", "furosemide"]
+    },
+    "expected_outcome": {
+      "antibiotic": "piperacillin-tazobactam",
+      "aware_tier": "Watch",
+      "note": "Broad empirical coverage for sepsis — de-escalate when culture available. Watch vancomycin interaction."
+    }
+  },
+  {
+    "case_id": "EVAL-INTERACTION-001",
+    "description": "UTI in anticoagulated patient — drug interaction trap",
+    "patient_profile": {
+      "age": 68, "sex": "female", "weight": 58, "serum_creatinine": 1.1,
+      "diagnosis": "Urinary Tract Infection", "infection_site": "UTI",
+      "suspected_pathogen": "E. coli", "allergies": [],
+      "current_medications": ["warfarin"]
+    },
+    "expected_outcome": {
+      "antibiotic": "nitrofurantoin",
+      "avoid": "ciprofloxacin",
+      "note": "Ciprofloxacin significantly increases warfarin effect — prefer nitrofurantoin. INR monitoring essential if fluoroquinolone unavoidable."
+    }
+  }
+]
