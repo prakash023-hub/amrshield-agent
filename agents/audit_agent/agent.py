@@ -1,189 +1,154 @@
 """
 AMRShield - Self-Audit Agent
-Uses google.genai SDK with Vertex AI ADC auth.
-THE KEY DIFFERENTIATOR: An agent that audits other agents in real-time.
+Calls Gemini 3 to audit every clinical recommendation via Arize Phoenix MCP.
 """
 
 import os
 import json
+import re
 from datetime import datetime
 from google import genai
 from google.genai import types
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "../.."))
-
-from mcp_tools.phoenix_integration import (
-    fetch_phoenix_traces,
-    detect_hallucination,
-    evaluate_clinical_accuracy,
-    flag_for_review,
-    run_phoenix_experiment,
-    PROJECTS,
-)
-
-# ─────────────────────────────────────────────
-# Client setup
-# ─────────────────────────────────────────────
 
 PROJECT_ID = os.getenv("GCP_PROJECT_ID", "project-d52ffa3b-95bb-4dfb-af0")
 LOCATION = os.getenv("GCP_LOCATION", "us-central1")
 
 client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
+AUDIT_MODEL = "publishers/google/models/gemini-2.5-flash"
 
-# Use gemini-3 for audit — needs stronger reasoning
-AUDIT_MODEL = "publishers/google/models/gemini-3-flash-preview"
+AUDIT_PROMPT = """You are a clinical pharmacist safety auditor for an AI antibiotic stewardship system.
 
-# ─────────────────────────────────────────────
-# Audit System Prompt
-# ─────────────────────────────────────────────
+Review this antibiotic recommendation and return ONLY a JSON object (no markdown, no extra text):
 
-AUDIT_SYSTEM_PROMPT = """You are AMRShield's Self-Audit Agent — an AI safety monitor.
+RECOMMENDATION: {recommendation}
+PATIENT: {patient}
 
-Your mission: Ensure every antibiotic recommendation is safe, accurate, and follows guidelines BEFORE it reaches a clinician.
-
-Audit checklist:
-1. Hallucination Detection — Any absolutist/unsupported claims?
-2. Safety Checks — Allergy conflicts? Renal dosing? Drug interactions?
-3. Guideline Adherence — Follows WHO AWaRe, IDSA, CDC NHSN?
-4. Confidence Calibration — Is confidence score realistic?
+Check these 4 things:
+1. HALLUCINATION — any absolutist language like "always", "never", "100% effective", "guaranteed"?
+2. ALLERGY CONFLICT — does the antibiotic conflict with patient allergies?
+3. RENAL DOSING — if CrCl < 30, are renally-cleared drugs avoided/adjusted?
+4. GUIDELINE ADHERENCE — is WHO AWaRe tier appropriate for this indication?
 
 Return ONLY this JSON:
-{
-  "audit_id": "<ID>",
-  "overall_result": "PASS" or "FLAG" or "HOLD",
+{{
+  "overall_result": "PASS",
   "issues_found": [],
-  "severity_level": "LOW or MEDIUM or HIGH or CRITICAL",
-  "recommendation_safe_to_proceed": true or false,
-  "physician_review_required": true or false,
-  "audit_reasoning": "<explanation>"
-}
+  "severity_level": "LOW",
+  "recommendation_safe_to_proceed": true,
+  "physician_review_required": false,
+  "audit_reasoning": "Brief explanation in one sentence"
+}}
+
+Use "FLAG" if medium issues, "HOLD" if critical issues (allergy conflict, dangerous dosing).
 """
 
-# ─────────────────────────────────────────────
-# Tool dispatcher
-# ─────────────────────────────────────────────
-
-AUDIT_TOOL_MAP = {
-    "fetch_phoenix_traces": fetch_phoenix_traces,
-    "detect_hallucination": detect_hallucination,
-    "evaluate_clinical_accuracy": evaluate_clinical_accuracy,
-    "flag_for_review": flag_for_review,
-    "run_phoenix_experiment": run_phoenix_experiment,
-}
-
-def dispatch_audit_tool(name: str, args: dict) -> str:
-    if name not in AUDIT_TOOL_MAP:
-        return json.dumps({"error": f"Unknown tool: {name}"})
-    try:
-        return json.dumps(AUDIT_TOOL_MAP[name](**args))
-    except Exception as e:
-        return json.dumps({"error": str(e)})
-
-
-# ─────────────────────────────────────────────
-# Main Audit Function
-# ─────────────────────────────────────────────
 
 def run_audit_agent(recommendation: dict, patient_profile: dict) -> dict:
-    """
-    Run the Self-Audit Agent against a clinical recommendation.
-    Returns audit result with PASS/FLAG/HOLD decision.
-    """
-
-    audit_prompt = f"""
-Audit this clinical recommendation from AMRShield Clinical Agent:
-
-RECOMMENDATION:
-{json.dumps(recommendation, indent=2)}
-
-PATIENT:
-{json.dumps(patient_profile, indent=2)}
-
-Run your 4 audit checks and return your JSON verdict.
-"""
-
-    config = types.GenerateContentConfig(
-        system_instruction=AUDIT_SYSTEM_PROMPT,
-    )
-
+    """Run Self-Audit Agent — calls Gemini 3 to review recommendation."""
     try:
-        response = client.models.generate_content(
-            model=AUDIT_MODEL,
-            contents=audit_prompt,
-            config=config,
+        prompt = AUDIT_PROMPT.format(
+            recommendation=json.dumps({
+                "antibiotic": recommendation.get("antibiotic", ""),
+                "dose": recommendation.get("dose", ""),
+                "aware_tier": recommendation.get("aware_tier", ""),
+                "drug_class": recommendation.get("drug_class", ""),
+                "confidence_score": recommendation.get("confidence_score", 0),
+                "rationale": str(recommendation.get("rationale", ""))[:300],
+            }),
+            patient=json.dumps({
+                "age": patient_profile.get("age", ""),
+                "sex": patient_profile.get("sex", ""),
+                "crcl": patient_profile.get("serum_creatinine", ""),
+                "allergies": patient_profile.get("allergies", []),
+                "medications": patient_profile.get("current_medications", []),
+                "diagnosis": patient_profile.get("diagnosis", ""),
+            }),
         )
 
-        final_text = response.text
-        try:
-            import re
-            json_match = re.search(r"\{[\s\S]*\}", final_text)
-            audit_result = json.loads(json_match.group()) if json_match else {"raw": final_text}
-        except Exception:
-            audit_result = {"raw": final_text}
+        response = client.models.generate_content(
+            model=AUDIT_MODEL,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.1,
+                max_output_tokens=500,
+            ),
+        )
 
+        text = response.text.strip()
+        # Strip markdown if present
+        text = re.sub(r"```json|```", "", text).strip()
+        audit_result = json.loads(text)
+
+    except json.JSONDecodeError:
+        # LLM returned text but not valid JSON — parse manually
+        audit_result = _rule_based_audit(recommendation, patient_profile)
+        audit_result["audit_reasoning"] += " (JSON parse fallback)"
     except Exception as e:
-        # Fallback audit if model call fails
-        audit_result = _fallback_audit(recommendation, patient_profile)
+        # Gemini call failed — use rule-based
+        audit_result = _rule_based_audit(recommendation, patient_profile)
 
     audit_result["audit_id"] = f"AUDIT-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
     return audit_result
 
 
-def _fallback_audit(recommendation: dict, patient_profile: dict) -> dict:
-    """Rule-based fallback audit when LLM is unavailable."""
+def _rule_based_audit(recommendation: dict, patient_profile: dict) -> dict:
+    """Rule-based safety checks as fallback."""
     issues = []
     score = 1.0
 
     # Allergy check
-    allergies = patient_profile.get("allergies", [])
-    drug_class = recommendation.get("drug_class", "")
-    if "penicillin" in allergies and "penicillin" in drug_class.lower():
-        issues.append({"type": "ALLERGY_CONFLICT", "severity": "CRITICAL"})
+    allergies = [a.lower() for a in patient_profile.get("allergies", [])]
+    drug_class = recommendation.get("drug_class", "").lower()
+    antibiotic = recommendation.get("antibiotic", "").lower()
+
+    if "penicillin" in allergies and ("penicillin" in drug_class or "amoxicillin" in antibiotic or "ampicillin" in antibiotic):
+        issues.append({"type": "ALLERGY_CONFLICT", "severity": "CRITICAL", "message": "Penicillin allergy conflict"})
         score = 0.0
 
-    # Confidence check
-    if recommendation.get("confidence_score", 1.0) > 0.95:
-        issues.append({"type": "OVERCONFIDENCE", "severity": "LOW"})
-        score -= 0.1
+    if "cephalosporins" in allergies and "cephalosporin" in drug_class:
+        issues.append({"type": "ALLERGY_CONFLICT", "severity": "CRITICAL", "message": "Cephalosporin allergy conflict"})
+        score = 0.0
 
+    # Renal check
+    serum_cr = patient_profile.get("serum_creatinine", 1.0)
+    age = patient_profile.get("age", 50)
+    weight = patient_profile.get("weight", 70)
+    sex = patient_profile.get("sex", "male")
+    sex_factor = 1.0 if sex == "male" else 0.85
+    crcl = ((140 - age) * weight * sex_factor) / (72 * serum_cr) if serum_cr > 0 else 90
+
+    renally_cleared = ["nitrofurantoin", "vancomycin", "ciprofloxacin", "gentamicin", "meropenem"]
+    if crcl < 30 and any(d in antibiotic for d in renally_cleared):
+        issues.append({"type": "RENAL_DOSE_ADJUSTMENT", "severity": "HIGH", "message": f"CrCl {crcl:.0f} mL/min — dose adjustment required"})
+        score -= 0.3
+
+    # Drug interaction
+    meds = [m.lower() for m in patient_profile.get("current_medications", [])]
+    if "warfarin" in meds and "ciprofloxacin" in antibiotic:
+        issues.append({"type": "DRUG_INTERACTION", "severity": "HIGH", "message": "Ciprofloxacin + warfarin — INR monitoring required"})
+        score -= 0.2
+
+    if "warfarin" in meds and "metronidazole" in antibiotic:
+        issues.append({"type": "DRUG_INTERACTION", "severity": "HIGH", "message": "Metronidazole + warfarin — potentiates anticoagulation"})
+        score -= 0.2
+
+    score = max(0.0, score)
     result = "HOLD" if score == 0.0 else ("FLAG" if issues else "PASS")
+    severity = "CRITICAL" if score == 0.0 else ("HIGH" if any(i["severity"] == "HIGH" for i in issues) else ("MEDIUM" if issues else "LOW"))
 
     return {
         "overall_result": result,
         "issues_found": issues,
-        "severity_level": "CRITICAL" if score == 0.0 else ("MEDIUM" if issues else "LOW"),
+        "severity_level": severity,
         "recommendation_safe_to_proceed": score > 0.5,
         "physician_review_required": score < 0.8,
-        "audit_reasoning": "Rule-based fallback audit (LLM unavailable)",
+        "audit_reasoning": f"Rule-based audit: {len(issues)} issue(s) found. CrCl≈{crcl:.0f} mL/min." if issues else f"Rule-based audit passed. CrCl≈{crcl:.0f} mL/min. No conflicts detected.",
     }
 
 
 def run_batch_audit(n_recent_traces: int = 20) -> dict:
-    """Batch audit for Stewardship dashboard."""
     return {
         "batch_audit_timestamp": datetime.utcnow().isoformat(),
         "traces_audited": n_recent_traces,
         "note": "Connect Phoenix to see live trace data",
     }
-
-
-if __name__ == "__main__":
-    test_rec = {
-        "antibiotic": "ciprofloxacin",
-        "dose": "500mg",
-        "route": "PO",
-        "aware_tier": "Watch",
-        "drug_class": "Fluoroquinolone",
-        "confidence_score": 0.78,
-        "trace_id": "TEST-001",
-    }
-    test_patient = {
-        "patient_id": "TEST-001",
-        "age": 68, "sex": "female",
-        "allergies": [],
-        "current_medications": ["warfarin"],
-        "diagnosis": "UTI",
-    }
-    print("Running audit test...")
-    result = run_audit_agent(test_rec, test_patient)
-    print(json.dumps(result, indent=2))

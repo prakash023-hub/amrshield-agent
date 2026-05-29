@@ -92,7 +92,7 @@ fig_map.add_trace(go.Scattergeo(
         colorscale=[[0, "#22C55E"], [0.4, "#EAB308"], [0.7, "#F97316"], [1, "#EF4444"]],
         cmin=0, cmax=80,
         showscale=True,
-        colorbar=dict(title="Resistance %", bgcolor="#0D1B2A", font=dict(color="#A8C0D6")),
+        colorbar=dict(title="Resistance %", bgcolor="#0D1B2A", tickfont=dict(color="#A8C0D6")),
         opacity=0.85,
         line=dict(width=0),
     ),
