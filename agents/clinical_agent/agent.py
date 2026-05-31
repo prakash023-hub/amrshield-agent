@@ -1,6 +1,6 @@
 """
 AMRShield - Clinical Recommendation Agent
-Powered by Gemini 3 via Google Cloud Agent Builder / Vertex AI
+Powered by Gemini 2.5 Flash via Google Cloud Agent Builder / Vertex AI
 """
 
 import os
@@ -17,6 +17,7 @@ from agents.clinical_agent.tools import (
     check_drug_interactions,
     query_local_antibiogram,
 )
+from mcp_tools.phoenix_integration import ensure_phoenix_tracing, get_current_trace_id
 
 # ─────────────────────────────────────────────
 # Google GenAI Client (new SDK, ADC auth)
@@ -157,6 +158,7 @@ def run_clinical_agent(patient_profile: dict) -> dict:
     Run the Clinical Recommendation Agent for a patient case.
     Uses google.genai SDK with Vertex AI ADC authentication.
     """
+    ensure_phoenix_tracing()
     case_prompt = f"""
 Please evaluate this antibiotic stewardship case and provide a recommendation:
 
@@ -210,7 +212,9 @@ Please:
             except Exception:
                 recommendation = {"raw_response": final_text}
 
-            recommendation["trace_id"] = f"TRACE-{patient_profile.get('patient_id', 'ANON')}-{iteration}"
+            recommendation["trace_id"] = get_current_trace_id(
+                fallback=f"TRACE-{patient_profile.get('patient_id', 'ANON')}-{iteration}"
+            )
             recommendation["patient_id"] = patient_profile.get("patient_id", "ANON")
             return recommendation
 

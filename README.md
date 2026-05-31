@@ -8,7 +8,7 @@
 
 > **Research prototype. Not for clinical use without licensed physician oversight.**
 
-AMRShield is a multi-agent clinical decision support system for **Antimicrobial Stewardship (AMS)** — powered by **Gemini 3** on Google Cloud Agent Builder, instrumented with **Arize Phoenix MCP** for real-time agent observability and self-auditing.
+AMRShield is a multi-agent clinical decision support system for **Antimicrobial Stewardship (AMS)** — powered by **Gemini 2.5 Flash** on Google Cloud Agent Builder, instrumented with **Arize Phoenix MCP** for real-time agent observability and self-auditing.
 
 Antimicrobial resistance (AMR) kills **1.27 million people per year** and costs the global economy over **$100 billion annually**. AI can help — but only if we can trust the AI. AMRShield solves both problems simultaneously.
 
@@ -84,7 +84,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 
 | Layer | Technology |
 |-------|-----------|
-| **AI Models** | Gemini 3 (via Vertex AI) |
+| **AI Models** | Gemini 2.5 Flash (via Vertex AI) |
 | **Orchestration** | Google Cloud Agent Builder |
 | **Observability** | Arize Phoenix MCP Server |
 | **Hosting** | Google Cloud Run |

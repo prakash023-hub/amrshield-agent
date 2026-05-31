@@ -1,14 +1,26 @@
 """
 AMRShield - Self-Audit Agent
-Calls Gemini 3 to audit every clinical recommendation via Arize Phoenix MCP.
+Runs Phoenix MCP safety tools, then Gemini 2.5 Flash synthesis on Vertex AI.
 """
 
 import os
 import json
 import re
+import time
 from datetime import datetime
+
 from google import genai
 from google.genai import types
+
+from mcp_tools.phoenix_integration import (
+    ensure_phoenix_tracing,
+    get_current_trace_id,
+    merge_mcp_into_audit,
+    record_audit_to_store,
+    run_phoenix_mcp_audit_pipeline,
+    get_audit_traces,
+)
+from mcp_tools.audit_store import audit_stats
 
 PROJECT_ID = os.getenv("GCP_PROJECT_ID", "project-d52ffa3b-95bb-4dfb-af0")
 LOCATION = os.getenv("GCP_LOCATION", "us-central1")
@@ -17,6 +29,10 @@ client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
 AUDIT_MODEL = "publishers/google/models/gemini-2.5-flash"
 
 AUDIT_PROMPT = """You are a clinical pharmacist safety auditor for an AI antibiotic stewardship system.
+
+Phoenix MCP tools already ran these checks:
+MCP HALLUCINATION: {hallucination}
+MCP ACCURACY: {accuracy}
 
 Review this antibiotic recommendation and return ONLY a JSON object (no markdown, no extra text):
 
@@ -44,9 +60,17 @@ Use "FLAG" if medium issues, "HOLD" if critical issues (allergy conflict, danger
 
 
 def run_audit_agent(recommendation: dict, patient_profile: dict) -> dict:
-    """Run Self-Audit Agent — calls Gemini 3 to review recommendation."""
+    """Run Self-Audit Agent — Phoenix MCP tools first, then Gemini review."""
+    started = time.perf_counter()
+    ensure_phoenix_tracing()
+
+    trace_id = recommendation.get("trace_id") or get_current_trace_id()
+    mcp_pipeline = run_phoenix_mcp_audit_pipeline(recommendation, patient_profile, trace_id)
+
     try:
         prompt = AUDIT_PROMPT.format(
+            hallucination=json.dumps(mcp_pipeline["hallucination_check"]),
+            accuracy=json.dumps(mcp_pipeline["accuracy_check"]),
             recommendation=json.dumps({
                 "antibiotic": recommendation.get("antibiotic", ""),
                 "dose": recommendation.get("dose", ""),
@@ -75,28 +99,28 @@ def run_audit_agent(recommendation: dict, patient_profile: dict) -> dict:
         )
 
         text = response.text.strip()
-        # Strip markdown if present
         text = re.sub(r"```json|```", "", text).strip()
-        audit_result = json.loads(text)
+        gemini_audit = json.loads(text)
+        audit_result = merge_mcp_into_audit(gemini_audit, mcp_pipeline)
 
     except json.JSONDecodeError:
-        # LLM returned text but not valid JSON — parse manually
-        audit_result = _rule_based_audit(recommendation, patient_profile)
+        audit_result = _rule_based_audit(recommendation, patient_profile, mcp_pipeline)
         audit_result["audit_reasoning"] += " (JSON parse fallback)"
-    except Exception as e:
-        # Gemini call failed — use rule-based
-        audit_result = _rule_based_audit(recommendation, patient_profile)
+    except Exception:
+        audit_result = _rule_based_audit(recommendation, patient_profile, mcp_pipeline)
 
+    latency_ms = int((time.perf_counter() - started) * 1000)
     audit_result["audit_id"] = f"AUDIT-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+    audit_result["latency_ms"] = latency_ms
+    record_audit_to_store(recommendation, patient_profile, audit_result, latency_ms)
     return audit_result
 
 
-def _rule_based_audit(recommendation: dict, patient_profile: dict) -> dict:
-    """Rule-based safety checks as fallback."""
+def _rule_based_audit(recommendation: dict, patient_profile: dict, mcp_pipeline: dict | None = None) -> dict:
+    """Rule-based safety checks as fallback — still merges MCP results when available."""
     issues = []
     score = 1.0
 
-    # Allergy check
     allergies = [a.lower() for a in patient_profile.get("allergies", [])]
     drug_class = recommendation.get("drug_class", "").lower()
     antibiotic = recommendation.get("antibiotic", "").lower()
@@ -109,7 +133,6 @@ def _rule_based_audit(recommendation: dict, patient_profile: dict) -> dict:
         issues.append({"type": "ALLERGY_CONFLICT", "severity": "CRITICAL", "message": "Cephalosporin allergy conflict"})
         score = 0.0
 
-    # Renal check
     serum_cr = patient_profile.get("serum_creatinine", 1.0)
     age = patient_profile.get("age", 50)
     weight = patient_profile.get("weight", 70)
@@ -122,7 +145,6 @@ def _rule_based_audit(recommendation: dict, patient_profile: dict) -> dict:
         issues.append({"type": "RENAL_DOSE_ADJUSTMENT", "severity": "HIGH", "message": f"CrCl {crcl:.0f} mL/min — dose adjustment required"})
         score -= 0.3
 
-    # Drug interaction
     meds = [m.lower() for m in patient_profile.get("current_medications", [])]
     if "warfarin" in meds and "ciprofloxacin" in antibiotic:
         issues.append({"type": "DRUG_INTERACTION", "severity": "HIGH", "message": "Ciprofloxacin + warfarin — INR monitoring required"})
@@ -136,7 +158,7 @@ def _rule_based_audit(recommendation: dict, patient_profile: dict) -> dict:
     result = "HOLD" if score == 0.0 else ("FLAG" if issues else "PASS")
     severity = "CRITICAL" if score == 0.0 else ("HIGH" if any(i["severity"] == "HIGH" for i in issues) else ("MEDIUM" if issues else "LOW"))
 
-    return {
+    base = {
         "overall_result": result,
         "issues_found": issues,
         "severity_level": severity,
@@ -145,10 +167,19 @@ def _rule_based_audit(recommendation: dict, patient_profile: dict) -> dict:
         "audit_reasoning": f"Rule-based audit: {len(issues)} issue(s) found. CrCl≈{crcl:.0f} mL/min." if issues else f"Rule-based audit passed. CrCl≈{crcl:.0f} mL/min. No conflicts detected.",
     }
 
+    if mcp_pipeline:
+        return merge_mcp_into_audit(base, mcp_pipeline)
+    return base
+
 
 def run_batch_audit(n_recent_traces: int = 20) -> dict:
+    """Fetch recent audit decisions for Audit Console / API."""
+    rows = get_audit_traces(limit=n_recent_traces)
+    stats = audit_stats()
     return {
         "batch_audit_timestamp": datetime.utcnow().isoformat(),
-        "traces_audited": n_recent_traces,
-        "note": "Connect Phoenix to see live trace data",
+        "traces_audited": len(rows),
+        "traces": rows,
+        "stats": stats,
+        "source": "phoenix_mcp_and_audit_store" if rows else "empty",
     }

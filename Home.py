@@ -7,6 +7,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+from mcp_tools.phoenix_integration import ensure_phoenix_tracing
+
+ensure_phoenix_tracing()
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
@@ -25,7 +29,7 @@ hr { border-color: #334155; }
 
 st.markdown("# 🛡️ AMRShield")
 st.markdown("### AI-Powered Antibiotic Stewardship with Self-Auditing Agent")
-st.markdown("**Gemini 3 · Google Cloud Agent Builder · Arize Phoenix MCP · Arize Track**")
+st.markdown("**Gemini 2.5 Flash · Google Cloud Agent Builder · Arize Phoenix MCP · Arize Track**")
 
 st.warning("⚕️ Research Prototype — Not approved for clinical use without licensed physician oversight.")
 st.divider()
@@ -46,7 +50,7 @@ with col1:
 Analyzes patient profile → recommends antibiotic with dose, duration, AWaRe tier, clinical rationale. Uses CrCl calculation, local antibiogram, drug interaction checking.
 
 **2. 📈 AMR Prediction Agent**  
-Forecasts resistance trends using WHO GLASS data. Gemini 3 generates 6-month resistance projections per pathogen/region.
+Forecasts resistance trends using WHO GLASS data. Gemini 2.5 Flash generates 6-month resistance projections per pathogen/region.
 
 **3. 🔍 Self-Audit Agent ⭐ (The Differentiator)**  
 Reviews EVERY recommendation via Arize Phoenix MCP before the clinician sees it. Detects hallucinations, allergy conflicts, renal dosing errors, guideline deviations. HOLDS dangerous recommendations automatically.
@@ -65,7 +69,7 @@ Real-time Phoenix trace stream, hallucination detection log, confidence calibrat
 Hospital-wide KPIs — AWaRe tier trends, department compliance, cost savings, AMR outbreak alerts.
 
 **🌍 Surveillance Map**  
-Global geographic AMR resistance patterns with Gemini 3 6-month forecast overlays and WHO GLASS integration.
+Global geographic AMR resistance patterns with Gemini 2.5 Flash 6-month forecast overlays and WHO GLASS integration.
     """)
 
 st.divider()
@@ -76,7 +80,7 @@ with col3:
     st.markdown("""
 - **Competition:** Google Cloud Rapid Agent Hackathon 2026  
 - **Track:** Arize (observability + self-auditing)  
-- **Stack:** Gemini 3 · Agent Builder · Phoenix MCP · Cloud Run · Streamlit  
+- **Stack:** Gemini 2.5 Flash · Agent Builder · Phoenix MCP · Cloud Run · Streamlit  
 - **GitHub:** [prakash023-hub/amrshield-agent](https://github.com/prakash023-hub/amrshield-agent)  
 - **License:** MIT  
     """)

@@ -9,20 +9,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.schemas import PatientCase, PredictRequest, AuditResponse
-from mcp_tools.phoenix_integration import setup_phoenix
+from mcp_tools.phoenix_integration import ensure_phoenix_tracing
+from mcp_tools.audit_store import audit_stats
 
-
-# ─────────────────────────────────────────────
-# App Lifespan — init agents + Phoenix tracing
-# ─────────────────────────────────────────────
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Start Phoenix tracing and initialize all agents on startup."""
-    # Auto-instrument ALL Gemini calls — zero extra code needed per agent
-    setup_phoenix("clinical-agent")
-    setup_phoenix("prediction-agent")
-    setup_phoenix("audit-agent")
+    ensure_phoenix_tracing()
 
     # Lazy-import agents here to avoid circular imports
     from agents.clinical_agent.agent import run_clinical_agent
@@ -125,17 +119,12 @@ async def recent_audits(limit: int = 20):
 
 
 @app.get("/audit/stats")
-async def audit_stats():
-    """
-    Aggregate audit statistics for Stewardship Admin dashboard.
-    """
+async def audit_stats_endpoint():
+    """Aggregate audit statistics for Stewardship Admin dashboard."""
+    stats = audit_stats()
     return {
-        "pass_rate": 0.942,
-        "flag_rate": 0.042,
-        "hold_rate": 0.016,
-        "hallucinations_detected_today": 2,
-        "physician_reviews_pending": 3,
-        "note": "Live stats pulled from Phoenix in production",
+        **stats,
+        "note": "Live stats from Phoenix MCP audit pipeline",
     }
 
 

@@ -46,6 +46,9 @@ logs/
 # Docker
 .dockerignore
 
+# Local audit log (generated at runtime)
+data/audit_log.json
+
 # Misc
 *.tmp
 *.bak

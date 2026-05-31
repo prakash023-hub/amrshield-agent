@@ -30,7 +30,7 @@ col_a, col_b, col_c = st.columns([1,4,2])
 with col_a: st.markdown("## 🛡️")
 with col_b:
     st.markdown("## AMRShield — Clinician Console")
-    st.caption("Antibiotic Stewardship · Gemini 3 + Arize Phoenix MCP")
+    st.caption("Antibiotic Stewardship · Gemini 2.5 Flash + Arize Phoenix MCP")
 with col_c:
     st.markdown(""); st.success("🟢 Agent Online")
 
@@ -95,6 +95,8 @@ if run_btn:
     css = {"PASS":"audit-pass","FLAG":"audit-flag","HOLD":"audit-hold"}[result]
     icon = {"PASS":"✅","FLAG":"⚠️","HOLD":"🛑"}[result]
     st.markdown(f"<div class='{css}'>{icon} <strong>Self-Audit: {result}</strong> — {audit.get('audit_reasoning','')}</div>", unsafe_allow_html=True)
+    if audit.get("phoenix_mcp_tools"):
+        st.caption(f"Phoenix MCP tools invoked: {', '.join(audit['phoenix_mcp_tools'])}")
 
     col_rec, col_meta = st.columns([3,2])
     with col_rec:
@@ -149,7 +151,7 @@ if run_btn:
         st.plotly_chart(fig_b, use_container_width=True)
 
         st.markdown("**🔍 Audit Trail**")
-        st.markdown(f"<span style='color:#8B949E'>Trace:</span> <code>{rec.get('trace_id','—')}</code>", unsafe_allow_html=True)
+        st.markdown(f"<span style='color:#8B949E'>Trace:</span> <code>{audit.get('phoenix_trace_id') or rec.get('trace_id','—')}</code>", unsafe_allow_html=True)
         if audit.get("physician_review_required"):
             st.warning("⚕️ Physician review required before prescribing")
         else:
