@@ -292,7 +292,166 @@ SYNTHETIC_ANTIBIOGRAM = {
             "colistin": 95,
         },
     },
+    "mrsa": {
+        "bloodstream": {
+            "vancomycin": 98,
+            "linezolid": 96,
+            "daptomycin": 97,
+            "co-trimoxazole": 92,
+        },
+        "pneumonia": {
+            "vancomycin": 98,
+            "linezolid": 96,
+            "clindamycin": 45,
+        },
+        "skin": {
+            "co-trimoxazole": 92,
+            "clindamycin": 78,
+            "vancomycin": 98,
+            "doxycycline": 88,
+        },
+    },
+    "esbl": {
+        "UTI": {
+            "nitrofurantoin": 55,
+            "fosfomycin": 82,
+            "meropenem": 99,
+            "piperacillin-tazobactam": 35,
+        },
+        "bloodstream": {
+            "meropenem": 99,
+            "cefepime": 40,
+            "piperacillin-tazobactam": 30,
+        },
+    },
 }
+
+
+# ─────────────────────────────────────────────
+# IDSA-style indication guidelines (curated)
+# ─────────────────────────────────────────────
+
+INDICATION_GUIDELINES = {
+    "Urinary Tract Infection": {
+        "source": "IDSA UTI Guidelines 2010 / EAU 2024",
+        "first_line": "Nitrofurantoin, Fosfomycin, or TMP-SMX (if local susceptibility >80%)",
+        "duration": "5–7 days uncomplicated; 7–14 days complicated",
+        "avoid": "Fluoroquinolones as first-line unless no alternatives",
+    },
+    "Community-Acquired Pneumonia": {
+        "source": "IDSA/ATS CAP Guidelines 2019",
+        "first_line": "Amoxicillin, Doxycycline, or Macrolide (outpatient); Beta-lactam + macrolide (inpatient)",
+        "duration": "5–7 days if clinically improving",
+        "avoid": "Reserve broad-spectrum unless risk factors for resistant organisms",
+    },
+    "Hospital-Acquired Pneumonia": {
+        "source": "IDSA/ATS HAP-VAP Guidelines 2016",
+        "first_line": "Anti-pseudomonal beta-lactam ± vancomycin if MRSA risk",
+        "duration": "7–8 days if good clinical response",
+        "avoid": "Double anaerobic coverage unless aspiration suspected",
+    },
+    "Sepsis (unknown source)": {
+        "source": "Surviving Sepsis Campaign 2021",
+        "first_line": "Broad-spectrum within 1h — adjust to culture at 48–72h",
+        "duration": "Shortest effective course after source control",
+        "avoid": "Prolonged broad-spectrum without de-escalation",
+    },
+    "Skin & Soft Tissue Infection": {
+        "source": "IDSA SSTI Guidelines 2014",
+        "first_line": "Cephalexin, Clindamycin, or TMP-SMX for purulent; Beta-lactam for non-purulent",
+        "duration": "5–10 days depending on severity",
+        "avoid": "Vancomycin monotherapy for uncomplicated cellulitis without MRSA risk",
+    },
+    "Intra-Abdominal Infection": {
+        "source": "IDSA/SIS IAI Guidelines 2010",
+        "first_line": "Source control + ceftriaxone/metronidazole or piperacillin-tazobactam",
+        "duration": "4–7 days if adequate source control",
+        "avoid": "Prolonged therapy after source control without evidence of ongoing infection",
+    },
+}
+
+PENICILLIN_CLASS = {"penicillin", "amoxicillin", "ampicillin", "amoxicillin-clavulanate", "piperacillin", "piperacillin-tazobactam", "benzylpenicillin"}
+CEPHALOSPORIN_CLASS = {"cefalexin", "cefazolin", "ceftriaxone", "cefotaxime", "cefixime", "cefuroxime", "ceftazidime", "cefepime"}
+SULFA_CLASS = {"co-trimoxazole", "trimethoprim", "sulfonamides"}
+
+RENAL_DOSE_TABLE = {
+    "nitrofurantoin": {"threshold": 30, "action": "AVOID if CrCl <30 mL/min — ineffective and toxicity risk", "severity": "ABSOLUTE"},
+    "gentamicin": {"threshold": 60, "action": "Extend interval; monitor levels; reduce dose if CrCl <60", "severity": "HIGH"},
+    "vancomycin": {"threshold": 30, "action": "Reduce dose and monitor trough; extend interval if CrCl <30", "severity": "HIGH"},
+    "ciprofloxacin": {"threshold": 30, "action": "Reduce dose 50% if CrCl <30", "severity": "HIGH"},
+    "meropenem": {"threshold": 20, "action": "Reduce dose if CrCl <20–40", "severity": "HIGH"},
+    "amoxicillin-clavulanate": {"threshold": 30, "action": "Reduce frequency if CrCl <30", "severity": "MEDIUM"},
+}
+
+
+def get_indication_guideline(diagnosis: str, pathogen: str = "Unknown") -> dict:
+    """Return stewardship guideline summary for indication."""
+    for key, val in INDICATION_GUIDELINES.items():
+        if key.lower() in diagnosis.lower() or diagnosis.lower() in key.lower():
+            out = dict(val)
+            out["diagnosis"] = diagnosis
+            if "mrsa" in pathogen.lower():
+                out["pathogen_note"] = "MRSA — consider vancomycin, linezolid, daptomycin, or TMP-SMX per site"
+            elif "esbl" in pathogen.lower():
+                out["pathogen_note"] = "ESBL — carbapenem preferred; avoid piperacillin-tazobactam unless susceptible"
+            return out
+    return {
+        "source": "WHO AWaRe 2023 / Local AMS policy",
+        "first_line": "Prefer Access-tier agent guided by local antibiogram",
+        "duration": "Shortest effective course",
+        "diagnosis": diagnosis,
+    }
+
+
+def check_allergy_conflict(antibiotic: str, drug_class: str, allergies: list) -> dict:
+    """Cross-check antibiotic against allergy list with class cross-reactivity."""
+    ab = antibiotic.lower()
+    dc = drug_class.lower()
+    allergy_lower = [a.lower() for a in allergies]
+
+    if "penicillin" in allergy_lower and (
+        any(p in ab for p in PENICILLIN_CLASS) or "penicillin" in dc or "aminopenicillin" in dc
+    ):
+        return {"conflict": True, "severity": "ABSOLUTE", "message": "Penicillin allergy — avoid penicillin-class agents"}
+
+    if "cephalosporins" in allergy_lower and (
+        any(c in ab for c in CEPHALOSPORIN_CLASS) or "cephalosporin" in dc
+    ):
+        return {"conflict": True, "severity": "ABSOLUTE", "message": "Cephalosporin allergy — avoid cephalosporin-class agents"}
+
+    if "sulfonamides" in allergy_lower and (
+        any(s in ab for s in SULFA_CLASS) or "sulfonamide" in dc
+    ):
+        return {"conflict": True, "severity": "ABSOLUTE", "message": "Sulfa allergy — avoid sulfonamide agents"}
+
+    if "fluoroquinolones" in allergy_lower and ("floxacin" in ab or "fluoroquinolone" in dc):
+        return {"conflict": True, "severity": "ABSOLUTE", "message": "Fluoroquinolone allergy — avoid quinolone class"}
+
+    return {"conflict": False, "severity": "NONE", "message": "No allergy conflict detected"}
+
+
+def suggest_renal_dose(antibiotic: str, crcl: float) -> dict:
+    """Renal dose adjustment suggestion for common antibiotics."""
+    ab = antibiotic.lower().strip()
+    for drug_key, rule in RENAL_DOSE_TABLE.items():
+        if drug_key in ab:
+            if crcl < rule["threshold"]:
+                return {
+                    "adjustment_required": True,
+                    "severity": rule["severity"],
+                    "message": rule["action"],
+                    "crcl": crcl,
+                    "drug": antibiotic,
+                }
+    if crcl < 30:
+        return {
+            "adjustment_required": True,
+            "severity": "MEDIUM",
+            "message": f"CrCl {crcl:.0f} mL/min — verify renal dosing for {antibiotic}",
+            "crcl": crcl,
+            "drug": antibiotic,
+        }
+    return {"adjustment_required": False, "message": "Standard dosing likely appropriate", "crcl": crcl}
 
 
 def query_local_antibiogram(

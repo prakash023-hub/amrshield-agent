@@ -48,6 +48,10 @@ logs/
 
 # Local audit log (generated at runtime)
 data/audit_log.json
+data/consent_wallets.json
+data/trust_chain.json
+data/threat_log.json
+data/attestations.json
 
 # Misc
 *.tmp

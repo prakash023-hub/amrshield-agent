@@ -21,6 +21,7 @@ from mcp_tools.phoenix_integration import (
     get_audit_traces,
 )
 from mcp_tools.audit_store import audit_stats
+from mcp_tools.pharmaguard_trust import run_pharmaguard_pipeline, verify_chain_integrity
 
 PROJECT_ID = os.getenv("GCP_PROJECT_ID", "project-d52ffa3b-95bb-4dfb-af0")
 LOCATION = os.getenv("GCP_LOCATION", "us-central1")
@@ -113,6 +114,23 @@ def run_audit_agent(recommendation: dict, patient_profile: dict) -> dict:
     audit_result["audit_id"] = f"AUDIT-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
     audit_result["latency_ms"] = latency_ms
     record_audit_to_store(recommendation, patient_profile, audit_result, latency_ms)
+
+    try:
+        pg = run_pharmaguard_pipeline(
+            patient_profile,
+            event_type="AUDIT_COMPLETE",
+            recommendation=recommendation,
+            audit_result=audit_result,
+        )
+        audit_result["pharmaguard"] = {
+            "wallet_id": pg.get("wallet", {}).get("wallet_id"),
+            "chain_valid": pg.get("chain_valid"),
+            "tools": pg.get("pharmaguard_tools", []),
+            "audit_block_id": pg.get("audit_block", {}).get("block_id"),
+        }
+    except Exception:
+        pass
+
     return audit_result
 
 

@@ -29,7 +29,7 @@ hr { border-color: #334155; }
 
 st.markdown("# 🛡️ AMRShield")
 st.markdown("### AI-Powered Antibiotic Stewardship with Self-Auditing Agent")
-st.markdown("**Gemini 2.5 Flash · Google Cloud Agent Builder · Arize Phoenix MCP · Arize Track**")
+st.markdown("**Gemini 2.5 Flash · Phoenix MCP · PharmaGuard Cyber (Zero-Trust)**")
 
 st.warning("⚕️ Research Prototype — Not approved for clinical use without licensed physician oversight.")
 st.divider()
@@ -54,10 +54,13 @@ Forecasts resistance trends using WHO GLASS data. Gemini 2.5 Flash generates 6-m
 
 **3. 🔍 Self-Audit Agent ⭐ (The Differentiator)**  
 Reviews EVERY recommendation via Arize Phoenix MCP before the clinician sees it. Detects hallucinations, allergy conflicts, renal dosing errors, guideline deviations. HOLDS dangerous recommendations automatically.
+
+**4. 🔐 PharmaGuard Cyber (Ignite Track)**  
+Healthcare zero-trust: consent wallets, edge sanitization, evil-tracker + prompt-injection defense, signal repair, immutable trust chain. Cyber Guard Agent protects every clinical AI call.
     """)
 
 with col2:
-    st.markdown("### 🖥️ Four Dashboards — Use Sidebar to Navigate")
+    st.markdown("### 🖥️ Five Dashboards — Use Sidebar to Navigate")
     st.markdown("""
 **🩺 Clinician Console**  
 Point-of-care UI — enter patient → get recommendation → see audit verdict → approve or escalate.
@@ -70,6 +73,9 @@ Hospital-wide KPIs — AWaRe tier trends, department compliance, cost savings, A
 
 **🌍 Surveillance Map**  
 Global geographic AMR resistance patterns with Gemini 2.5 Flash 6-month forecast overlays and WHO GLASS integration.
+
+**🔐 PharmaGuard Cyber SOC**  
+Live threat log, trust chain viewer, prompt-injection scanner, compliance score — healthcare cybersecurity command center.
     """)
 
 st.divider()

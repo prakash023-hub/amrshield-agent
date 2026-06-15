@@ -122,6 +122,9 @@ Output format — always return a structured recommendation:
   "guideline_reference": "<source>"
 }
 
+For MRSA use vancomycin/linezolid/daptomycin per site. For ESBL use carbapenem. For Pseudomonas use anti-pseudomonal beta-lactam.
+Always state IV vs PO and duration per IDSA/WHO AWaRe. Include renal adjustment note if CrCl <60.
+
 IMPORTANT: You are a decision SUPPORT tool. A licensed physician must review and approve all recommendations.
 Never claim 100% certainty. Flag complex cases for specialist review.
 """
@@ -216,6 +219,9 @@ Please:
                 fallback=f"TRACE-{patient_profile.get('patient_id', 'ANON')}-{iteration}"
             )
             recommendation["patient_id"] = patient_profile.get("patient_id", "ANON")
+
+            from agents.clinical_agent.physician_ready import enrich_for_physician
+            recommendation = enrich_for_physician(recommendation, patient_profile)
             return recommendation
 
         # Execute tool calls
