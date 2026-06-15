@@ -4,20 +4,12 @@
 PROJECT_ID="project-d52ffa3b-95bb-4dfb-af0"
 REGION="us-central1"
 SERVICE_NAME="amrshield"
-IMAGE="gcr.io/$PROJECT_ID/$SERVICE_NAME"
 
 echo "🚀 Deploying AMRShield to Cloud Run..."
 
-# Build and push image
-gcloud builds submit \
-  --tag $IMAGE \
-  --project $PROJECT_ID \
-  -f infrastructure/Dockerfile \
-  .
-
-# Deploy to Cloud Run
+# Build from source (Artifact Registry — avoids legacy gcr.io push issues)
 gcloud run deploy $SERVICE_NAME \
-  --image $IMAGE \
+  --source . \
   --platform managed \
   --region $REGION \
   --allow-unauthenticated \
@@ -26,7 +18,7 @@ gcloud run deploy $SERVICE_NAME \
   --cpu 2 \
   --min-instances 1 \
   --max-instances 10 \
-  --set-env-vars GCP_PROJECT_ID=$PROJECT_ID,GCP_LOCATION=$REGION \
+  --set-env-vars GCP_PROJECT_ID=$PROJECT_ID,GCP_LOCATION=$REGION,PHARMAGUARD_EDGE_NODE=edge-india-south-01 \
   --project $PROJECT_ID
 
 echo "✅ Deployed! Getting URL..."
