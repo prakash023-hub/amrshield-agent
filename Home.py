@@ -31,14 +31,25 @@ st.markdown("# 🛡️ AMRShield")
 st.markdown("### AI-Powered Antibiotic Stewardship with Self-Auditing Agent")
 st.markdown("**Gemini 2.5 Flash · Phoenix MCP · PharmaGuard Cyber (Zero-Trust)**")
 
-st.warning("⚕️ Research Prototype — Not approved for clinical use without licensed physician oversight.")
+st.warning("⚕️ Research Prototype — Not CDSCO/FDA cleared. Decision support only; physician must sign all orders.")
+
+from agents.clinical_agent.evidence_store import get_live_dashboard_metrics
+
+metrics = get_live_dashboard_metrics()
+
 st.divider()
 
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("Total Recommendations", "1,247", "+89 today")
-c2.metric("WHO Access Tier %", "64.8%", "+6.2%")
-c3.metric("Audit Pass Rate", "94.2%", "−0.8%")
-c4.metric("Cost Savings", "₹12.4L/month", "+₹2.1L")
+if metrics["is_live_data"]:
+    c1.metric("Recommendations (audit log)", metrics["total_recommendations"], f"+{metrics['today_recommendations']} today")
+    c2.metric("Access Tier %", f"{metrics['access_tier_pct']}%", metrics["metrics_label"])
+    c3.metric("Audit Pass Rate", f"{metrics['audit_pass_rate_pct']}%", metrics["metrics_label"])
+    c4.metric("Flagged for Review", metrics["flagged_for_review"], metrics["metrics_label"])
+else:
+    c1.metric("Recommendations", "0", "Run Clinician Console")
+    c2.metric("Antibiogram", "ICMR/GLASS ref", metrics["antibiogram_dataset_id"])
+    c3.metric("RAG Corpus", "Guidelines + cases", "LangChain BM25")
+    c4.metric("Audit Pass Rate", "—", "No cases logged yet")
 
 st.divider()
 
@@ -60,7 +71,7 @@ Healthcare zero-trust: consent wallets, edge sanitization, evil-tracker + prompt
     """)
 
 with col2:
-    st.markdown("### 🖥️ Five Dashboards — Use Sidebar to Navigate")
+    st.markdown("### 🖥️ Six Dashboards — Use Sidebar to Navigate")
     st.markdown("""
 **🩺 Clinician Console**  
 Point-of-care UI — enter patient → get recommendation → see audit verdict → approve or escalate.
@@ -76,6 +87,9 @@ Global geographic AMR resistance patterns with Gemini 2.5 Flash 6-month forecast
 
 **🔐 PharmaGuard Cyber SOC**  
 Live threat log, trust chain viewer, prompt-injection scanner, compliance score — healthcare cybersecurity command center.
+
+**📚 Evidence & Case Studies**  
+ICMR/WHO GLASS reference antibiogram, LangChain RAG over IDSA/WHO guidelines, published case studies, JIPMER WHONET upload.
     """)
 
 st.divider()
@@ -98,8 +112,9 @@ with col4:
 - **5 clinical trap cases** in Phoenix evaluation dataset  
 - **Cockcroft-Gault CrCl** calculator built-in  
 - **Drug interaction checker** for 40+ combinations  
-- **Synthetic antibiogram** (replace with real hospital data)  
-- **IDSA / WHO / CDC** guideline citations  
+- **India ICMR/WHO GLASS reference antibiogram** (JIPMER WHONET upload in pilot)
+- **LangChain RAG** — IDSA/WHO guidelines + published case studies
+- **IDSA / WHO / ICMR** evidence citations with sources
     """)
 
 st.divider()

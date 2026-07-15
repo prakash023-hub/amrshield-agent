@@ -170,4 +170,4 @@ st.markdown("""
 `Prompt Injection Defense` → `Clinical Agent (sanitized only)` → `Agent Output Exfil Scan` →
 `Threat Score` → `Immutable SHA-256 Chain Seal`
 """)
-st.caption("AMRShield + PharmaGuard · JIPMER hospital pilot ready (research prototype) · Not a certified medical device")
+st.caption("AMRShield + PharmaGuard · Global hospital pilot ready (research prototype) · Not a certified medical device")

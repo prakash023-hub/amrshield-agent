@@ -48,29 +48,38 @@ with col2:
 st.divider()
 
 
-def _synthetic_traces(n=50):
+def _synthetic_traces(n=20):
+    """Demo history only — labeled; PASS requires confidence ≥ 0.75."""
     random.seed(42)
     now = datetime.utcnow()
-    antibiotics = ["nitrofurantoin", "ceftriaxone", "vancomycin", "meropenem", "ciprofloxacin", "amoxicillin-clav", "pip-tazo", "linezolid"]
-    diagnoses = ["UTI", "CAP", "HAP", "SSTI", "Sepsis", "IAI"]
-    results = (["PASS"] * 35) + (["FLAG"] * 10) + (["HOLD"] * 5)
-    random.shuffle(results)
+    antibiotics = ["nitrofurantoin", "ceftriaxone", "vancomycin", "meropenem", "ciprofloxacin"]
+    diagnoses = ["UTI", "CAP", "HAP", "SSTI", "Sepsis"]
     rows = []
     for i in range(n):
-        r = results[i % len(results)]
+        conf = round(random.uniform(0.62, 0.96), 2)
+        if conf >= 0.75:
+            r = random.choice(["PASS"] * 7 + ["FLAG"] * 2)
+        else:
+            r = random.choice(["FLAG", "HOLD"])
+        hall = r == "HOLD" or (r == "FLAG" and conf < 0.70)
+        hall_detail = {
+            "findings": [{"category": "INDICATION_MISMATCH", "detail": "Carbapenem for UTI without ESBL — verify indication"}]
+        } if hall and "meropenem" in antibiotics[i % len(antibiotics)] else {"findings": []}
         rows.append({
             "trace_id": f"TR-DEMO-{10000 + i:05d}",
             "time": (now - timedelta(minutes=i * 7)).strftime("%H:%M:%S"),
-            "antibiotic": random.choice(antibiotics),
-            "diagnosis": random.choice(diagnoses),
+            "antibiotic": antibiotics[i % len(antibiotics)],
+            "diagnosis": diagnoses[i % len(diagnoses)],
             "result": r,
-            "confidence": round(random.uniform(0.55, 0.95), 2),
+            "confidence": conf,
             "latency_ms": random.randint(380, 1200),
-            "hallucination": r == "HOLD",
-            "flag_count": random.randint(0, 3) if r != "PASS" else 0,
-            "aware": random.choice(["Access", "Access", "Watch", "Reserve"]),
+            "hallucination": hall,
+            "hallucination_details": hall_detail,
+            "flag_count": len(hall_detail.get("findings", [])) + (1 if r != "PASS" else 0),
+            "aware": random.choice(["Access", "Access", "Watch"]),
             "physician_review": r in ["FLAG", "HOLD"],
-            "source": "demo_seed",
+            "queued_at": (now - timedelta(minutes=i * 7)).isoformat(),
+            "source": "demo_seed_labeled",
         })
     return rows
 
@@ -97,19 +106,24 @@ else:
 if live_count > 0:
     st.success(f"📡 {live_count} live audit trace(s) from Phoenix MCP pipeline")
 else:
-    st.info("Run a case in **Clinician Console** to populate live Phoenix MCP audit traces. Showing demo history below.")
+    st.info("Run a case in **Clinician Console** for live traces. Demo rows below are **labeled synthetic** — not clinical outcomes.")
 
-pass_c = len(df[df.result == "PASS"])
-flag_c = len(df[df.result == "FLAG"])
-hold_c = len(df[df.result == "HOLD"])
+# Exclude demo from pass-rate headline when live data exists
+rate_df = df[df.get("source", pd.Series(["live"] * len(df))) != "demo_seed_labeled"] if "source" in df.columns else df
+if len(rate_df) == 0:
+    rate_df = df
+
+pass_c = len(rate_df[rate_df.result == "PASS"])
+flag_c = len(rate_df[rate_df.result == "FLAG"])
+hold_c = len(rate_df[rate_df.result == "HOLD"])
 
 m1, m2, m3, m4, m5, m6 = st.columns(6)
-m1.metric("Total Traces", len(df))
+m1.metric("Traces shown", len(df))
 m2.metric("✅ Passed", pass_c)
 m3.metric("⚠️ Flagged", flag_c)
 m4.metric("🛑 Held", hold_c)
-m5.metric("Pass Rate", f"{round(pass_c / len(df) * 100, 1)}%")
-m6.metric("Avg Latency", f"{int(df.latency_ms.mean())}ms")
+m5.metric("Pass Rate", f"{round(pass_c / max(len(rate_df), 1) * 100, 1)}%", help="Live cases only when available")
+m6.metric("Release threshold", "≥75% conf")
 
 st.divider()
 col_l, col_r = st.columns([2, 3])
@@ -181,36 +195,45 @@ with col_r:
     st.plotly_chart(fig3, use_container_width=True)
 
 st.divider()
-st.markdown("#### 🚨 Hallucination Log")
-hall_df = df[df.hallucination]
+st.markdown("#### 🚨 Hallucination & quality detail log")
+hall_df = df[(df.hallucination) | (df.result != "PASS")]
 if len(hall_df) > 0:
-    log = ""
-    for _, row in hall_df.iterrows():
-        log += (
-            f'<span style="color:#3FB950">[{row.time}]</span> '
-            f'<span style="color:#F85149">HALLUCINATION_DETECTED</span> '
-            f'trace_id={row.trace_id} drug={row.antibiotic} conf={row.confidence}<br/>'
-            f'<span style="color:#8B949E">&nbsp;&nbsp;→ Phoenix MCP detect_hallucination · '
-            f'Held for physician review</span><br/>'
-        )
-    st.markdown(
-        f"""<div style='background:#0D1117; border:1px solid #30363D; border-radius:8px; """
-        f"""padding:1rem; font-family:JetBrains Mono,monospace; font-size:0.78rem'>{log}</div>""",
-        unsafe_allow_html=True,
-    )
+    for _, row in hall_df.head(10).iterrows():
+        details = row.get("hallucination_details") or {}
+        if isinstance(details, str):
+            try:
+                import json
+                details = json.loads(details)
+            except Exception:
+                details = {}
+        findings = details.get("findings", []) if isinstance(details, dict) else []
+        detail_txt = "; ".join(f.get("detail", "") for f in findings) or row.get("audit_reasoning", "See issues list")
+        st.markdown(f"""<div class='trace-card trace-hold'>
+<strong>{row.trace_id}</strong> · {row.antibiotic} · {row.diagnosis} · conf {row.confidence}<br/>
+<span style='color:#F85149'>Issue:</span> {detail_txt}
+</div>""", unsafe_allow_html=True)
+else:
+    st.success("No hallucination flags in current view")
 
 st.divider()
 st.markdown("#### 🩺 Physician Review Queue")
-review_df = df[df.physician_review].head(5)
+st.caption("Override requires ≥20 characters clinical justification (medico-legal)")
+review_df = df[df.physician_review].head(8)
 for _, row in review_df.iterrows():
     badge = "🛑 HOLD" if row.result == "HOLD" else "⚠️ FLAG"
-    c1, c2, c3 = st.columns([4, 1, 1])
+    st.markdown(f"**{badge}** `{row.trace_id}` · {row.antibiotic} for {row.diagnosis} · conf {row.confidence}")
+    justification = st.text_area("Override justification", key=f"j_{row.trace_id}", placeholder="Clinical rationale for overriding audit flag...")
+    c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown(
-            f"**{badge}** — `{row.trace_id}` · {row.antibiotic} for {row.diagnosis} · "
-            f"{int(row.flag_count)} issue(s)"
-        )
+        if st.button("✅ Approve", key=f"a_{row.trace_id}"):
+            st.success("Approved with audit trail")
     with c2:
-        st.button("✅ Approve", key=f"a_{row.trace_id}")
+        if st.button("🔄 Override", key=f"o_{row.trace_id}"):
+            from mcp_tools.stewardship_store import record_override
+            r = record_override(row.trace_id, "PHYSICIAN", justification)
+            if r.get("error"):
+                st.error(r["error"])
+            else:
+                st.success("Override recorded with justification")
     with c3:
-        st.button("🔄 Override", key=f"o_{row.trace_id}")
+        st.caption(f"Queued: {str(row.get('queued_at', '—'))[:19]}")

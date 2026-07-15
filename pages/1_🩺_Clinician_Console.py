@@ -47,11 +47,16 @@ with st.sidebar:
     patient_id = st.text_input("Patient ID (anonymized)", value="PT-2026-001")
     col1, col2 = st.columns(2)
     with col1:
-        age = st.number_input("Age", 18, 100, 65)
-        weight = st.number_input("Weight (kg)", 30.0, 200.0, 60.0)
+        age = st.number_input("Age (years)", 1, 100, 65)
+        weight = st.number_input("Weight (kg)", 3.0, 200.0, 60.0)
+        height_cm = st.number_input("Height (cm)", 100, 220, 165)
     with col2:
-        sex = st.selectbox("Sex", ["female","male"])
+        sex = st.selectbox("Sex", ["female", "male"])
         serum_cr = st.number_input("Creatinine (mg/dL)", 0.3, 15.0, 1.1, step=0.1)
+    on_dialysis = st.checkbox("On renal replacement (HD/PD)")
+    acquisition = st.selectbox("Acquisition", ["Community", "Hospital-acquired", "Healthcare-associated"])
+    hospital_day = st.number_input("Hospital day (if admitted)", 0, 90, 0)
+
     diagnosis = st.selectbox("Diagnosis", [
         "Urinary Tract Infection", "Community-Acquired Pneumonia", "Hospital-Acquired Pneumonia",
         "Sepsis (unknown source)", "Skin & Soft Tissue Infection", "Intra-Abdominal Infection",
@@ -61,39 +66,68 @@ with st.sidebar:
         "Unknown (empirical)", "E. coli", "Staphylococcus aureus", "MRSA", "ESBL",
         "Klebsiella pneumoniae", "Pseudomonas aeruginosa", "Enterococcus", "Streptococcus pneumoniae",
     ])
-    culture_available = st.checkbox("Culture & sensitivity available")
-    if culture_available:
-        culture_org = st.text_input("Culture organism", value="E. coli")
-        culture_sens = st.multiselect("Susceptible to", ["nitrofurantoin","ciprofloxacin","ceftriaxone","meropenem","vancomycin"], default=["nitrofurantoin"])
-    else:
-        culture_org, culture_sens = "", []
+
+    with st.expander("Comorbidities & immune status", expanded=True):
+        comorbidities = st.multiselect("Comorbidities", [
+            "diabetes", "CKD", "liver disease", "COPD", "heart failure", "malignancy", "none",
+        ], default=["none"])
+        immunocompromised = st.checkbox("Immunocompromised (HIV/transplant/chemo/steroids)")
+        prior_abx = st.multiselect("Antibiotics last 90 days", [
+            "none", "ciprofloxacin", "ceftriaxone", "meropenem", "vancomycin", "co-trimoxazole",
+        ], default=["none"])
+        child_pugh = st.selectbox("Child-Pugh (if liver disease)", ["N/A", "A", "B", "C"])
+
+    with st.expander("Vitals & labs"):
+        temp = st.number_input("Temperature °C", 35.0, 42.0, 37.5, step=0.1)
+        wbc = st.number_input("WBC ×10³/µL", 0.5, 40.0, 12.0, step=0.5)
+        crp = st.number_input("CRP mg/L (optional)", 0.0, 300.0, 0.0, step=1.0)
+        pct = st.number_input("Procalcitonin ng/mL (optional)", 0.0, 50.0, 0.0, step=0.1)
+
+    with st.expander("Culture & pregnancy"):
+        culture_available = st.checkbox("Culture & sensitivity available")
+        if culture_available:
+            culture_org = st.text_input("Culture organism", value="E. coli")
+            culture_sens = st.multiselect("Susceptible to", [
+                "nitrofurantoin", "ciprofloxacin", "ceftriaxone", "meropenem", "vancomycin",
+            ], default=["nitrofurantoin"])
+        else:
+            culture_org, culture_sens = "", []
+        blood_cultures = st.selectbox("Blood cultures", ["Not drawn", "Pending", "Negative", "Positive"])
+        bottles = st.number_input("BC bottles collected", 0, 4, 0)
+        pregnancy = st.checkbox("Pregnancy")
+        preg_trimester = st.selectbox("Trimester", ["N/A", "1st trimester", "2nd trimester", "3rd trimester"])
+
     icu = st.checkbox("ICU / severe sepsis")
-    pregnancy = st.checkbox("Pregnancy")
-    allergies = st.multiselect("Allergies", ["penicillin","cephalosporins","sulfonamides","fluoroquinolones","macrolides","vancomycin","none"], default=["none"])
-    medications = st.multiselect("Current Meds", ["warfarin","metformin","amlodipine","theophylline","amiodarone","furosemide","gentamicin","none"], default=["none"])
-    st.markdown("**Optional — clinical notes** *(edge-sanitized before AI)*")
-    clinical_notes = st.text_area(
-        "Free-text notes",
-        value="",
-        placeholder="e.g. fever 3 days — PHI like name/phone/Aadhaar is auto-stripped at edge",
-        height=80,
-        label_visibility="collapsed",
-    )
-    st.caption("PharmaGuard DLP v2 removes name, Aadhaar, phone, email before cloud AI sees data.")
+    id_consult = st.checkbox("ID consult obtained (required for Reserve tier)")
+    allergies = st.multiselect("Allergies", [
+        "penicillin", "cephalosporins", "sulfonamides", "fluoroquinolones", "macrolides", "vancomycin", "none",
+    ], default=["none"])
+    medications = st.multiselect("Current Meds", [
+        "warfarin", "metformin", "amlodipine", "theophylline", "amiodarone", "furosemide", "gentamicin", "none",
+    ], default=["none"])
+    clinical_notes = st.text_area("Clinical notes (edge-sanitized)", height=60, placeholder="No PHI — stripped at edge")
+    st.caption("WHO GLASS reference antibiogram · Upload your hospital data on Evidence → Microbiology Upload")
     st.divider()
     run_btn = st.button("🚀 Get Recommendation", type="primary", use_container_width=True)
 
 if run_btn:
     patient = {
-        "patient_id": patient_id, "age": age, "sex": sex, "weight": weight,
-        "serum_creatinine": serum_cr, "diagnosis": diagnosis,
-        "infection_site": diagnosis.split("(")[0].strip(),
-        "suspected_pathogen": pathogen,
+        "patient_id": patient_id, "age": age, "sex": sex, "weight": weight, "height_cm": height_cm,
+        "serum_creatinine": serum_cr, "on_dialysis": on_dialysis,
+        "diagnosis": diagnosis, "infection_site": diagnosis.split("(")[0].strip(),
+        "suspected_pathogen": pathogen, "acquisition": acquisition, "hospital_day": hospital_day,
+        "comorbidities": [c for c in comorbidities if c != "none"],
+        "immunocompromised": immunocompromised,
+        "prior_antibiotics_90d": [p for p in prior_abx if p != "none"],
+        "child_pugh": child_pugh if child_pugh != "N/A" else None,
+        "vitals_labs": {"temp_c": temp, "wbc": wbc, "crp": crp or None, "procalcitonin": pct or None},
+        "blood_cultures": blood_cultures, "bc_bottles": bottles,
         "allergies": [a for a in allergies if a != "none"],
         "current_medications": [m for m in medications if m != "none"],
         "culture_results": {"organism": culture_org, "susceptible": culture_sens} if culture_available else {},
-        "icu": icu,
-        "pregnancy": pregnancy,
+        "icu": icu, "pregnancy": pregnancy,
+        "pregnancy_trimester": preg_trimester if pregnancy else "N/A",
+        "id_consult": id_consult,
     }
     if clinical_notes.strip():
         patient["clinical_notes"] = clinical_notes.strip()
@@ -265,6 +299,13 @@ if run_btn:
                 for c in rec.get("iv_to_po_criteria", []):
                     st.markdown(f"• {c}")
 
+            de = rec.get("de_escalation_plan", {})
+            st.markdown("**🔄 De-escalation / antibiotic time-out**")
+            st.info(de.get("recommended_action") or de.get("trigger", "Reassess at 48–72h"))
+            if de.get("narrow_to"):
+                st.markdown(f"Narrow options: `{', '.join(de['narrow_to'])}`")
+            st.caption(f"Stewardship time-out due: {rec.get('antibiotic_timeout', '72h')}")
+
             st.caption(rec.get("physician_disclaimer", ""))
 
             st.divider()
@@ -275,8 +316,10 @@ if run_btn:
             with c_ap:
                 if st.button("✅ Approve & Sign Order", type="primary", disabled=not attestation):
                     from agents.clinical_agent.physician_ready import record_physician_attestation
+                    from mcp_tools.stewardship_store import schedule_antibiotic_timeout
                     record_physician_attestation(po.get("order_id", ""), physician_id, "APPROVED")
-                    st.success(f"Order {po.get('order_id')} signed by {physician_id}")
+                    schedule_antibiotic_timeout(po.get("order_id", ""), patient_id, rec.get("antibiotic", ""), 72)
+                    st.success(f"Order {po.get('order_id')} signed · 72h stewardship time-out scheduled")
             with c_esc:
                 if st.button("🔄 Escalate to ID"):
                     st.info("Escalated to Infectious Disease — order held pending consult.")
@@ -297,13 +340,30 @@ if run_btn:
 
         drugs = ["Nitrofurantoin","Co-trimoxazole","Ciprofloxacin","Ceftriaxone","Meropenem"]
         resist = [12,38,29,21,3]
+        try:
+            from agents.clinical_agent.evidence_store import get_resistance_chart_for_case
+            chart = get_resistance_chart_for_case(pathogen, diagnosis)
+            if chart.get("drugs"):
+                drugs = [d.title() for d in chart["drugs"]]
+                resist = chart["resistance_pct"]
+                st.caption(f"📊 {chart['source']} · {chart.get('pathogen','')}")
+        except Exception:
+            st.caption("📊 India ICMR/WHO GLASS reference antibiogram")
         fig_b = px.bar(x=resist, y=drugs, orientation='h',
             color=resist, color_continuous_scale=["#22C55E","#EAB308","#EF4444"])
         fig_b.update_layout(height=200, paper_bgcolor="#060D1A", plot_bgcolor="#161B22",
             font_color="#8B949E", margin=dict(t=5,b=10,l=10,r=10), showlegend=False, coloraxis_showscale=False,
             xaxis=dict(gridcolor="#21262D",title="Resistance %"), yaxis=dict(gridcolor="#21262D"))
-        st.markdown("**Resistance Probability**")
+        st.markdown("**Resistance % (reference antibiogram)**")
         st.plotly_chart(fig_b, use_container_width=True)
+
+        if rec.get("clinical_evidence"):
+            ev = rec["clinical_evidence"]
+            st.markdown("**📚 Evidence (LangChain RAG)**")
+            for chunk in ev.get("evidence_chunks", [])[:2]:
+                st.markdown(f"• **{chunk.get('title')}** — _{chunk.get('source', '')}_")
+            with st.expander("Guideline excerpts + case studies"):
+                st.json(ev)
 
         st.markdown("**🔍 Audit Trail**")
         st.markdown(f"<span style='color:#8B949E'>Trace:</span> <code>{audit.get('phoenix_trace_id') or rec.get('trace_id','—')}</code>", unsafe_allow_html=True)
@@ -325,9 +385,12 @@ else:
     5. **Apply WHO AWaRe** — prefer Access tier
     6. **Self-Audit** recommendation via Arize Phoenix MCP
     7. **Physician order set** — contraindications, monitoring labs, attestation
+    8. **LangChain RAG** — IDSA/WHO/ICMR guidelines + published case studies
     """)
+    from agents.clinical_agent.evidence_store import get_live_dashboard_metrics
+    m = get_live_dashboard_metrics()
     m1,m2,m3,m4 = st.columns(4)
-    m1.metric("Today's Recommendations","47","+3")
-    m2.metric("Access Tier Usage","68%","+5%")
-    m3.metric("Audit Pass Rate","94.2%","-0.8%")
-    m4.metric("Flagged for Review","3","+1")
+    m1.metric("Logged cases", m["total_recommendations"], m["metrics_label"])
+    m2.metric("Access tier %", f"{m['access_tier_pct']}%" if m["access_tier_pct"] is not None else "—", "from audit log")
+    m3.metric("Pass rate", f"{m['audit_pass_rate_pct']}%" if m["audit_pass_rate_pct"] is not None else "—", "from audit log")
+    m4.metric("Antibiogram", m["antibiogram_dataset_id"], "ICMR/GLASS ref")

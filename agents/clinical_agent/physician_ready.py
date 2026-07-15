@@ -6,6 +6,12 @@ renal adjustments, guideline citations, and attestation workflow.
 from datetime import datetime
 from typing import Optional
 
+from agents.clinical_agent.clinical_safety import (
+    enrich_clinical_profile,
+    build_tdm_plan,
+    build_de_escalation_plan,
+    CONFIDENCE_PASS_THRESHOLD,
+)
 from agents.clinical_agent.tools import (
     calculate_crcl,
     check_drug_interactions,
@@ -24,8 +30,9 @@ PHYSICIAN_DISCLAIMER = (
 
 def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
     """Build physician-ready order set from agent recommendation + deterministic checks."""
+    patient_profile = enrich_clinical_profile(patient_profile)
     age = patient_profile.get("age", 50)
-    weight = patient_profile.get("weight", 70)
+    weight = patient_profile.get("dosing_weight_kg", patient_profile.get("weight", 70))
     sex = patient_profile.get("sex", "male")
     cr = patient_profile.get("serum_creatinine", 1.0)
     allergies = patient_profile.get("allergies", [])
@@ -33,18 +40,22 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
     diagnosis = patient_profile.get("diagnosis", "")
     pathogen = patient_profile.get("suspected_pathogen", "Unknown")
     site = patient_profile.get("infection_site", diagnosis)
-
-    crcl_data = calculate_crcl(age, weight, cr, sex)
-    crcl = crcl_data.get("crcl_ml_min", 90)
     antibiotic = recommendation.get("antibiotic", "")
 
-    allergy_check = check_allergy_conflict(antibiotic, recommendation.get("drug_class", ""), allergies)
-    interaction_check = check_drug_interactions(antibiotic, meds) if antibiotic else {"interactions_found": []}
-    renal_dose = suggest_renal_dose(antibiotic, crcl) if antibiotic else {}
+    crcl_data = patient_profile.get("renal_function") or calculate_crcl(age, weight, cr, sex)
+    crcl = crcl_data.get("crcl_ml_min", 90)
+    if patient_profile.get("on_dialysis"):
+        renal_dose = {"adjustment_required": True, "severity": "HIGH", "message": "Patient on dialysis — use dialysis dosing nomogram, not CrCl"}
+    else:
+        renal_dose = suggest_renal_dose(antibiotic, crcl) if antibiotic else {}
     antibiogram = query_local_antibiogram(pathogen, site)
     guideline = get_indication_guideline(diagnosis, pathogen)
     aware = lookup_aware_tier(antibiotic) if antibiotic else {}
 
+    allergy_check = check_allergy_conflict(antibiotic, recommendation.get("drug_class", ""), allergies)
+    interaction_check = check_drug_interactions(antibiotic, meds) if antibiotic else {"interactions_found": []}
+
+    order_id = f"ORD-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
     contraindications = []
     if allergy_check.get("conflict"):
         contraindications.append({
@@ -66,7 +77,13 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
             "detail": renal_dose.get("message"),
         })
 
-    order_id = f"ORD-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+    for w in patient_profile.get("clinical_warnings", []):
+        contraindications.append({"type": "CLINICAL_CONTEXT", "severity": "MEDIUM", "detail": w})
+
+    de_esc = build_de_escalation_plan(patient_profile, recommendation)
+    tdm = build_tdm_plan(antibiotic)
+    stop_date = de_esc.get("stop_date", "")
+
     physician_order = {
         "order_id": order_id,
         "status": "PENDING_PHYSICIAN_ATTESTATION",
@@ -75,19 +92,23 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
         "route": recommendation.get("route", "PO"),
         "frequency": recommendation.get("frequency", "—"),
         "duration": f"{recommendation.get('duration_days', '—')} days",
+        "stop_date": stop_date or "Set at attestation",
         "indication": diagnosis,
         "pathogen": pathogen,
+        "acquisition": patient_profile.get("acquisition", "Community"),
         "aware_tier": recommendation.get("aware_tier", aware.get("aware_tier", "—")),
         "dispense_as_written": False,
         "substitutions_allowed": recommendation.get("aware_tier") != "Reserve",
     }
 
-    monitoring_labs = _build_monitoring_plan(antibiotic, crcl, contraindications)
+    monitoring_labs = _build_monitoring_plan(antibiotic, crcl, contraindications) + tdm
     stewardship_actions = _stewardship_checklist(recommendation, aware, guideline)
 
+    conf = float(recommendation.get("confidence_score", 0.75))
     safe_to_sign = (
         not allergy_check.get("conflict")
         and not any(c["severity"] == "ABSOLUTE" for c in contraindications)
+        and conf >= CONFIDENCE_PASS_THRESHOLD
         and (
             recommendation.get("aware_tier") != "Reserve"
             or patient_profile.get("id_consult", False)
@@ -108,14 +129,26 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
             "preferred": antibiogram.get("preferred_agents", {}),
             "alternatives": antibiogram.get("alternative_agents", {}),
             "source": antibiogram.get("data_source"),
+            "citation": antibiogram.get("citation", ""),
         },
         "guideline": guideline,
         "contraindications": contraindications,
         "monitoring_labs": monitoring_labs,
         "stewardship_actions": stewardship_actions,
         "iv_to_po_criteria": _iv_to_po_criteria(antibiotic, diagnosis),
-        "de_escalation_plan": _de_escalation_plan(pathogen, antibiotic),
+        "de_escalation_plan": de_esc,
+        "antibiotic_timeout": de_esc.get("timeout_due"),
+        "tdm_plan": tdm,
+        "clinical_context": {
+            "comorbidities": patient_profile.get("comorbidities", []),
+            "ibw_kg": patient_profile.get("ibw_kg"),
+            "dosing_weight_kg": patient_profile.get("dosing_weight_kg"),
+            "on_dialysis": patient_profile.get("on_dialysis", False),
+            "prior_antibiotics_90d": patient_profile.get("prior_antibiotics_90d", []),
+            "vitals_labs": patient_profile.get("vitals_labs", {}),
+        },
         "safe_to_sign": safe_to_sign,
+        "confidence_release_threshold": CONFIDENCE_PASS_THRESHOLD,
         "physician_attestation_required": True,
         "attestation_text": (
             "I have reviewed the AI recommendation, patient allergies, renal function, "
