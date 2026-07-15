@@ -1,0 +1,58 @@
+[
+  {
+    "id": "GL-UTI-IDSA-001",
+    "title": "IDSA Uncomplicated Cystitis — First-line agents",
+    "diagnosis_tags": ["UTI", "Urinary Tract Infection", "cystitis"],
+    "pathogen_tags": ["E. coli", "Enterobacterales"],
+    "text": "For acute uncomplicated cystitis in women, first-line agents are nitrofurantoin monohydrate/macrocrystals 100 mg orally twice daily for 5 days, trimethoprim-sulfamethoxazole one double-strength tablet twice daily for 3 days if local resistance rates do not exceed 20%, or fosfomycin tromethamine 3 g orally in a single dose. Fluoroquinolones are not recommended as first-line empiric therapy when alternatives exist due to resistance and adverse effects. Adjust for renal function; avoid nitrofurantoin if CrCl below 30 mL/min."
+  },
+  {
+    "id": "GL-CAP-IDSA-001",
+    "title": "IDSA/ATS Community-Acquired Pneumonia — Outpatient",
+    "diagnosis_tags": ["Community-Acquired Pneumonia", "CAP", "pneumonia"],
+    "pathogen_tags": ["Streptococcus pneumoniae", "Unknown"],
+    "text": "Previously healthy outpatient without comorbidities: amoxicillin 1 g three times daily, doxycycline 100 mg twice daily, or a macrolide only in areas with pneumococcal macrolide resistance below 25%. With comorbidities or risk factors: amoxicillin-clavulanate plus macrolide, or respiratory fluoroquinolone. Duration typically 5 days if clinically improving. Reserve broad-spectrum and anti-pseudomonal agents for inpatient or risk factors."
+  },
+  {
+    "id": "GL-SEPSIS-SSC-001",
+    "title": "Surviving Sepsis Campaign — Empiric antibiotics",
+    "diagnosis_tags": ["Sepsis", "sepsis"],
+    "pathogen_tags": ["Unknown"],
+    "text": "Administer empiric broad-spectrum antimicrobials within 1 hour of recognition for sepsis or septic shock. Use local antibiogram and epidemiology to select agents. Reassess at 48–72 hours for de-escalation based on cultures, clinical improvement, and infection source control. Shortest effective duration reduces AMR selection pressure."
+  },
+  {
+    "id": "GL-WHO-AWARE-001",
+    "title": "WHO AWaRe — Stewardship principle",
+    "diagnosis_tags": ["all"],
+    "pathogen_tags": ["all"],
+    "text": "WHO AWaRe categorizes antibiotics into Access (first- and second-choice for common infections), Watch (higher resistance potential — prioritize stewardship), and Reserve (last-resort — restrict to confirmed susceptible organisms). Hospital AMS programs should target ≥60% Access agent use where clinically appropriate and require justification for Reserve agents."
+  },
+  {
+    "id": "GL-INDIA-FQ-001",
+    "title": "India empirical UTI — fluoroquinolone resistance context",
+    "diagnosis_tags": ["UTI", "Urinary Tract Infection"],
+    "pathogen_tags": ["E. coli", "Klebsiella pneumoniae"],
+    "text": "ICMR AMRSN and WHO GLASS data from Indian laboratories report high non-susceptibility of E. coli to fluoroquinolones in urinary isolates, often exceeding 65–75% in aggregate tertiary-care surveillance. Empiric ciprofloxacin or levofloxacin for UTI should not be default without local susceptibility data supporting use. Prefer nitrofurantoin, fosfomycin, or TMP-SMX when local antibiogram susceptibility exceeds 80%."
+  },
+  {
+    "id": "GL-MRSA-001",
+    "title": "MRSA bloodstream infection — treatment",
+    "diagnosis_tags": ["bloodstream", "Sepsis", "Skin & Soft Tissue Infection"],
+    "pathogen_tags": ["MRSA", "Staphylococcus aureus"],
+    "text": "For MRSA bacteremia or severe infection: vancomycin or daptomycin IV; linezolid for pneumonia when alternatives limited. Outpatient purulent SSTI with MRSA: TMP-SMX, clindamycin, or doxycycline per local susceptibility. Obtain blood cultures before antibiotics when feasible. ID consultation recommended for persistent bacteremia, endocarditis, or prosthetic device infection."
+  },
+  {
+    "id": "GL-ESBL-001",
+    "title": "ESBL-producing Enterobacterales",
+    "diagnosis_tags": ["UTI", "Sepsis", "Intra-Abdominal Infection"],
+    "pathogen_tags": ["ESBL", "E. coli", "Klebsiella pneumoniae"],
+    "text": "ESBL-producing Enterobacterales: carbapenems (meropenem, ertapenem) are preferred for serious infections when beta-lactam/beta-lactamase inhibitor activity is unreliable. Piperacillin-tazobactam may be inadequate for high-inoculum ESBL bacteremia. For uncomplicated ESBL UTI, oral fosfomycin or nitrofurantoin may be options if susceptible. De-escalate per culture and MIC when safe."
+  },
+  {
+    "id": "GL-DPDP-001",
+    "title": "Clinical data minimization for AI CDS (India DPDP aligned)",
+    "diagnosis_tags": ["all"],
+    "pathogen_tags": ["all"],
+    "text": "Clinical decision support for antibiotic stewardship should use minimum necessary data: age, sex, weight, creatinine, diagnosis, allergies, medications, culture results, and pseudonymous identifier. Direct identifiers (name, Aadhaar, phone, address) must not be transmitted to cloud AI processors. Physician attestation and audit logs support accountability under hospital ethics review."
+  }
+]

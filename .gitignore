@@ -52,6 +52,14 @@ data/consent_wallets.json
 data/trust_chain.json
 data/threat_log.json
 data/attestations.json
+data/hospital_antibiogram_upload.json
+data/audit_overrides.json
+data/antibiotic_timeouts.json
+data/stewardship_alerts.json
+
+# Private local UI + docs (kept off public GitHub)
+docs/
+pages/
 
 # Misc
 *.tmp

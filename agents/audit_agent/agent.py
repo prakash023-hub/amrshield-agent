@@ -20,6 +20,7 @@ from mcp_tools.phoenix_integration import (
     run_phoenix_mcp_audit_pipeline,
     get_audit_traces,
 )
+from agents.clinical_agent.clinical_safety import apply_confidence_gate
 from mcp_tools.audit_store import audit_stats
 from mcp_tools.pharmaguard_trust import run_pharmaguard_pipeline, verify_chain_integrity
 
@@ -110,6 +111,7 @@ def run_audit_agent(recommendation: dict, patient_profile: dict) -> dict:
     except Exception:
         audit_result = _rule_based_audit(recommendation, patient_profile, mcp_pipeline)
 
+    audit_result = apply_confidence_gate(recommendation, audit_result)
     latency_ms = int((time.perf_counter() - started) * 1000)
     audit_result["audit_id"] = f"AUDIT-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
     audit_result["latency_ms"] = latency_ms

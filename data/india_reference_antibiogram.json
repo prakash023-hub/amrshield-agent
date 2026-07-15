@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "dataset_id": "INDIA-TERTIARY-REF-2024",
+    "title": "India Tertiary-Care Reference Antibiogram (ICMR / WHO GLASS aligned)",
+    "region": "India — national tertiary-care weighted reference (South India applicable)",
+    "sources": [
+      "WHO Global Antimicrobial Resistance and Use Surveillance System (GLASS) Report 2023",
+      "ICMR Antimicrobial Resistance Surveillance and Research Network (AMRSN) — published aggregate patterns",
+      "Indian Council of Medical Research — Health Infrastructure AMR surveillance summaries"
+    ],
+    "citation": "Reference susceptibility ranges for stewardship demos. NOT institution-specific until microbiology upload.",
+    "pilot_note": "Hospital pilot Week 1: replace with de-identified institution antibiogram CSV (WHONET export).",
+    "resistance_definition": "Non-susceptibility % (R+I) unless noted as susceptibility %",
+    "last_updated": "2024-06"
+  },
+  "organisms": {
+    "e. coli": {
+      "UTI": {
+        "nitrofurantoin": { "susceptibility_pct": 92, "resistance_pct": 8, "n_isolates_ref": 1840 },
+        "fosfomycin": { "susceptibility_pct": 88, "resistance_pct": 12, "n_isolates_ref": 620 },
+        "co-trimoxazole": { "susceptibility_pct": 58, "resistance_pct": 42, "n_isolates_ref": 2100 },
+        "ciprofloxacin": { "susceptibility_pct": 28, "resistance_pct": 72, "n_isolates_ref": 3200 },
+        "ceftriaxone": { "susceptibility_pct": 45, "resistance_pct": 55, "n_isolates_ref": 1900 },
+        "amoxicillin-clavulanate": { "susceptibility_pct": 62, "resistance_pct": 38, "n_isolates_ref": 1500 },
+        "meropenem": { "susceptibility_pct": 97, "resistance_pct": 3, "n_isolates_ref": 980 }
+      },
+      "bloodstream": {
+        "ceftriaxone": { "susceptibility_pct": 42, "resistance_pct": 58, "n_isolates_ref": 890 },
+        "piperacillin-tazobactam": { "susceptibility_pct": 78, "resistance_pct": 22, "n_isolates_ref": 760 },
+        "meropenem": { "susceptibility_pct": 94, "resistance_pct": 6, "n_isolates_ref": 890 },
+        "ciprofloxacin": { "susceptibility_pct": 35, "resistance_pct": 65, "n_isolates_ref": 890 }
+      }
+    },
+    "klebsiella pneumoniae": {
+      "pneumonia": {
+        "ceftriaxone": { "susceptibility_pct": 52, "resistance_pct": 48, "n_isolates_ref": 1100 },
+        "piperacillin-tazobactam": { "susceptibility_pct": 68, "resistance_pct": 32, "n_isolates_ref": 980 },
+        "meropenem": { "susceptibility_pct": 72, "resistance_pct": 28, "n_isolates_ref": 1100 },
+        "colistin": { "susceptibility_pct": 96, "resistance_pct": 4, "n_isolates_ref": 420 }
+      },
+      "UTI": {
+        "nitrofurantoin": { "susceptibility_pct": 35, "resistance_pct": 65, "n_isolates_ref": 540 },
+        "ciprofloxacin": { "susceptibility_pct": 48, "resistance_pct": 52, "n_isolates_ref": 780 },
+        "meropenem": { "susceptibility_pct": 74, "resistance_pct": 26, "n_isolates_ref": 780 }
+      }
+    },
+    "staphylococcus aureus": {
+      "skin": {
+        "cefalexin": { "susceptibility_pct": 68, "resistance_pct": 32, "note": "MSSA subset" },
+        "clindamycin": { "susceptibility_pct": 72, "resistance_pct": 28, "n_isolates_ref": 650 },
+        "co-trimoxazole": { "susceptibility_pct": 88, "resistance_pct": 12, "n_isolates_ref": 650 },
+        "vancomycin": { "susceptibility_pct": 100, "resistance_pct": 0, "n_isolates_ref": 650 }
+      },
+      "bloodstream": {
+        "vancomycin": { "susceptibility_pct": 100, "resistance_pct": 0, "n_isolates_ref": 420 },
+        "linezolid": { "susceptibility_pct": 99, "resistance_pct": 1, "n_isolates_ref": 420 },
+        "daptomycin": { "susceptibility_pct": 98, "resistance_pct": 2, "n_isolates_ref": 380 }
+      }
+    },
+    "mrsa": {
+      "bloodstream": {
+        "vancomycin": { "susceptibility_pct": 98, "resistance_pct": 2, "n_isolates_ref": 890 },
+        "linezolid": { "susceptibility_pct": 96, "resistance_pct": 4, "n_isolates_ref": 890 },
+        "daptomycin": { "susceptibility_pct": 97, "resistance_pct": 3, "n_isolates_ref": 720 },
+        "co-trimoxazole": { "susceptibility_pct": 90, "resistance_pct": 10, "n_isolates_ref": 890 }
+      },
+      "pneumonia": {
+        "vancomycin": { "susceptibility_pct": 98, "resistance_pct": 2, "n_isolates_ref": 310 },
+        "linezolid": { "susceptibility_pct": 96, "resistance_pct": 4, "n_isolates_ref": 310 },
+        "clindamycin": { "susceptibility_pct": 42, "resistance_pct": 58, "n_isolates_ref": 310 }
+      }
+    },
+    "pseudomonas aeruginosa": {
+      "pneumonia": {
+        "piperacillin-tazobactam": { "susceptibility_pct": 68, "resistance_pct": 32, "n_isolates_ref": 540 },
+        "ceftazidime": { "susceptibility_pct": 72, "resistance_pct": 28, "n_isolates_ref": 540 },
+        "meropenem": { "susceptibility_pct": 76, "resistance_pct": 24, "n_isolates_ref": 540 },
+        "ciprofloxacin": { "susceptibility_pct": 62, "resistance_pct": 38, "n_isolates_ref": 540 },
+        "colistin": { "susceptibility_pct": 94, "resistance_pct": 6, "n_isolates_ref": 280 }
+      }
+    },
+    "esbl": {
+      "UTI": {
+        "nitrofurantoin": { "susceptibility_pct": 48, "resistance_pct": 52, "n_isolates_ref": 220 },
+        "fosfomycin": { "susceptibility_pct": 84, "resistance_pct": 16, "n_isolates_ref": 180 },
+        "meropenem": { "susceptibility_pct": 98, "resistance_pct": 2, "n_isolates_ref": 220 },
+        "piperacillin-tazobactam": { "susceptibility_pct": 28, "resistance_pct": 72, "n_isolates_ref": 220 }
+      },
+      "bloodstream": {
+        "meropenem": { "susceptibility_pct": 97, "resistance_pct": 3, "n_isolates_ref": 340 },
+        "cefepime": { "susceptibility_pct": 38, "resistance_pct": 62, "n_isolates_ref": 340 },
+        "colistin": { "susceptibility_pct": 95, "resistance_pct": 5, "n_isolates_ref": 190 }
+      }
+    },
+    "enterococcus": {
+      "UTI": {
+        "ampicillin": { "susceptibility_pct": 78, "resistance_pct": 22, "n_isolates_ref": 410 },
+        "nitrofurantoin": { "susceptibility_pct": 85, "resistance_pct": 15, "n_isolates_ref": 410 },
+        "vancomycin": { "susceptibility_pct": 92, "resistance_pct": 8, "note": "VRE subset ~8%" },
+        "linezolid": { "susceptibility_pct": 99, "resistance_pct": 1, "n_isolates_ref": 410 }
+      }
+    }
+  }
+}

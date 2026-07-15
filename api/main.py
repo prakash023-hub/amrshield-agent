@@ -130,12 +130,12 @@ async def audit_stats_endpoint():
 
 @app.get("/antibiogram/summary")
 async def antibiogram_summary():
-    """
-    Local antibiogram summary — used by Stewardship Admin dashboard.
-    """
-    from agents.clinical_agent.tools import SYNTHETIC_ANTIBIOGRAM
+    """Active antibiogram — hospital upload or India ICMR/WHO GLASS reference."""
+    from agents.clinical_agent.evidence_store import get_active_antibiogram
+    ab = get_active_antibiogram()
     return {
-        "pathogens": list(SYNTHETIC_ANTIBIOGRAM.keys()),
-        "data": SYNTHETIC_ANTIBIOGRAM,
-        "source": "Synthetic Hospital Antibiogram 2025 (Demo)",
+        "meta": ab.get("meta", {}),
+        "organisms": list(ab.get("organisms", {}).keys()),
+        "data": ab.get("organisms", {}),
+        "source": ab.get("meta", {}).get("title", "India reference antibiogram"),
     }

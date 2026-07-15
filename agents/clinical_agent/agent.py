@@ -17,6 +17,7 @@ from agents.clinical_agent.tools import (
     check_drug_interactions,
     query_local_antibiogram,
 )
+from agents.clinical_agent.guideline_rag import retrieve_clinical_evidence
 from mcp_tools.phoenix_integration import ensure_phoenix_tracing, get_current_trace_id
 
 # ─────────────────────────────────────────────
@@ -79,7 +80,7 @@ CLINICAL_TOOLS = [
         ),
         types.FunctionDeclaration(
             name="query_local_antibiogram",
-            description="Query local hospital antibiogram for pathogen susceptibility patterns",
+            description="Query hospital or India ICMR/WHO GLASS reference antibiogram for pathogen susceptibility",
             parameters=types.Schema(
                 type=types.Type.OBJECT,
                 properties={
@@ -87,6 +88,19 @@ CLINICAL_TOOLS = [
                     "infection_site": types.Schema(type=types.Type.STRING, description="Site of infection"),
                 },
                 required=["pathogen"],
+            ),
+        ),
+        types.FunctionDeclaration(
+            name="retrieve_clinical_evidence",
+            description="LangChain RAG — retrieve IDSA/WHO/ICMR guideline excerpts and published case studies for this case",
+            parameters=types.Schema(
+                type=types.Type.OBJECT,
+                properties={
+                    "diagnosis": types.Schema(type=types.Type.STRING, description="Clinical diagnosis"),
+                    "pathogen": types.Schema(type=types.Type.STRING, description="Suspected or confirmed pathogen"),
+                    "query": types.Schema(type=types.Type.STRING, description="Optional extra search terms"),
+                },
+                required=["diagnosis"],
             ),
         ),
     ])
@@ -103,7 +117,8 @@ Your role:
 - Always apply WHO AWaRe classification (prefer Access tier when appropriate)
 - Always consider renal function (CrCl) for dose adjustments
 - Always check for drug interactions
-- Always consult local antibiogram data for empirical therapy
+- Always consult local antibiogram data (ICMR/WHO GLASS reference or hospital upload) for empirical therapy
+- Call retrieve_clinical_evidence for guideline citations and published case study context
 - Provide evidence-based reasoning with guideline citations (IDSA, WHO, CDC NHSN)
 
 Output format — always return a structured recommendation:
@@ -138,6 +153,7 @@ TOOL_MAP = {
     "lookup_aware_tier": lookup_aware_tier,
     "check_drug_interactions": check_drug_interactions,
     "query_local_antibiogram": query_local_antibiogram,
+    "retrieve_clinical_evidence": retrieve_clinical_evidence,
 }
 
 
@@ -181,9 +197,10 @@ CLINICAL PRESENTATION:
 Please:
 1. Calculate the patient's CrCl
 2. Query the local antibiogram for susceptibility data
-3. Check drug interactions for your recommended antibiotic
-4. Look up the AWaRe tier
-5. Provide your structured recommendation as JSON
+3. Retrieve clinical evidence (guidelines + case studies) via RAG
+4. Check drug interactions for your recommended antibiotic
+5. Look up the AWaRe tier
+6. Provide your structured recommendation as JSON with guideline_reference citing RAG sources
 """
 
     config = types.GenerateContentConfig(
@@ -221,7 +238,15 @@ Please:
             recommendation["patient_id"] = patient_profile.get("patient_id", "ANON")
 
             from agents.clinical_agent.physician_ready import enrich_for_physician
+            from agents.clinical_agent.guideline_rag import retrieve_clinical_evidence
             recommendation = enrich_for_physician(recommendation, patient_profile)
+            try:
+                recommendation["clinical_evidence"] = retrieve_clinical_evidence(
+                    patient_profile.get("diagnosis", ""),
+                    patient_profile.get("suspected_pathogen", "Unknown"),
+                )
+            except Exception:
+                pass
             return recommendation
 
         # Execute tool calls

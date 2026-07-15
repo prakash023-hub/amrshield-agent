@@ -10,6 +10,11 @@ from datetime import datetime
 from typing import Any, Optional
 
 from mcp_tools.audit_store import append_audit_event, list_audit_events
+from agents.clinical_agent.clinical_safety import (
+    detect_hallucination_details,
+    apply_confidence_gate,
+    CONFIDENCE_PASS_THRESHOLD,
+)
 
 # ─────────────────────────────────────────────
 # Tracing bootstrap (call once at app startup)
@@ -174,11 +179,31 @@ def evaluate_clinical_accuracy(recommendation: dict, patient_profile: dict, guid
         })
         score -= 0.2
 
+    detailed_hall = detect_hallucination_details(recommendation, patient_profile)
+    if detailed_hall.get("hallucination_detected"):
+        for f in detailed_hall.get("findings", []):
+            flags.append({
+                "type": f.get("category", "HALLUCINATION"),
+                "severity": "HIGH",
+                "message": f.get("detail"),
+            })
+        score -= min(0.5, 0.15 * len(detailed_hall.get("findings", [])))
+
+    conf = float(recommendation.get("confidence_score", 0.75))
+    if conf < CONFIDENCE_PASS_THRESHOLD:
+        flags.append({
+            "type": "LOW_CONFIDENCE",
+            "severity": "HIGH",
+            "message": f"AI confidence {conf:.0%} below {CONFIDENCE_PASS_THRESHOLD:.0%} release threshold",
+        })
+        score -= 0.2
+
     return {
         "accuracy_score": max(0.0, score),
         "flags": flags,
-        "requires_physician_review": score < 0.7 or any(f["severity"] == "CRITICAL" for f in flags),
+        "requires_physician_review": score < 0.7 or any(f["severity"] == "CRITICAL" for f in flags) or conf < CONFIDENCE_PASS_THRESHOLD,
         "guideline_source": guideline_source,
+        "hallucination_details": detailed_hall,
         "evaluated_at": datetime.utcnow().isoformat(),
         "mcp_tool": "evaluate_clinical_accuracy",
     }
@@ -340,7 +365,7 @@ def merge_mcp_into_audit(gemini_audit: dict, mcp_pipeline: dict) -> dict:
     if review_hold := mcp_pipeline.get("review_hold"):
         reasoning_parts.append(f"Review queued: {review_hold.get('review_id')}.")
 
-    return {
+    merged = {
         "overall_result": final_result,
         "issues_found": issues,
         "severity_level": "CRITICAL" if final_result == "HOLD" else gemini_audit.get("severity_level", "LOW"),
@@ -349,10 +374,13 @@ def merge_mcp_into_audit(gemini_audit: dict, mcp_pipeline: dict) -> dict:
         "audit_reasoning": " ".join(p for p in reasoning_parts if p).strip(),
         "phoenix_mcp_tools": mcp_pipeline.get("phoenix_mcp_tools", []),
         "phoenix_trace_id": mcp_pipeline.get("trace_id"),
-        "hallucination_detected": hallucination.get("hallucination_detected", False),
+        "hallucination_detected": hallucination.get("hallucination_detected", False) or bool(accuracy.get("hallucination_details", {}).get("findings")),
+        "hallucination_details": accuracy.get("hallucination_details", {}),
         "accuracy_score": accuracy.get("accuracy_score"),
         "review_hold": mcp_pipeline.get("review_hold"),
+        "queued_at": datetime.utcnow().isoformat(),
     }
+    return merged
 
 
 def record_audit_to_store(
@@ -375,6 +403,10 @@ def record_audit_to_store(
         "physician_review": audit_result.get("physician_review_required", False),
         "audit_reasoning": audit_result.get("audit_reasoning", ""),
         "phoenix_mcp_tools": audit_result.get("phoenix_mcp_tools", []),
+        "hallucination_details": audit_result.get("hallucination_details", {}),
+        "issues_found": audit_result.get("issues_found", []),
+        "queued_at": audit_result.get("queued_at"),
+        "source": "self-audit-agent",
     })
 
 

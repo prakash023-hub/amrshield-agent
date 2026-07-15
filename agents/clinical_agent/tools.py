@@ -459,53 +459,65 @@ def query_local_antibiogram(
     infection_site: Optional[str] = None
 ) -> dict:
     """
-    Query synthetic local antibiogram for susceptibility data.
-    
-    Args:
-        pathogen: Pathogen name (e.g., "E. coli", "MRSA")
-        infection_site: Infection site for site-specific susceptibility
-    
-    Returns:
-        Dict with susceptibility percentages and recommended agents
+    Query hospital or India reference antibiogram (ICMR/WHO GLASS aligned).
+    Hospital WHONET upload overrides reference data when present.
     """
+    from agents.clinical_agent.evidence_store import get_active_antibiogram
+
+    ab_data = get_active_antibiogram()
+    meta = ab_data.get("meta", {})
+    antibiogram = ab_data.get("organisms", SYNTHETIC_ANTIBIOGRAM)
+
     pathogen_key = pathogen.lower().strip()
-    
-    # Find matching pathogen
     matched_pathogen = None
-    for db_key in SYNTHETIC_ANTIBIOGRAM:
+    for db_key in antibiogram:
         if db_key in pathogen_key or pathogen_key in db_key:
             matched_pathogen = db_key
             break
-    
+
     if not matched_pathogen:
         return {
             "pathogen": pathogen,
-            "message": "Pathogen not in local antibiogram — use national guidelines or empirical therapy",
+            "message": "Pathogen not in antibiogram — use RAG guideline evidence or ID consult",
             "recommendation": "Consider infectious disease consultation for unusual pathogens",
+            "data_source": meta.get("title", "Reference antibiogram"),
         }
-    
-    pathogen_data = SYNTHETIC_ANTIBIOGRAM[matched_pathogen]
-    
-    # Get site-specific or first available data
+
+    pathogen_data = antibiogram[matched_pathogen]
     if infection_site:
         site_key = infection_site.lower()
-        susceptibility = next(
+        susceptibility_raw = next(
             (v for k, v in pathogen_data.items() if k in site_key or site_key in k),
             list(pathogen_data.values())[0]
         )
     else:
-        susceptibility = list(pathogen_data.values())[0]
-    
-    # Identify best agents (>80% susceptibility)
+        susceptibility_raw = list(pathogen_data.values())[0]
+
+    # Normalize to susceptibility percentages
+    susceptibility = {}
+    for drug, val in susceptibility_raw.items():
+        if drug.startswith("_"):
+            continue
+        if isinstance(val, dict):
+            susceptibility[drug] = val.get("susceptibility_pct", 100 - val.get("resistance_pct", 50))
+        else:
+            susceptibility[drug] = int(val)
+
     preferred_agents = {k: v for k, v in susceptibility.items() if v >= 80}
     alternative_agents = {k: v for k, v in susceptibility.items() if 60 <= v < 80}
-    
+
+    source_title = meta.get("title", "India Tertiary-Care Reference Antibiogram")
+    sources = meta.get("sources", ["ICMR AMRSN", "WHO GLASS 2023"])
+
     return {
         "pathogen": pathogen,
         "infection_site": infection_site or "general",
         "susceptibility_data": susceptibility,
         "preferred_agents": preferred_agents,
         "alternative_agents": alternative_agents,
-        "data_source": "Synthetic Hospital Antibiogram 2025 (Demo Data)",
-        "note": "Replace with your hospital's actual antibiogram data — WHONET format recommended",
+        "data_source": source_title,
+        "dataset_id": meta.get("dataset_id", "INDIA-REF"),
+        "sources": sources,
+        "citation": "Reference data — upload hospital WHONET JSON in Evidence → Microbiology Upload for production pilot",
+        "note": meta.get("pilot_note", "Replace with hospital antibiogram for production pilot"),
     }

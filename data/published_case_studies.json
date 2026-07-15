@@ -1,0 +1,74 @@
+[
+  {
+    "id": "CS-WHO-2024-AMR",
+    "title": "Global burden of bacterial AMR (WHO 2024)",
+    "setting": "Global / India included in surveillance",
+    "summary": "Bacterial AMR directly caused ~1.27 million deaths in 2019; India is among high-burden countries. Stewardship programs reduce inappropriate broad-spectrum use.",
+    "clinical_lesson": "Empirical fluoroquinolone use for UTI is often inappropriate in India due to high E. coli FQ resistance (ICMR/GLASS patterns >65% non-susceptibility in many centers).",
+    "intervention": "WHO AWaRe classification + local antibiogram-guided empiric therapy",
+    "outcome": "National AMR action plans mandate hospital AMS; tools must use local susceptibility data.",
+    "source": "WHO Bacterial Antimicrobial Resistance Report 2024",
+    "url": "https://www.who.int/publications/i/item/9789240076382",
+    "tags": ["AMR", "India", "UTI", "policy"]
+  },
+  {
+    "id": "CS-ICMR-AMRSN",
+    "title": "ICMR AMR Surveillance Network — Indian hospital patterns",
+    "setting": "Indian tertiary-care hospitals (AMRSN network)",
+    "summary": "ICMR network surveillance shows rising carbapenem resistance in Klebsiella and high fluoroquinolone resistance in Enterobacterales from outpatient UTI isolates.",
+    "clinical_lesson": "For uncomplicated UTI in India, nitrofurantoin or fosfomycin often preferred over ciprofloxacin when susceptibility supports; carbapenems reserved for ESBL/CRE.",
+    "intervention": "Antibiogram-driven formulary restrictions + AMS pharmacist review",
+    "outcome": "Published network reports guide empirical therapy by region and specimen type.",
+    "source": "ICMR AMRSN / Indian Journal of Medical Research surveillance summaries",
+    "url": "https://amrsn.icmr.org.in/",
+    "tags": ["India", "antibiogram", "Klebsiella", "UTI", "ESBL"]
+  },
+  {
+    "id": "CS-IDSA-ASP-2016",
+    "title": "Antimicrobial stewardship programs — Core Elements (CDC/IDSA)",
+    "setting": "US hospitals (model applicable to JIPMER pilot)",
+    "summary": "Seven core elements: leadership, accountability, drug expertise, action, tracking, reporting, education. Decision support must remain physician-directed.",
+    "clinical_lesson": "CDS tools increase Access-tier use when integrated with pharmacy-led review — not autonomous prescribing.",
+    "intervention": "Prospective audit and feedback + pre-prescription authorization for restricted agents",
+    "outcome": "Meta-analyses show 10–20% reduction in antimicrobial consumption without worsening mortality when ASP implemented.",
+    "source": "CDC Core Elements of Hospital Antibiotic Stewardship Programs (2023 update)",
+    "url": "https://www.cdc.gov/antibiotic-use/hcp/core-elements/index.html",
+    "tags": ["stewardship", "hospital", "pilot", "JIPMER"]
+  },
+  {
+    "id": "CS-UTI-IDSA-2010",
+    "title": "IDSA UTI Guidelines — uncomplicated cystitis",
+    "setting": "Outpatient UTI",
+    "summary": "First-line: nitrofurantoin 100mg BD x 5 days, TMP-SMX DS BD x 3 days (if local resistance <20%), or fosfomycin 3g single dose. FQ not first-line due resistance.",
+    "clinical_lesson": "Match empiric choice to local susceptibility; duration 5–7 days uncomplicated.",
+    "intervention": "Guideline-concordant empiric therapy",
+    "outcome": "Reduced recurrence and resistance selection pressure vs broad FQ use.",
+    "source": "Gupta K et al. IDSA UTI Guidelines 2010 (still referenced; EAU 2024 updates similar principles)",
+    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
+    "tags": ["UTI", "E. coli", "nitrofurantoin", "guideline"]
+  },
+  {
+    "id": "CS-HOSP-PILOT-TEMPLATE",
+    "title": "Hospital AMS Pilot — target case (your pilot fills real numbers)",
+    "setting": "Any tertiary-care hospital — proposed 4-week research pilot",
+    "summary": "Deploy AMRShield with institution WHONET antibiogram upload. Measure Access-tier empiric recommendations, audit FLAG rate, and pharmacist review time.",
+    "clinical_lesson": "Replace reference surveillance data with your hospital's organism-specific susceptibility in Week 1.",
+    "intervention": "AMRShield CDS + physician attestation + weekly AMS committee report",
+    "outcome": "Target KPIs: ≥60% Access-tier empirics for uncomplicated UTI; 100% physician sign-off; zero PHI to cloud AI.",
+    "source": "AMRShield pilot protocol — pending local ethics approval",
+    "url": "https://amrshield-105254876763.us-central1.run.app",
+    "tags": ["hospital", "pilot", "global", "stewardship"]
+  },
+  {
+    "id": "CS-MRSA-SSTI",
+    "title": "Purulent SSTI — MRSA coverage when risk factors present",
+    "setting": "Emergency / ward skin infection India",
+    "summary": "Indian tertiary centers report MRSA proportions ~25–40% in S. aureus from skin/soft tissue in many studies. TMP-SMX, clindamycin, or doxycycline for outpatient; vancomycin if severe/systemic.",
+    "clinical_lesson": "Do not use vancomycin monotherapy for uncomplicated cellulitis without MRSA risk or culture data.",
+    "intervention": "Risk-stratify MRSA; use local MRSA antibiogram",
+    "outcome": "Avoid unnecessary glycopeptide use; de-escalate when culture returns MSSA.",
+    "source": "IDSA SSTI Guidelines 2014; Indian MRSA prevalence literature (tertiary care meta-analyses)",
+    "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+    "tags": ["MRSA", "SSTI", "India", "vancomycin"]
+  }
+]
