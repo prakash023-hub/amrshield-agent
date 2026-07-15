@@ -57,6 +57,10 @@ data/audit_overrides.json
 data/antibiotic_timeouts.json
 data/stewardship_alerts.json
 
+# Private local UI + docs (kept off public GitHub)
+docs/
+pages/
+
 # Misc
 *.tmp
 *.bak
