@@ -219,11 +219,10 @@ If deployed in a 500-bed tertiary hospital:
 
 ---
 
-## 👤 Author
-
-**Prakash Raj K** — M.Pharm (Industrial Pharmacy)  
-Associate Professor, Dept. of Pharmaceutics  
-Sri Balaji Vidyapeeth (SBV), Puducherry  
-Mahatma Gandhi Medical College & Research Institute
-
-*Domain expertise: Pharmacometrics, Novel Drug Delivery, Antibiotic Stewardship, Computational Pharmacy*
+## 👤 Developer Profile
+**Prakash Raj K**  
+*Healthcare AI Engineer & Applied Data Scientist*  
+**Domain Background:** M.Pharm (Industrial Pharmacy) | Ex-Associate Professor, Dept. of Pharmaceutics  
+**Specializations:** Multi-Agent Systems, Reinforcement Learning, Clinical Data Architectures, Pharmacometrics.  
+*   [LinkedIn Profile](https://www.linkedin.com/in/prakashraj-pharmaai/)
+*   [GitHub Portfolio](https://github.com/prakash023-hub)  
