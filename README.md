@@ -105,7 +105,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/amrshield-agent.git
+git clone https://github.com/prakash023-hub/amrshield-agent.git
 cd amrshield-agent
 pip install -r requirements.txt
 ```
