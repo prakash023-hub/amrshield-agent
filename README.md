@@ -1,7 +1,7 @@
 # 🛡️ AMRShield — AI-Powered Antibiotic Stewardship with Self-Auditing Agent
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Built with Gemini](https://img.shields.io/badge/Built%20with-Gemini%203-blue)](https://cloud.google.com/)
+[![Built with Gemini](https://img.shields.io/badge/Built%20with-Gemini%202.5%20Flash-blue)](https://cloud.google.com/vertex-ai)
 [![Powered by Arize Phoenix](https://img.shields.io/badge/Observability-Arize%20Phoenix-purple)](https://phoenix.arize.com/)
 [![Google Cloud](https://img.shields.io/badge/Platform-Google%20Cloud-red)](https://cloud.google.com/)
 [![Track: Arize](https://img.shields.io/badge/Hackathon%20Track-Arize-orange)](https://rapid-agent.devpost.com/)
@@ -10,7 +10,7 @@
 
 AMRShield is a multi-agent clinical decision support system for **Antimicrobial Stewardship (AMS)** — powered by **Gemini 2.5 Flash** on Google Cloud Agent Builder, instrumented with **Arize Phoenix MCP** for real-time agent observability and self-auditing.
 
-Antimicrobial resistance (AMR) kills **1.27 million people per year** and costs the global economy over **$100 billion annually**. AI can help — but only if we can trust the AI. AMRShield solves both problems simultaneously.
+Antimicrobial resistance (AMR) kills **1.27 million people per year** and costs the global economy over **$100 billion annually**. AI can help — but only if clinicians can trust it. AMRShield pairs each recommendation with an automated audit of that recommendation.
 
 ---
 
@@ -25,18 +25,18 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 │  ┌──────────────┐    ┌──────────────┐    ┌──────────────────────┐  │
 │  │   Clinician  │───▶│  CLINICAL    │───▶│   SELF-AUDIT AGENT  │  │
 │  │   Dashboard  │    │    AGENT     │    │  (Phoenix MCP Core) │  │
-│  └──────────────┘    │  [Gemini 3]  │    │     [Gemini 3]      │  │
+│  └──────────────┘    │ [Gemini 2.5] │    │    [Gemini 2.5]     │  │
 │                      └──────┬───────┘    └──────────┬──────────┘  │
 │  ┌──────────────┐           │                       │             │
 │  │ Stewardship  │    ┌──────▼───────┐    ┌──────────▼──────────┐  │
 │  │   Admin      │    │  PREDICTION  │    │   Arize Phoenix     │  │
 │  │  Dashboard   │    │    AGENT     │    │   MCP Server        │  │
-│  └──────────────┘    │  [Gemini 3]  │    │  Traces/Evals/      │  │
+│  └──────────────┘    │ [Holt base.] │    │  Traces/Evals/      │  │
 │                      └──────┬───────┘    │  Experiments/       │  │
 │  ┌──────────────┐           │            │  Annotations        │  │
 │  │ Surveillance │    ┌──────▼───────┐    └─────────────────────┘  │
-│  │     Map      │    │  WHO GLASS   │                             │
-│  │  Dashboard   │    │  FHIR / AMR  │    Google Cloud Agent      │
+│  │     Map      │    │  Synthetic   │                             │
+│  │  Dashboard   │    │ GLASS-style  │    Google Cloud Agent      │
 │  └──────────────┘    │  Databases   │    Builder + Cloud Run     │
 │                      └──────────────┘                             │
 │  ┌──────────────┐                                                  │
@@ -54,7 +54,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 |-----------|-------|---------|
 | 🩺 **Clinician Console** | Bedside physicians | Real-time antibiotic recommendation + explainability |
 | 🏥 **Stewardship Admin** | AMS pharmacists, hospital admin | Hospital-wide usage trends, compliance, cost savings |
-| 🌍 **Surveillance Map** | Epidemiologists, public health | Geographic AMR spread + 6-month Gemini 3 forecast |
+| 🌍 **Surveillance Map** | Epidemiologists, public health | Geographic AMR view + 6-month baseline forecast (synthetic data) |
 | 🔍 **Audit Console** | Quality officers, AI safety team | Live Phoenix traces, hallucination flags, drift detection |
 
 ---
@@ -67,16 +67,19 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 - Recommends antibiotic with dose + duration + monitoring plan
 - Tools: `query_local_antibiogram`, `check_drug_interactions`, `calculate_crcl`, `get_aware_tier`
 
-### 2. AMR Prediction Agent
-- Queries WHO GLASS API for global resistance trends
-- Forecasts local resistance emergence (6-month horizon)
-- Tools: `fetch_who_glass_data`, `query_resistance_db`, `run_temporal_forecast`
+### 2. AMR Prediction Agent *(baseline — not a trained model)*
+- Deterministic 6-month forecast using **Holt's linear-trend exponential smoothing**, with an approximate 80% interval
+- Runs on **synthetic WHO GLASS-style series** — no live WHO GLASS API connection yet
+- No accuracy claim is made; output is labelled `validated: false`
+- **Next step:** ingest real WHO GLASS data and benchmark ARIMA / Prophet against this baseline with rolling-origin backtesting (MAE / MAPE)
 
 ### 3. Self-Audit Agent ⭐ *(The Novel Differentiator)*
 - Monitors every Clinical Agent decision via Phoenix MCP
-- Detects hallucinations, guideline deviations, confidence miscalibration
-- Flags high-risk recommendations for human physician review
-- Tools: `fetch_phoenix_traces`, `detect_hallucination`, `evaluate_clinical_accuracy`, `flag_for_review`, `run_phoenix_experiment`
+- **Grounding check** (`detect_hallucination`): verifies the drug, its WHO AWaRe tier, any quoted CrCl value and any "no interaction / no allergy" statement against deterministic tool outputs, and returns a faithfulness score
+- Rule-based guideline checks: renal dosing, allergy conflicts, Reserve-tier overuse
+- Flags high-risk recommendations for human physician review (PASS / FLAG / HOLD)
+- Tools: `detect_hallucination`, `evaluate_clinical_accuracy`, `fetch_phoenix_traces`, `flag_for_review`
+- **Limitation:** the grounding check is rule-based. Planned upgrade: claim extraction + LLM-as-judge scoring against tool outputs and guideline text, measured on a labelled evaluation set
 
 ---
 
@@ -90,7 +93,9 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 | **Hosting** | Google Cloud Run |
 | **Dashboards** | Streamlit (4 apps) |
 | **Database** | Cloud Firestore (patient cases, audit logs) |
-| **Data Sources** | WHO GLASS API, synthetic MIMIC-IV-style cases |
+| **Data Sources** | Synthetic data only — WHO GLASS-style resistance series, synthetic antibiogram and patient cases |
+| **Forecasting** | Holt exponential smoothing baseline (NumPy) |
+| **Testing** | pytest (offline unit tests for deterministic components) |
 
 ---
 
@@ -139,7 +144,15 @@ streamlit run dashboards/surveillance_map/app.py --server.port 8503
 streamlit run dashboards/audit_console/app.py --server.port 8504
 ```
 
-### 5. Deploy to Cloud Run
+### 5. Run Tests
+
+```bash
+pytest -q tests
+```
+
+Offline tests cover the Cockcroft-Gault calculator, AWaRe lookups, forecast determinism and the grounding check.
+
+### 6. Deploy to Cloud Run
 
 ```bash
 bash infrastructure/deploy.sh
@@ -151,42 +164,34 @@ bash infrastructure/deploy.sh
 
 ```
 amrshield-agent/
-├── LICENSE                          ← MIT License
-├── README.md
-├── requirements.txt
+├── Home.py                          ← Streamlit multipage entry point
+├── pages/                           ← Clinician, Audit, Stewardship, Surveillance, PharmaGuard pages
 ├── agents/
 │   ├── clinical_agent/
-│   │   ├── agent.py                 ← Core clinical recommendation logic
-│   │   └── tools.py                 ← AWaRe, CrCl, drug interaction tools
+│   │   ├── agent.py                 ← Gemini 2.5 Flash recommendation agent (function calling)
+│   │   ├── tools.py                 ← AWaRe lookup, Cockcroft-Gault CrCl, interactions, allergy, renal dosing, antibiogram
+│   │   └── physician_ready.py       ← Physician-ready order formatting
 │   ├── prediction_agent/
-│   │   ├── agent.py                 ← AMR trend forecasting
-│   │   └── tools.py                 ← WHO GLASS, resistance DB tools
+│   │   └── agent.py                 ← Holt exponential-smoothing baseline forecast (synthetic data)
 │   └── audit_agent/
-│       ├── agent.py                 ← Self-audit orchestrator
-│       └── tools.py                 ← Phoenix MCP tool wrappers
+│       └── agent.py                 ← Self-Audit Agent (MCP checks + Gemini review)
 ├── mcp_tools/
-│   ├── phoenix_integration.py       ← Phoenix MCP server setup
-│   ├── aware_tool.py                ← WHO AWaRe classification
-│   ├── crcl_tool.py                 ← Cockcroft-Gault CrCl calculator
-│   ├── resistance_tool.py           ← Local resistance lookup
-│   └── who_glass_tool.py            ← WHO GLASS API integration
-├── dashboards/
-│   ├── clinician_console/app.py     ← Dashboard 1: Point-of-care
-│   ├── stewardship_admin/app.py     ← Dashboard 2: Hospital oversight
-│   ├── surveillance_map/app.py      ← Dashboard 3: Geographic AMR
-│   └── audit_console/app.py         ← Dashboard 4: Agent audit
+│   ├── phoenix_integration.py       ← Phoenix tracing + MCP audit tools (grounding check, accuracy, review hold)
+│   ├── audit_store.py               ← Local audit-event store (fallback when Phoenix is unavailable)
+│   ├── pharmaguard_dlp.py           ← PHI redaction / DLP
+│   ├── pharmaguard_cyber.py         ← Security checks
+│   └── pharmaguard_trust.py         ← Trust & safety layer
+├── api/
+│   ├── main.py                      ← FastAPI endpoints
+│   └── schemas.py
+├── dashboards/                      ← Standalone Streamlit apps (one per dashboard)
+├── agent_builder/amrshield_agent.py ← Agent Builder definition
 ├── evaluations/
-│   ├── synthetic_patient_cases.json ← Test cases (no real PHI)
-│   ├── phoenix_evaluators.py        ← Custom clinical evaluators
-│   └── run_benchmarks.py            ← CI evaluation runner
-├── infrastructure/
-│   ├── secrets_template.env
-│   ├── cloudrun_deploy.yaml
-│   └── deploy.sh
-└── docs/
-    ├── setup_guide.md
-    ├── architecture.md
-    └── safety_disclaimers.md
+│   └── synthetic_patient_cases.json ← 5 synthetic evaluation cases (no real PHI)
+├── tests/
+│   └── test_core.py                 ← Offline unit tests
+├── infrastructure/                  ← Dockerfile, deploy.sh, secrets template
+└── docs/                            ← Setup guide, safety disclaimers, demo and submission notes
 ```
 
 ---
@@ -197,17 +202,23 @@ amrshield-agent/
 - All patient data used is **fully synthetic** (no real PHI, no HIPAA concerns)
 - Every high-risk recommendation requires **physician approval** before acting
 - All AI decisions are fully **explainable and traceable** via Phoenix
-- Follows WHO AWaRe, IDSA, and CDC NHSN antibiotic stewardship guidelines
+- Rules are informed by WHO AWaRe and IDSA guidance; they have not been reviewed by a hospital stewardship committee
 
 ---
 
-## 📊 Potential Impact
+## 📊 Potential Impact *(projections, not measured results)*
 
-If deployed in a 500-bed tertiary hospital:
-- ~**40% reduction** in inappropriate broad-spectrum antibiotic prescriptions
-- ~**$200K/year** savings in antibiotic acquisition costs
-- ~**15% reduction** in C. difficile infections from overuse
-- Real-time AMR surveillance replacing manual quarterly audits
+AMRShield has **not** been evaluated on real patients or in a hospital, so no outcome has been measured. Published antimicrobial stewardship programme literature reports reductions in inappropriate broad-spectrum use, antibiotic costs and *C. difficile* infections; AMRShield is designed to support those same stewardship interventions. Any impact on a specific hospital would need to be measured in a supervised pilot against a pre-deployment baseline.
+
+---
+
+## 🚧 Known Limitations
+
+- **Synthetic data only** — antibiogram, resistance series and patient cases are synthetic. This protects privacy, but there is **no clinical validation**.
+- **Forecast is a baseline**, not a trained predictive model, and has not been backtested on real surveillance data.
+- **Grounding check is rule-based** — it verifies specific claim types, not free-text reasoning.
+- **Small evaluation set** — 5 synthetic cases; a larger, clinician-labelled set is needed before any accuracy figure can be reported.
+- Dashboards display synthetic demo KPIs where no live data source exists.
 
 ---
 

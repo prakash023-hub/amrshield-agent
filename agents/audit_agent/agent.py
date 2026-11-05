@@ -41,7 +41,7 @@ RECOMMENDATION: {recommendation}
 PATIENT: {patient}
 
 Check these 4 things:
-1. HALLUCINATION — any absolutist language like "always", "never", "100% effective", "guaranteed"?
+1. HALLUCINATION — is every concrete claim (drug, AWaRe tier, CrCl, interaction/allergy statements) supported by the MCP grounding results above? Treat unsupported claims as issues; absolutist language ("always", "guaranteed") is a minor style issue only.
 2. ALLERGY CONFLICT — does the antibiotic conflict with patient allergies?
 3. RENAL DOSING — if CrCl < 30, are renally-cleared drugs avoided/adjusted?
 4. GUIDELINE ADHERENCE — is WHO AWaRe tier appropriate for this indication?

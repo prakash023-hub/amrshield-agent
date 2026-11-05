@@ -42,7 +42,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("## 🏥 AMRShield — Stewardship Admin Dashboard")
-st.caption("Hospital-wide antibiotic stewardship KPIs · 500-bed tertiary hospital · Real-time via Gemini 3")
+st.caption("Hospital-wide antibiotic stewardship KPIs · 500-bed tertiary hospital · SYNTHETIC demo data")
 
 # Date range
 col_d1, col_d2 = st.columns([3,1])
@@ -67,6 +67,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.markdown("#### AWaRe Tier Trends (30 days)")
     dates = pd.date_range(end=datetime.now(), periods=30, freq="D")
+    np.random.seed(42)  # synthetic demo series — fixed seed so the chart is reproducible
     access = np.random.randint(55, 75, 30).cumsum() // 30 + np.random.randint(58, 68, 30)
     watch = 100 - access - np.random.randint(3, 8, 30)
     reserve_pct = 100 - access - watch
@@ -150,4 +151,4 @@ with col4:
     st.plotly_chart(fig4, use_container_width=True)
 
 st.divider()
-st.caption("AMRShield Stewardship Admin · Google Cloud Agent Builder · Gemini 3 · Arize Phoenix MCP")
+st.caption("AMRShield Stewardship Admin · Google Cloud Agent Builder · Gemini 2.5 Flash · Arize Phoenix MCP")

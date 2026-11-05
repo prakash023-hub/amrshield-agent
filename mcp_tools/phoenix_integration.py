@@ -110,19 +110,95 @@ def fetch_phoenix_traces(project_name: str, limit: int = 20, filter_flags: Optio
         }
 
 
+ABSOLUTIST_PHRASES = [
+    "always use", "never use", "100% effective", "guaranteed",
+    "cure", "proven to eliminate", "completely safe", "no side effects",
+]
+
+
 def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dict:
-    """Check agent output for hallucinated or unsupported claims (MCP: detect_hallucination)."""
-    red_flags = [
-        "always use", "never use", "100% effective", "guaranteed",
-        "cure", "proven to eliminate", "completely safe", "no side effects",
-    ]
-    flagged = [p for p in red_flags if p.lower() in agent_output.lower()]
+    """
+    Grounding check (MCP: detect_hallucination).
+
+    Verifies the agent's concrete claims against deterministic tool outputs
+    instead of trusting the LLM's own text:
+      1. Drug exists in the WHO AWaRe reference table.
+      2. Claimed AWaRe tier matches the reference tier.
+      3. Any CrCl value quoted in the rationale matches Cockcroft-Gault (±5 mL/min).
+      4. "No interaction" / "no allergy" statements are not contradicted by the
+         interaction and allergy checkers.
+      5. Absolutist language (weak, stylistic signal only).
+
+    Returns a faithfulness score = supported claims / checked claims.
+    Limitation: rule-based. Planned upgrade is claim extraction + LLM-as-judge
+    against tool outputs and guideline text, scored on a labelled eval set.
+    """
+    from agents.clinical_agent.tools import (
+        calculate_crcl, check_allergy_conflict, check_drug_interactions, lookup_aware_tier,
+    )
+
+    rec = context.get("recommendation", {}) or {}
+    patient = context.get("patient_profile", {}) or {}
+    text = agent_output.lower()
+    drug = str(rec.get("antibiotic", "")).strip()
+
+    checks = []
+
+    def add(claim: str, supported: bool, evidence: str, severity: str = "HIGH"):
+        checks.append({"claim": claim, "supported": supported, "evidence": evidence,
+                       "severity": "NONE" if supported else severity})
+
+    # 1 + 2. Drug and AWaRe tier grounded in reference table
+    if drug:
+        ref = lookup_aware_tier(drug)
+        ref_tier = ref.get("aware_tier", "Not classified")
+        add(f"'{drug}' is a recognised antibiotic", ref_tier != "Not classified",
+            f"AWaRe lookup → {ref_tier}", "MEDIUM")
+        claimed_tier = str(rec.get("aware_tier", "")).strip()
+        if claimed_tier and ref_tier != "Not classified":
+            add(f"AWaRe tier = {claimed_tier}", claimed_tier.lower() == ref_tier.lower(),
+                f"Reference tier = {ref_tier}")
+
+    # 3. Quoted CrCl vs calculated CrCl
+    import re
+    quoted = re.findall(r"crcl[^0-9]{0,15}(\d{1,3}(?:\.\d+)?)", text)
+    scr = patient.get("serum_creatinine")
+    if quoted and all(k in patient for k in ("age", "weight", "sex")) and isinstance(scr, (int, float)) and scr > 0:
+        calc = calculate_crcl(patient["age"], patient["weight"], scr, patient["sex"]).get("crcl_ml_min")
+        for q in quoted:
+            add(f"CrCl ≈ {q} mL/min", abs(float(q) - calc) <= 5, f"Cockcroft-Gault = {calc} mL/min")
+
+    # 4. Safety statements contradicted by tool outputs
+    if drug and patient.get("current_medications") is not None:
+        ddi = check_drug_interactions(drug, patient.get("current_medications", []))
+        if "no interaction" in text or "no significant interaction" in text:
+            add("No drug interactions", ddi["interaction_count"] == 0, ddi["summary"])
+    if drug and patient.get("allergies"):
+        allergy = check_allergy_conflict(drug, str(rec.get("drug_class", "")), patient["allergies"])
+        if "no allergy" in text or "allergy-safe" in text or "safe with" in text:
+            add("No allergy conflict", not allergy["conflict"], allergy["message"], "CRITICAL")
+
+    # 5. Absolutist language — stylistic signal, low weight
+    flagged = [p for p in ABSOLUTIST_PHRASES if p in text]
+    if flagged:
+        add("Measured, non-absolute language", False, f"Absolutist phrases: {flagged}", "LOW")
+
+    unsupported = [c for c in checks if not c["supported"]]
+    faithfulness = round(1 - len(unsupported) / len(checks), 2) if checks else 1.0
+    material = [c for c in unsupported if c["severity"] in ("MEDIUM", "HIGH", "CRITICAL")]
+
     return {
         "trace_id": trace_id,
-        "hallucination_detected": len(flagged) > 0,
+        "hallucination_detected": len(material) > 0,
+        "faithfulness_score": faithfulness,
+        "claims_checked": len(checks),
+        "unsupported_claims": unsupported,
         "flagged_phrases": flagged,
-        "confidence": 0.85 if flagged else 0.05,
-        "reasoning": f"Absolutist language detected: {flagged}" if flagged else "No hallucination indicators found",
+        "reasoning": (
+            "; ".join(f"{c['claim']} — {c['evidence']}" for c in unsupported)
+            if unsupported else "All checked claims are supported by tool outputs"
+        ),
+        "method": "rule-based grounding against deterministic tools (not an LLM judge)",
         "timestamp": datetime.utcnow().isoformat(),
         "mcp_tool": "detect_hallucination",
     }
@@ -248,13 +324,18 @@ def run_phoenix_mcp_audit_pipeline(
         "rationale": recommendation.get("rationale", ""),
         "antibiotic": recommendation.get("antibiotic", ""),
         "dose": recommendation.get("dose", ""),
+        "aware_tier": recommendation.get("aware_tier", ""),
     })
 
     hallucination = invoke_mcp_tool(
         "detect_hallucination",
         trace_id=trace_id,
         agent_output=agent_output,
-        context={"patient_id": patient_profile.get("patient_id")},
+        context={
+            "patient_id": patient_profile.get("patient_id"),
+            "recommendation": recommendation,
+            "patient_profile": patient_profile,
+        },
     )
     tools_called.append("detect_hallucination")
 

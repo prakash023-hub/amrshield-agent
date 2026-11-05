@@ -103,7 +103,7 @@ with col_logo:
     st.markdown("## 🛡️")
 with col_title:
     st.markdown("## AMRShield — Clinician Console")
-    st.caption("Antibiotic Stewardship Decision Support · Powered by Gemini 3 + Arize Phoenix")
+    st.caption("Antibiotic Stewardship Decision Support · Powered by Gemini 2.5 Flash + Arize Phoenix")
 with col_status:
     st.markdown("")
     st.success("🟢 Agent Online · Audit Active")

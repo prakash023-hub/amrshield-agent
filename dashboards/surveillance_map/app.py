@@ -1,6 +1,6 @@
 """
 AMRShield - Dashboard 3: AMR Surveillance Geographic Map
-Population-level resistance patterns + Gemini 3 forecasts.
+Population-level resistance patterns + Holt baseline forecasts (synthetic demo data).
 """
 
 import streamlit as st
@@ -8,6 +8,19 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import numpy as np
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from agents.prediction_agent.agent import holt_forecast, synthetic_history  # noqa: E402
+
+# Assumed annual change (percentage points) per country — SYNTHETIC demo values
+ANNUAL_CHANGE = {
+    "India": 2.0, "Bangladesh": 2.2, "Pakistan": 1.8, "China": 0.9, "Brazil": 1.1,
+    "Nigeria": 2.1, "South Africa": 1.3, "USA": 0.6, "Germany": 0.3, "UK": 0.2,
+    "France": 0.4, "Russia": 1.0, "Japan": 0.1, "Australia": 0.3, "Mexico": 1.2,
+    "Egypt": 1.7, "Kenya": 1.9, "Indonesia": 1.4, "Thailand": 1.0, "Iran": 1.5,
+}
 
 st.set_page_config(
     page_title="AMRShield — Surveillance Map",
@@ -28,7 +41,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("## 🌍 AMRShield — Global AMR Surveillance Map")
-st.caption("Geographic resistance pattern visualization · Gemini 3 6-month forecast · WHO GLASS integration")
+st.caption("Geographic resistance pattern visualization · Holt baseline 6-month forecast · SYNTHETIC WHO GLASS-style demo data")
 
 col_f1, col_f2, col_f3 = st.columns(3)
 with col_f1:
@@ -36,7 +49,9 @@ with col_f1:
 with col_f2:
     antibiotic_filter = st.selectbox("Antibiotic Resistance", ["Fluoroquinolones", "3rd gen Cephalosporins", "Carbapenems", "Vancomycin"])
 with col_f3:
-    view_mode = st.selectbox("View", ["Current Resistance %", "6-Month Forecast (Gemini 3)", "Year-over-Year Change"])
+    view_mode = st.selectbox("View", ["Current Resistance %", "6-Month Forecast (Holt baseline)", "Year-over-Year Change"])
+
+pathogen_key = pathogen_filter
 
 st.divider()
 
@@ -70,11 +85,14 @@ df_map = pd.DataFrame([
     for k, v in countries.items()
 ])
 
-if view_mode == "6-Month Forecast (Gemini 3)":
-    df_map["resistance_pct"] = df_map["resistance_pct"] + np.random.randint(2, 8, len(df_map))
-    title_suffix = "(Gemini 3 Forecast)"
+if view_mode == "6-Month Forecast (Holt baseline)":
+    df_map["resistance_pct"] = [
+        holt_forecast(synthetic_history(c, pathogen_key, current=v, annual_change=ANNUAL_CHANGE.get(c, 1.0)), 6)["point"][-1]
+        for c, v in zip(df_map["country"], df_map["resistance_pct"])
+    ]
+    title_suffix = "(Holt baseline forecast)"
 elif view_mode == "Year-over-Year Change":
-    df_map["resistance_pct"] = np.random.randint(-5, 15, len(df_map))
+    df_map["resistance_pct"] = [ANNUAL_CHANGE.get(c, 1.0) for c in df_map["country"]]
     title_suffix = "(YoY Change %)"
 else:
     title_suffix = "(Current)"
@@ -127,15 +145,17 @@ col_a, col_b, col_c = st.columns(3)
 
 with col_a:
     st.markdown("#### 📈 Global Resistance Trend")
-    months = pd.date_range("2024-01", "2025-06", freq="M")
-    resistance_trend = 42 + np.cumsum(np.random.randn(len(months)) * 0.8)
-    forecast_months = pd.date_range("2025-06", "2025-12", freq="M")
-    forecast_vals = resistance_trend[-1] + np.cumsum(np.random.randn(len(forecast_months)) * 0.6 + 0.3)
+    hist = synthetic_history("Global", pathogen_key, months=18, current=42, annual_change=1.2)
+    fc = holt_forecast(hist, 6)
+    months = pd.PeriodIndex(hist.index, freq="M").to_timestamp()
+    resistance_trend = hist.values
+    forecast_months = pd.period_range(pd.Period(hist.index[-1], freq="M") + 1, periods=6, freq="M").to_timestamp()
+    forecast_vals = fc["point"]
     
     fig_trend = go.Figure()
     fig_trend.add_trace(go.Scatter(x=months, y=resistance_trend, name="Observed",
                                     line=dict(color="#58A6FF", width=2)))
-    fig_trend.add_trace(go.Scatter(x=forecast_months, y=forecast_vals, name="Gemini 3 Forecast",
+    fig_trend.add_trace(go.Scatter(x=forecast_months, y=forecast_vals, name="Holt baseline forecast",
                                     line=dict(color="#F97316", width=2, dash="dot")))
     fig_trend.update_layout(height=200, paper_bgcolor="#070E1A", plot_bgcolor="#0D1B2A",
                              font_color="#A8C0D6", margin=dict(t=10,b=20,l=10,r=10),
@@ -157,19 +177,18 @@ with col_b:
 
 with col_c:
     st.markdown("#### 🌐 WHO GLASS Integration")
-    st.info("🔗 Live data source: WHO GLASS API 2024")
+    st.info("Demo data: SYNTHETIC, WHO GLASS-style values (no live API connection yet)")
     st.markdown("""
-    **Data streams:**
+    **Planned data streams:**
     - Blood isolate susceptibility (GLASS 2024)
     - UTI pathogen resistance surveillance  
     - WHO Global Priority Pathogen List
     - ESKAPE pathogens monitoring
     
-    **Gemini 3 forecast model** trained on:
-    - 180,000+ GLASS isolate records
-    - WHO antibiotic consumption data
-    - Hospital-level antibiogram uploads
+    **Forecast method:** Holt linear-trend exponential smoothing (baseline).
+    **Next step:** ingest real WHO GLASS data and benchmark ARIMA / Prophet
+    against this baseline with rolling-origin backtesting.
     """)
 
 st.divider()
-st.caption("AMRShield Surveillance · WHO GLASS API · Gemini 3 Forecasting · Arize Phoenix MCP")
+st.caption("AMRShield Surveillance · Synthetic WHO GLASS-style data · Holt baseline forecast · Arize Phoenix MCP")

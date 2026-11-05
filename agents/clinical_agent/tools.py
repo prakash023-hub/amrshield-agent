@@ -47,7 +47,8 @@ AWARE_DB = {
     "ceftazidime-avibactam": {"tier": "Reserve", "class": "3rd gen cephalosporin+BLI", "route": "IV"},
     "colistin": {"tier": "Reserve", "class": "Polymyxin", "route": "IV/inhaled"},
     "daptomycin": {"tier": "Reserve", "class": "Lipopeptide", "route": "IV"},
-    "fosfomycin": {"tier": "Reserve", "class": "Phosphonic acid", "route": "IV/PO"},
+    "fosfomycin": {"tier": "Watch", "class": "Phosphonic acid", "route": "PO"},  # oral = Watch (WHO AWaRe 2023)
+    "fosfomycin iv": {"tier": "Reserve", "class": "Phosphonic acid", "route": "IV"},  # IV = Reserve
     "linezolid": {"tier": "Reserve", "class": "Oxazolidinone", "route": "PO/IV"},
     "meropenem-vaborbactam": {"tier": "Reserve", "class": "Carbapenem+BLI", "route": "IV"},
     "polymyxin b": {"tier": "Reserve", "class": "Polymyxin", "route": "IV"},

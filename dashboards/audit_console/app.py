@@ -335,4 +335,4 @@ for _, row in review_queue.iterrows():
         st.button("🔄 Override", key=f"override_{row.trace_id}", use_container_width=True)
 
 st.divider()
-st.caption("AMRShield Audit Console · Arize Phoenix MCP · Google Cloud Agent Builder · Gemini 3")
+st.caption("AMRShield Audit Console · Arize Phoenix MCP · Google Cloud Agent Builder · Gemini 2.5 Flash")

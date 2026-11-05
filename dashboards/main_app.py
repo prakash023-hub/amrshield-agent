@@ -53,7 +53,7 @@ st.markdown("""
 with st.sidebar:
     st.markdown("""
     <div class='nav-header'>🛡️ AMRShield</div>
-    <div class='nav-sub'>AI Antibiotic Stewardship<br>Powered by Gemini 3 + Arize Phoenix</div>
+    <div class='nav-sub'>AI Antibiotic Stewardship<br>Powered by Gemini 2.5 Flash + Arize Phoenix</div>
     <span class='status-badge'>🟢 Agent Online</span>
     """, unsafe_allow_html=True)
     
@@ -82,7 +82,7 @@ with st.sidebar:
 
 if page == "🏠 Home":
     st.markdown("## 🛡️ AMRShield — AI-Powered Antibiotic Stewardship")
-    st.markdown("##### Built with Gemini 3 · Google Cloud Agent Builder · Arize Phoenix MCP")
+    st.markdown("##### Built with Gemini 2.5 Flash · Google Cloud Agent Builder · Arize Phoenix MCP")
     
     st.warning("⚕️ Research Prototype — Not approved for clinical use without physician oversight.")
     
@@ -105,7 +105,7 @@ if page == "🏠 Home":
         Analyzes patient cases → recommends antibiotic with dose, duration, AWaRe tier, rationale.
         
         **2. AMR Prediction Agent**  
-        Forecasts resistance trends using WHO GLASS data + Gemini 3 6-month projection.
+        Baseline 6-month resistance forecast (Holt exponential smoothing) on synthetic WHO GLASS-style data.
         
         **3. Self-Audit Agent ⭐**  
         Reviews every recommendation via Arize Phoenix MCP — detects hallucinations, allergy conflicts, renal dosing errors before clinician sees it.
@@ -124,14 +124,14 @@ if page == "🏠 Home":
         Hospital-wide KPIs, department compliance, cost savings tracker.
         
         **🌍 Surveillance Map**  
-        Geographic AMR resistance + Gemini 3 forecast overlays.
+        Geographic AMR resistance + baseline forecast overlays (synthetic data).
         """)
     
     st.divider()
     st.markdown("### 🏆 Hackathon Submission")
     st.markdown("""
     - **Track:** Arize (Google Cloud Rapid Agent Hackathon 2026)
-    - **Tech Stack:** Gemini 3 · Google Cloud Agent Builder · Arize Phoenix MCP · Cloud Run · Streamlit
+    - **Tech Stack:** Gemini 2.5 Flash · Google Cloud Agent Builder · Arize Phoenix MCP · Cloud Run · Streamlit
     - **GitHub:** https://github.com/prakash023-hub/amrshield-agent
     """)
 
