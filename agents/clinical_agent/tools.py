@@ -44,6 +44,8 @@ AWARE_DB = {
     "vancomycin": {"tier": "Watch", "class": "Glycopeptide", "route": "IV/PO"},
     
     # RESERVE tier
+    "cefepime": {"tier": "Watch", "class": "4th gen cephalosporin", "route": "IV"},
+    "ceftazidime": {"tier": "Watch", "class": "3rd gen cephalosporin", "route": "IV"},
     "ceftazidime-avibactam": {"tier": "Reserve", "class": "3rd gen cephalosporin+BLI", "route": "IV"},
     "colistin": {"tier": "Reserve", "class": "Polymyxin", "route": "IV/inhaled"},
     "daptomycin": {"tier": "Reserve", "class": "Lipopeptide", "route": "IV"},
@@ -69,10 +71,19 @@ def lookup_aware_tier(antibiotic_name: str) -> dict:
         Dict with tier, class, route, guidance
     """
     key = antibiotic_name.lower().strip()
+
+    if not key:
+        return {
+            "antibiotic": antibiotic_name,
+            "aware_tier": "Not classified",
+            "note": "No antibiotic name provided",
+        }
+
     data = AWARE_DB.get(key)
-    
-    if not data:
-        # Fuzzy match attempt
+
+    if not data and len(key) >= 4:
+        # Fuzzy match attempt — only for substantial names, so an empty or
+        # 1-2 char string can never substring-match every entry.
         for db_key, db_val in AWARE_DB.items():
             if key in db_key or db_key in key:
                 data = db_val
@@ -124,10 +135,22 @@ def calculate_crcl(
         Dict with CrCl value and renal function category
     """
     if serum_creatinine <= 0:
-        return {"error": "Invalid serum creatinine value"}
-    
-    sex_factor = 1.0 if sex.lower() == "male" else 0.85
-    
+        return {"error": "Invalid serum creatinine value (must be > 0 mg/dL)"}
+    if not isinstance(age, (int, float)) or not (0 < age <= 120):
+        return {"error": f"Invalid age '{age}' (expected 0-120 years)"}
+    if not isinstance(weight, (int, float)) or not (0 < weight <= 400):
+        return {"error": f"Invalid weight '{weight}' (expected 0-400 kg)"}
+
+    # Validate sex explicitly — do NOT silently treat an unrecognised value as
+    # female, which would under-estimate CrCl by 15% and mis-dose the patient.
+    sex_norm = str(sex).strip().lower()
+    if sex_norm in ("male", "m", "man"):
+        sex_factor = 1.0
+    elif sex_norm in ("female", "f", "woman"):
+        sex_factor = 0.85
+    else:
+        return {"error": f"Unrecognised sex '{sex}' (expected 'male' or 'female')"}
+
     # Cockcroft-Gault
     crcl = ((140 - age) * weight * sex_factor) / (72 * serum_creatinine)
     crcl = round(crcl, 1)
@@ -200,26 +223,53 @@ INTERACTION_DB = {
 }
 
 
+# Class/category keys in INTERACTION_DB expanded to the real drug names a
+# prescriber actually enters. Without this, "linezolid" + "sertraline" (an SSRI,
+# serotonin-syndrome risk) matched nothing, because the DB key is the class "ssri".
+INTERACTION_SYNONYMS = {
+    "ssri": [
+        "sertraline", "fluoxetine", "paroxetine", "citalopram",
+        "escitalopram", "fluvoxamine", "ssri",
+    ],
+    "antacids": ["antacid", "sucralfate", "aluminium hydroxide", "magnesium hydroxide", "calcium carbonate"],
+    "calcium": ["calcium", "calcium gluconate", "calcium chloride"],
+    "alcohol": ["alcohol", "ethanol"],
+    "tyramine": ["tyramine"],
+    "oral_contraceptives": ["oral contraceptive", "ethinylestradiol", "ethinyl estradiol", "levonorgestrel", "ocp"],
+    "hiv_medications": ["dolutegravir", "efavirenz", "ritonavir", "tenofovir", "lamivudine", "antiretroviral"],
+}
+
+
+def _med_matches_interactor(med_lower: str, interacting_drug: str) -> bool:
+    """True if a patient med matches an interaction key, by name or class synonym."""
+    if interacting_drug in med_lower or med_lower in interacting_drug:
+        return True
+    for synonym in INTERACTION_SYNONYMS.get(interacting_drug, []):
+        if synonym in med_lower:
+            return True
+    return False
+
+
 def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
     """
     Check for drug-drug interactions between proposed antibiotic and current meds.
-    
+
     Args:
         antibiotic: Proposed antibiotic (generic name)
         current_medications: List of current medications
-    
+
     Returns:
         Dict with interaction list and severity summary
     """
     antibiotic_key = antibiotic.lower().strip()
     interactions_found = []
-    
+
     drug_interactions = INTERACTION_DB.get(antibiotic_key, {})
-    
+
     for med in current_medications:
-        med_lower = med.lower().strip()
+        med_lower = str(med).lower().strip()
         for interacting_drug, details in drug_interactions.items():
-            if interacting_drug in med_lower or med_lower in interacting_drug:
+            if _med_matches_interactor(med_lower, interacting_drug):
                 interactions_found.append({
                     "interacting_drug": med,
                     "severity": details["severity"],
@@ -378,9 +428,11 @@ SULFA_CLASS = {"co-trimoxazole", "trimethoprim", "sulfonamides"}
 RENAL_DOSE_TABLE = {
     "nitrofurantoin": {"threshold": 30, "action": "AVOID if CrCl <30 mL/min — ineffective and toxicity risk", "severity": "ABSOLUTE"},
     "gentamicin": {"threshold": 60, "action": "Extend interval; monitor levels; reduce dose if CrCl <60", "severity": "HIGH"},
-    "vancomycin": {"threshold": 30, "action": "Reduce dose and monitor trough; extend interval if CrCl <30", "severity": "HIGH"},
-    "ciprofloxacin": {"threshold": 30, "action": "Reduce dose 50% if CrCl <30", "severity": "HIGH"},
-    "meropenem": {"threshold": 20, "action": "Reduce dose if CrCl <20–40", "severity": "HIGH"},
+    "vancomycin": {"threshold": 50, "action": "Dose by level/AUC monitoring; reduce dose and extend interval as CrCl falls", "severity": "HIGH"},
+    "ciprofloxacin": {"threshold": 50, "action": "Reduce dose if CrCl <50; halve dose if CrCl <30", "severity": "HIGH"},
+    "levofloxacin": {"threshold": 50, "action": "Reduce dose / extend interval if CrCl <50", "severity": "HIGH"},
+    "meropenem": {"threshold": 50, "action": "Reduce dose and/or extend interval if CrCl <50", "severity": "HIGH"},
+    "piperacillin-tazobactam": {"threshold": 40, "action": "Reduce dose if CrCl <40", "severity": "MEDIUM"},
     "amoxicillin-clavulanate": {"threshold": 30, "action": "Reduce frequency if CrCl <30", "severity": "MEDIUM"},
 }
 
@@ -405,27 +457,36 @@ def get_indication_guideline(diagnosis: str, pathogen: str = "Unknown") -> dict:
 
 
 def check_allergy_conflict(antibiotic: str, drug_class: str, allergies: list) -> dict:
-    """Cross-check antibiotic against allergy list with class cross-reactivity."""
+    """
+    Cross-check antibiotic against allergy list with class cross-reactivity.
+
+    Matches allergy terms by substring against the whole free-text allergy list,
+    so real-world entries like "Penicillin (anaphylaxis)", "penicillins" or
+    "sulfa drugs" are caught — the previous exact list-membership test missed them.
+    """
     ab = antibiotic.lower()
     dc = drug_class.lower()
-    allergy_lower = [a.lower() for a in allergies]
+    allergy_text = " ".join(str(a).lower() for a in allergies)
 
-    if "penicillin" in allergy_lower and (
+    def allergic_to(*terms: str) -> bool:
+        return any(t in allergy_text for t in terms)
+
+    if allergic_to("penicillin", "amoxicillin", "ampicillin", "augmentin", "beta-lactam", "betalactam") and (
         any(p in ab for p in PENICILLIN_CLASS) or "penicillin" in dc or "aminopenicillin" in dc
     ):
         return {"conflict": True, "severity": "ABSOLUTE", "message": "Penicillin allergy — avoid penicillin-class agents"}
 
-    if "cephalosporins" in allergy_lower and (
+    if allergic_to("cephalosporin", "cefalosporin") and (
         any(c in ab for c in CEPHALOSPORIN_CLASS) or "cephalosporin" in dc
     ):
         return {"conflict": True, "severity": "ABSOLUTE", "message": "Cephalosporin allergy — avoid cephalosporin-class agents"}
 
-    if "sulfonamides" in allergy_lower and (
+    if allergic_to("sulfa", "sulphonamide", "sulfonamide", "co-trimoxazole", "cotrimoxazole", "trimethoprim") and (
         any(s in ab for s in SULFA_CLASS) or "sulfonamide" in dc
     ):
         return {"conflict": True, "severity": "ABSOLUTE", "message": "Sulfa allergy — avoid sulfonamide agents"}
 
-    if "fluoroquinolones" in allergy_lower and ("floxacin" in ab or "fluoroquinolone" in dc):
+    if allergic_to("fluoroquinolone", "quinolone", "floxacin") and ("floxacin" in ab or "fluoroquinolone" in dc):
         return {"conflict": True, "severity": "ABSOLUTE", "message": "Fluoroquinolone allergy — avoid quinolone class"}
 
     return {"conflict": False, "severity": "NONE", "message": "No allergy conflict detected"}
@@ -486,27 +547,41 @@ def query_local_antibiogram(
         }
     
     pathogen_data = SYNTHETIC_ANTIBIOGRAM[matched_pathogen]
-    
-    # Get site-specific or first available data
+
+    # Get site-specific data; do NOT silently mislabel another site's data as the
+    # requested one. If the requested site is absent, say so explicitly.
+    site_note = None
+    resolved_site = infection_site or "general"
     if infection_site:
         site_key = infection_site.lower()
-        susceptibility = next(
-            (v for k, v in pathogen_data.items() if k in site_key or site_key in k),
-            list(pathogen_data.values())[0]
+        match = next(
+            ((k, v) for k, v in pathogen_data.items() if k in site_key or site_key in k),
+            None,
         )
+        if match:
+            resolved_site, susceptibility = match[0], match[1]
+        else:
+            resolved_site, susceptibility = list(pathogen_data.items())[0]
+            site_note = (
+                f"No antibiogram for '{infection_site}' in {matched_pathogen}; "
+                f"showing '{resolved_site}' data instead — interpret with caution"
+            )
     else:
-        susceptibility = list(pathogen_data.values())[0]
-    
+        resolved_site, susceptibility = list(pathogen_data.items())[0]
+
     # Identify best agents (>80% susceptibility)
     preferred_agents = {k: v for k, v in susceptibility.items() if v >= 80}
     alternative_agents = {k: v for k, v in susceptibility.items() if 60 <= v < 80}
     
-    return {
+    result = {
         "pathogen": pathogen,
-        "infection_site": infection_site or "general",
+        "infection_site": resolved_site,
         "susceptibility_data": susceptibility,
         "preferred_agents": preferred_agents,
         "alternative_agents": alternative_agents,
         "data_source": "Synthetic Hospital Antibiogram 2025 (Demo Data)",
         "note": "Replace with your hospital's actual antibiogram data — WHONET format recommended",
     }
+    if site_note:
+        result["site_warning"] = site_note
+    return result
