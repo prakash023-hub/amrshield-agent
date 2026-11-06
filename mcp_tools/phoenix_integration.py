@@ -165,8 +165,9 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
     scr = patient.get("serum_creatinine")
     if quoted and all(k in patient for k in ("age", "weight", "sex")) and isinstance(scr, (int, float)) and scr > 0:
         calc = calculate_crcl(patient["age"], patient["weight"], scr, patient["sex"]).get("crcl_ml_min")
-        for q in quoted:
-            add(f"CrCl ≈ {q} mL/min", abs(float(q) - calc) <= 5, f"Cockcroft-Gault = {calc} mL/min")
+        if isinstance(calc, (int, float)):
+            for q in quoted:
+                add(f"CrCl ≈ {q} mL/min", abs(float(q) - calc) <= 5, f"Cockcroft-Gault = {calc} mL/min")
 
     # 4. Safety statements contradicted by tool outputs
     if drug and patient.get("current_medications") is not None:
