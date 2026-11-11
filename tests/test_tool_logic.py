@@ -67,6 +67,20 @@ def test_linezolid_plus_ssri_name_is_flagged():
     assert any(i["severity"] == "HIGH" for i in r["interactions_found"])
 
 
+def test_uncovered_antibiotic_is_not_screened_not_safe():
+    # clarithromycin is not in the table; must never report "no interactions".
+    r = check_drug_interactions("clarithromycin", ["warfarin"])
+    assert r["screening_status"] == "NOT_SCREENED"
+    assert r["requires_review"] is True
+    assert "No significant interactions" not in r["summary"]
+
+
+def test_covered_antibiotic_without_hits_is_screened():
+    r = check_drug_interactions("ciprofloxacin", ["paracetamol"])
+    assert r["screening_status"] == "SCREENED"
+    assert r["interaction_count"] == 0
+
+
 # ── AWaRe lookup guard ───────────────────────────────────────────────
 
 def test_empty_antibiotic_is_not_classified():

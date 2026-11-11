@@ -59,6 +59,12 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
                 "severity": "HIGH",
                 "detail": f"{issue.get('interacting_drug')}: {issue.get('clinical_effect')}",
             })
+    if interaction_check.get("screening_status") == "NOT_SCREENED" and meds:
+        contraindications.append({
+            "type": "INTERACTION_NOT_SCREENED",
+            "severity": "MEDIUM",
+            "detail": interaction_check.get("summary"),
+        })
     if renal_dose.get("adjustment_required"):
         contraindications.append({
             "type": "RENAL",

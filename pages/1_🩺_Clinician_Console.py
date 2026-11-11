@@ -157,13 +157,15 @@ if run_btn:
             from agents.clinical_agent.agent import run_clinical_agent
             rec = run_clinical_agent(patient)
         except Exception as e:
+            st.warning(f"⚠️ DEMO MODE — Clinical Agent unavailable ({type(e).__name__}). Showing a fixed example recommendation.")
             rec = {
                 "antibiotic": "nitrofurantoin" if "UTI" in diagnosis else "amoxicillin-clavulanate",
                 "dose": "100mg" if "UTI" in diagnosis else "625mg",
                 "route": "PO", "frequency": "BD", "duration_days": 7,
                 "aware_tier": "Access",
                 "drug_class": "Nitrofuran" if "UTI" in diagnosis else "Aminopenicillin+BLI",
-                "rationale": "Access-tier agent preferred per WHO AWaRe. Local antibiogram shows high susceptibility. Renal dose verified. No significant drug interactions detected with current medications.",
+                "rationale": "DEMO MODE — the Clinical Agent (Gemini) was unavailable, so this is a fixed example recommendation, not AI reasoning for this patient. The deterministic safety tools (allergy, renal, interaction) still run below.",
+                "demo_mode": True,
                 "monitoring": ["Renal function at 48h", "Clinical response at 72h", "Culture results when available"],
                 "alternatives": ["co-trimoxazole","cefalexin","fosfomycin"],
                 "confidence_score": 0.82,
@@ -180,8 +182,9 @@ if run_btn:
         try:
             from agents.audit_agent.agent import run_audit_agent
             audit = run_audit_agent(rec, patient)
-        except Exception:
-            audit = {"overall_result": "PASS", "issues_found": [], "recommendation_safe_to_proceed": True, "physician_review_required": False, "audit_reasoning": "All safety checks passed. No allergy conflicts, renal dose appropriate, no critical drug interactions."}
+        except Exception as e:
+            # Never show PASS when no audit actually ran.
+            audit = {"overall_result": "FLAG", "issues_found": [{"type": "AUDIT_UNAVAILABLE", "severity": "HIGH", "message": f"Self-Audit Agent unavailable ({type(e).__name__})"}], "recommendation_safe_to_proceed": False, "physician_review_required": True, "audit_reasoning": "Self-Audit Agent unavailable — no audit was performed. Physician review required."}
 
     try:
         from mcp_tools.pharmaguard_cyber import run_cyber_guard_agent

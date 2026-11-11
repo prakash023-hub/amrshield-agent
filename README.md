@@ -54,7 +54,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 |-----------|-------|---------|
 | 🩺 **Clinician Console** | Bedside physicians | Real-time antibiotic recommendation + explainability |
 | 🏥 **Stewardship Admin** | AMS pharmacists, hospital admin | Hospital-wide usage trends, compliance, cost savings |
-| 🌍 **Surveillance Map** | Epidemiologists, public health | Geographic AMR view + 6-month baseline forecast (synthetic data) |
+| 🌍 **Surveillance Map** | Epidemiologists, public health | Geographic AMR view + 6-month baseline forecast (map still uses synthetic data; the prediction API uses real ECDC data) |
 | 🔍 **Audit Console** | Quality officers, AI safety team | Live Phoenix traces, hallucination flags, drift detection |
 
 ---
@@ -68,10 +68,18 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 - Tools: `query_local_antibiogram`, `check_drug_interactions`, `calculate_crcl`, `get_aware_tier`
 
 ### 2. AMR Prediction Agent *(baseline — not a trained model)*
-- Deterministic 6-month forecast using **Holt's linear-trend exponential smoothing**, with an approximate 80% interval
-- Runs on **synthetic WHO GLASS-style series** — no live WHO GLASS API connection yet
-- No accuracy claim is made; output is labelled `validated: false`
-- **Next step:** ingest real WHO GLASS data and benchmark ARIMA / Prophet against this baseline with rolling-origin backtesting (MAE / MAPE)
+- **Real data:** annual EARS-Net resistance percentages for **30 EU/EEA countries, up to 2025** (ECDC Surveillance Atlas) — *E. coli* (fluoroquinolones, 3rd-gen cephalosporins), *K. pneumoniae* (carbapenems, 3rd-gen cephalosporins) and MRSA
+- **Damped-trend Holt smoothing** with an approximate 80% interval; the damped trend stops long forecasts from running away (e.g. past 100%)
+- **Backtested honestly** — rolling-origin, one-step-ahead, settings chosen on half the countries and tested on the other half:
+
+  | Model | Mean absolute error (held-out countries) |
+  |---|---|
+  | Damped Holt (α 0.7, β 0.2, φ 0.5) | **2.06** percentage points |
+  | Naive "same as last year" | 2.07 percentage points |
+  | Original Holt (α 0.5, β 0.2) | ~2.8 percentage points |
+
+  Damped Holt **matches but does not beat** the naive baseline on annual data, so any future model (ARIMA, Chronos) must beat both.
+- Countries ECDC does not cover (e.g. India) still use a **clearly labelled synthetic** series; India data (WHO GLASS / ICMR) is the next step
 
 ### 3. Self-Audit Agent ⭐ *(The Novel Differentiator)*
 - Monitors every Clinical Agent decision via Phoenix MCP
@@ -93,8 +101,8 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 | **Hosting** | Google Cloud Run |
 | **Dashboards** | Streamlit (4 apps) |
 | **Database** | Cloud Firestore (patient cases, audit logs) |
-| **Data Sources** | Synthetic data only — WHO GLASS-style resistance series, synthetic antibiogram and patient cases |
-| **Forecasting** | Holt exponential smoothing baseline (NumPy) |
+| **Data Sources** | Real ECDC EARS-Net resistance data (forecasting); synthetic antibiogram, patient cases and non-EU series |
+| **Forecasting** | Damped-trend Holt baseline (NumPy), backtested against a naive forecast |
 | **Testing** | pytest (offline unit tests for deterministic components) |
 
 ---
@@ -172,7 +180,7 @@ amrshield-agent/
 │   │   ├── tools.py                 ← AWaRe lookup, Cockcroft-Gault CrCl, interactions, allergy, renal dosing, antibiogram
 │   │   └── physician_ready.py       ← Physician-ready order formatting
 │   ├── prediction_agent/
-│   │   └── agent.py                 ← Holt exponential-smoothing baseline forecast (synthetic data)
+│   │   └── agent.py                 ← Damped Holt forecast on real ECDC data (synthetic fallback)
 │   └── audit_agent/
 │       └── agent.py                 ← Self-Audit Agent (MCP checks + Gemini review)
 ├── mcp_tools/
@@ -214,11 +222,19 @@ AMRShield has **not** been evaluated on real patients or in a hospital, so no ou
 
 ## 🚧 Known Limitations
 
-- **Synthetic data only** — antibiogram, resistance series and patient cases are synthetic. This protects privacy, but there is **no clinical validation**.
-- **Forecast is a baseline**, not a trained predictive model, and has not been backtested on real surveillance data.
+- **Mostly synthetic clinical data** — the antibiogram and patient cases are synthetic, and resistance series outside the EU/EEA are synthetic. This protects privacy, but there is **no clinical validation**.
+- **Forecast is a baseline** — on real ECDC data it only ties the naive forecast; ECDC data is European, so it does not represent Indian resistance levels.
+- **Drug-interaction table is small** (7 antibiotics); other antibiotics are reported as **NOT_SCREENED**, never as safe.
 - **Grounding check is rule-based** — it verifies specific claim types, not free-text reasoning.
 - **Small evaluation set** — 5 synthetic cases; a larger, clinician-labelled set is needed before any accuracy figure can be reported.
 - Dashboards display synthetic demo KPIs where no live data source exists.
+
+---
+
+## 📚 Data Sources & Attribution
+
+- **ECDC Surveillance Atlas of Infectious Diseases** (EARS-Net), indicator *R - resistant isolates, percentage*, 2000–2025, accessed November 2026. Source: European Centre for Disease Prevention and Control, https://atlas.ecdc.europa.eu. Tidy file: `data/surveillance/ecdc_ears_net_resistance.csv`, rebuilt from the raw exports with `python scripts/build_ecdc_dataset.py <exports...>`.
+- **WHO AWaRe classification** (antibiotic tiers).
 
 ---
 

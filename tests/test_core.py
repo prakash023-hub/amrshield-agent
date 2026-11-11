@@ -91,3 +91,43 @@ def test_wrong_crcl_is_flagged():
 def test_unknown_drug_is_flagged():
     r = _check({"antibiotic": "zentramycin", "aware_tier": "Access"}, "Use zentramycin.")
     assert r["hallucination_detected"] is True
+
+
+# ── Real surveillance data (ECDC) ───────────────────────────
+
+from agents.prediction_agent.agent import backtest_holt, holt_forecast, real_history  # noqa: E402
+import pandas as pd  # noqa: E402
+
+
+def test_covered_country_uses_real_annual_data():
+    r = run_prediction_agent("Italy", "E. coli", 12)
+    assert r["real_data"] is True
+    assert r["frequency"] == "annual"
+    assert r["antibiotic_group"] == "Fluoroquinolones"
+    assert r["latest_year"] >= 2020
+    assert len(r["forecast"]) == 1
+
+
+def test_uncovered_country_is_labelled_synthetic():
+    r = run_prediction_agent("India", "E. coli", 6)
+    assert r["real_data"] is False
+    assert "SYNTHETIC" in r["data_source"]
+
+
+def test_country_code_and_pathogen_aliases_resolve():
+    assert real_history("GR", "Klebsiella pneumoniae", "Carbapenems") is not None
+    assert real_history("Germany", "S. aureus") is not None
+
+
+def test_damped_trend_flattens_long_forecasts():
+    rising = pd.Series([10, 12, 14, 16, 18, 20], dtype=float)
+    linear = holt_forecast(rising, 10)["point"]
+    damped = holt_forecast(rising, 10, phi=0.5)["point"]
+    assert damped[-1] < linear[-1]
+    assert damped[-1] - damped[-2] < 0.5          # trend has faded
+
+
+def test_backtest_reports_holt_and_naive():
+    b = backtest_holt(real_history("France", "MRSA"))
+    assert b["n_forecasts"] > 5
+    assert b["holt_mae_pp"] >= 0 and b["naive_mae_pp"] >= 0

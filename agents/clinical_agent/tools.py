@@ -264,7 +264,24 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
     antibiotic_key = antibiotic.lower().strip()
     interactions_found = []
 
-    drug_interactions = INTERACTION_DB.get(antibiotic_key, {})
+    # An antibiotic missing from the curated table was NOT checked. Saying
+    # "no interactions" here would be false reassurance (e.g. clarithromycin,
+    # co-trimoxazole + warfarin), so report it as not screened instead.
+    if antibiotic_key not in INTERACTION_DB:
+        return {
+            "antibiotic_checked": antibiotic,
+            "medications_screened": current_medications,
+            "screening_status": "NOT_SCREENED",
+            "interactions_found": [],
+            "interaction_count": 0,
+            "requires_review": bool(current_medications),
+            "summary": (
+                f"⚠️ {antibiotic or 'This antibiotic'} is not covered by the interaction "
+                "database — interactions were NOT checked. Verify manually before prescribing."
+            ),
+        }
+
+    drug_interactions = INTERACTION_DB[antibiotic_key]
 
     for med in current_medications:
         med_lower = str(med).lower().strip()
@@ -281,6 +298,7 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
     return {
         "antibiotic_checked": antibiotic,
         "medications_screened": current_medications,
+        "screening_status": "SCREENED",
         "interactions_found": interactions_found,
         "interaction_count": len(interactions_found),
         "requires_review": has_critical,

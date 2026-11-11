@@ -200,6 +200,7 @@ if run_btn:
             from agents.clinical_agent.agent import run_clinical_agent
             recommendation = run_clinical_agent(patient_profile)
         except Exception as e:
+            st.warning(f"⚠️ DEMO MODE — Clinical Agent unavailable ({type(e).__name__}). Showing a fixed example recommendation.")
             # Demo fallback if GCP not configured
             recommendation = {
                 "antibiotic": "nitrofurantoin" if "UTI" in diagnosis else "amoxicillin-clavulanate",
@@ -209,7 +210,8 @@ if run_btn:
                 "duration_days": 7,
                 "aware_tier": "Access",
                 "drug_class": "Nitrofuran" if "UTI" in diagnosis else "Aminopenicillin+BLI",
-                "rationale": "Access-tier agent preferred per WHO AWaRe. Local antibiogram shows 88% susceptibility for this pathogen-site combination. CrCl calculated and dose verified. No significant drug interactions detected with current medications.",
+                "rationale": "DEMO MODE — the Clinical Agent (Gemini) was unavailable, so this is a fixed example recommendation. No antibiogram, renal or interaction checks were run for this patient.",
+                "demo_mode": True,
                 "monitoring": ["Renal function at 48h", "Clinical response at 48-72h", "Symptom resolution"],
                 "alternatives": ["co-trimoxazole", "cefalexin"],
                 "confidence_score": 0.82,
@@ -222,13 +224,14 @@ if run_btn:
             from agents.audit_agent.agent import run_audit_agent
             audit = run_audit_agent(recommendation, patient_profile)
         except Exception:
+            # Never show PASS when no audit actually ran.
             audit = {
-                "overall_result": "PASS",
-                "issues_found": [],
-                "severity_level": "LOW",
-                "recommendation_safe_to_proceed": True,
-                "physician_review_required": False,
-                "audit_reasoning": "No hallucinations detected. Renal dose appropriate. No allergy conflicts. AWaRe tier correct for indication. Confidence score calibrated.",
+                "overall_result": "FLAG",
+                "issues_found": [{"type": "AUDIT_UNAVAILABLE", "severity": "HIGH", "message": "Self-Audit Agent unavailable"}],
+                "severity_level": "HIGH",
+                "recommendation_safe_to_proceed": False,
+                "physician_review_required": True,
+                "audit_reasoning": "Self-Audit Agent unavailable — no audit was performed. Physician review required.",
             }
     
     # ── Audit Status Banner ──

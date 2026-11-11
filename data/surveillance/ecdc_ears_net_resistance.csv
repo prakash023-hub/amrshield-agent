@@ -1,0 +1,3355 @@
+country_code,country,pathogen,antibiotic_group,year,resistance_pct
+AT,Austria,E. coli,Fluoroquinolones,2001,7.04
+AT,Austria,E. coli,Fluoroquinolones,2002,10.17
+AT,Austria,E. coli,Fluoroquinolones,2003,14.12
+AT,Austria,E. coli,Fluoroquinolones,2004,16.72
+AT,Austria,E. coli,Fluoroquinolones,2005,19.38
+AT,Austria,E. coli,Fluoroquinolones,2006,22.09
+AT,Austria,E. coli,Fluoroquinolones,2007,25.68
+AT,Austria,E. coli,Fluoroquinolones,2008,22.92
+AT,Austria,E. coli,Fluoroquinolones,2009,20.49
+AT,Austria,E. coli,Fluoroquinolones,2010,20.89
+AT,Austria,E. coli,Fluoroquinolones,2011,22.26
+AT,Austria,E. coli,Fluoroquinolones,2012,20.55
+AT,Austria,E. coli,Fluoroquinolones,2013,21.97
+AT,Austria,E. coli,Fluoroquinolones,2014,19.82
+AT,Austria,E. coli,Fluoroquinolones,2015,20.03
+AT,Austria,E. coli,Fluoroquinolones,2016,19.84
+AT,Austria,E. coli,Fluoroquinolones,2017,20.46
+AT,Austria,E. coli,Fluoroquinolones,2018,21.85
+AT,Austria,E. coli,Fluoroquinolones,2019,18.21
+AT,Austria,E. coli,Fluoroquinolones,2020,17.35
+AT,Austria,E. coli,Fluoroquinolones,2021,15.07
+AT,Austria,E. coli,Fluoroquinolones,2022,13.93
+AT,Austria,E. coli,Fluoroquinolones,2023,15.03
+AT,Austria,E. coli,Fluoroquinolones,2024,15.5
+AT,Austria,E. coli,Fluoroquinolones,2025,15.04
+BE,Belgium,E. coli,Fluoroquinolones,2001,8.9
+BE,Belgium,E. coli,Fluoroquinolones,2002,13.24
+BE,Belgium,E. coli,Fluoroquinolones,2003,11.57
+BE,Belgium,E. coli,Fluoroquinolones,2004,15.38
+BE,Belgium,E. coli,Fluoroquinolones,2005,16.84
+BE,Belgium,E. coli,Fluoroquinolones,2006,19.37
+BE,Belgium,E. coli,Fluoroquinolones,2007,19.17
+BE,Belgium,E. coli,Fluoroquinolones,2008,16.84
+BE,Belgium,E. coli,Fluoroquinolones,2009,19.95
+BE,Belgium,E. coli,Fluoroquinolones,2010,21.55
+BE,Belgium,E. coli,Fluoroquinolones,2011,21.53
+BE,Belgium,E. coli,Fluoroquinolones,2012,22.16
+BE,Belgium,E. coli,Fluoroquinolones,2013,22.95
+BE,Belgium,E. coli,Fluoroquinolones,2014,26.7
+BE,Belgium,E. coli,Fluoroquinolones,2015,26.59
+BE,Belgium,E. coli,Fluoroquinolones,2016,24.55
+BE,Belgium,E. coli,Fluoroquinolones,2017,23.8
+BE,Belgium,E. coli,Fluoroquinolones,2018,21.8
+BE,Belgium,E. coli,Fluoroquinolones,2019,19.06
+BE,Belgium,E. coli,Fluoroquinolones,2020,18.08
+BE,Belgium,E. coli,Fluoroquinolones,2021,18.53
+BE,Belgium,E. coli,Fluoroquinolones,2022,17.55
+BE,Belgium,E. coli,Fluoroquinolones,2023,18.24
+BE,Belgium,E. coli,Fluoroquinolones,2024,20.38
+BE,Belgium,E. coli,Fluoroquinolones,2025,19.36
+BG,Bulgaria,E. coli,Fluoroquinolones,2001,7.87
+BG,Bulgaria,E. coli,Fluoroquinolones,2002,14.07
+BG,Bulgaria,E. coli,Fluoroquinolones,2003,19.35
+BG,Bulgaria,E. coli,Fluoroquinolones,2004,23.93
+BG,Bulgaria,E. coli,Fluoroquinolones,2005,28.57
+BG,Bulgaria,E. coli,Fluoroquinolones,2006,26.18
+BG,Bulgaria,E. coli,Fluoroquinolones,2007,34.65
+BG,Bulgaria,E. coli,Fluoroquinolones,2008,31.51
+BG,Bulgaria,E. coli,Fluoroquinolones,2009,27.98
+BG,Bulgaria,E. coli,Fluoroquinolones,2010,33.11
+BG,Bulgaria,E. coli,Fluoroquinolones,2011,30.17
+BG,Bulgaria,E. coli,Fluoroquinolones,2012,34.08
+BG,Bulgaria,E. coli,Fluoroquinolones,2013,37.43
+BG,Bulgaria,E. coli,Fluoroquinolones,2014,38.6
+BG,Bulgaria,E. coli,Fluoroquinolones,2015,35.29
+BG,Bulgaria,E. coli,Fluoroquinolones,2016,42.19
+BG,Bulgaria,E. coli,Fluoroquinolones,2017,42.11
+BG,Bulgaria,E. coli,Fluoroquinolones,2018,41.78
+BG,Bulgaria,E. coli,Fluoroquinolones,2019,38.64
+BG,Bulgaria,E. coli,Fluoroquinolones,2020,42.91
+BG,Bulgaria,E. coli,Fluoroquinolones,2021,33.46
+BG,Bulgaria,E. coli,Fluoroquinolones,2022,40.59
+BG,Bulgaria,E. coli,Fluoroquinolones,2023,39.87
+BG,Bulgaria,E. coli,Fluoroquinolones,2024,28.27
+BG,Bulgaria,E. coli,Fluoroquinolones,2025,35.15
+HR,Croatia,E. coli,Fluoroquinolones,2001,4.52
+HR,Croatia,E. coli,Fluoroquinolones,2002,5.31
+HR,Croatia,E. coli,Fluoroquinolones,2003,7.13
+HR,Croatia,E. coli,Fluoroquinolones,2004,8.24
+HR,Croatia,E. coli,Fluoroquinolones,2005,8.79
+HR,Croatia,E. coli,Fluoroquinolones,2006,15.46
+HR,Croatia,E. coli,Fluoroquinolones,2007,13.14
+HR,Croatia,E. coli,Fluoroquinolones,2008,14.99
+HR,Croatia,E. coli,Fluoroquinolones,2010,17.01
+HR,Croatia,E. coli,Fluoroquinolones,2011,20.27
+HR,Croatia,E. coli,Fluoroquinolones,2012,17.04
+HR,Croatia,E. coli,Fluoroquinolones,2013,20.18
+HR,Croatia,E. coli,Fluoroquinolones,2014,20.06
+HR,Croatia,E. coli,Fluoroquinolones,2015,23.99
+HR,Croatia,E. coli,Fluoroquinolones,2016,27.86
+HR,Croatia,E. coli,Fluoroquinolones,2017,28.17
+HR,Croatia,E. coli,Fluoroquinolones,2018,30.03
+HR,Croatia,E. coli,Fluoroquinolones,2019,27.26
+HR,Croatia,E. coli,Fluoroquinolones,2020,29.66
+HR,Croatia,E. coli,Fluoroquinolones,2021,28.99
+HR,Croatia,E. coli,Fluoroquinolones,2022,30.26
+HR,Croatia,E. coli,Fluoroquinolones,2023,29.66
+HR,Croatia,E. coli,Fluoroquinolones,2024,29.13
+HR,Croatia,E. coli,Fluoroquinolones,2025,32.03
+CY,Cyprus,E. coli,Fluoroquinolones,2004,21.74
+CY,Cyprus,E. coli,Fluoroquinolones,2005,28.77
+CY,Cyprus,E. coli,Fluoroquinolones,2006,34.83
+CY,Cyprus,E. coli,Fluoroquinolones,2007,39.45
+CY,Cyprus,E. coli,Fluoroquinolones,2008,45.38
+CY,Cyprus,E. coli,Fluoroquinolones,2009,43.38
+CY,Cyprus,E. coli,Fluoroquinolones,2010,42.75
+CY,Cyprus,E. coli,Fluoroquinolones,2011,47.45
+CY,Cyprus,E. coli,Fluoroquinolones,2012,42.05
+CY,Cyprus,E. coli,Fluoroquinolones,2013,51.85
+CY,Cyprus,E. coli,Fluoroquinolones,2014,46.41
+CY,Cyprus,E. coli,Fluoroquinolones,2015,45.53
+CY,Cyprus,E. coli,Fluoroquinolones,2016,46.98
+CY,Cyprus,E. coli,Fluoroquinolones,2017,42.95
+CY,Cyprus,E. coli,Fluoroquinolones,2018,42.38
+CY,Cyprus,E. coli,Fluoroquinolones,2019,43.48
+CY,Cyprus,E. coli,Fluoroquinolones,2020,48.25
+CY,Cyprus,E. coli,Fluoroquinolones,2021,51.56
+CY,Cyprus,E. coli,Fluoroquinolones,2022,46.36
+CY,Cyprus,E. coli,Fluoroquinolones,2023,42.9
+CY,Cyprus,E. coli,Fluoroquinolones,2024,49.25
+CY,Cyprus,E. coli,Fluoroquinolones,2025,50.87
+CZ,Czechia,E. coli,Fluoroquinolones,2001,8.09
+CZ,Czechia,E. coli,Fluoroquinolones,2002,10.4
+CZ,Czechia,E. coli,Fluoroquinolones,2003,13.21
+CZ,Czechia,E. coli,Fluoroquinolones,2004,15.93
+CZ,Czechia,E. coli,Fluoroquinolones,2005,20.24
+CZ,Czechia,E. coli,Fluoroquinolones,2006,23.23
+CZ,Czechia,E. coli,Fluoroquinolones,2007,24.15
+CZ,Czechia,E. coli,Fluoroquinolones,2008,26.02
+CZ,Czechia,E. coli,Fluoroquinolones,2009,23.17
+CZ,Czechia,E. coli,Fluoroquinolones,2010,22.73
+CZ,Czechia,E. coli,Fluoroquinolones,2011,23.49
+CZ,Czechia,E. coli,Fluoroquinolones,2012,20.97
+CZ,Czechia,E. coli,Fluoroquinolones,2013,20.76
+CZ,Czechia,E. coli,Fluoroquinolones,2014,21.61
+CZ,Czechia,E. coli,Fluoroquinolones,2015,22.59
+CZ,Czechia,E. coli,Fluoroquinolones,2016,27.64
+CZ,Czechia,E. coli,Fluoroquinolones,2017,24.48
+CZ,Czechia,E. coli,Fluoroquinolones,2018,24.27
+CZ,Czechia,E. coli,Fluoroquinolones,2019,23.04
+CZ,Czechia,E. coli,Fluoroquinolones,2020,20.19
+CZ,Czechia,E. coli,Fluoroquinolones,2021,19.7
+CZ,Czechia,E. coli,Fluoroquinolones,2022,18.24
+CZ,Czechia,E. coli,Fluoroquinolones,2023,17.18
+CZ,Czechia,E. coli,Fluoroquinolones,2024,19.19
+CZ,Czechia,E. coli,Fluoroquinolones,2025,19.88
+DK,Denmark,E. coli,Fluoroquinolones,2005,4.75
+DK,Denmark,E. coli,Fluoroquinolones,2006,6.62
+DK,Denmark,E. coli,Fluoroquinolones,2007,9.3
+DK,Denmark,E. coli,Fluoroquinolones,2008,10.17
+DK,Denmark,E. coli,Fluoroquinolones,2009,13.18
+DK,Denmark,E. coli,Fluoroquinolones,2010,13.74
+DK,Denmark,E. coli,Fluoroquinolones,2011,14.07
+DK,Denmark,E. coli,Fluoroquinolones,2012,14.12
+DK,Denmark,E. coli,Fluoroquinolones,2013,12.44
+DK,Denmark,E. coli,Fluoroquinolones,2014,12.25
+DK,Denmark,E. coli,Fluoroquinolones,2015,11.9
+DK,Denmark,E. coli,Fluoroquinolones,2016,11.04
+DK,Denmark,E. coli,Fluoroquinolones,2017,12.79
+DK,Denmark,E. coli,Fluoroquinolones,2018,13.26
+DK,Denmark,E. coli,Fluoroquinolones,2019,11.47
+DK,Denmark,E. coli,Fluoroquinolones,2020,11.23
+DK,Denmark,E. coli,Fluoroquinolones,2021,10.47
+DK,Denmark,E. coli,Fluoroquinolones,2022,10.71
+DK,Denmark,E. coli,Fluoroquinolones,2023,10.47
+DK,Denmark,E. coli,Fluoroquinolones,2024,10.72
+DK,Denmark,E. coli,Fluoroquinolones,2025,11.81
+EE,Estonia,E. coli,Fluoroquinolones,2001,0.0
+EE,Estonia,E. coli,Fluoroquinolones,2002,4.92
+EE,Estonia,E. coli,Fluoroquinolones,2003,4.6
+EE,Estonia,E. coli,Fluoroquinolones,2004,6.41
+EE,Estonia,E. coli,Fluoroquinolones,2005,5.3
+EE,Estonia,E. coli,Fluoroquinolones,2006,6.57
+EE,Estonia,E. coli,Fluoroquinolones,2007,6.73
+EE,Estonia,E. coli,Fluoroquinolones,2008,6.75
+EE,Estonia,E. coli,Fluoroquinolones,2009,8.28
+EE,Estonia,E. coli,Fluoroquinolones,2010,8.37
+EE,Estonia,E. coli,Fluoroquinolones,2011,9.94
+EE,Estonia,E. coli,Fluoroquinolones,2012,14.14
+EE,Estonia,E. coli,Fluoroquinolones,2013,11.83
+EE,Estonia,E. coli,Fluoroquinolones,2014,12.29
+EE,Estonia,E. coli,Fluoroquinolones,2015,15.23
+EE,Estonia,E. coli,Fluoroquinolones,2016,13.88
+EE,Estonia,E. coli,Fluoroquinolones,2017,17.41
+EE,Estonia,E. coli,Fluoroquinolones,2018,17.61
+EE,Estonia,E. coli,Fluoroquinolones,2019,17.06
+EE,Estonia,E. coli,Fluoroquinolones,2020,14.08
+EE,Estonia,E. coli,Fluoroquinolones,2021,13.45
+EE,Estonia,E. coli,Fluoroquinolones,2022,16.31
+EE,Estonia,E. coli,Fluoroquinolones,2023,13.28
+EE,Estonia,E. coli,Fluoroquinolones,2024,14.61
+EE,Estonia,E. coli,Fluoroquinolones,2025,14.22
+FI,Finland,E. coli,Fluoroquinolones,2001,5.4
+FI,Finland,E. coli,Fluoroquinolones,2002,6.34
+FI,Finland,E. coli,Fluoroquinolones,2003,5.1
+FI,Finland,E. coli,Fluoroquinolones,2004,7.26
+FI,Finland,E. coli,Fluoroquinolones,2005,7.4
+FI,Finland,E. coli,Fluoroquinolones,2006,8.21
+FI,Finland,E. coli,Fluoroquinolones,2007,7.7
+FI,Finland,E. coli,Fluoroquinolones,2008,8.72
+FI,Finland,E. coli,Fluoroquinolones,2009,9.18
+FI,Finland,E. coli,Fluoroquinolones,2010,9.22
+FI,Finland,E. coli,Fluoroquinolones,2011,10.96
+FI,Finland,E. coli,Fluoroquinolones,2012,11.73
+FI,Finland,E. coli,Fluoroquinolones,2013,13.24
+FI,Finland,E. coli,Fluoroquinolones,2014,11.04
+FI,Finland,E. coli,Fluoroquinolones,2015,11.17
+FI,Finland,E. coli,Fluoroquinolones,2016,11.46
+FI,Finland,E. coli,Fluoroquinolones,2017,12.01
+FI,Finland,E. coli,Fluoroquinolones,2018,11.48
+FI,Finland,E. coli,Fluoroquinolones,2019,11.44
+FI,Finland,E. coli,Fluoroquinolones,2020,10.53
+FI,Finland,E. coli,Fluoroquinolones,2021,9.57
+FI,Finland,E. coli,Fluoroquinolones,2022,9.91
+FI,Finland,E. coli,Fluoroquinolones,2023,10.3
+FI,Finland,E. coli,Fluoroquinolones,2024,9.85
+FI,Finland,E. coli,Fluoroquinolones,2025,8.82
+FR,France,E. coli,Fluoroquinolones,2002,8.19
+FR,France,E. coli,Fluoroquinolones,2003,9.32
+FR,France,E. coli,Fluoroquinolones,2004,8.23
+FR,France,E. coli,Fluoroquinolones,2005,11.02
+FR,France,E. coli,Fluoroquinolones,2006,13.82
+FR,France,E. coli,Fluoroquinolones,2007,14.79
+FR,France,E. coli,Fluoroquinolones,2008,15.7
+FR,France,E. coli,Fluoroquinolones,2009,18.56
+FR,France,E. coli,Fluoroquinolones,2010,17.54
+FR,France,E. coli,Fluoroquinolones,2011,17.92
+FR,France,E. coli,Fluoroquinolones,2012,17.85
+FR,France,E. coli,Fluoroquinolones,2013,16.73
+FR,France,E. coli,Fluoroquinolones,2014,17.65
+FR,France,E. coli,Fluoroquinolones,2015,17.75
+FR,France,E. coli,Fluoroquinolones,2016,16.66
+FR,France,E. coli,Fluoroquinolones,2017,15.02
+FR,France,E. coli,Fluoroquinolones,2018,16.32
+FR,France,E. coli,Fluoroquinolones,2019,15.97
+FR,France,E. coli,Fluoroquinolones,2020,15.92
+FR,France,E. coli,Fluoroquinolones,2021,14.76
+FR,France,E. coli,Fluoroquinolones,2022,14.71
+FR,France,E. coli,Fluoroquinolones,2024,13.8
+FR,France,E. coli,Fluoroquinolones,2025,12.67
+DE,Germany,E. coli,Fluoroquinolones,2000,7.78
+DE,Germany,E. coli,Fluoroquinolones,2001,11.25
+DE,Germany,E. coli,Fluoroquinolones,2002,14.51
+DE,Germany,E. coli,Fluoroquinolones,2003,13.96
+DE,Germany,E. coli,Fluoroquinolones,2004,24.35
+DE,Germany,E. coli,Fluoroquinolones,2005,23.41
+DE,Germany,E. coli,Fluoroquinolones,2006,29.28
+DE,Germany,E. coli,Fluoroquinolones,2007,29.73
+DE,Germany,E. coli,Fluoroquinolones,2008,23.42
+DE,Germany,E. coli,Fluoroquinolones,2009,23.4
+DE,Germany,E. coli,Fluoroquinolones,2010,24.76
+DE,Germany,E. coli,Fluoroquinolones,2011,23.73
+DE,Germany,E. coli,Fluoroquinolones,2012,21.11
+DE,Germany,E. coli,Fluoroquinolones,2013,22.07
+DE,Germany,E. coli,Fluoroquinolones,2014,20.59
+DE,Germany,E. coli,Fluoroquinolones,2015,19.38
+DE,Germany,E. coli,Fluoroquinolones,2016,19.45
+DE,Germany,E. coli,Fluoroquinolones,2017,20.75
+DE,Germany,E. coli,Fluoroquinolones,2018,19.83
+DE,Germany,E. coli,Fluoroquinolones,2019,17.53
+DE,Germany,E. coli,Fluoroquinolones,2020,16.54
+DE,Germany,E. coli,Fluoroquinolones,2021,14.66
+DE,Germany,E. coli,Fluoroquinolones,2022,15.18
+DE,Germany,E. coli,Fluoroquinolones,2023,16.62
+DE,Germany,E. coli,Fluoroquinolones,2024,16.76
+DE,Germany,E. coli,Fluoroquinolones,2025,15.91
+EL,Greece,E. coli,Fluoroquinolones,2000,4.29
+EL,Greece,E. coli,Fluoroquinolones,2001,9.46
+EL,Greece,E. coli,Fluoroquinolones,2002,13.14
+EL,Greece,E. coli,Fluoroquinolones,2003,12.27
+EL,Greece,E. coli,Fluoroquinolones,2004,11.62
+EL,Greece,E. coli,Fluoroquinolones,2005,12.32
+EL,Greece,E. coli,Fluoroquinolones,2006,14.48
+EL,Greece,E. coli,Fluoroquinolones,2007,19.15
+EL,Greece,E. coli,Fluoroquinolones,2008,22.41
+EL,Greece,E. coli,Fluoroquinolones,2009,23.42
+EL,Greece,E. coli,Fluoroquinolones,2010,24.41
+EL,Greece,E. coli,Fluoroquinolones,2011,26.59
+EL,Greece,E. coli,Fluoroquinolones,2012,29.08
+EL,Greece,E. coli,Fluoroquinolones,2013,30.89
+EL,Greece,E. coli,Fluoroquinolones,2014,32.76
+EL,Greece,E. coli,Fluoroquinolones,2015,30.56
+EL,Greece,E. coli,Fluoroquinolones,2016,32.13
+EL,Greece,E. coli,Fluoroquinolones,2017,32.92
+EL,Greece,E. coli,Fluoroquinolones,2018,30.78
+EL,Greece,E. coli,Fluoroquinolones,2019,29.56
+EL,Greece,E. coli,Fluoroquinolones,2020,32.74
+EL,Greece,E. coli,Fluoroquinolones,2021,33.93
+EL,Greece,E. coli,Fluoroquinolones,2022,37.77
+EL,Greece,E. coli,Fluoroquinolones,2023,37.78
+EL,Greece,E. coli,Fluoroquinolones,2024,36.34
+EL,Greece,E. coli,Fluoroquinolones,2025,35.08
+HU,Hungary,E. coli,Fluoroquinolones,2001,5.06
+HU,Hungary,E. coli,Fluoroquinolones,2002,10.37
+HU,Hungary,E. coli,Fluoroquinolones,2003,14.9
+HU,Hungary,E. coli,Fluoroquinolones,2004,19.42
+HU,Hungary,E. coli,Fluoroquinolones,2005,21.92
+HU,Hungary,E. coli,Fluoroquinolones,2006,26.61
+HU,Hungary,E. coli,Fluoroquinolones,2007,26.31
+HU,Hungary,E. coli,Fluoroquinolones,2008,26.12
+HU,Hungary,E. coli,Fluoroquinolones,2009,30.5
+HU,Hungary,E. coli,Fluoroquinolones,2010,36.58
+HU,Hungary,E. coli,Fluoroquinolones,2011,31.16
+HU,Hungary,E. coli,Fluoroquinolones,2012,28.93
+HU,Hungary,E. coli,Fluoroquinolones,2013,30.31
+HU,Hungary,E. coli,Fluoroquinolones,2014,28.44
+HU,Hungary,E. coli,Fluoroquinolones,2015,29.0
+HU,Hungary,E. coli,Fluoroquinolones,2016,26.79
+HU,Hungary,E. coli,Fluoroquinolones,2017,30.62
+HU,Hungary,E. coli,Fluoroquinolones,2018,33.25
+HU,Hungary,E. coli,Fluoroquinolones,2019,30.32
+HU,Hungary,E. coli,Fluoroquinolones,2020,30.34
+HU,Hungary,E. coli,Fluoroquinolones,2021,28.05
+HU,Hungary,E. coli,Fluoroquinolones,2022,29.28
+HU,Hungary,E. coli,Fluoroquinolones,2023,25.99
+HU,Hungary,E. coli,Fluoroquinolones,2024,25.11
+HU,Hungary,E. coli,Fluoroquinolones,2025,25.39
+IS,Iceland,E. coli,Fluoroquinolones,2001,3.7
+IS,Iceland,E. coli,Fluoroquinolones,2002,2.7
+IS,Iceland,E. coli,Fluoroquinolones,2003,5.56
+IS,Iceland,E. coli,Fluoroquinolones,2004,1.77
+IS,Iceland,E. coli,Fluoroquinolones,2005,3.42
+IS,Iceland,E. coli,Fluoroquinolones,2006,11.57
+IS,Iceland,E. coli,Fluoroquinolones,2007,16.67
+IS,Iceland,E. coli,Fluoroquinolones,2008,6.09
+IS,Iceland,E. coli,Fluoroquinolones,2009,7.07
+IS,Iceland,E. coli,Fluoroquinolones,2010,10.53
+IS,Iceland,E. coli,Fluoroquinolones,2011,14.05
+IS,Iceland,E. coli,Fluoroquinolones,2012,9.7
+IS,Iceland,E. coli,Fluoroquinolones,2013,14.66
+IS,Iceland,E. coli,Fluoroquinolones,2014,7.8
+IS,Iceland,E. coli,Fluoroquinolones,2015,6.79
+IS,Iceland,E. coli,Fluoroquinolones,2016,9.55
+IS,Iceland,E. coli,Fluoroquinolones,2017,11.56
+IS,Iceland,E. coli,Fluoroquinolones,2018,17.19
+IS,Iceland,E. coli,Fluoroquinolones,2019,13.1
+IS,Iceland,E. coli,Fluoroquinolones,2020,11.84
+IS,Iceland,E. coli,Fluoroquinolones,2021,14.44
+IS,Iceland,E. coli,Fluoroquinolones,2022,10.21
+IS,Iceland,E. coli,Fluoroquinolones,2023,12.79
+IS,Iceland,E. coli,Fluoroquinolones,2024,13.79
+IS,Iceland,E. coli,Fluoroquinolones,2025,13.23
+IE,Ireland,E. coli,Fluoroquinolones,2002,5.13
+IE,Ireland,E. coli,Fluoroquinolones,2003,9.56
+IE,Ireland,E. coli,Fluoroquinolones,2004,12.12
+IE,Ireland,E. coli,Fluoroquinolones,2005,16.87
+IE,Ireland,E. coli,Fluoroquinolones,2006,20.97
+IE,Ireland,E. coli,Fluoroquinolones,2007,21.31
+IE,Ireland,E. coli,Fluoroquinolones,2008,22.63
+IE,Ireland,E. coli,Fluoroquinolones,2009,21.7
+IE,Ireland,E. coli,Fluoroquinolones,2010,22.86
+IE,Ireland,E. coli,Fluoroquinolones,2011,22.94
+IE,Ireland,E. coli,Fluoroquinolones,2012,24.29
+IE,Ireland,E. coli,Fluoroquinolones,2013,24.17
+IE,Ireland,E. coli,Fluoroquinolones,2014,24.53
+IE,Ireland,E. coli,Fluoroquinolones,2015,23.07
+IE,Ireland,E. coli,Fluoroquinolones,2016,22.91
+IE,Ireland,E. coli,Fluoroquinolones,2017,23.6
+IE,Ireland,E. coli,Fluoroquinolones,2018,23.9
+IE,Ireland,E. coli,Fluoroquinolones,2019,20.35
+IE,Ireland,E. coli,Fluoroquinolones,2020,18.88
+IE,Ireland,E. coli,Fluoroquinolones,2021,15.98
+IE,Ireland,E. coli,Fluoroquinolones,2022,15.6
+IE,Ireland,E. coli,Fluoroquinolones,2023,15.97
+IE,Ireland,E. coli,Fluoroquinolones,2024,15.04
+IE,Ireland,E. coli,Fluoroquinolones,2025,15.59
+IT,Italy,E. coli,Fluoroquinolones,2002,21.07
+IT,Italy,E. coli,Fluoroquinolones,2003,24.81
+IT,Italy,E. coli,Fluoroquinolones,2004,27.84
+IT,Italy,E. coli,Fluoroquinolones,2005,28.24
+IT,Italy,E. coli,Fluoroquinolones,2006,26.88
+IT,Italy,E. coli,Fluoroquinolones,2007,31.53
+IT,Italy,E. coli,Fluoroquinolones,2008,37.6
+IT,Italy,E. coli,Fluoroquinolones,2009,36.15
+IT,Italy,E. coli,Fluoroquinolones,2010,39.2
+IT,Italy,E. coli,Fluoroquinolones,2011,40.55
+IT,Italy,E. coli,Fluoroquinolones,2012,42.05
+IT,Italy,E. coli,Fluoroquinolones,2013,42.21
+IT,Italy,E. coli,Fluoroquinolones,2014,43.93
+IT,Italy,E. coli,Fluoroquinolones,2015,44.38
+IT,Italy,E. coli,Fluoroquinolones,2016,43.26
+IT,Italy,E. coli,Fluoroquinolones,2017,44.94
+IT,Italy,E. coli,Fluoroquinolones,2018,41.66
+IT,Italy,E. coli,Fluoroquinolones,2019,40.63
+IT,Italy,E. coli,Fluoroquinolones,2020,37.59
+IT,Italy,E. coli,Fluoroquinolones,2021,33.36
+IT,Italy,E. coli,Fluoroquinolones,2022,31.63
+IT,Italy,E. coli,Fluoroquinolones,2023,34.14
+IT,Italy,E. coli,Fluoroquinolones,2024,34.49
+IT,Italy,E. coli,Fluoroquinolones,2025,34.98
+LV,Latvia,E. coli,Fluoroquinolones,2006,10.0
+LV,Latvia,E. coli,Fluoroquinolones,2007,17.11
+LV,Latvia,E. coli,Fluoroquinolones,2008,14.44
+LV,Latvia,E. coli,Fluoroquinolones,2009,23.53
+LV,Latvia,E. coli,Fluoroquinolones,2010,14.43
+LV,Latvia,E. coli,Fluoroquinolones,2011,16.79
+LV,Latvia,E. coli,Fluoroquinolones,2012,14.47
+LV,Latvia,E. coli,Fluoroquinolones,2013,18.66
+LV,Latvia,E. coli,Fluoroquinolones,2014,17.68
+LV,Latvia,E. coli,Fluoroquinolones,2015,27.84
+LV,Latvia,E. coli,Fluoroquinolones,2016,27.76
+LV,Latvia,E. coli,Fluoroquinolones,2017,30.35
+LV,Latvia,E. coli,Fluoroquinolones,2018,24.13
+LV,Latvia,E. coli,Fluoroquinolones,2019,24.89
+LV,Latvia,E. coli,Fluoroquinolones,2020,27.51
+LV,Latvia,E. coli,Fluoroquinolones,2021,20.66
+LV,Latvia,E. coli,Fluoroquinolones,2022,21.83
+LV,Latvia,E. coli,Fluoroquinolones,2023,28.51
+LV,Latvia,E. coli,Fluoroquinolones,2024,30.38
+LV,Latvia,E. coli,Fluoroquinolones,2025,25.44
+LT,Lithuania,E. coli,Fluoroquinolones,2006,12.28
+LT,Lithuania,E. coli,Fluoroquinolones,2007,9.48
+LT,Lithuania,E. coli,Fluoroquinolones,2008,13.82
+LT,Lithuania,E. coli,Fluoroquinolones,2009,14.58
+LT,Lithuania,E. coli,Fluoroquinolones,2010,13.51
+LT,Lithuania,E. coli,Fluoroquinolones,2011,12.86
+LT,Lithuania,E. coli,Fluoroquinolones,2012,14.69
+LT,Lithuania,E. coli,Fluoroquinolones,2013,15.94
+LT,Lithuania,E. coli,Fluoroquinolones,2014,12.84
+LT,Lithuania,E. coli,Fluoroquinolones,2015,20.58
+LT,Lithuania,E. coli,Fluoroquinolones,2016,19.75
+LT,Lithuania,E. coli,Fluoroquinolones,2017,25.21
+LT,Lithuania,E. coli,Fluoroquinolones,2018,19.66
+LT,Lithuania,E. coli,Fluoroquinolones,2019,17.98
+LT,Lithuania,E. coli,Fluoroquinolones,2020,18.75
+LT,Lithuania,E. coli,Fluoroquinolones,2021,17.65
+LT,Lithuania,E. coli,Fluoroquinolones,2022,19.03
+LT,Lithuania,E. coli,Fluoroquinolones,2023,20.55
+LT,Lithuania,E. coli,Fluoroquinolones,2024,20.05
+LT,Lithuania,E. coli,Fluoroquinolones,2025,21.51
+LU,Luxembourg,E. coli,Fluoroquinolones,2001,4.23
+LU,Luxembourg,E. coli,Fluoroquinolones,2002,9.43
+LU,Luxembourg,E. coli,Fluoroquinolones,2003,11.95
+LU,Luxembourg,E. coli,Fluoroquinolones,2004,17.59
+LU,Luxembourg,E. coli,Fluoroquinolones,2005,18.62
+LU,Luxembourg,E. coli,Fluoroquinolones,2006,19.76
+LU,Luxembourg,E. coli,Fluoroquinolones,2007,21.45
+LU,Luxembourg,E. coli,Fluoroquinolones,2008,22.11
+LU,Luxembourg,E. coli,Fluoroquinolones,2009,25.58
+LU,Luxembourg,E. coli,Fluoroquinolones,2010,26.27
+LU,Luxembourg,E. coli,Fluoroquinolones,2011,24.08
+LU,Luxembourg,E. coli,Fluoroquinolones,2012,23.95
+LU,Luxembourg,E. coli,Fluoroquinolones,2013,27.8
+LU,Luxembourg,E. coli,Fluoroquinolones,2014,24.73
+LU,Luxembourg,E. coli,Fluoroquinolones,2015,24.21
+LU,Luxembourg,E. coli,Fluoroquinolones,2016,28.95
+LU,Luxembourg,E. coli,Fluoroquinolones,2017,22.86
+LU,Luxembourg,E. coli,Fluoroquinolones,2018,21.77
+LU,Luxembourg,E. coli,Fluoroquinolones,2019,20.53
+LU,Luxembourg,E. coli,Fluoroquinolones,2020,21.73
+LU,Luxembourg,E. coli,Fluoroquinolones,2021,20.9
+LU,Luxembourg,E. coli,Fluoroquinolones,2022,16.84
+LU,Luxembourg,E. coli,Fluoroquinolones,2023,15.62
+LU,Luxembourg,E. coli,Fluoroquinolones,2024,18.7
+LU,Luxembourg,E. coli,Fluoroquinolones,2025,22.52
+MT,Malta,E. coli,Fluoroquinolones,2001,15.38
+MT,Malta,E. coli,Fluoroquinolones,2002,12.16
+MT,Malta,E. coli,Fluoroquinolones,2003,24.44
+MT,Malta,E. coli,Fluoroquinolones,2004,35.56
+MT,Malta,E. coli,Fluoroquinolones,2005,30.59
+MT,Malta,E. coli,Fluoroquinolones,2006,31.91
+MT,Malta,E. coli,Fluoroquinolones,2007,35.04
+MT,Malta,E. coli,Fluoroquinolones,2008,33.59
+MT,Malta,E. coli,Fluoroquinolones,2009,30.38
+MT,Malta,E. coli,Fluoroquinolones,2010,34.38
+MT,Malta,E. coli,Fluoroquinolones,2011,31.96
+MT,Malta,E. coli,Fluoroquinolones,2012,30.14
+MT,Malta,E. coli,Fluoroquinolones,2013,29.75
+MT,Malta,E. coli,Fluoroquinolones,2014,28.73
+MT,Malta,E. coli,Fluoroquinolones,2015,37.39
+MT,Malta,E. coli,Fluoroquinolones,2016,41.46
+MT,Malta,E. coli,Fluoroquinolones,2017,43.31
+MT,Malta,E. coli,Fluoroquinolones,2018,41.87
+MT,Malta,E. coli,Fluoroquinolones,2019,40.06
+MT,Malta,E. coli,Fluoroquinolones,2020,35.38
+MT,Malta,E. coli,Fluoroquinolones,2021,30.77
+MT,Malta,E. coli,Fluoroquinolones,2022,26.38
+MT,Malta,E. coli,Fluoroquinolones,2023,27.88
+MT,Malta,E. coli,Fluoroquinolones,2024,43.0
+MT,Malta,E. coli,Fluoroquinolones,2025,46.12
+NL,Netherlands,E. coli,Fluoroquinolones,2000,3.36
+NL,Netherlands,E. coli,Fluoroquinolones,2001,5.42
+NL,Netherlands,E. coli,Fluoroquinolones,2002,5.43
+NL,Netherlands,E. coli,Fluoroquinolones,2003,7.22
+NL,Netherlands,E. coli,Fluoroquinolones,2004,6.6
+NL,Netherlands,E. coli,Fluoroquinolones,2005,9.93
+NL,Netherlands,E. coli,Fluoroquinolones,2006,11.21
+NL,Netherlands,E. coli,Fluoroquinolones,2007,12.59
+NL,Netherlands,E. coli,Fluoroquinolones,2008,14.39
+NL,Netherlands,E. coli,Fluoroquinolones,2009,11.02
+NL,Netherlands,E. coli,Fluoroquinolones,2010,13.88
+NL,Netherlands,E. coli,Fluoroquinolones,2011,14.44
+NL,Netherlands,E. coli,Fluoroquinolones,2012,15.64
+NL,Netherlands,E. coli,Fluoroquinolones,2013,14.76
+NL,Netherlands,E. coli,Fluoroquinolones,2014,13.96
+NL,Netherlands,E. coli,Fluoroquinolones,2015,13.16
+NL,Netherlands,E. coli,Fluoroquinolones,2016,12.9
+NL,Netherlands,E. coli,Fluoroquinolones,2017,14.42
+NL,Netherlands,E. coli,Fluoroquinolones,2018,14.71
+NL,Netherlands,E. coli,Fluoroquinolones,2019,14.57
+NL,Netherlands,E. coli,Fluoroquinolones,2020,13.34
+NL,Netherlands,E. coli,Fluoroquinolones,2021,13.32
+NL,Netherlands,E. coli,Fluoroquinolones,2022,13.14
+NL,Netherlands,E. coli,Fluoroquinolones,2023,12.95
+NL,Netherlands,E. coli,Fluoroquinolones,2024,13.68
+NL,Netherlands,E. coli,Fluoroquinolones,2025,14.36
+NO,Norway,E. coli,Fluoroquinolones,2000,1.66
+NO,Norway,E. coli,Fluoroquinolones,2001,1.31
+NO,Norway,E. coli,Fluoroquinolones,2002,1.71
+NO,Norway,E. coli,Fluoroquinolones,2003,1.87
+NO,Norway,E. coli,Fluoroquinolones,2004,4.37
+NO,Norway,E. coli,Fluoroquinolones,2005,4.68
+NO,Norway,E. coli,Fluoroquinolones,2006,4.87
+NO,Norway,E. coli,Fluoroquinolones,2007,7.09
+NO,Norway,E. coli,Fluoroquinolones,2008,7.39
+NO,Norway,E. coli,Fluoroquinolones,2009,8.69
+NO,Norway,E. coli,Fluoroquinolones,2010,8.73
+NO,Norway,E. coli,Fluoroquinolones,2011,8.98
+NO,Norway,E. coli,Fluoroquinolones,2012,11.29
+NO,Norway,E. coli,Fluoroquinolones,2013,10.89
+NO,Norway,E. coli,Fluoroquinolones,2014,11.01
+NO,Norway,E. coli,Fluoroquinolones,2015,10.22
+NO,Norway,E. coli,Fluoroquinolones,2016,10.94
+NO,Norway,E. coli,Fluoroquinolones,2017,13.56
+NO,Norway,E. coli,Fluoroquinolones,2018,12.87
+NO,Norway,E. coli,Fluoroquinolones,2019,11.26
+NO,Norway,E. coli,Fluoroquinolones,2020,9.96
+NO,Norway,E. coli,Fluoroquinolones,2021,9.88
+NO,Norway,E. coli,Fluoroquinolones,2022,10.52
+NO,Norway,E. coli,Fluoroquinolones,2023,10.12
+NO,Norway,E. coli,Fluoroquinolones,2024,9.99
+NO,Norway,E. coli,Fluoroquinolones,2025,10.12
+PL,Poland,E. coli,Fluoroquinolones,2001,8.6
+PL,Poland,E. coli,Fluoroquinolones,2002,10.53
+PL,Poland,E. coli,Fluoroquinolones,2003,6.61
+PL,Poland,E. coli,Fluoroquinolones,2004,8.56
+PL,Poland,E. coli,Fluoroquinolones,2005,19.89
+PL,Poland,E. coli,Fluoroquinolones,2006,20.39
+PL,Poland,E. coli,Fluoroquinolones,2007,12.89
+PL,Poland,E. coli,Fluoroquinolones,2008,20.24
+PL,Poland,E. coli,Fluoroquinolones,2009,23.1
+PL,Poland,E. coli,Fluoroquinolones,2010,25.76
+PL,Poland,E. coli,Fluoroquinolones,2011,27.34
+PL,Poland,E. coli,Fluoroquinolones,2012,29.33
+PL,Poland,E. coli,Fluoroquinolones,2013,27.34
+PL,Poland,E. coli,Fluoroquinolones,2014,29.23
+PL,Poland,E. coli,Fluoroquinolones,2015,27.88
+PL,Poland,E. coli,Fluoroquinolones,2016,33.07
+PL,Poland,E. coli,Fluoroquinolones,2017,35.86
+PL,Poland,E. coli,Fluoroquinolones,2018,34.67
+PL,Poland,E. coli,Fluoroquinolones,2019,33.02
+PL,Poland,E. coli,Fluoroquinolones,2020,32.99
+PL,Poland,E. coli,Fluoroquinolones,2021,33.11
+PL,Poland,E. coli,Fluoroquinolones,2022,30.81
+PL,Poland,E. coli,Fluoroquinolones,2023,32.2
+PL,Poland,E. coli,Fluoroquinolones,2024,28.69
+PL,Poland,E. coli,Fluoroquinolones,2025,27.82
+PT,Portugal,E. coli,Fluoroquinolones,2001,17.53
+PT,Portugal,E. coli,Fluoroquinolones,2002,23.48
+PT,Portugal,E. coli,Fluoroquinolones,2003,25.84
+PT,Portugal,E. coli,Fluoroquinolones,2004,26.7
+PT,Portugal,E. coli,Fluoroquinolones,2005,29.28
+PT,Portugal,E. coli,Fluoroquinolones,2006,27.67
+PT,Portugal,E. coli,Fluoroquinolones,2007,29.85
+PT,Portugal,E. coli,Fluoroquinolones,2008,28.6
+PT,Portugal,E. coli,Fluoroquinolones,2009,27.72
+PT,Portugal,E. coli,Fluoroquinolones,2010,27.28
+PT,Portugal,E. coli,Fluoroquinolones,2011,27.23
+PT,Portugal,E. coli,Fluoroquinolones,2012,30.31
+PT,Portugal,E. coli,Fluoroquinolones,2013,31.62
+PT,Portugal,E. coli,Fluoroquinolones,2014,32.37
+PT,Portugal,E. coli,Fluoroquinolones,2015,29.66
+PT,Portugal,E. coli,Fluoroquinolones,2016,28.95
+PT,Portugal,E. coli,Fluoroquinolones,2017,27.27
+PT,Portugal,E. coli,Fluoroquinolones,2018,25.46
+PT,Portugal,E. coli,Fluoroquinolones,2019,26.47
+PT,Portugal,E. coli,Fluoroquinolones,2020,23.93
+PT,Portugal,E. coli,Fluoroquinolones,2021,22.5
+PT,Portugal,E. coli,Fluoroquinolones,2022,21.45
+PT,Portugal,E. coli,Fluoroquinolones,2023,24.33
+PT,Portugal,E. coli,Fluoroquinolones,2024,23.72
+PT,Portugal,E. coli,Fluoroquinolones,2025,24.22
+RO,Romania,E. coli,Fluoroquinolones,2002,20.0
+RO,Romania,E. coli,Fluoroquinolones,2003,14.0
+RO,Romania,E. coli,Fluoroquinolones,2004,20.93
+RO,Romania,E. coli,Fluoroquinolones,2005,8.86
+RO,Romania,E. coli,Fluoroquinolones,2006,41.03
+RO,Romania,E. coli,Fluoroquinolones,2007,26.67
+RO,Romania,E. coli,Fluoroquinolones,2008,26.92
+RO,Romania,E. coli,Fluoroquinolones,2009,18.18
+RO,Romania,E. coli,Fluoroquinolones,2010,24.24
+RO,Romania,E. coli,Fluoroquinolones,2011,28.0
+RO,Romania,E. coli,Fluoroquinolones,2012,29.03
+RO,Romania,E. coli,Fluoroquinolones,2013,31.0
+RO,Romania,E. coli,Fluoroquinolones,2014,31.27
+RO,Romania,E. coli,Fluoroquinolones,2015,30.73
+RO,Romania,E. coli,Fluoroquinolones,2016,30.62
+RO,Romania,E. coli,Fluoroquinolones,2017,26.45
+RO,Romania,E. coli,Fluoroquinolones,2018,29.1
+RO,Romania,E. coli,Fluoroquinolones,2019,28.29
+RO,Romania,E. coli,Fluoroquinolones,2020,26.0
+RO,Romania,E. coli,Fluoroquinolones,2021,24.7
+RO,Romania,E. coli,Fluoroquinolones,2022,23.77
+RO,Romania,E. coli,Fluoroquinolones,2023,25.41
+RO,Romania,E. coli,Fluoroquinolones,2024,25.19
+RO,Romania,E. coli,Fluoroquinolones,2025,23.13
+SK,Slovakia,E. coli,Fluoroquinolones,2001,15.56
+SK,Slovakia,E. coli,Fluoroquinolones,2002,14.49
+SK,Slovakia,E. coli,Fluoroquinolones,2003,20.17
+SK,Slovakia,E. coli,Fluoroquinolones,2004,24.03
+SK,Slovakia,E. coli,Fluoroquinolones,2005,14.39
+SK,Slovakia,E. coli,Fluoroquinolones,2011,41.81
+SK,Slovakia,E. coli,Fluoroquinolones,2012,41.29
+SK,Slovakia,E. coli,Fluoroquinolones,2013,40.35
+SK,Slovakia,E. coli,Fluoroquinolones,2014,42.95
+SK,Slovakia,E. coli,Fluoroquinolones,2015,44.18
+SK,Slovakia,E. coli,Fluoroquinolones,2016,40.44
+SK,Slovakia,E. coli,Fluoroquinolones,2017,43.2
+SK,Slovakia,E. coli,Fluoroquinolones,2018,42.11
+SK,Slovakia,E. coli,Fluoroquinolones,2019,34.0
+SK,Slovakia,E. coli,Fluoroquinolones,2020,34.16
+SK,Slovakia,E. coli,Fluoroquinolones,2021,29.76
+SK,Slovakia,E. coli,Fluoroquinolones,2022,32.35
+SK,Slovakia,E. coli,Fluoroquinolones,2023,31.17
+SK,Slovakia,E. coli,Fluoroquinolones,2024,30.06
+SK,Slovakia,E. coli,Fluoroquinolones,2025,28.0
+SI,Slovenia,E. coli,Fluoroquinolones,2001,8.04
+SI,Slovenia,E. coli,Fluoroquinolones,2002,11.98
+SI,Slovenia,E. coli,Fluoroquinolones,2003,11.22
+SI,Slovenia,E. coli,Fluoroquinolones,2004,12.39
+SI,Slovenia,E. coli,Fluoroquinolones,2005,12.02
+SI,Slovenia,E. coli,Fluoroquinolones,2006,15.2
+SI,Slovenia,E. coli,Fluoroquinolones,2007,17.16
+SI,Slovenia,E. coli,Fluoroquinolones,2008,16.93
+SI,Slovenia,E. coli,Fluoroquinolones,2009,18.25
+SI,Slovenia,E. coli,Fluoroquinolones,2010,19.33
+SI,Slovenia,E. coli,Fluoroquinolones,2011,20.66
+SI,Slovenia,E. coli,Fluoroquinolones,2012,21.4
+SI,Slovenia,E. coli,Fluoroquinolones,2013,19.85
+SI,Slovenia,E. coli,Fluoroquinolones,2014,23.27
+SI,Slovenia,E. coli,Fluoroquinolones,2015,24.6
+SI,Slovenia,E. coli,Fluoroquinolones,2016,25.56
+SI,Slovenia,E. coli,Fluoroquinolones,2017,24.87
+SI,Slovenia,E. coli,Fluoroquinolones,2018,22.78
+SI,Slovenia,E. coli,Fluoroquinolones,2019,19.01
+SI,Slovenia,E. coli,Fluoroquinolones,2020,18.12
+SI,Slovenia,E. coli,Fluoroquinolones,2021,16.66
+SI,Slovenia,E. coli,Fluoroquinolones,2022,16.57
+SI,Slovenia,E. coli,Fluoroquinolones,2023,15.92
+SI,Slovenia,E. coli,Fluoroquinolones,2024,15.92
+SI,Slovenia,E. coli,Fluoroquinolones,2025,18.14
+ES,Spain,E. coli,Fluoroquinolones,2001,17.25
+ES,Spain,E. coli,Fluoroquinolones,2002,19.29
+ES,Spain,E. coli,Fluoroquinolones,2003,20.99
+ES,Spain,E. coli,Fluoroquinolones,2004,25.39
+ES,Spain,E. coli,Fluoroquinolones,2005,28.17
+ES,Spain,E. coli,Fluoroquinolones,2006,28.01
+ES,Spain,E. coli,Fluoroquinolones,2007,30.45
+ES,Spain,E. coli,Fluoroquinolones,2008,32.52
+ES,Spain,E. coli,Fluoroquinolones,2009,31.5
+ES,Spain,E. coli,Fluoroquinolones,2010,32.76
+ES,Spain,E. coli,Fluoroquinolones,2011,34.48
+ES,Spain,E. coli,Fluoroquinolones,2012,33.85
+ES,Spain,E. coli,Fluoroquinolones,2013,34.9
+ES,Spain,E. coli,Fluoroquinolones,2014,34.03
+ES,Spain,E. coli,Fluoroquinolones,2015,31.55
+ES,Spain,E. coli,Fluoroquinolones,2016,32.82
+ES,Spain,E. coli,Fluoroquinolones,2017,32.5
+ES,Spain,E. coli,Fluoroquinolones,2018,32.12
+ES,Spain,E. coli,Fluoroquinolones,2019,29.53
+ES,Spain,E. coli,Fluoroquinolones,2020,28.61
+ES,Spain,E. coli,Fluoroquinolones,2021,26.61
+ES,Spain,E. coli,Fluoroquinolones,2022,28.61
+ES,Spain,E. coli,Fluoroquinolones,2023,27.56
+ES,Spain,E. coli,Fluoroquinolones,2024,29.98
+ES,Spain,E. coli,Fluoroquinolones,2025,28.7
+SE,Sweden,E. coli,Fluoroquinolones,2001,3.74
+SE,Sweden,E. coli,Fluoroquinolones,2002,5.1
+SE,Sweden,E. coli,Fluoroquinolones,2003,6.57
+SE,Sweden,E. coli,Fluoroquinolones,2004,7.58
+SE,Sweden,E. coli,Fluoroquinolones,2005,6.32
+SE,Sweden,E. coli,Fluoroquinolones,2006,7.95
+SE,Sweden,E. coli,Fluoroquinolones,2007,10.32
+SE,Sweden,E. coli,Fluoroquinolones,2008,10.28
+SE,Sweden,E. coli,Fluoroquinolones,2010,10.51
+SE,Sweden,E. coli,Fluoroquinolones,2011,10.06
+SE,Sweden,E. coli,Fluoroquinolones,2012,11.09
+SE,Sweden,E. coli,Fluoroquinolones,2013,11.58
+SE,Sweden,E. coli,Fluoroquinolones,2014,11.3
+SE,Sweden,E. coli,Fluoroquinolones,2015,12.62
+SE,Sweden,E. coli,Fluoroquinolones,2016,13.66
+SE,Sweden,E. coli,Fluoroquinolones,2017,15.79
+SE,Sweden,E. coli,Fluoroquinolones,2018,18.06
+SE,Sweden,E. coli,Fluoroquinolones,2019,15.85
+SE,Sweden,E. coli,Fluoroquinolones,2020,14.08
+SE,Sweden,E. coli,Fluoroquinolones,2021,13.66
+SE,Sweden,E. coli,Fluoroquinolones,2022,13.82
+SE,Sweden,E. coli,Fluoroquinolones,2023,14.75
+SE,Sweden,E. coli,Fluoroquinolones,2024,15.57
+SE,Sweden,E. coli,Fluoroquinolones,2025,15.19
+UK,United Kingdom,E. coli,Fluoroquinolones,2001,6.2
+UK,United Kingdom,E. coli,Fluoroquinolones,2002,7.35
+UK,United Kingdom,E. coli,Fluoroquinolones,2003,11.28
+UK,United Kingdom,E. coli,Fluoroquinolones,2004,14.17
+UK,United Kingdom,E. coli,Fluoroquinolones,2005,16.83
+UK,United Kingdom,E. coli,Fluoroquinolones,2006,19.91
+UK,United Kingdom,E. coli,Fluoroquinolones,2007,17.9
+UK,United Kingdom,E. coli,Fluoroquinolones,2008,15.11
+UK,United Kingdom,E. coli,Fluoroquinolones,2009,18.04
+UK,United Kingdom,E. coli,Fluoroquinolones,2010,17.3
+UK,United Kingdom,E. coli,Fluoroquinolones,2011,17.54
+UK,United Kingdom,E. coli,Fluoroquinolones,2012,16.57
+UK,United Kingdom,E. coli,Fluoroquinolones,2013,16.3
+UK,United Kingdom,E. coli,Fluoroquinolones,2014,16.82
+UK,United Kingdom,E. coli,Fluoroquinolones,2015,15.64
+UK,United Kingdom,E. coli,Fluoroquinolones,2016,16.33
+UK,United Kingdom,E. coli,Fluoroquinolones,2017,17.47
+UK,United Kingdom,E. coli,Fluoroquinolones,2018,17.71
+UK,United Kingdom,E. coli,Fluoroquinolones,2019,17.83
+AT,Austria,E. coli,Third-generation cephalosporins,2001,0.0
+AT,Austria,E. coli,Third-generation cephalosporins,2002,1.26
+AT,Austria,E. coli,Third-generation cephalosporins,2003,1.84
+AT,Austria,E. coli,Third-generation cephalosporins,2004,2.53
+AT,Austria,E. coli,Third-generation cephalosporins,2005,4.2
+AT,Austria,E. coli,Third-generation cephalosporins,2006,6.6
+AT,Austria,E. coli,Third-generation cephalosporins,2007,8.87
+AT,Austria,E. coli,Third-generation cephalosporins,2008,7.41
+AT,Austria,E. coli,Third-generation cephalosporins,2009,7.55
+AT,Austria,E. coli,Third-generation cephalosporins,2010,7.26
+AT,Austria,E. coli,Third-generation cephalosporins,2011,9.15
+AT,Austria,E. coli,Third-generation cephalosporins,2012,8.65
+AT,Austria,E. coli,Third-generation cephalosporins,2013,9.85
+AT,Austria,E. coli,Third-generation cephalosporins,2014,9.37
+AT,Austria,E. coli,Third-generation cephalosporins,2015,9.67
+AT,Austria,E. coli,Third-generation cephalosporins,2016,10.01
+AT,Austria,E. coli,Third-generation cephalosporins,2017,9.63
+AT,Austria,E. coli,Third-generation cephalosporins,2018,10.21
+AT,Austria,E. coli,Third-generation cephalosporins,2019,9.32
+AT,Austria,E. coli,Third-generation cephalosporins,2020,9.47
+AT,Austria,E. coli,Third-generation cephalosporins,2021,8.29
+AT,Austria,E. coli,Third-generation cephalosporins,2022,8.32
+AT,Austria,E. coli,Third-generation cephalosporins,2023,9.85
+AT,Austria,E. coli,Third-generation cephalosporins,2024,10.55
+AT,Austria,E. coli,Third-generation cephalosporins,2025,10.93
+BE,Belgium,E. coli,Third-generation cephalosporins,2001,1.8
+BE,Belgium,E. coli,Third-generation cephalosporins,2002,2.79
+BE,Belgium,E. coli,Third-generation cephalosporins,2003,3.5
+BE,Belgium,E. coli,Third-generation cephalosporins,2004,2.65
+BE,Belgium,E. coli,Third-generation cephalosporins,2005,3.61
+BE,Belgium,E. coli,Third-generation cephalosporins,2006,2.91
+BE,Belgium,E. coli,Third-generation cephalosporins,2007,3.93
+BE,Belgium,E. coli,Third-generation cephalosporins,2008,4.19
+BE,Belgium,E. coli,Third-generation cephalosporins,2009,6.45
+BE,Belgium,E. coli,Third-generation cephalosporins,2010,5.17
+BE,Belgium,E. coli,Third-generation cephalosporins,2011,6.05
+BE,Belgium,E. coli,Third-generation cephalosporins,2012,6.88
+BE,Belgium,E. coli,Third-generation cephalosporins,2013,8.0
+BE,Belgium,E. coli,Third-generation cephalosporins,2014,9.74
+BE,Belgium,E. coli,Third-generation cephalosporins,2015,9.68
+BE,Belgium,E. coli,Third-generation cephalosporins,2016,10.49
+BE,Belgium,E. coli,Third-generation cephalosporins,2017,9.74
+BE,Belgium,E. coli,Third-generation cephalosporins,2018,9.02
+BE,Belgium,E. coli,Third-generation cephalosporins,2019,9.98
+BE,Belgium,E. coli,Third-generation cephalosporins,2020,9.88
+BE,Belgium,E. coli,Third-generation cephalosporins,2021,8.26
+BE,Belgium,E. coli,Third-generation cephalosporins,2022,8.76
+BE,Belgium,E. coli,Third-generation cephalosporins,2023,10.09
+BE,Belgium,E. coli,Third-generation cephalosporins,2024,11.92
+BE,Belgium,E. coli,Third-generation cephalosporins,2025,11.92
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2001,6.67
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2002,13.33
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2003,18.35
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2004,21.56
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2005,28.08
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2006,28.57
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2007,22.83
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2008,29.25
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2009,19.17
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2010,24.84
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2011,22.91
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2012,38.12
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2013,39.57
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2014,40.37
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2015,38.54
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2016,41.6
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2017,41.3
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2018,38.7
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2019,38.64
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2020,41.38
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2021,37.26
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2022,40.17
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2023,37.25
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2024,34.52
+BG,Bulgaria,E. coli,Third-generation cephalosporins,2025,35.84
+HR,Croatia,E. coli,Third-generation cephalosporins,2001,1.65
+HR,Croatia,E. coli,Third-generation cephalosporins,2002,2.86
+HR,Croatia,E. coli,Third-generation cephalosporins,2003,4.39
+HR,Croatia,E. coli,Third-generation cephalosporins,2004,2.62
+HR,Croatia,E. coli,Third-generation cephalosporins,2005,0.78
+HR,Croatia,E. coli,Third-generation cephalosporins,2006,1.42
+HR,Croatia,E. coli,Third-generation cephalosporins,2007,2.67
+HR,Croatia,E. coli,Third-generation cephalosporins,2008,3.83
+HR,Croatia,E. coli,Third-generation cephalosporins,2010,8.73
+HR,Croatia,E. coli,Third-generation cephalosporins,2011,9.56
+HR,Croatia,E. coli,Third-generation cephalosporins,2012,7.62
+HR,Croatia,E. coli,Third-generation cephalosporins,2013,8.75
+HR,Croatia,E. coli,Third-generation cephalosporins,2014,10.84
+HR,Croatia,E. coli,Third-generation cephalosporins,2015,12.52
+HR,Croatia,E. coli,Third-generation cephalosporins,2016,14.74
+HR,Croatia,E. coli,Third-generation cephalosporins,2017,16.46
+HR,Croatia,E. coli,Third-generation cephalosporins,2018,14.81
+HR,Croatia,E. coli,Third-generation cephalosporins,2019,15.94
+HR,Croatia,E. coli,Third-generation cephalosporins,2020,16.57
+HR,Croatia,E. coli,Third-generation cephalosporins,2021,18.6
+HR,Croatia,E. coli,Third-generation cephalosporins,2022,17.43
+HR,Croatia,E. coli,Third-generation cephalosporins,2023,20.02
+HR,Croatia,E. coli,Third-generation cephalosporins,2024,19.39
+HR,Croatia,E. coli,Third-generation cephalosporins,2025,21.44
+CY,Cyprus,E. coli,Third-generation cephalosporins,2004,8.7
+CY,Cyprus,E. coli,Third-generation cephalosporins,2005,16.0
+CY,Cyprus,E. coli,Third-generation cephalosporins,2006,15.56
+CY,Cyprus,E. coli,Third-generation cephalosporins,2007,18.35
+CY,Cyprus,E. coli,Third-generation cephalosporins,2008,19.33
+CY,Cyprus,E. coli,Third-generation cephalosporins,2009,13.97
+CY,Cyprus,E. coli,Third-generation cephalosporins,2010,20.14
+CY,Cyprus,E. coli,Third-generation cephalosporins,2011,36.23
+CY,Cyprus,E. coli,Third-generation cephalosporins,2012,31.82
+CY,Cyprus,E. coli,Third-generation cephalosporins,2013,38.89
+CY,Cyprus,E. coli,Third-generation cephalosporins,2014,28.76
+CY,Cyprus,E. coli,Third-generation cephalosporins,2015,28.46
+CY,Cyprus,E. coli,Third-generation cephalosporins,2016,30.2
+CY,Cyprus,E. coli,Third-generation cephalosporins,2017,30.77
+CY,Cyprus,E. coli,Third-generation cephalosporins,2018,37.09
+CY,Cyprus,E. coli,Third-generation cephalosporins,2019,20.65
+CY,Cyprus,E. coli,Third-generation cephalosporins,2020,29.82
+CY,Cyprus,E. coli,Third-generation cephalosporins,2021,32.81
+CY,Cyprus,E. coli,Third-generation cephalosporins,2022,32.44
+CY,Cyprus,E. coli,Third-generation cephalosporins,2023,34.74
+CY,Cyprus,E. coli,Third-generation cephalosporins,2024,38.75
+CY,Cyprus,E. coli,Third-generation cephalosporins,2025,42.73
+CZ,Czechia,E. coli,Third-generation cephalosporins,2001,2.31
+CZ,Czechia,E. coli,Third-generation cephalosporins,2002,1.2
+CZ,Czechia,E. coli,Third-generation cephalosporins,2003,1.14
+CZ,Czechia,E. coli,Third-generation cephalosporins,2004,1.68
+CZ,Czechia,E. coli,Third-generation cephalosporins,2005,2.24
+CZ,Czechia,E. coli,Third-generation cephalosporins,2006,5.14
+CZ,Czechia,E. coli,Third-generation cephalosporins,2007,7.4
+CZ,Czechia,E. coli,Third-generation cephalosporins,2008,9.86
+CZ,Czechia,E. coli,Third-generation cephalosporins,2009,9.79
+CZ,Czechia,E. coli,Third-generation cephalosporins,2010,10.35
+CZ,Czechia,E. coli,Third-generation cephalosporins,2011,11.36
+CZ,Czechia,E. coli,Third-generation cephalosporins,2012,11.45
+CZ,Czechia,E. coli,Third-generation cephalosporins,2013,13.1
+CZ,Czechia,E. coli,Third-generation cephalosporins,2014,13.97
+CZ,Czechia,E. coli,Third-generation cephalosporins,2015,14.5
+CZ,Czechia,E. coli,Third-generation cephalosporins,2016,15.06
+CZ,Czechia,E. coli,Third-generation cephalosporins,2017,14.22
+CZ,Czechia,E. coli,Third-generation cephalosporins,2018,15.22
+CZ,Czechia,E. coli,Third-generation cephalosporins,2019,15.91
+CZ,Czechia,E. coli,Third-generation cephalosporins,2020,13.28
+CZ,Czechia,E. coli,Third-generation cephalosporins,2021,14.42
+CZ,Czechia,E. coli,Third-generation cephalosporins,2022,14.75
+CZ,Czechia,E. coli,Third-generation cephalosporins,2023,15.88
+CZ,Czechia,E. coli,Third-generation cephalosporins,2024,15.79
+CZ,Czechia,E. coli,Third-generation cephalosporins,2025,18.75
+DK,Denmark,E. coli,Third-generation cephalosporins,2005,1.15
+DK,Denmark,E. coli,Third-generation cephalosporins,2006,2.45
+DK,Denmark,E. coli,Third-generation cephalosporins,2007,3.25
+DK,Denmark,E. coli,Third-generation cephalosporins,2008,4.06
+DK,Denmark,E. coli,Third-generation cephalosporins,2009,6.17
+DK,Denmark,E. coli,Third-generation cephalosporins,2010,7.6
+DK,Denmark,E. coli,Third-generation cephalosporins,2011,8.49
+DK,Denmark,E. coli,Third-generation cephalosporins,2012,7.86
+DK,Denmark,E. coli,Third-generation cephalosporins,2013,8.08
+DK,Denmark,E. coli,Third-generation cephalosporins,2014,7.01
+DK,Denmark,E. coli,Third-generation cephalosporins,2015,7.48
+DK,Denmark,E. coli,Third-generation cephalosporins,2016,6.57
+DK,Denmark,E. coli,Third-generation cephalosporins,2017,6.9
+DK,Denmark,E. coli,Third-generation cephalosporins,2018,7.66
+DK,Denmark,E. coli,Third-generation cephalosporins,2019,7.54
+DK,Denmark,E. coli,Third-generation cephalosporins,2020,6.7
+DK,Denmark,E. coli,Third-generation cephalosporins,2021,6.17
+DK,Denmark,E. coli,Third-generation cephalosporins,2022,6.63
+DK,Denmark,E. coli,Third-generation cephalosporins,2023,6.32
+DK,Denmark,E. coli,Third-generation cephalosporins,2024,6.76
+DK,Denmark,E. coli,Third-generation cephalosporins,2025,8.25
+EE,Estonia,E. coli,Third-generation cephalosporins,2001,5.88
+EE,Estonia,E. coli,Third-generation cephalosporins,2002,1.54
+EE,Estonia,E. coli,Third-generation cephalosporins,2003,1.03
+EE,Estonia,E. coli,Third-generation cephalosporins,2004,3.61
+EE,Estonia,E. coli,Third-generation cephalosporins,2005,1.29
+EE,Estonia,E. coli,Third-generation cephalosporins,2006,0.47
+EE,Estonia,E. coli,Third-generation cephalosporins,2007,1.38
+EE,Estonia,E. coli,Third-generation cephalosporins,2008,4.58
+EE,Estonia,E. coli,Third-generation cephalosporins,2009,2.19
+EE,Estonia,E. coli,Third-generation cephalosporins,2010,5.5
+EE,Estonia,E. coli,Third-generation cephalosporins,2011,12.22
+EE,Estonia,E. coli,Third-generation cephalosporins,2012,7.87
+EE,Estonia,E. coli,Third-generation cephalosporins,2013,7.35
+EE,Estonia,E. coli,Third-generation cephalosporins,2014,9.27
+EE,Estonia,E. coli,Third-generation cephalosporins,2015,11.38
+EE,Estonia,E. coli,Third-generation cephalosporins,2016,8.99
+EE,Estonia,E. coli,Third-generation cephalosporins,2017,8.76
+EE,Estonia,E. coli,Third-generation cephalosporins,2018,9.76
+EE,Estonia,E. coli,Third-generation cephalosporins,2019,11.54
+EE,Estonia,E. coli,Third-generation cephalosporins,2020,8.27
+EE,Estonia,E. coli,Third-generation cephalosporins,2021,8.07
+EE,Estonia,E. coli,Third-generation cephalosporins,2022,11.76
+EE,Estonia,E. coli,Third-generation cephalosporins,2023,11.44
+EE,Estonia,E. coli,Third-generation cephalosporins,2024,9.95
+EE,Estonia,E. coli,Third-generation cephalosporins,2025,10.18
+FI,Finland,E. coli,Third-generation cephalosporins,2001,0.17
+FI,Finland,E. coli,Third-generation cephalosporins,2002,0.63
+FI,Finland,E. coli,Third-generation cephalosporins,2003,1.03
+FI,Finland,E. coli,Third-generation cephalosporins,2004,1.52
+FI,Finland,E. coli,Third-generation cephalosporins,2005,1.77
+FI,Finland,E. coli,Third-generation cephalosporins,2006,1.82
+FI,Finland,E. coli,Third-generation cephalosporins,2007,1.54
+FI,Finland,E. coli,Third-generation cephalosporins,2008,2.11
+FI,Finland,E. coli,Third-generation cephalosporins,2009,2.8
+FI,Finland,E. coli,Third-generation cephalosporins,2010,3.75
+FI,Finland,E. coli,Third-generation cephalosporins,2011,5.0
+FI,Finland,E. coli,Third-generation cephalosporins,2012,6.2
+FI,Finland,E. coli,Third-generation cephalosporins,2013,7.07
+FI,Finland,E. coli,Third-generation cephalosporins,2014,5.46
+FI,Finland,E. coli,Third-generation cephalosporins,2015,6.06
+FI,Finland,E. coli,Third-generation cephalosporins,2016,6.9
+FI,Finland,E. coli,Third-generation cephalosporins,2017,6.85
+FI,Finland,E. coli,Third-generation cephalosporins,2018,7.61
+FI,Finland,E. coli,Third-generation cephalosporins,2019,7.85
+FI,Finland,E. coli,Third-generation cephalosporins,2020,7.17
+FI,Finland,E. coli,Third-generation cephalosporins,2021,6.6
+FI,Finland,E. coli,Third-generation cephalosporins,2022,6.11
+FI,Finland,E. coli,Third-generation cephalosporins,2023,7.09
+FI,Finland,E. coli,Third-generation cephalosporins,2024,7.45
+FI,Finland,E. coli,Third-generation cephalosporins,2025,7.63
+FR,France,E. coli,Third-generation cephalosporins,2002,0.76
+FR,France,E. coli,Third-generation cephalosporins,2003,0.97
+FR,France,E. coli,Third-generation cephalosporins,2004,0.95
+FR,France,E. coli,Third-generation cephalosporins,2005,1.39
+FR,France,E. coli,Third-generation cephalosporins,2006,1.97
+FR,France,E. coli,Third-generation cephalosporins,2007,2.49
+FR,France,E. coli,Third-generation cephalosporins,2008,3.82
+FR,France,E. coli,Third-generation cephalosporins,2009,6.72
+FR,France,E. coli,Third-generation cephalosporins,2010,7.25
+FR,France,E. coli,Third-generation cephalosporins,2011,8.17
+FR,France,E. coli,Third-generation cephalosporins,2012,9.96
+FR,France,E. coli,Third-generation cephalosporins,2013,9.52
+FR,France,E. coli,Third-generation cephalosporins,2014,9.94
+FR,France,E. coli,Third-generation cephalosporins,2015,10.98
+FR,France,E. coli,Third-generation cephalosporins,2016,11.23
+FR,France,E. coli,Third-generation cephalosporins,2017,10.22
+FR,France,E. coli,Third-generation cephalosporins,2018,9.59
+FR,France,E. coli,Third-generation cephalosporins,2019,8.85
+FR,France,E. coli,Third-generation cephalosporins,2020,9.47
+FR,France,E. coli,Third-generation cephalosporins,2021,8.34
+FR,France,E. coli,Third-generation cephalosporins,2022,8.44
+FR,France,E. coli,Third-generation cephalosporins,2024,10.47
+FR,France,E. coli,Third-generation cephalosporins,2025,12.04
+DE,Germany,E. coli,Third-generation cephalosporins,2000,0.0
+DE,Germany,E. coli,Third-generation cephalosporins,2001,0.72
+DE,Germany,E. coli,Third-generation cephalosporins,2002,0.94
+DE,Germany,E. coli,Third-generation cephalosporins,2003,0.61
+DE,Germany,E. coli,Third-generation cephalosporins,2004,1.9
+DE,Germany,E. coli,Third-generation cephalosporins,2005,1.67
+DE,Germany,E. coli,Third-generation cephalosporins,2006,4.25
+DE,Germany,E. coli,Third-generation cephalosporins,2007,7.7
+DE,Germany,E. coli,Third-generation cephalosporins,2008,4.84
+DE,Germany,E. coli,Third-generation cephalosporins,2009,8.16
+DE,Germany,E. coli,Third-generation cephalosporins,2010,8.36
+DE,Germany,E. coli,Third-generation cephalosporins,2011,7.96
+DE,Germany,E. coli,Third-generation cephalosporins,2012,8.84
+DE,Germany,E. coli,Third-generation cephalosporins,2013,10.74
+DE,Germany,E. coli,Third-generation cephalosporins,2014,10.53
+DE,Germany,E. coli,Third-generation cephalosporins,2015,10.3
+DE,Germany,E. coli,Third-generation cephalosporins,2016,11.1
+DE,Germany,E. coli,Third-generation cephalosporins,2017,12.28
+DE,Germany,E. coli,Third-generation cephalosporins,2018,12.2
+DE,Germany,E. coli,Third-generation cephalosporins,2019,11.51
+DE,Germany,E. coli,Third-generation cephalosporins,2020,10.36
+DE,Germany,E. coli,Third-generation cephalosporins,2021,9.1
+DE,Germany,E. coli,Third-generation cephalosporins,2022,9.42
+DE,Germany,E. coli,Third-generation cephalosporins,2023,9.82
+DE,Germany,E. coli,Third-generation cephalosporins,2024,10.8
+DE,Germany,E. coli,Third-generation cephalosporins,2025,11.13
+EL,Greece,E. coli,Third-generation cephalosporins,2000,3.6
+EL,Greece,E. coli,Third-generation cephalosporins,2001,5.45
+EL,Greece,E. coli,Third-generation cephalosporins,2002,6.37
+EL,Greece,E. coli,Third-generation cephalosporins,2003,5.6
+EL,Greece,E. coli,Third-generation cephalosporins,2004,6.04
+EL,Greece,E. coli,Third-generation cephalosporins,2005,7.02
+EL,Greece,E. coli,Third-generation cephalosporins,2006,6.08
+EL,Greece,E. coli,Third-generation cephalosporins,2007,7.63
+EL,Greece,E. coli,Third-generation cephalosporins,2008,9.93
+EL,Greece,E. coli,Third-generation cephalosporins,2009,10.14
+EL,Greece,E. coli,Third-generation cephalosporins,2010,14.2
+EL,Greece,E. coli,Third-generation cephalosporins,2011,14.91
+EL,Greece,E. coli,Third-generation cephalosporins,2012,16.22
+EL,Greece,E. coli,Third-generation cephalosporins,2013,17.21
+EL,Greece,E. coli,Third-generation cephalosporins,2014,21.03
+EL,Greece,E. coli,Third-generation cephalosporins,2015,19.84
+EL,Greece,E. coli,Third-generation cephalosporins,2016,17.64
+EL,Greece,E. coli,Third-generation cephalosporins,2017,18.3
+EL,Greece,E. coli,Third-generation cephalosporins,2018,19.33
+EL,Greece,E. coli,Third-generation cephalosporins,2019,18.95
+EL,Greece,E. coli,Third-generation cephalosporins,2020,21.87
+EL,Greece,E. coli,Third-generation cephalosporins,2021,21.73
+EL,Greece,E. coli,Third-generation cephalosporins,2022,23.32
+EL,Greece,E. coli,Third-generation cephalosporins,2023,22.83
+EL,Greece,E. coli,Third-generation cephalosporins,2024,25.5
+EL,Greece,E. coli,Third-generation cephalosporins,2025,27.13
+HU,Hungary,E. coli,Third-generation cephalosporins,2001,0.38
+HU,Hungary,E. coli,Third-generation cephalosporins,2002,2.0
+HU,Hungary,E. coli,Third-generation cephalosporins,2003,0.95
+HU,Hungary,E. coli,Third-generation cephalosporins,2004,3.23
+HU,Hungary,E. coli,Third-generation cephalosporins,2005,3.75
+HU,Hungary,E. coli,Third-generation cephalosporins,2006,4.96
+HU,Hungary,E. coli,Third-generation cephalosporins,2007,5.41
+HU,Hungary,E. coli,Third-generation cephalosporins,2008,9.18
+HU,Hungary,E. coli,Third-generation cephalosporins,2009,12.93
+HU,Hungary,E. coli,Third-generation cephalosporins,2010,19.45
+HU,Hungary,E. coli,Third-generation cephalosporins,2011,15.11
+HU,Hungary,E. coli,Third-generation cephalosporins,2012,17.43
+HU,Hungary,E. coli,Third-generation cephalosporins,2013,18.86
+HU,Hungary,E. coli,Third-generation cephalosporins,2014,16.43
+HU,Hungary,E. coli,Third-generation cephalosporins,2015,16.73
+HU,Hungary,E. coli,Third-generation cephalosporins,2016,16.71
+HU,Hungary,E. coli,Third-generation cephalosporins,2017,20.12
+HU,Hungary,E. coli,Third-generation cephalosporins,2018,22.62
+HU,Hungary,E. coli,Third-generation cephalosporins,2019,20.6
+HU,Hungary,E. coli,Third-generation cephalosporins,2020,20.13
+HU,Hungary,E. coli,Third-generation cephalosporins,2021,20.4
+HU,Hungary,E. coli,Third-generation cephalosporins,2022,22.57
+HU,Hungary,E. coli,Third-generation cephalosporins,2023,21.34
+HU,Hungary,E. coli,Third-generation cephalosporins,2024,20.74
+HU,Hungary,E. coli,Third-generation cephalosporins,2025,23.88
+IS,Iceland,E. coli,Third-generation cephalosporins,2001,0.0
+IS,Iceland,E. coli,Third-generation cephalosporins,2002,0.0
+IS,Iceland,E. coli,Third-generation cephalosporins,2003,1.01
+IS,Iceland,E. coli,Third-generation cephalosporins,2004,0.0
+IS,Iceland,E. coli,Third-generation cephalosporins,2005,0.0
+IS,Iceland,E. coli,Third-generation cephalosporins,2006,0.0
+IS,Iceland,E. coli,Third-generation cephalosporins,2007,1.9
+IS,Iceland,E. coli,Third-generation cephalosporins,2008,0.81
+IS,Iceland,E. coli,Third-generation cephalosporins,2009,1.82
+IS,Iceland,E. coli,Third-generation cephalosporins,2010,3.85
+IS,Iceland,E. coli,Third-generation cephalosporins,2011,6.15
+IS,Iceland,E. coli,Third-generation cephalosporins,2012,5.07
+IS,Iceland,E. coli,Third-generation cephalosporins,2013,4.96
+IS,Iceland,E. coli,Third-generation cephalosporins,2014,3.29
+IS,Iceland,E. coli,Third-generation cephalosporins,2015,1.73
+IS,Iceland,E. coli,Third-generation cephalosporins,2016,4.17
+IS,Iceland,E. coli,Third-generation cephalosporins,2017,6.1
+IS,Iceland,E. coli,Third-generation cephalosporins,2018,8.08
+IS,Iceland,E. coli,Third-generation cephalosporins,2019,7.0
+IS,Iceland,E. coli,Third-generation cephalosporins,2020,11.02
+IS,Iceland,E. coli,Third-generation cephalosporins,2021,10.43
+IS,Iceland,E. coli,Third-generation cephalosporins,2022,9.79
+IS,Iceland,E. coli,Third-generation cephalosporins,2023,12.02
+IS,Iceland,E. coli,Third-generation cephalosporins,2024,14.14
+IS,Iceland,E. coli,Third-generation cephalosporins,2025,11.58
+IE,Ireland,E. coli,Third-generation cephalosporins,2002,2.19
+IE,Ireland,E. coli,Third-generation cephalosporins,2003,2.18
+IE,Ireland,E. coli,Third-generation cephalosporins,2004,1.93
+IE,Ireland,E. coli,Third-generation cephalosporins,2005,3.56
+IE,Ireland,E. coli,Third-generation cephalosporins,2006,3.5
+IE,Ireland,E. coli,Third-generation cephalosporins,2007,5.4
+IE,Ireland,E. coli,Third-generation cephalosporins,2008,5.92
+IE,Ireland,E. coli,Third-generation cephalosporins,2009,6.5
+IE,Ireland,E. coli,Third-generation cephalosporins,2010,7.69
+IE,Ireland,E. coli,Third-generation cephalosporins,2011,8.96
+IE,Ireland,E. coli,Third-generation cephalosporins,2012,9.18
+IE,Ireland,E. coli,Third-generation cephalosporins,2013,10.65
+IE,Ireland,E. coli,Third-generation cephalosporins,2014,10.74
+IE,Ireland,E. coli,Third-generation cephalosporins,2015,11.37
+IE,Ireland,E. coli,Third-generation cephalosporins,2016,11.39
+IE,Ireland,E. coli,Third-generation cephalosporins,2017,11.98
+IE,Ireland,E. coli,Third-generation cephalosporins,2018,12.88
+IE,Ireland,E. coli,Third-generation cephalosporins,2019,12.07
+IE,Ireland,E. coli,Third-generation cephalosporins,2020,11.82
+IE,Ireland,E. coli,Third-generation cephalosporins,2021,9.96
+IE,Ireland,E. coli,Third-generation cephalosporins,2022,9.68
+IE,Ireland,E. coli,Third-generation cephalosporins,2023,10.42
+IE,Ireland,E. coli,Third-generation cephalosporins,2024,11.91
+IE,Ireland,E. coli,Third-generation cephalosporins,2025,13.59
+IT,Italy,E. coli,Third-generation cephalosporins,2002,2.93
+IT,Italy,E. coli,Third-generation cephalosporins,2003,6.18
+IT,Italy,E. coli,Third-generation cephalosporins,2004,5.33
+IT,Italy,E. coli,Third-generation cephalosporins,2005,8.48
+IT,Italy,E. coli,Third-generation cephalosporins,2006,7.36
+IT,Italy,E. coli,Third-generation cephalosporins,2007,11.45
+IT,Italy,E. coli,Third-generation cephalosporins,2008,15.91
+IT,Italy,E. coli,Third-generation cephalosporins,2009,17.03
+IT,Italy,E. coli,Third-generation cephalosporins,2010,21.04
+IT,Italy,E. coli,Third-generation cephalosporins,2011,19.84
+IT,Italy,E. coli,Third-generation cephalosporins,2012,26.29
+IT,Italy,E. coli,Third-generation cephalosporins,2013,26.19
+IT,Italy,E. coli,Third-generation cephalosporins,2014,28.67
+IT,Italy,E. coli,Third-generation cephalosporins,2015,30.08
+IT,Italy,E. coli,Third-generation cephalosporins,2016,29.77
+IT,Italy,E. coli,Third-generation cephalosporins,2017,29.49
+IT,Italy,E. coli,Third-generation cephalosporins,2018,28.7
+IT,Italy,E. coli,Third-generation cephalosporins,2019,30.87
+IT,Italy,E. coli,Third-generation cephalosporins,2020,26.41
+IT,Italy,E. coli,Third-generation cephalosporins,2021,24.38
+IT,Italy,E. coli,Third-generation cephalosporins,2022,24.24
+IT,Italy,E. coli,Third-generation cephalosporins,2023,26.68
+IT,Italy,E. coli,Third-generation cephalosporins,2024,27.73
+IT,Italy,E. coli,Third-generation cephalosporins,2025,28.51
+LV,Latvia,E. coli,Third-generation cephalosporins,2006,6.45
+LV,Latvia,E. coli,Third-generation cephalosporins,2007,14.47
+LV,Latvia,E. coli,Third-generation cephalosporins,2008,11.11
+LV,Latvia,E. coli,Third-generation cephalosporins,2009,11.63
+LV,Latvia,E. coli,Third-generation cephalosporins,2010,12.24
+LV,Latvia,E. coli,Third-generation cephalosporins,2011,15.91
+LV,Latvia,E. coli,Third-generation cephalosporins,2012,12.99
+LV,Latvia,E. coli,Third-generation cephalosporins,2013,13.97
+LV,Latvia,E. coli,Third-generation cephalosporins,2014,10.91
+LV,Latvia,E. coli,Third-generation cephalosporins,2015,17.91
+LV,Latvia,E. coli,Third-generation cephalosporins,2016,24.11
+LV,Latvia,E. coli,Third-generation cephalosporins,2017,21.95
+LV,Latvia,E. coli,Third-generation cephalosporins,2018,20.4
+LV,Latvia,E. coli,Third-generation cephalosporins,2019,19.68
+LV,Latvia,E. coli,Third-generation cephalosporins,2020,24.07
+LV,Latvia,E. coli,Third-generation cephalosporins,2021,18.32
+LV,Latvia,E. coli,Third-generation cephalosporins,2022,20.04
+LV,Latvia,E. coli,Third-generation cephalosporins,2023,25.54
+LV,Latvia,E. coli,Third-generation cephalosporins,2024,28.86
+LV,Latvia,E. coli,Third-generation cephalosporins,2025,25.94
+LT,Lithuania,E. coli,Third-generation cephalosporins,2006,4.68
+LT,Lithuania,E. coli,Third-generation cephalosporins,2007,6.81
+LT,Lithuania,E. coli,Third-generation cephalosporins,2008,5.59
+LT,Lithuania,E. coli,Third-generation cephalosporins,2009,7.85
+LT,Lithuania,E. coli,Third-generation cephalosporins,2010,8.71
+LT,Lithuania,E. coli,Third-generation cephalosporins,2011,7.01
+LT,Lithuania,E. coli,Third-generation cephalosporins,2012,4.76
+LT,Lithuania,E. coli,Third-generation cephalosporins,2013,7.6
+LT,Lithuania,E. coli,Third-generation cephalosporins,2014,8.08
+LT,Lithuania,E. coli,Third-generation cephalosporins,2015,16.01
+LT,Lithuania,E. coli,Third-generation cephalosporins,2016,14.72
+LT,Lithuania,E. coli,Third-generation cephalosporins,2017,16.78
+LT,Lithuania,E. coli,Third-generation cephalosporins,2018,15.33
+LT,Lithuania,E. coli,Third-generation cephalosporins,2019,13.87
+LT,Lithuania,E. coli,Third-generation cephalosporins,2020,15.94
+LT,Lithuania,E. coli,Third-generation cephalosporins,2021,13.62
+LT,Lithuania,E. coli,Third-generation cephalosporins,2022,15.43
+LT,Lithuania,E. coli,Third-generation cephalosporins,2023,16.96
+LT,Lithuania,E. coli,Third-generation cephalosporins,2024,15.82
+LT,Lithuania,E. coli,Third-generation cephalosporins,2025,19.94
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2001,0.53
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2002,0.52
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2003,0.88
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2004,0.46
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2005,3.19
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2006,1.8
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2007,4.04
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2008,6.29
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2009,8.31
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2010,9.32
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2011,8.22
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2012,11.38
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2013,10.63
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2014,11.96
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2015,12.68
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2016,13.64
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2017,9.7
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2018,12.5
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2019,12.6
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2020,11.45
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2021,11.3
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2022,10.45
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2023,11.71
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2024,12.98
+LU,Luxembourg,E. coli,Third-generation cephalosporins,2025,16.63
+MT,Malta,E. coli,Third-generation cephalosporins,2001,0.0
+MT,Malta,E. coli,Third-generation cephalosporins,2002,2.7
+MT,Malta,E. coli,Third-generation cephalosporins,2003,2.2
+MT,Malta,E. coli,Third-generation cephalosporins,2004,4.4
+MT,Malta,E. coli,Third-generation cephalosporins,2005,1.18
+MT,Malta,E. coli,Third-generation cephalosporins,2006,4.26
+MT,Malta,E. coli,Third-generation cephalosporins,2007,12.82
+MT,Malta,E. coli,Third-generation cephalosporins,2008,20.97
+MT,Malta,E. coli,Third-generation cephalosporins,2009,14.56
+MT,Malta,E. coli,Third-generation cephalosporins,2010,15.62
+MT,Malta,E. coli,Third-generation cephalosporins,2011,12.79
+MT,Malta,E. coli,Third-generation cephalosporins,2012,12.92
+MT,Malta,E. coli,Third-generation cephalosporins,2013,8.68
+MT,Malta,E. coli,Third-generation cephalosporins,2014,10.82
+MT,Malta,E. coli,Third-generation cephalosporins,2015,11.76
+MT,Malta,E. coli,Third-generation cephalosporins,2016,14.63
+MT,Malta,E. coli,Third-generation cephalosporins,2017,15.61
+MT,Malta,E. coli,Third-generation cephalosporins,2018,15.36
+MT,Malta,E. coli,Third-generation cephalosporins,2019,17.47
+MT,Malta,E. coli,Third-generation cephalosporins,2020,12.27
+MT,Malta,E. coli,Third-generation cephalosporins,2021,13.71
+MT,Malta,E. coli,Third-generation cephalosporins,2022,11.35
+MT,Malta,E. coli,Third-generation cephalosporins,2023,11.3
+MT,Malta,E. coli,Third-generation cephalosporins,2024,24.75
+MT,Malta,E. coli,Third-generation cephalosporins,2025,26.32
+NL,Netherlands,E. coli,Third-generation cephalosporins,2000,0.1
+NL,Netherlands,E. coli,Third-generation cephalosporins,2001,0.55
+NL,Netherlands,E. coli,Third-generation cephalosporins,2002,1.0
+NL,Netherlands,E. coli,Third-generation cephalosporins,2003,1.46
+NL,Netherlands,E. coli,Third-generation cephalosporins,2004,1.43
+NL,Netherlands,E. coli,Third-generation cephalosporins,2005,2.48
+NL,Netherlands,E. coli,Third-generation cephalosporins,2006,3.28
+NL,Netherlands,E. coli,Third-generation cephalosporins,2007,4.28
+NL,Netherlands,E. coli,Third-generation cephalosporins,2008,4.62
+NL,Netherlands,E. coli,Third-generation cephalosporins,2009,4.27
+NL,Netherlands,E. coli,Third-generation cephalosporins,2010,4.93
+NL,Netherlands,E. coli,Third-generation cephalosporins,2011,5.84
+NL,Netherlands,E. coli,Third-generation cephalosporins,2012,6.08
+NL,Netherlands,E. coli,Third-generation cephalosporins,2013,6.08
+NL,Netherlands,E. coli,Third-generation cephalosporins,2014,6.12
+NL,Netherlands,E. coli,Third-generation cephalosporins,2015,6.08
+NL,Netherlands,E. coli,Third-generation cephalosporins,2016,6.59
+NL,Netherlands,E. coli,Third-generation cephalosporins,2017,6.37
+NL,Netherlands,E. coli,Third-generation cephalosporins,2018,7.32
+NL,Netherlands,E. coli,Third-generation cephalosporins,2019,7.52
+NL,Netherlands,E. coli,Third-generation cephalosporins,2020,6.65
+NL,Netherlands,E. coli,Third-generation cephalosporins,2021,6.65
+NL,Netherlands,E. coli,Third-generation cephalosporins,2022,7.75
+NL,Netherlands,E. coli,Third-generation cephalosporins,2023,7.97
+NL,Netherlands,E. coli,Third-generation cephalosporins,2024,9.1
+NL,Netherlands,E. coli,Third-generation cephalosporins,2025,9.22
+NO,Norway,E. coli,Third-generation cephalosporins,2000,0.33
+NO,Norway,E. coli,Third-generation cephalosporins,2001,0.31
+NO,Norway,E. coli,Third-generation cephalosporins,2002,0.18
+NO,Norway,E. coli,Third-generation cephalosporins,2003,0.25
+NO,Norway,E. coli,Third-generation cephalosporins,2004,0.66
+NO,Norway,E. coli,Third-generation cephalosporins,2005,0.83
+NO,Norway,E. coli,Third-generation cephalosporins,2006,1.4
+NO,Norway,E. coli,Third-generation cephalosporins,2007,2.16
+NO,Norway,E. coli,Third-generation cephalosporins,2008,2.56
+NO,Norway,E. coli,Third-generation cephalosporins,2009,2.28
+NO,Norway,E. coli,Third-generation cephalosporins,2010,3.69
+NO,Norway,E. coli,Third-generation cephalosporins,2011,3.65
+NO,Norway,E. coli,Third-generation cephalosporins,2012,4.9
+NO,Norway,E. coli,Third-generation cephalosporins,2013,5.52
+NO,Norway,E. coli,Third-generation cephalosporins,2014,5.79
+NO,Norway,E. coli,Third-generation cephalosporins,2015,6.03
+NO,Norway,E. coli,Third-generation cephalosporins,2016,5.56
+NO,Norway,E. coli,Third-generation cephalosporins,2017,5.87
+NO,Norway,E. coli,Third-generation cephalosporins,2018,6.75
+NO,Norway,E. coli,Third-generation cephalosporins,2019,6.18
+NO,Norway,E. coli,Third-generation cephalosporins,2020,5.79
+NO,Norway,E. coli,Third-generation cephalosporins,2021,5.5
+NO,Norway,E. coli,Third-generation cephalosporins,2022,5.83
+NO,Norway,E. coli,Third-generation cephalosporins,2023,5.62
+NO,Norway,E. coli,Third-generation cephalosporins,2024,6.79
+NO,Norway,E. coli,Third-generation cephalosporins,2025,6.78
+PL,Poland,E. coli,Third-generation cephalosporins,2001,7.07
+PL,Poland,E. coli,Third-generation cephalosporins,2002,6.15
+PL,Poland,E. coli,Third-generation cephalosporins,2003,4.07
+PL,Poland,E. coli,Third-generation cephalosporins,2004,5.24
+PL,Poland,E. coli,Third-generation cephalosporins,2005,4.55
+PL,Poland,E. coli,Third-generation cephalosporins,2006,4.37
+PL,Poland,E. coli,Third-generation cephalosporins,2007,2.34
+PL,Poland,E. coli,Third-generation cephalosporins,2008,2.38
+PL,Poland,E. coli,Third-generation cephalosporins,2009,9.08
+PL,Poland,E. coli,Third-generation cephalosporins,2010,7.53
+PL,Poland,E. coli,Third-generation cephalosporins,2011,11.73
+PL,Poland,E. coli,Third-generation cephalosporins,2012,12.92
+PL,Poland,E. coli,Third-generation cephalosporins,2013,10.91
+PL,Poland,E. coli,Third-generation cephalosporins,2014,10.51
+PL,Poland,E. coli,Third-generation cephalosporins,2015,11.93
+PL,Poland,E. coli,Third-generation cephalosporins,2016,13.72
+PL,Poland,E. coli,Third-generation cephalosporins,2017,16.68
+PL,Poland,E. coli,Third-generation cephalosporins,2018,17.6
+PL,Poland,E. coli,Third-generation cephalosporins,2019,17.12
+PL,Poland,E. coli,Third-generation cephalosporins,2020,17.45
+PL,Poland,E. coli,Third-generation cephalosporins,2021,18.73
+PL,Poland,E. coli,Third-generation cephalosporins,2022,18.69
+PL,Poland,E. coli,Third-generation cephalosporins,2023,19.56
+PL,Poland,E. coli,Third-generation cephalosporins,2024,18.81
+PL,Poland,E. coli,Third-generation cephalosporins,2025,19.58
+PT,Portugal,E. coli,Third-generation cephalosporins,2001,2.87
+PT,Portugal,E. coli,Third-generation cephalosporins,2002,5.66
+PT,Portugal,E. coli,Third-generation cephalosporins,2003,7.12
+PT,Portugal,E. coli,Third-generation cephalosporins,2004,8.08
+PT,Portugal,E. coli,Third-generation cephalosporins,2005,11.71
+PT,Portugal,E. coli,Third-generation cephalosporins,2006,9.85
+PT,Portugal,E. coli,Third-generation cephalosporins,2007,9.7
+PT,Portugal,E. coli,Third-generation cephalosporins,2008,10.1
+PT,Portugal,E. coli,Third-generation cephalosporins,2009,9.21
+PT,Portugal,E. coli,Third-generation cephalosporins,2010,10.43
+PT,Portugal,E. coli,Third-generation cephalosporins,2011,11.26
+PT,Portugal,E. coli,Third-generation cephalosporins,2012,13.51
+PT,Portugal,E. coli,Third-generation cephalosporins,2013,14.94
+PT,Portugal,E. coli,Third-generation cephalosporins,2014,16.42
+PT,Portugal,E. coli,Third-generation cephalosporins,2015,16.09
+PT,Portugal,E. coli,Third-generation cephalosporins,2016,16.06
+PT,Portugal,E. coli,Third-generation cephalosporins,2017,15.59
+PT,Portugal,E. coli,Third-generation cephalosporins,2018,14.71
+PT,Portugal,E. coli,Third-generation cephalosporins,2019,16.1
+PT,Portugal,E. coli,Third-generation cephalosporins,2020,14.45
+PT,Portugal,E. coli,Third-generation cephalosporins,2021,13.09
+PT,Portugal,E. coli,Third-generation cephalosporins,2022,14.1
+PT,Portugal,E. coli,Third-generation cephalosporins,2023,17.2
+PT,Portugal,E. coli,Third-generation cephalosporins,2024,18.71
+PT,Portugal,E. coli,Third-generation cephalosporins,2025,19.78
+RO,Romania,E. coli,Third-generation cephalosporins,2002,17.86
+RO,Romania,E. coli,Third-generation cephalosporins,2003,18.75
+RO,Romania,E. coli,Third-generation cephalosporins,2004,22.92
+RO,Romania,E. coli,Third-generation cephalosporins,2005,16.67
+RO,Romania,E. coli,Third-generation cephalosporins,2006,41.03
+RO,Romania,E. coli,Third-generation cephalosporins,2007,27.42
+RO,Romania,E. coli,Third-generation cephalosporins,2008,23.64
+RO,Romania,E. coli,Third-generation cephalosporins,2009,13.56
+RO,Romania,E. coli,Third-generation cephalosporins,2010,20.59
+RO,Romania,E. coli,Third-generation cephalosporins,2011,21.05
+RO,Romania,E. coli,Third-generation cephalosporins,2012,25.13
+RO,Romania,E. coli,Third-generation cephalosporins,2013,22.82
+RO,Romania,E. coli,Third-generation cephalosporins,2014,29.41
+RO,Romania,E. coli,Third-generation cephalosporins,2015,26.83
+RO,Romania,E. coli,Third-generation cephalosporins,2016,23.44
+RO,Romania,E. coli,Third-generation cephalosporins,2017,18.73
+RO,Romania,E. coli,Third-generation cephalosporins,2018,20.18
+RO,Romania,E. coli,Third-generation cephalosporins,2019,20.33
+RO,Romania,E. coli,Third-generation cephalosporins,2020,19.69
+RO,Romania,E. coli,Third-generation cephalosporins,2021,18.79
+RO,Romania,E. coli,Third-generation cephalosporins,2022,17.83
+RO,Romania,E. coli,Third-generation cephalosporins,2023,19.09
+RO,Romania,E. coli,Third-generation cephalosporins,2024,20.67
+RO,Romania,E. coli,Third-generation cephalosporins,2025,20.77
+SK,Slovakia,E. coli,Third-generation cephalosporins,2001,6.67
+SK,Slovakia,E. coli,Third-generation cephalosporins,2002,1.87
+SK,Slovakia,E. coli,Third-generation cephalosporins,2003,0.42
+SK,Slovakia,E. coli,Third-generation cephalosporins,2004,7.14
+SK,Slovakia,E. coli,Third-generation cephalosporins,2005,8.25
+SK,Slovakia,E. coli,Third-generation cephalosporins,2011,30.95
+SK,Slovakia,E. coli,Third-generation cephalosporins,2012,30.74
+SK,Slovakia,E. coli,Third-generation cephalosporins,2013,29.74
+SK,Slovakia,E. coli,Third-generation cephalosporins,2014,31.83
+SK,Slovakia,E. coli,Third-generation cephalosporins,2015,30.01
+SK,Slovakia,E. coli,Third-generation cephalosporins,2016,29.73
+SK,Slovakia,E. coli,Third-generation cephalosporins,2017,30.92
+SK,Slovakia,E. coli,Third-generation cephalosporins,2018,30.11
+SK,Slovakia,E. coli,Third-generation cephalosporins,2019,23.05
+SK,Slovakia,E. coli,Third-generation cephalosporins,2020,27.1
+SK,Slovakia,E. coli,Third-generation cephalosporins,2021,23.11
+SK,Slovakia,E. coli,Third-generation cephalosporins,2022,23.7
+SK,Slovakia,E. coli,Third-generation cephalosporins,2023,21.55
+SK,Slovakia,E. coli,Third-generation cephalosporins,2024,24.58
+SK,Slovakia,E. coli,Third-generation cephalosporins,2025,24.72
+SI,Slovenia,E. coli,Third-generation cephalosporins,2001,0.25
+SI,Slovenia,E. coli,Third-generation cephalosporins,2002,1.22
+SI,Slovenia,E. coli,Third-generation cephalosporins,2003,0.75
+SI,Slovenia,E. coli,Third-generation cephalosporins,2004,1.4
+SI,Slovenia,E. coli,Third-generation cephalosporins,2005,1.67
+SI,Slovenia,E. coli,Third-generation cephalosporins,2006,1.67
+SI,Slovenia,E. coli,Third-generation cephalosporins,2007,4.23
+SI,Slovenia,E. coli,Third-generation cephalosporins,2008,4.23
+SI,Slovenia,E. coli,Third-generation cephalosporins,2009,4.59
+SI,Slovenia,E. coli,Third-generation cephalosporins,2010,6.62
+SI,Slovenia,E. coli,Third-generation cephalosporins,2011,8.78
+SI,Slovenia,E. coli,Third-generation cephalosporins,2012,9.5
+SI,Slovenia,E. coli,Third-generation cephalosporins,2013,8.74
+SI,Slovenia,E. coli,Third-generation cephalosporins,2014,12.75
+SI,Slovenia,E. coli,Third-generation cephalosporins,2015,13.65
+SI,Slovenia,E. coli,Third-generation cephalosporins,2016,12.54
+SI,Slovenia,E. coli,Third-generation cephalosporins,2017,12.47
+SI,Slovenia,E. coli,Third-generation cephalosporins,2018,11.33
+SI,Slovenia,E. coli,Third-generation cephalosporins,2019,9.81
+SI,Slovenia,E. coli,Third-generation cephalosporins,2020,10.58
+SI,Slovenia,E. coli,Third-generation cephalosporins,2021,9.28
+SI,Slovenia,E. coli,Third-generation cephalosporins,2022,9.34
+SI,Slovenia,E. coli,Third-generation cephalosporins,2023,8.66
+SI,Slovenia,E. coli,Third-generation cephalosporins,2024,9.07
+SI,Slovenia,E. coli,Third-generation cephalosporins,2025,12.23
+ES,Spain,E. coli,Third-generation cephalosporins,2001,0.62
+ES,Spain,E. coli,Third-generation cephalosporins,2002,1.58
+ES,Spain,E. coli,Third-generation cephalosporins,2003,4.23
+ES,Spain,E. coli,Third-generation cephalosporins,2004,6.53
+ES,Spain,E. coli,Third-generation cephalosporins,2005,7.74
+ES,Spain,E. coli,Third-generation cephalosporins,2006,7.14
+ES,Spain,E. coli,Third-generation cephalosporins,2007,7.45
+ES,Spain,E. coli,Third-generation cephalosporins,2008,9.02
+ES,Spain,E. coli,Third-generation cephalosporins,2009,11.31
+ES,Spain,E. coli,Third-generation cephalosporins,2010,12.11
+ES,Spain,E. coli,Third-generation cephalosporins,2011,11.98
+ES,Spain,E. coli,Third-generation cephalosporins,2012,13.5
+ES,Spain,E. coli,Third-generation cephalosporins,2013,13.3
+ES,Spain,E. coli,Third-generation cephalosporins,2014,12.33
+ES,Spain,E. coli,Third-generation cephalosporins,2015,11.62
+ES,Spain,E. coli,Third-generation cephalosporins,2016,14.97
+ES,Spain,E. coli,Third-generation cephalosporins,2017,12.81
+ES,Spain,E. coli,Third-generation cephalosporins,2018,13.76
+ES,Spain,E. coli,Third-generation cephalosporins,2019,14.12
+ES,Spain,E. coli,Third-generation cephalosporins,2020,14.08
+ES,Spain,E. coli,Third-generation cephalosporins,2021,13.16
+ES,Spain,E. coli,Third-generation cephalosporins,2022,14.88
+ES,Spain,E. coli,Third-generation cephalosporins,2023,16.22
+ES,Spain,E. coli,Third-generation cephalosporins,2024,16.83
+ES,Spain,E. coli,Third-generation cephalosporins,2025,17.95
+SE,Sweden,E. coli,Third-generation cephalosporins,2001,0.34
+SE,Sweden,E. coli,Third-generation cephalosporins,2002,0.33
+SE,Sweden,E. coli,Third-generation cephalosporins,2003,0.42
+SE,Sweden,E. coli,Third-generation cephalosporins,2004,0.73
+SE,Sweden,E. coli,Third-generation cephalosporins,2005,1.28
+SE,Sweden,E. coli,Third-generation cephalosporins,2006,1.53
+SE,Sweden,E. coli,Third-generation cephalosporins,2007,2.27
+SE,Sweden,E. coli,Third-generation cephalosporins,2008,2.26
+SE,Sweden,E. coli,Third-generation cephalosporins,2010,2.91
+SE,Sweden,E. coli,Third-generation cephalosporins,2011,3.65
+SE,Sweden,E. coli,Third-generation cephalosporins,2012,4.46
+SE,Sweden,E. coli,Third-generation cephalosporins,2013,5.2
+SE,Sweden,E. coli,Third-generation cephalosporins,2014,5.56
+SE,Sweden,E. coli,Third-generation cephalosporins,2015,6.24
+SE,Sweden,E. coli,Third-generation cephalosporins,2016,8.26
+SE,Sweden,E. coli,Third-generation cephalosporins,2017,7.36
+SE,Sweden,E. coli,Third-generation cephalosporins,2018,8.33
+SE,Sweden,E. coli,Third-generation cephalosporins,2019,7.82
+SE,Sweden,E. coli,Third-generation cephalosporins,2020,7.87
+SE,Sweden,E. coli,Third-generation cephalosporins,2021,7.12
+SE,Sweden,E. coli,Third-generation cephalosporins,2022,7.51
+SE,Sweden,E. coli,Third-generation cephalosporins,2023,7.93
+SE,Sweden,E. coli,Third-generation cephalosporins,2024,9.44
+SE,Sweden,E. coli,Third-generation cephalosporins,2025,9.49
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2001,1.21
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2002,2.06
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2003,3.27
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2004,3.2
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2005,6.29
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2006,7.67
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2007,9.41
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2008,6.93
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2009,9.36
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2010,8.97
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2011,9.63
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2012,13.14
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2013,14.71
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2014,10.32
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2015,11.26
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2016,9.24
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2017,10.26
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2018,10.97
+UK,United Kingdom,E. coli,Third-generation cephalosporins,2019,11.51
+AT,Austria,K. pneumoniae,Carbapenems,2005,0.0
+AT,Austria,K. pneumoniae,Carbapenems,2006,0.0
+AT,Austria,K. pneumoniae,Carbapenems,2007,0.0
+AT,Austria,K. pneumoniae,Carbapenems,2008,0.0
+AT,Austria,K. pneumoniae,Carbapenems,2009,0.0
+AT,Austria,K. pneumoniae,Carbapenems,2010,0.59
+AT,Austria,K. pneumoniae,Carbapenems,2011,0.16
+AT,Austria,K. pneumoniae,Carbapenems,2012,0.81
+AT,Austria,K. pneumoniae,Carbapenems,2013,1.21
+AT,Austria,K. pneumoniae,Carbapenems,2014,0.62
+AT,Austria,K. pneumoniae,Carbapenems,2015,0.78
+AT,Austria,K. pneumoniae,Carbapenems,2016,0.67
+AT,Austria,K. pneumoniae,Carbapenems,2017,0.99
+AT,Austria,K. pneumoniae,Carbapenems,2018,1.01
+AT,Austria,K. pneumoniae,Carbapenems,2019,1.23
+AT,Austria,K. pneumoniae,Carbapenems,2020,0.95
+AT,Austria,K. pneumoniae,Carbapenems,2021,0.98
+AT,Austria,K. pneumoniae,Carbapenems,2022,0.88
+AT,Austria,K. pneumoniae,Carbapenems,2023,1.8
+AT,Austria,K. pneumoniae,Carbapenems,2024,1.48
+AT,Austria,K. pneumoniae,Carbapenems,2025,0.91
+BE,Belgium,K. pneumoniae,Carbapenems,2009,1.2
+BE,Belgium,K. pneumoniae,Carbapenems,2010,0.0
+BE,Belgium,K. pneumoniae,Carbapenems,2011,0.31
+BE,Belgium,K. pneumoniae,Carbapenems,2012,0.73
+BE,Belgium,K. pneumoniae,Carbapenems,2013,0.32
+BE,Belgium,K. pneumoniae,Carbapenems,2014,0.47
+BE,Belgium,K. pneumoniae,Carbapenems,2015,0.51
+BE,Belgium,K. pneumoniae,Carbapenems,2016,2.39
+BE,Belgium,K. pneumoniae,Carbapenems,2017,1.14
+BE,Belgium,K. pneumoniae,Carbapenems,2018,1.39
+BE,Belgium,K. pneumoniae,Carbapenems,2019,1.06
+BE,Belgium,K. pneumoniae,Carbapenems,2020,1.14
+BE,Belgium,K. pneumoniae,Carbapenems,2021,1.4
+BE,Belgium,K. pneumoniae,Carbapenems,2022,1.44
+BE,Belgium,K. pneumoniae,Carbapenems,2023,2.35
+BE,Belgium,K. pneumoniae,Carbapenems,2024,1.88
+BE,Belgium,K. pneumoniae,Carbapenems,2025,2.01
+BG,Bulgaria,K. pneumoniae,Carbapenems,2005,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2006,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2007,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2008,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2009,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2010,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2011,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2012,1.85
+BG,Bulgaria,K. pneumoniae,Carbapenems,2013,0.0
+BG,Bulgaria,K. pneumoniae,Carbapenems,2014,7.19
+BG,Bulgaria,K. pneumoniae,Carbapenems,2015,3.16
+BG,Bulgaria,K. pneumoniae,Carbapenems,2016,4.4
+BG,Bulgaria,K. pneumoniae,Carbapenems,2017,12.43
+BG,Bulgaria,K. pneumoniae,Carbapenems,2018,21.24
+BG,Bulgaria,K. pneumoniae,Carbapenems,2019,26.97
+BG,Bulgaria,K. pneumoniae,Carbapenems,2020,28.11
+BG,Bulgaria,K. pneumoniae,Carbapenems,2021,46.28
+BG,Bulgaria,K. pneumoniae,Carbapenems,2022,47.31
+BG,Bulgaria,K. pneumoniae,Carbapenems,2023,56.79
+BG,Bulgaria,K. pneumoniae,Carbapenems,2024,67.6
+BG,Bulgaria,K. pneumoniae,Carbapenems,2025,69.66
+HR,Croatia,K. pneumoniae,Carbapenems,2005,0.0
+HR,Croatia,K. pneumoniae,Carbapenems,2006,0.0
+HR,Croatia,K. pneumoniae,Carbapenems,2007,0.36
+HR,Croatia,K. pneumoniae,Carbapenems,2008,0.31
+HR,Croatia,K. pneumoniae,Carbapenems,2010,2.15
+HR,Croatia,K. pneumoniae,Carbapenems,2011,0.0
+HR,Croatia,K. pneumoniae,Carbapenems,2012,0.0
+HR,Croatia,K. pneumoniae,Carbapenems,2013,0.53
+HR,Croatia,K. pneumoniae,Carbapenems,2014,0.9
+HR,Croatia,K. pneumoniae,Carbapenems,2015,2.37
+HR,Croatia,K. pneumoniae,Carbapenems,2016,0.0
+HR,Croatia,K. pneumoniae,Carbapenems,2017,0.0
+HR,Croatia,K. pneumoniae,Carbapenems,2018,2.15
+HR,Croatia,K. pneumoniae,Carbapenems,2019,12.0
+HR,Croatia,K. pneumoniae,Carbapenems,2020,19.1
+HR,Croatia,K. pneumoniae,Carbapenems,2021,32.86
+HR,Croatia,K. pneumoniae,Carbapenems,2022,23.98
+HR,Croatia,K. pneumoniae,Carbapenems,2023,27.69
+HR,Croatia,K. pneumoniae,Carbapenems,2024,31.33
+HR,Croatia,K. pneumoniae,Carbapenems,2025,34.3
+CY,Cyprus,K. pneumoniae,Carbapenems,2006,0.0
+CY,Cyprus,K. pneumoniae,Carbapenems,2007,2.56
+CY,Cyprus,K. pneumoniae,Carbapenems,2008,9.68
+CY,Cyprus,K. pneumoniae,Carbapenems,2009,16.98
+CY,Cyprus,K. pneumoniae,Carbapenems,2010,16.42
+CY,Cyprus,K. pneumoniae,Carbapenems,2011,15.66
+CY,Cyprus,K. pneumoniae,Carbapenems,2012,9.23
+CY,Cyprus,K. pneumoniae,Carbapenems,2013,5.88
+CY,Cyprus,K. pneumoniae,Carbapenems,2014,5.0
+CY,Cyprus,K. pneumoniae,Carbapenems,2015,12.9
+CY,Cyprus,K. pneumoniae,Carbapenems,2016,10.67
+CY,Cyprus,K. pneumoniae,Carbapenems,2017,15.49
+CY,Cyprus,K. pneumoniae,Carbapenems,2018,21.84
+CY,Cyprus,K. pneumoniae,Carbapenems,2019,13.33
+CY,Cyprus,K. pneumoniae,Carbapenems,2020,19.77
+CY,Cyprus,K. pneumoniae,Carbapenems,2021,26.24
+CY,Cyprus,K. pneumoniae,Carbapenems,2022,36.41
+CY,Cyprus,K. pneumoniae,Carbapenems,2023,33.64
+CY,Cyprus,K. pneumoniae,Carbapenems,2024,48.46
+CY,Cyprus,K. pneumoniae,Carbapenems,2025,49.18
+CZ,Czechia,K. pneumoniae,Carbapenems,2005,0.0
+CZ,Czechia,K. pneumoniae,Carbapenems,2007,0.0
+CZ,Czechia,K. pneumoniae,Carbapenems,2008,0.24
+CZ,Czechia,K. pneumoniae,Carbapenems,2009,0.25
+CZ,Czechia,K. pneumoniae,Carbapenems,2010,0.09
+CZ,Czechia,K. pneumoniae,Carbapenems,2011,0.08
+CZ,Czechia,K. pneumoniae,Carbapenems,2012,0.31
+CZ,Czechia,K. pneumoniae,Carbapenems,2013,0.53
+CZ,Czechia,K. pneumoniae,Carbapenems,2014,0.09
+CZ,Czechia,K. pneumoniae,Carbapenems,2015,0.27
+CZ,Czechia,K. pneumoniae,Carbapenems,2016,0.0
+CZ,Czechia,K. pneumoniae,Carbapenems,2017,0.38
+CZ,Czechia,K. pneumoniae,Carbapenems,2018,0.25
+CZ,Czechia,K. pneumoniae,Carbapenems,2019,0.61
+CZ,Czechia,K. pneumoniae,Carbapenems,2020,0.49
+CZ,Czechia,K. pneumoniae,Carbapenems,2021,1.04
+CZ,Czechia,K. pneumoniae,Carbapenems,2022,1.51
+CZ,Czechia,K. pneumoniae,Carbapenems,2023,1.46
+CZ,Czechia,K. pneumoniae,Carbapenems,2024,2.16
+CZ,Czechia,K. pneumoniae,Carbapenems,2025,2.17
+DK,Denmark,K. pneumoniae,Carbapenems,2006,0.0
+DK,Denmark,K. pneumoniae,Carbapenems,2007,0.0
+DK,Denmark,K. pneumoniae,Carbapenems,2008,0.19
+DK,Denmark,K. pneumoniae,Carbapenems,2009,0.0
+DK,Denmark,K. pneumoniae,Carbapenems,2010,0.0
+DK,Denmark,K. pneumoniae,Carbapenems,2011,0.0
+DK,Denmark,K. pneumoniae,Carbapenems,2012,0.29
+DK,Denmark,K. pneumoniae,Carbapenems,2013,0.16
+DK,Denmark,K. pneumoniae,Carbapenems,2014,0.24
+DK,Denmark,K. pneumoniae,Carbapenems,2015,0.0
+DK,Denmark,K. pneumoniae,Carbapenems,2016,0.27
+DK,Denmark,K. pneumoniae,Carbapenems,2017,0.25
+DK,Denmark,K. pneumoniae,Carbapenems,2018,0.54
+DK,Denmark,K. pneumoniae,Carbapenems,2019,0.29
+DK,Denmark,K. pneumoniae,Carbapenems,2020,0.78
+DK,Denmark,K. pneumoniae,Carbapenems,2021,0.45
+DK,Denmark,K. pneumoniae,Carbapenems,2022,0.46
+DK,Denmark,K. pneumoniae,Carbapenems,2023,0.38
+DK,Denmark,K. pneumoniae,Carbapenems,2024,0.44
+DK,Denmark,K. pneumoniae,Carbapenems,2025,0.38
+EE,Estonia,K. pneumoniae,Carbapenems,2005,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2006,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2007,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2008,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2009,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2010,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2011,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2012,1.27
+EE,Estonia,K. pneumoniae,Carbapenems,2013,2.7
+EE,Estonia,K. pneumoniae,Carbapenems,2014,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2015,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2016,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2017,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2018,0.56
+EE,Estonia,K. pneumoniae,Carbapenems,2019,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2020,0.0
+EE,Estonia,K. pneumoniae,Carbapenems,2021,0.92
+EE,Estonia,K. pneumoniae,Carbapenems,2022,1.47
+EE,Estonia,K. pneumoniae,Carbapenems,2023,2.28
+EE,Estonia,K. pneumoniae,Carbapenems,2024,1.7
+EE,Estonia,K. pneumoniae,Carbapenems,2025,2.17
+FI,Finland,K. pneumoniae,Carbapenems,2005,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2006,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2007,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2008,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2009,0.28
+FI,Finland,K. pneumoniae,Carbapenems,2010,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2011,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2012,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2013,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2014,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2015,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2016,0.26
+FI,Finland,K. pneumoniae,Carbapenems,2017,0.26
+FI,Finland,K. pneumoniae,Carbapenems,2018,0.62
+FI,Finland,K. pneumoniae,Carbapenems,2019,0.35
+FI,Finland,K. pneumoniae,Carbapenems,2020,0.11
+FI,Finland,K. pneumoniae,Carbapenems,2021,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2022,0.0
+FI,Finland,K. pneumoniae,Carbapenems,2023,0.14
+FI,Finland,K. pneumoniae,Carbapenems,2024,0.23
+FI,Finland,K. pneumoniae,Carbapenems,2025,0.3
+FR,France,K. pneumoniae,Carbapenems,2005,0.13
+FR,France,K. pneumoniae,Carbapenems,2006,0.0
+FR,France,K. pneumoniae,Carbapenems,2007,0.09
+FR,France,K. pneumoniae,Carbapenems,2008,0.0
+FR,France,K. pneumoniae,Carbapenems,2009,0.16
+FR,France,K. pneumoniae,Carbapenems,2010,0.07
+FR,France,K. pneumoniae,Carbapenems,2011,0.0
+FR,France,K. pneumoniae,Carbapenems,2012,0.49
+FR,France,K. pneumoniae,Carbapenems,2013,0.65
+FR,France,K. pneumoniae,Carbapenems,2014,0.48
+FR,France,K. pneumoniae,Carbapenems,2015,0.49
+FR,France,K. pneumoniae,Carbapenems,2016,0.4
+FR,France,K. pneumoniae,Carbapenems,2017,0.68
+FR,France,K. pneumoniae,Carbapenems,2018,0.5
+FR,France,K. pneumoniae,Carbapenems,2019,1.0
+FR,France,K. pneumoniae,Carbapenems,2020,0.54
+FR,France,K. pneumoniae,Carbapenems,2021,0.76
+FR,France,K. pneumoniae,Carbapenems,2022,0.97
+FR,France,K. pneumoniae,Carbapenems,2024,1.21
+FR,France,K. pneumoniae,Carbapenems,2025,1.27
+DE,Germany,K. pneumoniae,Carbapenems,2005,1.96
+DE,Germany,K. pneumoniae,Carbapenems,2006,0.0
+DE,Germany,K. pneumoniae,Carbapenems,2007,1.73
+DE,Germany,K. pneumoniae,Carbapenems,2008,0.0
+DE,Germany,K. pneumoniae,Carbapenems,2009,0.0
+DE,Germany,K. pneumoniae,Carbapenems,2010,0.0
+DE,Germany,K. pneumoniae,Carbapenems,2011,0.0
+DE,Germany,K. pneumoniae,Carbapenems,2012,0.0
+DE,Germany,K. pneumoniae,Carbapenems,2013,0.66
+DE,Germany,K. pneumoniae,Carbapenems,2014,0.7
+DE,Germany,K. pneumoniae,Carbapenems,2015,0.13
+DE,Germany,K. pneumoniae,Carbapenems,2016,0.49
+DE,Germany,K. pneumoniae,Carbapenems,2017,0.47
+DE,Germany,K. pneumoniae,Carbapenems,2018,0.43
+DE,Germany,K. pneumoniae,Carbapenems,2019,0.93
+DE,Germany,K. pneumoniae,Carbapenems,2020,0.48
+DE,Germany,K. pneumoniae,Carbapenems,2021,0.8
+DE,Germany,K. pneumoniae,Carbapenems,2022,1.07
+DE,Germany,K. pneumoniae,Carbapenems,2023,1.03
+DE,Germany,K. pneumoniae,Carbapenems,2024,1.2
+DE,Germany,K. pneumoniae,Carbapenems,2025,1.03
+EL,Greece,K. pneumoniae,Carbapenems,2005,27.81
+EL,Greece,K. pneumoniae,Carbapenems,2006,32.86
+EL,Greece,K. pneumoniae,Carbapenems,2007,42.44
+EL,Greece,K. pneumoniae,Carbapenems,2008,36.59
+EL,Greece,K. pneumoniae,Carbapenems,2009,43.52
+EL,Greece,K. pneumoniae,Carbapenems,2010,49.08
+EL,Greece,K. pneumoniae,Carbapenems,2011,68.15
+EL,Greece,K. pneumoniae,Carbapenems,2012,60.48
+EL,Greece,K. pneumoniae,Carbapenems,2013,59.39
+EL,Greece,K. pneumoniae,Carbapenems,2014,62.32
+EL,Greece,K. pneumoniae,Carbapenems,2015,61.94
+EL,Greece,K. pneumoniae,Carbapenems,2016,66.86
+EL,Greece,K. pneumoniae,Carbapenems,2017,64.71
+EL,Greece,K. pneumoniae,Carbapenems,2018,63.89
+EL,Greece,K. pneumoniae,Carbapenems,2019,58.33
+EL,Greece,K. pneumoniae,Carbapenems,2020,66.25
+EL,Greece,K. pneumoniae,Carbapenems,2021,73.7
+EL,Greece,K. pneumoniae,Carbapenems,2022,72.05
+EL,Greece,K. pneumoniae,Carbapenems,2023,69.66
+EL,Greece,K. pneumoniae,Carbapenems,2024,60.24
+EL,Greece,K. pneumoniae,Carbapenems,2025,62.08
+HU,Hungary,K. pneumoniae,Carbapenems,2005,0.33
+HU,Hungary,K. pneumoniae,Carbapenems,2006,0.0
+HU,Hungary,K. pneumoniae,Carbapenems,2007,0.0
+HU,Hungary,K. pneumoniae,Carbapenems,2008,0.0
+HU,Hungary,K. pneumoniae,Carbapenems,2009,0.56
+HU,Hungary,K. pneumoniae,Carbapenems,2010,5.5
+HU,Hungary,K. pneumoniae,Carbapenems,2011,1.94
+HU,Hungary,K. pneumoniae,Carbapenems,2012,2.91
+HU,Hungary,K. pneumoniae,Carbapenems,2013,1.69
+HU,Hungary,K. pneumoniae,Carbapenems,2014,1.13
+HU,Hungary,K. pneumoniae,Carbapenems,2015,0.15
+HU,Hungary,K. pneumoniae,Carbapenems,2016,0.43
+HU,Hungary,K. pneumoniae,Carbapenems,2017,0.29
+HU,Hungary,K. pneumoniae,Carbapenems,2018,0.24
+HU,Hungary,K. pneumoniae,Carbapenems,2019,0.9
+HU,Hungary,K. pneumoniae,Carbapenems,2020,0.69
+HU,Hungary,K. pneumoniae,Carbapenems,2021,0.92
+HU,Hungary,K. pneumoniae,Carbapenems,2022,5.27
+HU,Hungary,K. pneumoniae,Carbapenems,2023,5.81
+HU,Hungary,K. pneumoniae,Carbapenems,2024,6.73
+HU,Hungary,K. pneumoniae,Carbapenems,2025,10.51
+IS,Iceland,K. pneumoniae,Carbapenems,2005,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2007,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2008,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2009,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2020,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2021,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2022,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2023,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2024,0.0
+IS,Iceland,K. pneumoniae,Carbapenems,2025,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2005,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2006,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2007,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2008,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2009,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2010,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2011,0.33
+IE,Ireland,K. pneumoniae,Carbapenems,2012,0.0
+IE,Ireland,K. pneumoniae,Carbapenems,2013,0.32
+IE,Ireland,K. pneumoniae,Carbapenems,2014,0.57
+IE,Ireland,K. pneumoniae,Carbapenems,2015,0.51
+IE,Ireland,K. pneumoniae,Carbapenems,2016,0.66
+IE,Ireland,K. pneumoniae,Carbapenems,2017,0.21
+IE,Ireland,K. pneumoniae,Carbapenems,2018,0.62
+IE,Ireland,K. pneumoniae,Carbapenems,2019,0.95
+IE,Ireland,K. pneumoniae,Carbapenems,2020,0.42
+IE,Ireland,K. pneumoniae,Carbapenems,2021,0.6
+IE,Ireland,K. pneumoniae,Carbapenems,2022,0.64
+IE,Ireland,K. pneumoniae,Carbapenems,2023,0.36
+IE,Ireland,K. pneumoniae,Carbapenems,2024,0.2
+IE,Ireland,K. pneumoniae,Carbapenems,2025,0.22
+IT,Italy,K. pneumoniae,Carbapenems,2006,1.31
+IT,Italy,K. pneumoniae,Carbapenems,2007,1.11
+IT,Italy,K. pneumoniae,Carbapenems,2008,1.94
+IT,Italy,K. pneumoniae,Carbapenems,2009,1.32
+IT,Italy,K. pneumoniae,Carbapenems,2010,15.18
+IT,Italy,K. pneumoniae,Carbapenems,2011,26.67
+IT,Italy,K. pneumoniae,Carbapenems,2012,29.11
+IT,Italy,K. pneumoniae,Carbapenems,2013,34.34
+IT,Italy,K. pneumoniae,Carbapenems,2014,32.93
+IT,Italy,K. pneumoniae,Carbapenems,2015,33.52
+IT,Italy,K. pneumoniae,Carbapenems,2016,33.94
+IT,Italy,K. pneumoniae,Carbapenems,2017,29.69
+IT,Italy,K. pneumoniae,Carbapenems,2018,26.78
+IT,Italy,K. pneumoniae,Carbapenems,2019,28.48
+IT,Italy,K. pneumoniae,Carbapenems,2020,29.51
+IT,Italy,K. pneumoniae,Carbapenems,2021,27.2
+IT,Italy,K. pneumoniae,Carbapenems,2022,24.9
+IT,Italy,K. pneumoniae,Carbapenems,2023,26.48
+IT,Italy,K. pneumoniae,Carbapenems,2024,23.96
+IT,Italy,K. pneumoniae,Carbapenems,2025,25.39
+LV,Latvia,K. pneumoniae,Carbapenems,2006,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2007,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2008,2.5
+LV,Latvia,K. pneumoniae,Carbapenems,2009,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2010,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2011,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2012,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2013,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2014,1.69
+LV,Latvia,K. pneumoniae,Carbapenems,2015,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2016,2.22
+LV,Latvia,K. pneumoniae,Carbapenems,2017,1.72
+LV,Latvia,K. pneumoniae,Carbapenems,2018,0.49
+LV,Latvia,K. pneumoniae,Carbapenems,2019,0.0
+LV,Latvia,K. pneumoniae,Carbapenems,2020,1.06
+LV,Latvia,K. pneumoniae,Carbapenems,2021,1.58
+LV,Latvia,K. pneumoniae,Carbapenems,2022,2.78
+LV,Latvia,K. pneumoniae,Carbapenems,2023,6.33
+LV,Latvia,K. pneumoniae,Carbapenems,2024,9.92
+LV,Latvia,K. pneumoniae,Carbapenems,2025,8.61
+LT,Lithuania,K. pneumoniae,Carbapenems,2006,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2007,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2008,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2009,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2010,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2012,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2013,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2014,1.3
+LT,Lithuania,K. pneumoniae,Carbapenems,2015,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2016,0.0
+LT,Lithuania,K. pneumoniae,Carbapenems,2017,0.62
+LT,Lithuania,K. pneumoniae,Carbapenems,2018,0.27
+LT,Lithuania,K. pneumoniae,Carbapenems,2019,3.42
+LT,Lithuania,K. pneumoniae,Carbapenems,2020,2.91
+LT,Lithuania,K. pneumoniae,Carbapenems,2021,0.98
+LT,Lithuania,K. pneumoniae,Carbapenems,2022,0.58
+LT,Lithuania,K. pneumoniae,Carbapenems,2023,3.88
+LT,Lithuania,K. pneumoniae,Carbapenems,2024,9.52
+LT,Lithuania,K. pneumoniae,Carbapenems,2025,7.28
+LU,Luxembourg,K. pneumoniae,Carbapenems,2009,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2010,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2011,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2012,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2013,1.89
+LU,Luxembourg,K. pneumoniae,Carbapenems,2014,1.52
+LU,Luxembourg,K. pneumoniae,Carbapenems,2015,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2016,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2017,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2018,0.0
+LU,Luxembourg,K. pneumoniae,Carbapenems,2019,0.97
+LU,Luxembourg,K. pneumoniae,Carbapenems,2020,1.15
+LU,Luxembourg,K. pneumoniae,Carbapenems,2021,0.99
+LU,Luxembourg,K. pneumoniae,Carbapenems,2022,1.71
+LU,Luxembourg,K. pneumoniae,Carbapenems,2023,2.38
+LU,Luxembourg,K. pneumoniae,Carbapenems,2024,0.74
+LU,Luxembourg,K. pneumoniae,Carbapenems,2025,0.0
+MT,Malta,K. pneumoniae,Carbapenems,2006,0.0
+MT,Malta,K. pneumoniae,Carbapenems,2007,0.0
+MT,Malta,K. pneumoniae,Carbapenems,2008,0.0
+MT,Malta,K. pneumoniae,Carbapenems,2009,0.0
+MT,Malta,K. pneumoniae,Carbapenems,2010,0.0
+MT,Malta,K. pneumoniae,Carbapenems,2011,3.85
+MT,Malta,K. pneumoniae,Carbapenems,2012,3.57
+MT,Malta,K. pneumoniae,Carbapenems,2013,5.97
+MT,Malta,K. pneumoniae,Carbapenems,2014,9.09
+MT,Malta,K. pneumoniae,Carbapenems,2015,4.55
+MT,Malta,K. pneumoniae,Carbapenems,2016,5.88
+MT,Malta,K. pneumoniae,Carbapenems,2017,10.26
+MT,Malta,K. pneumoniae,Carbapenems,2018,15.44
+MT,Malta,K. pneumoniae,Carbapenems,2019,7.75
+MT,Malta,K. pneumoniae,Carbapenems,2020,7.58
+MT,Malta,K. pneumoniae,Carbapenems,2021,6.67
+MT,Malta,K. pneumoniae,Carbapenems,2022,5.0
+MT,Malta,K. pneumoniae,Carbapenems,2023,3.4
+MT,Malta,K. pneumoniae,Carbapenems,2024,2.84
+MT,Malta,K. pneumoniae,Carbapenems,2025,3.2
+NL,Netherlands,K. pneumoniae,Carbapenems,2005,0.0
+NL,Netherlands,K. pneumoniae,Carbapenems,2006,0.3
+NL,Netherlands,K. pneumoniae,Carbapenems,2007,0.0
+NL,Netherlands,K. pneumoniae,Carbapenems,2008,0.0
+NL,Netherlands,K. pneumoniae,Carbapenems,2009,0.0
+NL,Netherlands,K. pneumoniae,Carbapenems,2010,0.22
+NL,Netherlands,K. pneumoniae,Carbapenems,2011,0.23
+NL,Netherlands,K. pneumoniae,Carbapenems,2012,0.11
+NL,Netherlands,K. pneumoniae,Carbapenems,2013,0.19
+NL,Netherlands,K. pneumoniae,Carbapenems,2014,0.27
+NL,Netherlands,K. pneumoniae,Carbapenems,2015,0.17
+NL,Netherlands,K. pneumoniae,Carbapenems,2016,0.08
+NL,Netherlands,K. pneumoniae,Carbapenems,2017,0.45
+NL,Netherlands,K. pneumoniae,Carbapenems,2018,0.46
+NL,Netherlands,K. pneumoniae,Carbapenems,2019,0.21
+NL,Netherlands,K. pneumoniae,Carbapenems,2020,0.07
+NL,Netherlands,K. pneumoniae,Carbapenems,2021,0.24
+NL,Netherlands,K. pneumoniae,Carbapenems,2022,0.43
+NL,Netherlands,K. pneumoniae,Carbapenems,2023,0.4
+NL,Netherlands,K. pneumoniae,Carbapenems,2024,0.77
+NL,Netherlands,K. pneumoniae,Carbapenems,2025,1.02
+NO,Norway,K. pneumoniae,Carbapenems,2005,0.62
+NO,Norway,K. pneumoniae,Carbapenems,2006,0.45
+NO,Norway,K. pneumoniae,Carbapenems,2007,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2008,0.67
+NO,Norway,K. pneumoniae,Carbapenems,2009,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2010,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2011,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2012,0.48
+NO,Norway,K. pneumoniae,Carbapenems,2013,0.16
+NO,Norway,K. pneumoniae,Carbapenems,2014,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2015,0.14
+NO,Norway,K. pneumoniae,Carbapenems,2016,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2017,0.0
+NO,Norway,K. pneumoniae,Carbapenems,2018,0.14
+NO,Norway,K. pneumoniae,Carbapenems,2019,0.24
+NO,Norway,K. pneumoniae,Carbapenems,2020,0.15
+NO,Norway,K. pneumoniae,Carbapenems,2021,0.26
+NO,Norway,K. pneumoniae,Carbapenems,2022,0.26
+NO,Norway,K. pneumoniae,Carbapenems,2023,0.51
+NO,Norway,K. pneumoniae,Carbapenems,2024,0.78
+NO,Norway,K. pneumoniae,Carbapenems,2025,0.1
+PL,Poland,K. pneumoniae,Carbapenems,2005,0.0
+PL,Poland,K. pneumoniae,Carbapenems,2009,0.72
+PL,Poland,K. pneumoniae,Carbapenems,2010,0.0
+PL,Poland,K. pneumoniae,Carbapenems,2011,0.53
+PL,Poland,K. pneumoniae,Carbapenems,2012,0.84
+PL,Poland,K. pneumoniae,Carbapenems,2013,0.81
+PL,Poland,K. pneumoniae,Carbapenems,2014,1.33
+PL,Poland,K. pneumoniae,Carbapenems,2015,0.45
+PL,Poland,K. pneumoniae,Carbapenems,2016,2.14
+PL,Poland,K. pneumoniae,Carbapenems,2017,6.37
+PL,Poland,K. pneumoniae,Carbapenems,2018,8.11
+PL,Poland,K. pneumoniae,Carbapenems,2019,7.71
+PL,Poland,K. pneumoniae,Carbapenems,2020,8.19
+PL,Poland,K. pneumoniae,Carbapenems,2021,19.52
+PL,Poland,K. pneumoniae,Carbapenems,2022,16.82
+PL,Poland,K. pneumoniae,Carbapenems,2023,18.13
+PL,Poland,K. pneumoniae,Carbapenems,2024,18.85
+PL,Poland,K. pneumoniae,Carbapenems,2025,24.33
+PT,Portugal,K. pneumoniae,Carbapenems,2007,0.0
+PT,Portugal,K. pneumoniae,Carbapenems,2008,0.72
+PT,Portugal,K. pneumoniae,Carbapenems,2009,0.82
+PT,Portugal,K. pneumoniae,Carbapenems,2010,1.35
+PT,Portugal,K. pneumoniae,Carbapenems,2011,0.34
+PT,Portugal,K. pneumoniae,Carbapenems,2012,0.67
+PT,Portugal,K. pneumoniae,Carbapenems,2013,1.77
+PT,Portugal,K. pneumoniae,Carbapenems,2014,1.76
+PT,Portugal,K. pneumoniae,Carbapenems,2015,3.36
+PT,Portugal,K. pneumoniae,Carbapenems,2016,5.17
+PT,Portugal,K. pneumoniae,Carbapenems,2017,8.64
+PT,Portugal,K. pneumoniae,Carbapenems,2018,11.71
+PT,Portugal,K. pneumoniae,Carbapenems,2019,10.86
+PT,Portugal,K. pneumoniae,Carbapenems,2020,11.58
+PT,Portugal,K. pneumoniae,Carbapenems,2021,11.59
+PT,Portugal,K. pneumoniae,Carbapenems,2022,10.29
+PT,Portugal,K. pneumoniae,Carbapenems,2023,13.11
+PT,Portugal,K. pneumoniae,Carbapenems,2024,12.52
+PT,Portugal,K. pneumoniae,Carbapenems,2025,15.79
+RO,Romania,K. pneumoniae,Carbapenems,2006,0.0
+RO,Romania,K. pneumoniae,Carbapenems,2007,0.0
+RO,Romania,K. pneumoniae,Carbapenems,2012,13.73
+RO,Romania,K. pneumoniae,Carbapenems,2013,20.47
+RO,Romania,K. pneumoniae,Carbapenems,2014,31.52
+RO,Romania,K. pneumoniae,Carbapenems,2015,24.72
+RO,Romania,K. pneumoniae,Carbapenems,2016,31.44
+RO,Romania,K. pneumoniae,Carbapenems,2017,22.46
+RO,Romania,K. pneumoniae,Carbapenems,2018,29.48
+RO,Romania,K. pneumoniae,Carbapenems,2019,32.34
+RO,Romania,K. pneumoniae,Carbapenems,2020,48.31
+RO,Romania,K. pneumoniae,Carbapenems,2021,54.46
+RO,Romania,K. pneumoniae,Carbapenems,2022,47.85
+RO,Romania,K. pneumoniae,Carbapenems,2023,52.77
+RO,Romania,K. pneumoniae,Carbapenems,2024,50.26
+RO,Romania,K. pneumoniae,Carbapenems,2025,49.67
+SK,Slovakia,K. pneumoniae,Carbapenems,2011,0.69
+SK,Slovakia,K. pneumoniae,Carbapenems,2012,6.34
+SK,Slovakia,K. pneumoniae,Carbapenems,2013,0.58
+SK,Slovakia,K. pneumoniae,Carbapenems,2014,2.63
+SK,Slovakia,K. pneumoniae,Carbapenems,2015,0.92
+SK,Slovakia,K. pneumoniae,Carbapenems,2016,2.53
+SK,Slovakia,K. pneumoniae,Carbapenems,2017,4.44
+SK,Slovakia,K. pneumoniae,Carbapenems,2018,3.48
+SK,Slovakia,K. pneumoniae,Carbapenems,2019,4.56
+SK,Slovakia,K. pneumoniae,Carbapenems,2020,8.16
+SK,Slovakia,K. pneumoniae,Carbapenems,2021,11.65
+SK,Slovakia,K. pneumoniae,Carbapenems,2022,15.04
+SK,Slovakia,K. pneumoniae,Carbapenems,2023,12.58
+SK,Slovakia,K. pneumoniae,Carbapenems,2024,13.12
+SK,Slovakia,K. pneumoniae,Carbapenems,2025,12.33
+SI,Slovenia,K. pneumoniae,Carbapenems,2005,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2006,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2007,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2008,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2009,0.53
+SI,Slovenia,K. pneumoniae,Carbapenems,2010,0.51
+SI,Slovenia,K. pneumoniae,Carbapenems,2011,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2012,0.39
+SI,Slovenia,K. pneumoniae,Carbapenems,2013,0.41
+SI,Slovenia,K. pneumoniae,Carbapenems,2014,0.86
+SI,Slovenia,K. pneumoniae,Carbapenems,2015,1.27
+SI,Slovenia,K. pneumoniae,Carbapenems,2016,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2017,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2018,0.69
+SI,Slovenia,K. pneumoniae,Carbapenems,2019,0.33
+SI,Slovenia,K. pneumoniae,Carbapenems,2020,0.0
+SI,Slovenia,K. pneumoniae,Carbapenems,2021,0.85
+SI,Slovenia,K. pneumoniae,Carbapenems,2022,1.88
+SI,Slovenia,K. pneumoniae,Carbapenems,2023,3.83
+SI,Slovenia,K. pneumoniae,Carbapenems,2024,3.69
+SI,Slovenia,K. pneumoniae,Carbapenems,2025,4.44
+ES,Spain,K. pneumoniae,Carbapenems,2005,0.0
+ES,Spain,K. pneumoniae,Carbapenems,2006,0.0
+ES,Spain,K. pneumoniae,Carbapenems,2007,0.0
+ES,Spain,K. pneumoniae,Carbapenems,2008,0.0
+ES,Spain,K. pneumoniae,Carbapenems,2009,0.17
+ES,Spain,K. pneumoniae,Carbapenems,2010,0.0
+ES,Spain,K. pneumoniae,Carbapenems,2011,0.35
+ES,Spain,K. pneumoniae,Carbapenems,2012,0.78
+ES,Spain,K. pneumoniae,Carbapenems,2013,1.61
+ES,Spain,K. pneumoniae,Carbapenems,2014,2.29
+ES,Spain,K. pneumoniae,Carbapenems,2015,2.16
+ES,Spain,K. pneumoniae,Carbapenems,2016,2.09
+ES,Spain,K. pneumoniae,Carbapenems,2017,2.78
+ES,Spain,K. pneumoniae,Carbapenems,2018,3.81
+ES,Spain,K. pneumoniae,Carbapenems,2019,4.8
+ES,Spain,K. pneumoniae,Carbapenems,2020,4.67
+ES,Spain,K. pneumoniae,Carbapenems,2021,5.74
+ES,Spain,K. pneumoniae,Carbapenems,2022,5.25
+ES,Spain,K. pneumoniae,Carbapenems,2023,4.3
+ES,Spain,K. pneumoniae,Carbapenems,2024,5.34
+ES,Spain,K. pneumoniae,Carbapenems,2025,5.07
+SE,Sweden,K. pneumoniae,Carbapenems,2007,0.0
+SE,Sweden,K. pneumoniae,Carbapenems,2008,0.0
+SE,Sweden,K. pneumoniae,Carbapenems,2010,0.28
+SE,Sweden,K. pneumoniae,Carbapenems,2011,0.0
+SE,Sweden,K. pneumoniae,Carbapenems,2012,0.1
+SE,Sweden,K. pneumoniae,Carbapenems,2013,0.0
+SE,Sweden,K. pneumoniae,Carbapenems,2014,0.0
+SE,Sweden,K. pneumoniae,Carbapenems,2015,0.0
+SE,Sweden,K. pneumoniae,Carbapenems,2016,0.13
+SE,Sweden,K. pneumoniae,Carbapenems,2017,0.1
+SE,Sweden,K. pneumoniae,Carbapenems,2018,0.18
+SE,Sweden,K. pneumoniae,Carbapenems,2019,0.11
+SE,Sweden,K. pneumoniae,Carbapenems,2020,0.27
+SE,Sweden,K. pneumoniae,Carbapenems,2021,0.15
+SE,Sweden,K. pneumoniae,Carbapenems,2022,0.19
+SE,Sweden,K. pneumoniae,Carbapenems,2023,0.51
+SE,Sweden,K. pneumoniae,Carbapenems,2024,0.52
+SE,Sweden,K. pneumoniae,Carbapenems,2025,0.39
+UK,United Kingdom,K. pneumoniae,Carbapenems,2005,0.0
+UK,United Kingdom,K. pneumoniae,Carbapenems,2006,0.35
+UK,United Kingdom,K. pneumoniae,Carbapenems,2007,0.33
+UK,United Kingdom,K. pneumoniae,Carbapenems,2008,1.24
+UK,United Kingdom,K. pneumoniae,Carbapenems,2009,0.17
+UK,United Kingdom,K. pneumoniae,Carbapenems,2010,0.15
+UK,United Kingdom,K. pneumoniae,Carbapenems,2011,0.36
+UK,United Kingdom,K. pneumoniae,Carbapenems,2012,0.45
+UK,United Kingdom,K. pneumoniae,Carbapenems,2013,0.48
+UK,United Kingdom,K. pneumoniae,Carbapenems,2014,0.84
+UK,United Kingdom,K. pneumoniae,Carbapenems,2015,0.42
+UK,United Kingdom,K. pneumoniae,Carbapenems,2016,0.27
+UK,United Kingdom,K. pneumoniae,Carbapenems,2017,0.59
+UK,United Kingdom,K. pneumoniae,Carbapenems,2018,0.7
+UK,United Kingdom,K. pneumoniae,Carbapenems,2019,0.66
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2005,5.68
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2006,6.03
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2007,8.18
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2008,7.94
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2009,7.64
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2010,12.64
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2011,13.33
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2012,11.76
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2013,10.73
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2014,8.23
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2015,8.38
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2016,9.56
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2017,8.58
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2018,8.35
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2019,10.33
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2020,7.83
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2021,9.81
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2022,9.57
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2023,14.02
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2024,14.56
+AT,Austria,K. pneumoniae,Third-generation cephalosporins,2025,12.75
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2009,14.79
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2010,12.59
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2011,13.62
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2012,16.48
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2013,15.32
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2014,16.29
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2015,19.7
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2016,22.87
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2017,19.3
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2018,21.39
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2019,19.5
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2020,19.74
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2021,18.9
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2022,18.32
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2023,19.92
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2024,20.99
+BE,Belgium,K. pneumoniae,Third-generation cephalosporins,2025,19.63
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2005,50.0
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2006,60.0
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2007,55.17
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2008,73.47
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2009,69.47
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2010,75.59
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2011,80.99
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2012,74.8
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2013,69.57
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2014,74.83
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2015,75.0
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2016,72.5
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2017,76.33
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2018,77.72
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2019,75.66
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2020,79.12
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2021,81.4
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2022,78.46
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2023,81.48
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2024,84.33
+BG,Bulgaria,K. pneumoniae,Third-generation cephalosporins,2025,84.83
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2005,45.54
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2006,34.15
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2007,40.36
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2008,54.38
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2010,55.52
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2011,48.16
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2012,52.11
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2013,50.0
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2014,47.9
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2015,46.84
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2016,48.6
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2017,41.75
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2018,44.34
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2019,53.0
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2020,52.22
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2021,62.05
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2022,54.2
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2023,55.4
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2024,62.45
+HR,Croatia,K. pneumoniae,Third-generation cephalosporins,2025,61.08
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2006,26.92
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2007,30.77
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2008,35.48
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2009,41.51
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2010,34.33
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2011,40.96
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2012,23.08
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2013,30.88
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2014,32.5
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2015,43.55
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2016,30.67
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2017,46.48
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2018,48.28
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2019,48.33
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2020,54.65
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2021,54.61
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2022,63.82
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2023,60.45
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2024,68.1
+CY,Cyprus,K. pneumoniae,Third-generation cephalosporins,2025,69.95
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2005,32.43
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2006,34.78
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2007,45.69
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2008,47.69
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2009,52.08
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2010,48.22
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2011,48.25
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2012,51.18
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2013,51.98
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2014,52.93
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2015,54.13
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2016,51.81
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2017,53.2
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2018,50.07
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2019,50.67
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2020,45.86
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2021,49.69
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2022,49.57
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2023,46.26
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2024,44.14
+CZ,Czechia,K. pneumoniae,Third-generation cephalosporins,2025,39.89
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2006,3.72
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2007,10.37
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2008,9.19
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2009,11.24
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2010,10.55
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2011,11.15
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2012,10.47
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2013,11.53
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2014,7.57
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2015,7.75
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2016,7.51
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2017,7.29
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2018,6.47
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2019,6.65
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2020,6.01
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2021,5.13
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2022,5.23
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2023,5.71
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2024,5.89
+DK,Denmark,K. pneumoniae,Third-generation cephalosporins,2025,5.97
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2005,8.11
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2006,8.51
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2007,3.17
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2008,11.59
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2009,17.24
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2010,17.28
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2011,39.53
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2012,17.78
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2013,23.33
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2014,20.74
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2015,23.66
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2016,32.79
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2017,21.12
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2018,13.59
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2019,10.61
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2020,11.56
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2021,12.77
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2022,14.89
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2023,12.96
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2024,14.29
+EE,Estonia,K. pneumoniae,Third-generation cephalosporins,2025,10.79
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2005,2.29
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2006,0.88
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2007,1.47
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2008,1.74
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2009,1.36
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2010,4.03
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2011,2.48
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2012,1.68
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2013,2.18
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2014,2.41
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2015,2.95
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2016,4.08
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2017,4.57
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2018,4.47
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2019,6.34
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2020,7.21
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2021,5.56
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2022,4.79
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2023,8.67
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2024,10.83
+FI,Finland,K. pneumoniae,Third-generation cephalosporins,2025,10.68
+FR,France,K. pneumoniae,Third-generation cephalosporins,2005,4.13
+FR,France,K. pneumoniae,Third-generation cephalosporins,2006,6.13
+FR,France,K. pneumoniae,Third-generation cephalosporins,2007,10.08
+FR,France,K. pneumoniae,Third-generation cephalosporins,2008,15.2
+FR,France,K. pneumoniae,Third-generation cephalosporins,2009,18.65
+FR,France,K. pneumoniae,Third-generation cephalosporins,2010,17.83
+FR,France,K. pneumoniae,Third-generation cephalosporins,2011,25.33
+FR,France,K. pneumoniae,Third-generation cephalosporins,2012,22.62
+FR,France,K. pneumoniae,Third-generation cephalosporins,2013,28.02
+FR,France,K. pneumoniae,Third-generation cephalosporins,2014,29.56
+FR,France,K. pneumoniae,Third-generation cephalosporins,2015,30.54
+FR,France,K. pneumoniae,Third-generation cephalosporins,2016,28.88
+FR,France,K. pneumoniae,Third-generation cephalosporins,2017,28.84
+FR,France,K. pneumoniae,Third-generation cephalosporins,2018,30.76
+FR,France,K. pneumoniae,Third-generation cephalosporins,2019,30.18
+FR,France,K. pneumoniae,Third-generation cephalosporins,2020,27.85
+FR,France,K. pneumoniae,Third-generation cephalosporins,2021,25.42
+FR,France,K. pneumoniae,Third-generation cephalosporins,2022,25.03
+FR,France,K. pneumoniae,Third-generation cephalosporins,2024,27.06
+FR,France,K. pneumoniae,Third-generation cephalosporins,2025,26.24
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2005,6.73
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2006,13.61
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2007,6.36
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2008,11.49
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2009,13.16
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2010,12.76
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2011,12.52
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2012,12.95
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2013,16.06
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2014,12.72
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2015,10.25
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2016,13.62
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2017,14.61
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2018,12.94
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2019,12.23
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2020,10.92
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2021,10.37
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2022,10.61
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2023,10.06
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2024,10.79
+DE,Germany,K. pneumoniae,Third-generation cephalosporins,2025,10.71
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2005,60.59
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2006,57.91
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2007,61.83
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2008,65.74
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2009,68.67
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2010,74.61
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2011,75.8
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2012,70.87
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2013,70.12
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2014,72.53
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2015,69.54
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2016,72.48
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2017,69.16
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2018,70.73
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2019,66.45
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2020,74.52
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2021,80.37
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2022,78.25
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2023,75.6
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2024,70.08
+EL,Greece,K. pneumoniae,Third-generation cephalosporins,2025,72.47
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2005,27.65
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2006,20.27
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2007,25.24
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2008,34.96
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2009,38.44
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2010,45.9
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2011,53.13
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2012,43.0
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2013,37.34
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2014,35.56
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2015,37.22
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2016,37.53
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2017,41.13
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2018,40.21
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2019,36.66
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2020,40.38
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2021,38.65
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2022,40.74
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2023,42.04
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2024,39.79
+HU,Hungary,K. pneumoniae,Third-generation cephalosporins,2025,45.13
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2005,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2007,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2008,4.17
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2009,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2010,3.7
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2011,7.69
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2013,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2014,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2015,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2016,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2019,4.35
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2020,0.0
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2021,3.45
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2022,3.12
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2023,6.82
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2024,4.88
+IS,Iceland,K. pneumoniae,Third-generation cephalosporins,2025,15.0
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2005,7.14
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2006,8.54
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2007,7.63
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2008,10.82
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2009,11.15
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2010,8.49
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2011,7.57
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2012,9.51
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2013,19.3
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2014,11.58
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2015,14.73
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2016,13.5
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2017,14.64
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2018,14.49
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2019,17.65
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2020,18.69
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2021,15.54
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2022,12.58
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2023,15.96
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2024,15.04
+IE,Ireland,K. pneumoniae,Third-generation cephalosporins,2025,15.23
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2005,19.53
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2006,32.81
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2007,34.88
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2008,38.93
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2009,37.13
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2010,46.5
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2011,45.93
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2012,47.89
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2013,55.1
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2014,56.48
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2015,55.88
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2016,55.83
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2017,54.6
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2018,53.58
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2019,57.59
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2020,54.33
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2021,53.63
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2022,53.3
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2023,55.17
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2024,52.93
+IT,Italy,K. pneumoniae,Third-generation cephalosporins,2025,52.87
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2006,35.71
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2007,44.44
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2008,57.5
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2009,54.55
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2010,54.69
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2011,38.46
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2012,62.82
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2013,66.3
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2014,52.88
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2015,46.96
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2016,47.37
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2017,33.62
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2018,37.75
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2019,36.87
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2020,48.4
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2021,35.97
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2022,38.68
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2023,41.6
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2024,47.44
+LV,Latvia,K. pneumoniae,Third-generation cephalosporins,2025,35.36
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2006,22.86
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2007,26.83
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2008,35.85
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2009,56.72
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2010,50.62
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2011,60.58
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2012,63.98
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2013,44.14
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2014,52.6
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2015,51.69
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2016,56.75
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2017,63.19
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2018,55.8
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2019,55.0
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2020,42.62
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2021,42.97
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2022,39.85
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2023,43.44
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2024,47.72
+LT,Lithuania,K. pneumoniae,Third-generation cephalosporins,2025,40.29
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2006,9.52
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2007,1.96
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2008,19.23
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2009,25.0
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2010,5.08
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2011,35.42
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2012,34.0
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2013,33.96
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2014,34.85
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2015,28.33
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2016,35.9
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2017,27.27
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2018,29.41
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2019,25.24
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2020,26.44
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2021,25.74
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2022,18.8
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2023,21.18
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2024,20.0
+LU,Luxembourg,K. pneumoniae,Third-generation cephalosporins,2025,15.18
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2006,6.25
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2007,7.14
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2008,0.0
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2009,0.0
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2010,12.28
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2011,13.46
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2012,26.79
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2013,28.36
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2014,28.28
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2015,15.91
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2016,21.57
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2017,35.04
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2018,53.28
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2019,37.21
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2020,38.64
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2021,28.89
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2022,27.5
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2023,25.17
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2024,27.84
+MT,Malta,K. pneumoniae,Third-generation cephalosporins,2025,32.0
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2005,3.91
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2006,3.53
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2007,6.87
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2008,7.58
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2009,5.5
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2010,7.17
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2011,6.81
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2012,7.51
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2013,7.57
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2014,5.88
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2015,9.43
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2016,10.53
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2017,10.91
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2018,10.72
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2019,9.62
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2020,11.17
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2021,10.08
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2022,9.82
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2023,10.17
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2024,12.92
+NL,Netherlands,K. pneumoniae,Third-generation cephalosporins,2025,12.1
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2005,2.07
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2006,1.52
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2007,1.56
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2008,1.72
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2009,2.78
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2010,2.09
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2011,2.85
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2012,3.22
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2013,4.03
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2014,5.9
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2015,4.99
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2016,5.8
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2017,5.76
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2018,7.46
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2019,7.69
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2020,10.11
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2021,7.37
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2022,6.63
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2023,5.84
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2024,6.97
+NO,Norway,K. pneumoniae,Third-generation cephalosporins,2025,5.84
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2005,66.04
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2006,38.1
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2007,34.38
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2009,48.95
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2010,39.66
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2011,59.71
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2012,60.5
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2013,65.16
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2014,68.17
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2015,64.2
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2016,64.45
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2017,63.01
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2018,64.64
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2019,58.32
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2020,62.96
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2021,69.97
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2022,61.93
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2023,64.34
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2024,60.63
+PL,Poland,K. pneumoniae,Third-generation cephalosporins,2025,61.8
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2006,20.79
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2007,16.52
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2008,25.7
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2009,27.52
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2010,28.28
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2011,35.39
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2012,38.67
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2013,36.99
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2014,40.89
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2015,40.4
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2016,46.7
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2017,44.91
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2018,49.98
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2019,47.65
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2020,47.57
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2021,45.02
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2022,45.2
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2023,50.69
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2024,46.28
+PT,Portugal,K. pneumoniae,Third-generation cephalosporins,2025,51.26
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2006,93.75
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2007,80.0
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2011,44.0
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2012,60.78
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2013,67.29
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2014,73.83
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2015,70.74
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2016,68.02
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2017,62.54
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2018,61.4
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2019,64.09
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2020,67.92
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2021,70.79
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2022,63.52
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2023,69.44
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2024,67.01
+RO,Romania,K. pneumoniae,Third-generation cephalosporins,2025,64.41
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2011,68.24
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2012,62.7
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2013,66.39
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2014,69.37
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2015,67.16
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2016,61.29
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2017,63.18
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2018,55.94
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2019,57.49
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2020,54.39
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2021,68.44
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2022,56.14
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2023,52.58
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2024,55.91
+SK,Slovakia,K. pneumoniae,Third-generation cephalosporins,2025,55.24
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2005,19.23
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2006,24.14
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2007,27.65
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2008,26.11
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2009,31.22
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2010,22.45
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2011,30.17
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2012,28.35
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2013,28.98
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2014,26.61
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2015,22.78
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2016,22.85
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2017,23.72
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2018,14.88
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2019,16.5
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2020,15.81
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2021,21.65
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2022,20.7
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2023,23.01
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2024,19.6
+SI,Slovenia,K. pneumoniae,Third-generation cephalosporins,2025,22.22
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2005,7.14
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2006,9.43
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2007,9.62
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2008,11.89
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2009,11.15
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2010,10.25
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2011,13.36
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2012,16.74
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2013,19.82
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2014,18.02
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2015,20.32
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2016,22.36
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2017,21.28
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2018,25.48
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2019,25.25
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2020,26.64
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2021,27.55
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2022,26.68
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2023,25.26
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2024,23.5
+ES,Spain,K. pneumoniae,Third-generation cephalosporins,2025,23.95
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2005,1.42
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2006,1.45
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2007,1.39
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2008,2.3
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2010,2.38
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2011,2.33
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2012,2.87
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2013,3.62
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2014,4.5
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2015,3.3
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2016,4.88
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2017,5.61
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2018,5.51
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2019,8.3
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2020,8.09
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2021,6.95
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2022,7.82
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2023,9.93
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2024,9.63
+SE,Sweden,K. pneumoniae,Third-generation cephalosporins,2025,11.51
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2005,12.33
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2006,11.15
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2007,12.54
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2008,6.71
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2009,7.18
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2010,9.69
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2011,5.35
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2012,11.82
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2013,13.65
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2014,9.3
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2015,10.48
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2016,8.87
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2017,11.36
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2018,12.99
+UK,United Kingdom,K. pneumoniae,Third-generation cephalosporins,2019,13.21
+AT,Austria,MRSA,Meticillin (MRSA),2000,17.8
+AT,Austria,MRSA,Meticillin (MRSA),2001,7.55
+AT,Austria,MRSA,Meticillin (MRSA),2002,12.09
+AT,Austria,MRSA,Meticillin (MRSA),2003,15.38
+AT,Austria,MRSA,Meticillin (MRSA),2004,14.37
+AT,Austria,MRSA,Meticillin (MRSA),2005,13.65
+AT,Austria,MRSA,Meticillin (MRSA),2006,9.65
+AT,Austria,MRSA,Meticillin (MRSA),2007,12.71
+AT,Austria,MRSA,Meticillin (MRSA),2008,8.71
+AT,Austria,MRSA,Meticillin (MRSA),2009,6.21
+AT,Austria,MRSA,Meticillin (MRSA),2010,7.45
+AT,Austria,MRSA,Meticillin (MRSA),2011,7.22
+AT,Austria,MRSA,Meticillin (MRSA),2012,8.04
+AT,Austria,MRSA,Meticillin (MRSA),2013,9.12
+AT,Austria,MRSA,Meticillin (MRSA),2014,7.73
+AT,Austria,MRSA,Meticillin (MRSA),2015,7.43
+AT,Austria,MRSA,Meticillin (MRSA),2016,7.21
+AT,Austria,MRSA,Meticillin (MRSA),2017,5.92
+AT,Austria,MRSA,Meticillin (MRSA),2018,6.38
+AT,Austria,MRSA,Meticillin (MRSA),2019,5.21
+AT,Austria,MRSA,Meticillin (MRSA),2020,4.4
+AT,Austria,MRSA,Meticillin (MRSA),2021,3.1
+AT,Austria,MRSA,Meticillin (MRSA),2022,3.93
+AT,Austria,MRSA,Meticillin (MRSA),2023,4.49
+AT,Austria,MRSA,Meticillin (MRSA),2024,5.35
+AT,Austria,MRSA,Meticillin (MRSA),2025,4.52
+BE,Belgium,MRSA,Meticillin (MRSA),2000,20.85
+BE,Belgium,MRSA,Meticillin (MRSA),2001,22.53
+BE,Belgium,MRSA,Meticillin (MRSA),2002,28.3
+BE,Belgium,MRSA,Meticillin (MRSA),2003,29.48
+BE,Belgium,MRSA,Meticillin (MRSA),2004,33.25
+BE,Belgium,MRSA,Meticillin (MRSA),2005,31.39
+BE,Belgium,MRSA,Meticillin (MRSA),2006,21.91
+BE,Belgium,MRSA,Meticillin (MRSA),2007,23.27
+BE,Belgium,MRSA,Meticillin (MRSA),2008,20.64
+BE,Belgium,MRSA,Meticillin (MRSA),2009,21.07
+BE,Belgium,MRSA,Meticillin (MRSA),2010,20.53
+BE,Belgium,MRSA,Meticillin (MRSA),2011,17.43
+BE,Belgium,MRSA,Meticillin (MRSA),2012,16.58
+BE,Belgium,MRSA,Meticillin (MRSA),2013,16.87
+BE,Belgium,MRSA,Meticillin (MRSA),2014,13.46
+BE,Belgium,MRSA,Meticillin (MRSA),2015,12.27
+BE,Belgium,MRSA,Meticillin (MRSA),2016,12.17
+BE,Belgium,MRSA,Meticillin (MRSA),2017,8.54
+BE,Belgium,MRSA,Meticillin (MRSA),2018,9.05
+BE,Belgium,MRSA,Meticillin (MRSA),2019,6.68
+BE,Belgium,MRSA,Meticillin (MRSA),2020,6.94
+BE,Belgium,MRSA,Meticillin (MRSA),2021,4.09
+BE,Belgium,MRSA,Meticillin (MRSA),2022,4.16
+BE,Belgium,MRSA,Meticillin (MRSA),2023,6.0
+BE,Belgium,MRSA,Meticillin (MRSA),2024,7.44
+BE,Belgium,MRSA,Meticillin (MRSA),2025,7.2
+BG,Bulgaria,MRSA,Meticillin (MRSA),2000,40.2
+BG,Bulgaria,MRSA,Meticillin (MRSA),2001,27.18
+BG,Bulgaria,MRSA,Meticillin (MRSA),2002,32.76
+BG,Bulgaria,MRSA,Meticillin (MRSA),2003,31.21
+BG,Bulgaria,MRSA,Meticillin (MRSA),2004,23.53
+BG,Bulgaria,MRSA,Meticillin (MRSA),2005,30.0
+BG,Bulgaria,MRSA,Meticillin (MRSA),2006,28.3
+BG,Bulgaria,MRSA,Meticillin (MRSA),2007,13.22
+BG,Bulgaria,MRSA,Meticillin (MRSA),2008,25.0
+BG,Bulgaria,MRSA,Meticillin (MRSA),2009,15.84
+BG,Bulgaria,MRSA,Meticillin (MRSA),2010,19.0
+BG,Bulgaria,MRSA,Meticillin (MRSA),2011,22.43
+BG,Bulgaria,MRSA,Meticillin (MRSA),2012,19.82
+BG,Bulgaria,MRSA,Meticillin (MRSA),2013,19.16
+BG,Bulgaria,MRSA,Meticillin (MRSA),2014,20.83
+BG,Bulgaria,MRSA,Meticillin (MRSA),2015,13.06
+BG,Bulgaria,MRSA,Meticillin (MRSA),2016,14.29
+BG,Bulgaria,MRSA,Meticillin (MRSA),2017,13.66
+BG,Bulgaria,MRSA,Meticillin (MRSA),2018,17.57
+BG,Bulgaria,MRSA,Meticillin (MRSA),2019,14.81
+BG,Bulgaria,MRSA,Meticillin (MRSA),2020,11.82
+BG,Bulgaria,MRSA,Meticillin (MRSA),2021,15.17
+BG,Bulgaria,MRSA,Meticillin (MRSA),2022,12.02
+BG,Bulgaria,MRSA,Meticillin (MRSA),2023,15.86
+BG,Bulgaria,MRSA,Meticillin (MRSA),2024,10.94
+BG,Bulgaria,MRSA,Meticillin (MRSA),2025,10.24
+HR,Croatia,MRSA,Meticillin (MRSA),2001,31.54
+HR,Croatia,MRSA,Meticillin (MRSA),2002,36.92
+HR,Croatia,MRSA,Meticillin (MRSA),2003,36.94
+HR,Croatia,MRSA,Meticillin (MRSA),2004,37.5
+HR,Croatia,MRSA,Meticillin (MRSA),2005,36.72
+HR,Croatia,MRSA,Meticillin (MRSA),2006,36.32
+HR,Croatia,MRSA,Meticillin (MRSA),2007,37.6
+HR,Croatia,MRSA,Meticillin (MRSA),2008,35.23
+HR,Croatia,MRSA,Meticillin (MRSA),2010,26.05
+HR,Croatia,MRSA,Meticillin (MRSA),2011,27.71
+HR,Croatia,MRSA,Meticillin (MRSA),2012,21.34
+HR,Croatia,MRSA,Meticillin (MRSA),2013,24.04
+HR,Croatia,MRSA,Meticillin (MRSA),2014,21.28
+HR,Croatia,MRSA,Meticillin (MRSA),2015,24.49
+HR,Croatia,MRSA,Meticillin (MRSA),2016,25.33
+HR,Croatia,MRSA,Meticillin (MRSA),2017,28.46
+HR,Croatia,MRSA,Meticillin (MRSA),2018,26.42
+HR,Croatia,MRSA,Meticillin (MRSA),2019,24.86
+HR,Croatia,MRSA,Meticillin (MRSA),2020,29.25
+HR,Croatia,MRSA,Meticillin (MRSA),2021,34.83
+HR,Croatia,MRSA,Meticillin (MRSA),2022,31.1
+HR,Croatia,MRSA,Meticillin (MRSA),2023,30.05
+HR,Croatia,MRSA,Meticillin (MRSA),2024,29.81
+HR,Croatia,MRSA,Meticillin (MRSA),2025,23.49
+CY,Cyprus,MRSA,Meticillin (MRSA),2003,64.29
+CY,Cyprus,MRSA,Meticillin (MRSA),2004,48.72
+CY,Cyprus,MRSA,Meticillin (MRSA),2005,55.56
+CY,Cyprus,MRSA,Meticillin (MRSA),2006,33.87
+CY,Cyprus,MRSA,Meticillin (MRSA),2007,48.24
+CY,Cyprus,MRSA,Meticillin (MRSA),2008,45.65
+CY,Cyprus,MRSA,Meticillin (MRSA),2009,40.45
+CY,Cyprus,MRSA,Meticillin (MRSA),2010,32.32
+CY,Cyprus,MRSA,Meticillin (MRSA),2011,41.59
+CY,Cyprus,MRSA,Meticillin (MRSA),2012,35.15
+CY,Cyprus,MRSA,Meticillin (MRSA),2013,32.48
+CY,Cyprus,MRSA,Meticillin (MRSA),2014,36.03
+CY,Cyprus,MRSA,Meticillin (MRSA),2015,43.36
+CY,Cyprus,MRSA,Meticillin (MRSA),2016,38.85
+CY,Cyprus,MRSA,Meticillin (MRSA),2017,31.2
+CY,Cyprus,MRSA,Meticillin (MRSA),2018,40.17
+CY,Cyprus,MRSA,Meticillin (MRSA),2019,36.21
+CY,Cyprus,MRSA,Meticillin (MRSA),2020,49.06
+CY,Cyprus,MRSA,Meticillin (MRSA),2021,42.94
+CY,Cyprus,MRSA,Meticillin (MRSA),2022,50.77
+CY,Cyprus,MRSA,Meticillin (MRSA),2023,51.09
+CY,Cyprus,MRSA,Meticillin (MRSA),2024,45.96
+CY,Cyprus,MRSA,Meticillin (MRSA),2025,39.53
+CZ,Czechia,MRSA,Meticillin (MRSA),2000,4.27
+CZ,Czechia,MRSA,Meticillin (MRSA),2001,5.86
+CZ,Czechia,MRSA,Meticillin (MRSA),2002,5.91
+CZ,Czechia,MRSA,Meticillin (MRSA),2003,6.13
+CZ,Czechia,MRSA,Meticillin (MRSA),2004,8.52
+CZ,Czechia,MRSA,Meticillin (MRSA),2005,12.88
+CZ,Czechia,MRSA,Meticillin (MRSA),2006,12.31
+CZ,Czechia,MRSA,Meticillin (MRSA),2007,12.89
+CZ,Czechia,MRSA,Meticillin (MRSA),2008,14.17
+CZ,Czechia,MRSA,Meticillin (MRSA),2009,14.4
+CZ,Czechia,MRSA,Meticillin (MRSA),2010,13.5
+CZ,Czechia,MRSA,Meticillin (MRSA),2011,14.53
+CZ,Czechia,MRSA,Meticillin (MRSA),2012,13.16
+CZ,Czechia,MRSA,Meticillin (MRSA),2013,13.42
+CZ,Czechia,MRSA,Meticillin (MRSA),2014,13.16
+CZ,Czechia,MRSA,Meticillin (MRSA),2015,13.34
+CZ,Czechia,MRSA,Meticillin (MRSA),2016,13.73
+CZ,Czechia,MRSA,Meticillin (MRSA),2017,14.09
+CZ,Czechia,MRSA,Meticillin (MRSA),2018,13.69
+CZ,Czechia,MRSA,Meticillin (MRSA),2019,12.52
+CZ,Czechia,MRSA,Meticillin (MRSA),2020,9.33
+CZ,Czechia,MRSA,Meticillin (MRSA),2021,9.43
+CZ,Czechia,MRSA,Meticillin (MRSA),2022,7.49
+CZ,Czechia,MRSA,Meticillin (MRSA),2023,9.59
+CZ,Czechia,MRSA,Meticillin (MRSA),2024,9.26
+CZ,Czechia,MRSA,Meticillin (MRSA),2025,7.85
+DK,Denmark,MRSA,Meticillin (MRSA),2000,0.2
+DK,Denmark,MRSA,Meticillin (MRSA),2001,0.77
+DK,Denmark,MRSA,Meticillin (MRSA),2002,0.93
+DK,Denmark,MRSA,Meticillin (MRSA),2003,0.6
+DK,Denmark,MRSA,Meticillin (MRSA),2004,1.25
+DK,Denmark,MRSA,Meticillin (MRSA),2005,1.56
+DK,Denmark,MRSA,Meticillin (MRSA),2006,1.72
+DK,Denmark,MRSA,Meticillin (MRSA),2007,0.84
+DK,Denmark,MRSA,Meticillin (MRSA),2008,2.55
+DK,Denmark,MRSA,Meticillin (MRSA),2009,2.08
+DK,Denmark,MRSA,Meticillin (MRSA),2010,1.32
+DK,Denmark,MRSA,Meticillin (MRSA),2011,1.31
+DK,Denmark,MRSA,Meticillin (MRSA),2012,1.33
+DK,Denmark,MRSA,Meticillin (MRSA),2013,1.72
+DK,Denmark,MRSA,Meticillin (MRSA),2014,2.45
+DK,Denmark,MRSA,Meticillin (MRSA),2015,1.55
+DK,Denmark,MRSA,Meticillin (MRSA),2016,1.99
+DK,Denmark,MRSA,Meticillin (MRSA),2017,2.51
+DK,Denmark,MRSA,Meticillin (MRSA),2018,1.65
+DK,Denmark,MRSA,Meticillin (MRSA),2019,2.21
+DK,Denmark,MRSA,Meticillin (MRSA),2020,1.72
+DK,Denmark,MRSA,Meticillin (MRSA),2021,1.81
+DK,Denmark,MRSA,Meticillin (MRSA),2022,1.85
+DK,Denmark,MRSA,Meticillin (MRSA),2023,1.5
+DK,Denmark,MRSA,Meticillin (MRSA),2024,1.87
+DK,Denmark,MRSA,Meticillin (MRSA),2025,2.45
+EE,Estonia,MRSA,Meticillin (MRSA),2001,5.06
+EE,Estonia,MRSA,Meticillin (MRSA),2002,1.22
+EE,Estonia,MRSA,Meticillin (MRSA),2003,4.08
+EE,Estonia,MRSA,Meticillin (MRSA),2004,4.81
+EE,Estonia,MRSA,Meticillin (MRSA),2005,2.13
+EE,Estonia,MRSA,Meticillin (MRSA),2006,3.25
+EE,Estonia,MRSA,Meticillin (MRSA),2007,8.25
+EE,Estonia,MRSA,Meticillin (MRSA),2008,4.32
+EE,Estonia,MRSA,Meticillin (MRSA),2009,3.29
+EE,Estonia,MRSA,Meticillin (MRSA),2010,0.69
+EE,Estonia,MRSA,Meticillin (MRSA),2011,1.72
+EE,Estonia,MRSA,Meticillin (MRSA),2012,7.69
+EE,Estonia,MRSA,Meticillin (MRSA),2013,3.53
+EE,Estonia,MRSA,Meticillin (MRSA),2014,3.14
+EE,Estonia,MRSA,Meticillin (MRSA),2015,3.97
+EE,Estonia,MRSA,Meticillin (MRSA),2016,3.5
+EE,Estonia,MRSA,Meticillin (MRSA),2017,2.07
+EE,Estonia,MRSA,Meticillin (MRSA),2018,3.34
+EE,Estonia,MRSA,Meticillin (MRSA),2019,3.01
+EE,Estonia,MRSA,Meticillin (MRSA),2020,3.0
+EE,Estonia,MRSA,Meticillin (MRSA),2021,1.51
+EE,Estonia,MRSA,Meticillin (MRSA),2022,2.21
+EE,Estonia,MRSA,Meticillin (MRSA),2023,2.06
+EE,Estonia,MRSA,Meticillin (MRSA),2024,3.39
+EE,Estonia,MRSA,Meticillin (MRSA),2025,4.59
+FI,Finland,MRSA,Meticillin (MRSA),2000,1.36
+FI,Finland,MRSA,Meticillin (MRSA),2001,0.83
+FI,Finland,MRSA,Meticillin (MRSA),2002,0.83
+FI,Finland,MRSA,Meticillin (MRSA),2003,1.38
+FI,Finland,MRSA,Meticillin (MRSA),2004,3.06
+FI,Finland,MRSA,Meticillin (MRSA),2005,2.91
+FI,Finland,MRSA,Meticillin (MRSA),2006,3.25
+FI,Finland,MRSA,Meticillin (MRSA),2007,1.6
+FI,Finland,MRSA,Meticillin (MRSA),2008,2.93
+FI,Finland,MRSA,Meticillin (MRSA),2009,2.45
+FI,Finland,MRSA,Meticillin (MRSA),2010,2.29
+FI,Finland,MRSA,Meticillin (MRSA),2011,3.64
+FI,Finland,MRSA,Meticillin (MRSA),2012,2.27
+FI,Finland,MRSA,Meticillin (MRSA),2013,2.09
+FI,Finland,MRSA,Meticillin (MRSA),2014,3.0
+FI,Finland,MRSA,Meticillin (MRSA),2015,2.08
+FI,Finland,MRSA,Meticillin (MRSA),2016,2.33
+FI,Finland,MRSA,Meticillin (MRSA),2017,2.09
+FI,Finland,MRSA,Meticillin (MRSA),2018,2.09
+FI,Finland,MRSA,Meticillin (MRSA),2019,2.26
+FI,Finland,MRSA,Meticillin (MRSA),2020,2.61
+FI,Finland,MRSA,Meticillin (MRSA),2021,2.6
+FI,Finland,MRSA,Meticillin (MRSA),2022,2.27
+FI,Finland,MRSA,Meticillin (MRSA),2023,2.85
+FI,Finland,MRSA,Meticillin (MRSA),2024,3.71
+FI,Finland,MRSA,Meticillin (MRSA),2025,3.95
+FR,France,MRSA,Meticillin (MRSA),2001,33.37
+FR,France,MRSA,Meticillin (MRSA),2002,32.95
+FR,France,MRSA,Meticillin (MRSA),2003,28.81
+FR,France,MRSA,Meticillin (MRSA),2004,28.59
+FR,France,MRSA,Meticillin (MRSA),2005,27.25
+FR,France,MRSA,Meticillin (MRSA),2006,26.74
+FR,France,MRSA,Meticillin (MRSA),2007,25.79
+FR,France,MRSA,Meticillin (MRSA),2008,24.5
+FR,France,MRSA,Meticillin (MRSA),2009,22.75
+FR,France,MRSA,Meticillin (MRSA),2010,21.59
+FR,France,MRSA,Meticillin (MRSA),2011,20.12
+FR,France,MRSA,Meticillin (MRSA),2012,19.19
+FR,France,MRSA,Meticillin (MRSA),2013,17.07
+FR,France,MRSA,Meticillin (MRSA),2014,17.38
+FR,France,MRSA,Meticillin (MRSA),2015,15.72
+FR,France,MRSA,Meticillin (MRSA),2016,13.77
+FR,France,MRSA,Meticillin (MRSA),2017,12.92
+FR,France,MRSA,Meticillin (MRSA),2018,12.11
+FR,France,MRSA,Meticillin (MRSA),2019,11.63
+FR,France,MRSA,Meticillin (MRSA),2020,12.07
+FR,France,MRSA,Meticillin (MRSA),2021,11.0
+FR,France,MRSA,Meticillin (MRSA),2022,10.43
+FR,France,MRSA,Meticillin (MRSA),2024,9.91
+FR,France,MRSA,Meticillin (MRSA),2025,10.28
+DE,Germany,MRSA,Meticillin (MRSA),2000,12.47
+DE,Germany,MRSA,Meticillin (MRSA),2001,15.66
+DE,Germany,MRSA,Meticillin (MRSA),2002,18.48
+DE,Germany,MRSA,Meticillin (MRSA),2003,18.28
+DE,Germany,MRSA,Meticillin (MRSA),2004,19.53
+DE,Germany,MRSA,Meticillin (MRSA),2005,21.43
+DE,Germany,MRSA,Meticillin (MRSA),2006,19.97
+DE,Germany,MRSA,Meticillin (MRSA),2007,16.3
+DE,Germany,MRSA,Meticillin (MRSA),2008,19.38
+DE,Germany,MRSA,Meticillin (MRSA),2009,18.36
+DE,Germany,MRSA,Meticillin (MRSA),2010,20.96
+DE,Germany,MRSA,Meticillin (MRSA),2011,16.16
+DE,Germany,MRSA,Meticillin (MRSA),2012,15.37
+DE,Germany,MRSA,Meticillin (MRSA),2013,13.24
+DE,Germany,MRSA,Meticillin (MRSA),2014,12.91
+DE,Germany,MRSA,Meticillin (MRSA),2015,11.53
+DE,Germany,MRSA,Meticillin (MRSA),2016,10.17
+DE,Germany,MRSA,Meticillin (MRSA),2017,9.07
+DE,Germany,MRSA,Meticillin (MRSA),2018,7.65
+DE,Germany,MRSA,Meticillin (MRSA),2019,6.69
+DE,Germany,MRSA,Meticillin (MRSA),2020,5.55
+DE,Germany,MRSA,Meticillin (MRSA),2021,4.86
+DE,Germany,MRSA,Meticillin (MRSA),2022,3.98
+DE,Germany,MRSA,Meticillin (MRSA),2023,4.38
+DE,Germany,MRSA,Meticillin (MRSA),2024,4.34
+DE,Germany,MRSA,Meticillin (MRSA),2025,4.46
+EL,Greece,MRSA,Meticillin (MRSA),2000,49.73
+EL,Greece,MRSA,Meticillin (MRSA),2001,39.89
+EL,Greece,MRSA,Meticillin (MRSA),2002,44.02
+EL,Greece,MRSA,Meticillin (MRSA),2003,45.2
+EL,Greece,MRSA,Meticillin (MRSA),2004,44.33
+EL,Greece,MRSA,Meticillin (MRSA),2005,42.0
+EL,Greece,MRSA,Meticillin (MRSA),2006,42.62
+EL,Greece,MRSA,Meticillin (MRSA),2007,48.01
+EL,Greece,MRSA,Meticillin (MRSA),2008,40.63
+EL,Greece,MRSA,Meticillin (MRSA),2009,40.36
+EL,Greece,MRSA,Meticillin (MRSA),2010,39.22
+EL,Greece,MRSA,Meticillin (MRSA),2011,39.16
+EL,Greece,MRSA,Meticillin (MRSA),2012,40.98
+EL,Greece,MRSA,Meticillin (MRSA),2013,40.29
+EL,Greece,MRSA,Meticillin (MRSA),2014,37.05
+EL,Greece,MRSA,Meticillin (MRSA),2015,39.38
+EL,Greece,MRSA,Meticillin (MRSA),2016,38.81
+EL,Greece,MRSA,Meticillin (MRSA),2017,38.44
+EL,Greece,MRSA,Meticillin (MRSA),2018,36.37
+EL,Greece,MRSA,Meticillin (MRSA),2019,37.65
+EL,Greece,MRSA,Meticillin (MRSA),2020,40.18
+EL,Greece,MRSA,Meticillin (MRSA),2021,41.85
+EL,Greece,MRSA,Meticillin (MRSA),2022,39.0
+EL,Greece,MRSA,Meticillin (MRSA),2023,41.23
+EL,Greece,MRSA,Meticillin (MRSA),2024,40.54
+EL,Greece,MRSA,Meticillin (MRSA),2025,38.58
+HU,Hungary,MRSA,Meticillin (MRSA),2001,4.65
+HU,Hungary,MRSA,Meticillin (MRSA),2002,8.96
+HU,Hungary,MRSA,Meticillin (MRSA),2003,14.92
+HU,Hungary,MRSA,Meticillin (MRSA),2004,16.67
+HU,Hungary,MRSA,Meticillin (MRSA),2005,19.85
+HU,Hungary,MRSA,Meticillin (MRSA),2006,25.11
+HU,Hungary,MRSA,Meticillin (MRSA),2007,23.27
+HU,Hungary,MRSA,Meticillin (MRSA),2008,22.52
+HU,Hungary,MRSA,Meticillin (MRSA),2009,29.03
+HU,Hungary,MRSA,Meticillin (MRSA),2010,30.23
+HU,Hungary,MRSA,Meticillin (MRSA),2011,26.21
+HU,Hungary,MRSA,Meticillin (MRSA),2012,24.85
+HU,Hungary,MRSA,Meticillin (MRSA),2013,24.0
+HU,Hungary,MRSA,Meticillin (MRSA),2014,23.06
+HU,Hungary,MRSA,Meticillin (MRSA),2015,24.65
+HU,Hungary,MRSA,Meticillin (MRSA),2016,25.18
+HU,Hungary,MRSA,Meticillin (MRSA),2017,23.63
+HU,Hungary,MRSA,Meticillin (MRSA),2018,23.13
+HU,Hungary,MRSA,Meticillin (MRSA),2019,19.37
+HU,Hungary,MRSA,Meticillin (MRSA),2020,20.95
+HU,Hungary,MRSA,Meticillin (MRSA),2021,19.29
+HU,Hungary,MRSA,Meticillin (MRSA),2022,20.9
+HU,Hungary,MRSA,Meticillin (MRSA),2023,20.66
+HU,Hungary,MRSA,Meticillin (MRSA),2024,17.29
+HU,Hungary,MRSA,Meticillin (MRSA),2025,19.64
+IS,Iceland,MRSA,Meticillin (MRSA),2000,2.5
+IS,Iceland,MRSA,Meticillin (MRSA),2001,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2002,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2003,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2004,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2005,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2006,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2007,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2008,1.59
+IS,Iceland,MRSA,Meticillin (MRSA),2009,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2010,1.54
+IS,Iceland,MRSA,Meticillin (MRSA),2011,2.82
+IS,Iceland,MRSA,Meticillin (MRSA),2012,1.72
+IS,Iceland,MRSA,Meticillin (MRSA),2013,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2014,3.28
+IS,Iceland,MRSA,Meticillin (MRSA),2015,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2016,1.32
+IS,Iceland,MRSA,Meticillin (MRSA),2017,1.45
+IS,Iceland,MRSA,Meticillin (MRSA),2018,0.0
+IS,Iceland,MRSA,Meticillin (MRSA),2019,5.79
+IS,Iceland,MRSA,Meticillin (MRSA),2020,5.17
+IS,Iceland,MRSA,Meticillin (MRSA),2021,1.05
+IS,Iceland,MRSA,Meticillin (MRSA),2022,2.78
+IS,Iceland,MRSA,Meticillin (MRSA),2023,6.2
+IS,Iceland,MRSA,Meticillin (MRSA),2024,5.59
+IS,Iceland,MRSA,Meticillin (MRSA),2025,2.86
+IE,Ireland,MRSA,Meticillin (MRSA),2000,37.96
+IE,Ireland,MRSA,Meticillin (MRSA),2001,42.61
+IE,Ireland,MRSA,Meticillin (MRSA),2002,42.48
+IE,Ireland,MRSA,Meticillin (MRSA),2003,42.24
+IE,Ireland,MRSA,Meticillin (MRSA),2004,41.45
+IE,Ireland,MRSA,Meticillin (MRSA),2005,41.76
+IE,Ireland,MRSA,Meticillin (MRSA),2006,42.32
+IE,Ireland,MRSA,Meticillin (MRSA),2007,38.06
+IE,Ireland,MRSA,Meticillin (MRSA),2008,33.09
+IE,Ireland,MRSA,Meticillin (MRSA),2009,26.8
+IE,Ireland,MRSA,Meticillin (MRSA),2010,23.86
+IE,Ireland,MRSA,Meticillin (MRSA),2011,23.75
+IE,Ireland,MRSA,Meticillin (MRSA),2012,22.64
+IE,Ireland,MRSA,Meticillin (MRSA),2013,19.93
+IE,Ireland,MRSA,Meticillin (MRSA),2014,19.44
+IE,Ireland,MRSA,Meticillin (MRSA),2015,18.07
+IE,Ireland,MRSA,Meticillin (MRSA),2016,14.35
+IE,Ireland,MRSA,Meticillin (MRSA),2017,16.32
+IE,Ireland,MRSA,Meticillin (MRSA),2018,12.37
+IE,Ireland,MRSA,Meticillin (MRSA),2019,12.57
+IE,Ireland,MRSA,Meticillin (MRSA),2020,11.62
+IE,Ireland,MRSA,Meticillin (MRSA),2021,10.63
+IE,Ireland,MRSA,Meticillin (MRSA),2022,10.44
+IE,Ireland,MRSA,Meticillin (MRSA),2023,9.66
+IE,Ireland,MRSA,Meticillin (MRSA),2024,11.04
+IE,Ireland,MRSA,Meticillin (MRSA),2025,10.09
+IT,Italy,MRSA,Meticillin (MRSA),2000,44.26
+IT,Italy,MRSA,Meticillin (MRSA),2001,41.0
+IT,Italy,MRSA,Meticillin (MRSA),2002,38.2
+IT,Italy,MRSA,Meticillin (MRSA),2003,39.39
+IT,Italy,MRSA,Meticillin (MRSA),2004,39.79
+IT,Italy,MRSA,Meticillin (MRSA),2005,37.11
+IT,Italy,MRSA,Meticillin (MRSA),2006,38.5
+IT,Italy,MRSA,Meticillin (MRSA),2007,33.71
+IT,Italy,MRSA,Meticillin (MRSA),2008,33.66
+IT,Italy,MRSA,Meticillin (MRSA),2009,37.42
+IT,Italy,MRSA,Meticillin (MRSA),2010,36.52
+IT,Italy,MRSA,Meticillin (MRSA),2011,38.22
+IT,Italy,MRSA,Meticillin (MRSA),2012,35.21
+IT,Italy,MRSA,Meticillin (MRSA),2013,35.84
+IT,Italy,MRSA,Meticillin (MRSA),2014,33.55
+IT,Italy,MRSA,Meticillin (MRSA),2015,34.1
+IT,Italy,MRSA,Meticillin (MRSA),2016,33.58
+IT,Italy,MRSA,Meticillin (MRSA),2017,33.89
+IT,Italy,MRSA,Meticillin (MRSA),2018,33.98
+IT,Italy,MRSA,Meticillin (MRSA),2019,34.31
+IT,Italy,MRSA,Meticillin (MRSA),2020,33.54
+IT,Italy,MRSA,Meticillin (MRSA),2021,30.55
+IT,Italy,MRSA,Meticillin (MRSA),2022,29.94
+IT,Italy,MRSA,Meticillin (MRSA),2023,26.57
+IT,Italy,MRSA,Meticillin (MRSA),2024,25.7
+IT,Italy,MRSA,Meticillin (MRSA),2025,24.79
+LV,Latvia,MRSA,Meticillin (MRSA),2004,25.29
+LV,Latvia,MRSA,Meticillin (MRSA),2005,19.84
+LV,Latvia,MRSA,Meticillin (MRSA),2006,18.6
+LV,Latvia,MRSA,Meticillin (MRSA),2007,7.69
+LV,Latvia,MRSA,Meticillin (MRSA),2008,12.2
+LV,Latvia,MRSA,Meticillin (MRSA),2009,8.6
+LV,Latvia,MRSA,Meticillin (MRSA),2010,13.73
+LV,Latvia,MRSA,Meticillin (MRSA),2011,9.9
+LV,Latvia,MRSA,Meticillin (MRSA),2012,9.0
+LV,Latvia,MRSA,Meticillin (MRSA),2013,6.98
+LV,Latvia,MRSA,Meticillin (MRSA),2014,8.18
+LV,Latvia,MRSA,Meticillin (MRSA),2015,5.58
+LV,Latvia,MRSA,Meticillin (MRSA),2016,4.23
+LV,Latvia,MRSA,Meticillin (MRSA),2017,5.71
+LV,Latvia,MRSA,Meticillin (MRSA),2018,5.71
+LV,Latvia,MRSA,Meticillin (MRSA),2019,7.84
+LV,Latvia,MRSA,Meticillin (MRSA),2020,9.35
+LV,Latvia,MRSA,Meticillin (MRSA),2021,5.25
+LV,Latvia,MRSA,Meticillin (MRSA),2022,7.21
+LV,Latvia,MRSA,Meticillin (MRSA),2023,5.39
+LV,Latvia,MRSA,Meticillin (MRSA),2024,6.9
+LV,Latvia,MRSA,Meticillin (MRSA),2025,3.57
+LT,Lithuania,MRSA,Meticillin (MRSA),2006,11.98
+LT,Lithuania,MRSA,Meticillin (MRSA),2007,8.75
+LT,Lithuania,MRSA,Meticillin (MRSA),2008,10.79
+LT,Lithuania,MRSA,Meticillin (MRSA),2009,11.02
+LT,Lithuania,MRSA,Meticillin (MRSA),2010,14.12
+LT,Lithuania,MRSA,Meticillin (MRSA),2011,5.4
+LT,Lithuania,MRSA,Meticillin (MRSA),2012,8.67
+LT,Lithuania,MRSA,Meticillin (MRSA),2013,10.11
+LT,Lithuania,MRSA,Meticillin (MRSA),2014,7.31
+LT,Lithuania,MRSA,Meticillin (MRSA),2015,9.04
+LT,Lithuania,MRSA,Meticillin (MRSA),2016,11.53
+LT,Lithuania,MRSA,Meticillin (MRSA),2017,8.75
+LT,Lithuania,MRSA,Meticillin (MRSA),2018,8.39
+LT,Lithuania,MRSA,Meticillin (MRSA),2019,9.3
+LT,Lithuania,MRSA,Meticillin (MRSA),2020,9.8
+LT,Lithuania,MRSA,Meticillin (MRSA),2021,8.98
+LT,Lithuania,MRSA,Meticillin (MRSA),2022,9.42
+LT,Lithuania,MRSA,Meticillin (MRSA),2023,8.61
+LT,Lithuania,MRSA,Meticillin (MRSA),2024,10.01
+LT,Lithuania,MRSA,Meticillin (MRSA),2025,11.21
+LU,Luxembourg,MRSA,Meticillin (MRSA),2000,17.91
+LU,Luxembourg,MRSA,Meticillin (MRSA),2001,20.0
+LU,Luxembourg,MRSA,Meticillin (MRSA),2002,14.74
+LU,Luxembourg,MRSA,Meticillin (MRSA),2003,21.05
+LU,Luxembourg,MRSA,Meticillin (MRSA),2004,15.62
+LU,Luxembourg,MRSA,Meticillin (MRSA),2005,13.25
+LU,Luxembourg,MRSA,Meticillin (MRSA),2006,19.48
+LU,Luxembourg,MRSA,Meticillin (MRSA),2007,20.0
+LU,Luxembourg,MRSA,Meticillin (MRSA),2008,9.4
+LU,Luxembourg,MRSA,Meticillin (MRSA),2009,13.27
+LU,Luxembourg,MRSA,Meticillin (MRSA),2010,16.54
+LU,Luxembourg,MRSA,Meticillin (MRSA),2011,20.47
+LU,Luxembourg,MRSA,Meticillin (MRSA),2012,16.03
+LU,Luxembourg,MRSA,Meticillin (MRSA),2013,8.89
+LU,Luxembourg,MRSA,Meticillin (MRSA),2014,12.0
+LU,Luxembourg,MRSA,Meticillin (MRSA),2015,8.89
+LU,Luxembourg,MRSA,Meticillin (MRSA),2016,9.63
+LU,Luxembourg,MRSA,Meticillin (MRSA),2017,9.5
+LU,Luxembourg,MRSA,Meticillin (MRSA),2018,7.73
+LU,Luxembourg,MRSA,Meticillin (MRSA),2019,6.22
+LU,Luxembourg,MRSA,Meticillin (MRSA),2020,3.08
+LU,Luxembourg,MRSA,Meticillin (MRSA),2021,5.53
+LU,Luxembourg,MRSA,Meticillin (MRSA),2022,4.68
+LU,Luxembourg,MRSA,Meticillin (MRSA),2023,5.79
+LU,Luxembourg,MRSA,Meticillin (MRSA),2024,5.13
+LU,Luxembourg,MRSA,Meticillin (MRSA),2025,4.29
+MT,Malta,MRSA,Meticillin (MRSA),2000,35.53
+MT,Malta,MRSA,Meticillin (MRSA),2001,53.66
+MT,Malta,MRSA,Meticillin (MRSA),2002,42.53
+MT,Malta,MRSA,Meticillin (MRSA),2003,42.98
+MT,Malta,MRSA,Meticillin (MRSA),2004,56.38
+MT,Malta,MRSA,Meticillin (MRSA),2005,55.84
+MT,Malta,MRSA,Meticillin (MRSA),2006,66.67
+MT,Malta,MRSA,Meticillin (MRSA),2007,52.38
+MT,Malta,MRSA,Meticillin (MRSA),2008,51.85
+MT,Malta,MRSA,Meticillin (MRSA),2009,58.82
+MT,Malta,MRSA,Meticillin (MRSA),2010,48.15
+MT,Malta,MRSA,Meticillin (MRSA),2011,49.23
+MT,Malta,MRSA,Meticillin (MRSA),2012,47.52
+MT,Malta,MRSA,Meticillin (MRSA),2013,53.77
+MT,Malta,MRSA,Meticillin (MRSA),2014,43.59
+MT,Malta,MRSA,Meticillin (MRSA),2015,49.43
+MT,Malta,MRSA,Meticillin (MRSA),2016,37.11
+MT,Malta,MRSA,Meticillin (MRSA),2017,42.11
+MT,Malta,MRSA,Meticillin (MRSA),2018,36.36
+MT,Malta,MRSA,Meticillin (MRSA),2019,24.0
+MT,Malta,MRSA,Meticillin (MRSA),2020,19.57
+MT,Malta,MRSA,Meticillin (MRSA),2021,20.39
+MT,Malta,MRSA,Meticillin (MRSA),2022,18.97
+MT,Malta,MRSA,Meticillin (MRSA),2023,14.55
+MT,Malta,MRSA,Meticillin (MRSA),2024,15.24
+MT,Malta,MRSA,Meticillin (MRSA),2025,14.58
+NL,Netherlands,MRSA,Meticillin (MRSA),2000,0.27
+NL,Netherlands,MRSA,Meticillin (MRSA),2001,0.57
+NL,Netherlands,MRSA,Meticillin (MRSA),2002,0.94
+NL,Netherlands,MRSA,Meticillin (MRSA),2003,1.03
+NL,Netherlands,MRSA,Meticillin (MRSA),2004,1.12
+NL,Netherlands,MRSA,Meticillin (MRSA),2005,0.92
+NL,Netherlands,MRSA,Meticillin (MRSA),2006,1.1
+NL,Netherlands,MRSA,Meticillin (MRSA),2007,1.43
+NL,Netherlands,MRSA,Meticillin (MRSA),2008,1.67
+NL,Netherlands,MRSA,Meticillin (MRSA),2009,1.26
+NL,Netherlands,MRSA,Meticillin (MRSA),2010,1.44
+NL,Netherlands,MRSA,Meticillin (MRSA),2011,1.63
+NL,Netherlands,MRSA,Meticillin (MRSA),2012,1.27
+NL,Netherlands,MRSA,Meticillin (MRSA),2013,1.5
+NL,Netherlands,MRSA,Meticillin (MRSA),2014,0.93
+NL,Netherlands,MRSA,Meticillin (MRSA),2015,1.55
+NL,Netherlands,MRSA,Meticillin (MRSA),2016,1.18
+NL,Netherlands,MRSA,Meticillin (MRSA),2017,1.58
+NL,Netherlands,MRSA,Meticillin (MRSA),2018,1.21
+NL,Netherlands,MRSA,Meticillin (MRSA),2019,1.49
+NL,Netherlands,MRSA,Meticillin (MRSA),2020,1.49
+NL,Netherlands,MRSA,Meticillin (MRSA),2021,1.52
+NL,Netherlands,MRSA,Meticillin (MRSA),2022,1.88
+NL,Netherlands,MRSA,Meticillin (MRSA),2023,1.77
+NL,Netherlands,MRSA,Meticillin (MRSA),2024,2.02
+NL,Netherlands,MRSA,Meticillin (MRSA),2025,2.18
+NO,Norway,MRSA,Meticillin (MRSA),2000,0.0
+NO,Norway,MRSA,Meticillin (MRSA),2001,0.49
+NO,Norway,MRSA,Meticillin (MRSA),2002,0.2
+NO,Norway,MRSA,Meticillin (MRSA),2003,0.4
+NO,Norway,MRSA,Meticillin (MRSA),2004,0.78
+NO,Norway,MRSA,Meticillin (MRSA),2005,0.54
+NO,Norway,MRSA,Meticillin (MRSA),2006,0.14
+NO,Norway,MRSA,Meticillin (MRSA),2007,0.13
+NO,Norway,MRSA,Meticillin (MRSA),2008,0.6
+NO,Norway,MRSA,Meticillin (MRSA),2009,0.33
+NO,Norway,MRSA,Meticillin (MRSA),2010,0.67
+NO,Norway,MRSA,Meticillin (MRSA),2011,0.33
+NO,Norway,MRSA,Meticillin (MRSA),2012,1.26
+NO,Norway,MRSA,Meticillin (MRSA),2013,0.68
+NO,Norway,MRSA,Meticillin (MRSA),2014,1.04
+NO,Norway,MRSA,Meticillin (MRSA),2015,1.1
+NO,Norway,MRSA,Meticillin (MRSA),2016,1.17
+NO,Norway,MRSA,Meticillin (MRSA),2017,0.96
+NO,Norway,MRSA,Meticillin (MRSA),2018,0.9
+NO,Norway,MRSA,Meticillin (MRSA),2019,1.03
+NO,Norway,MRSA,Meticillin (MRSA),2020,1.61
+NO,Norway,MRSA,Meticillin (MRSA),2021,0.92
+NO,Norway,MRSA,Meticillin (MRSA),2022,1.11
+NO,Norway,MRSA,Meticillin (MRSA),2023,1.93
+NO,Norway,MRSA,Meticillin (MRSA),2024,2.06
+NO,Norway,MRSA,Meticillin (MRSA),2025,1.83
+PL,Poland,MRSA,Meticillin (MRSA),2001,15.23
+PL,Poland,MRSA,Meticillin (MRSA),2002,23.12
+PL,Poland,MRSA,Meticillin (MRSA),2003,19.28
+PL,Poland,MRSA,Meticillin (MRSA),2004,19.47
+PL,Poland,MRSA,Meticillin (MRSA),2005,24.24
+PL,Poland,MRSA,Meticillin (MRSA),2006,19.54
+PL,Poland,MRSA,Meticillin (MRSA),2007,15.14
+PL,Poland,MRSA,Meticillin (MRSA),2008,12.12
+PL,Poland,MRSA,Meticillin (MRSA),2009,20.16
+PL,Poland,MRSA,Meticillin (MRSA),2010,13.12
+PL,Poland,MRSA,Meticillin (MRSA),2011,19.42
+PL,Poland,MRSA,Meticillin (MRSA),2012,14.43
+PL,Poland,MRSA,Meticillin (MRSA),2013,16.02
+PL,Poland,MRSA,Meticillin (MRSA),2014,22.24
+PL,Poland,MRSA,Meticillin (MRSA),2015,15.76
+PL,Poland,MRSA,Meticillin (MRSA),2016,16.37
+PL,Poland,MRSA,Meticillin (MRSA),2017,15.18
+PL,Poland,MRSA,Meticillin (MRSA),2018,15.88
+PL,Poland,MRSA,Meticillin (MRSA),2019,14.94
+PL,Poland,MRSA,Meticillin (MRSA),2020,13.84
+PL,Poland,MRSA,Meticillin (MRSA),2021,16.47
+PL,Poland,MRSA,Meticillin (MRSA),2022,13.25
+PL,Poland,MRSA,Meticillin (MRSA),2023,13.93
+PL,Poland,MRSA,Meticillin (MRSA),2024,10.75
+PL,Poland,MRSA,Meticillin (MRSA),2025,13.55
+PT,Portugal,MRSA,Meticillin (MRSA),2000,25.17
+PT,Portugal,MRSA,Meticillin (MRSA),2001,31.86
+PT,Portugal,MRSA,Meticillin (MRSA),2002,38.12
+PT,Portugal,MRSA,Meticillin (MRSA),2003,45.5
+PT,Portugal,MRSA,Meticillin (MRSA),2004,46.1
+PT,Portugal,MRSA,Meticillin (MRSA),2005,46.57
+PT,Portugal,MRSA,Meticillin (MRSA),2006,48.09
+PT,Portugal,MRSA,Meticillin (MRSA),2007,48.37
+PT,Portugal,MRSA,Meticillin (MRSA),2008,52.89
+PT,Portugal,MRSA,Meticillin (MRSA),2009,48.85
+PT,Portugal,MRSA,Meticillin (MRSA),2010,53.34
+PT,Portugal,MRSA,Meticillin (MRSA),2011,54.55
+PT,Portugal,MRSA,Meticillin (MRSA),2012,53.81
+PT,Portugal,MRSA,Meticillin (MRSA),2013,46.78
+PT,Portugal,MRSA,Meticillin (MRSA),2014,47.45
+PT,Portugal,MRSA,Meticillin (MRSA),2015,46.84
+PT,Portugal,MRSA,Meticillin (MRSA),2016,43.57
+PT,Portugal,MRSA,Meticillin (MRSA),2017,39.16
+PT,Portugal,MRSA,Meticillin (MRSA),2018,38.08
+PT,Portugal,MRSA,Meticillin (MRSA),2019,34.76
+PT,Portugal,MRSA,Meticillin (MRSA),2020,29.68
+PT,Portugal,MRSA,Meticillin (MRSA),2021,25.13
+PT,Portugal,MRSA,Meticillin (MRSA),2022,24.97
+PT,Portugal,MRSA,Meticillin (MRSA),2023,23.08
+PT,Portugal,MRSA,Meticillin (MRSA),2024,23.81
+PT,Portugal,MRSA,Meticillin (MRSA),2025,24.55
+RO,Romania,MRSA,Meticillin (MRSA),2002,36.25
+RO,Romania,MRSA,Meticillin (MRSA),2003,45.88
+RO,Romania,MRSA,Meticillin (MRSA),2004,70.53
+RO,Romania,MRSA,Meticillin (MRSA),2005,58.7
+RO,Romania,MRSA,Meticillin (MRSA),2006,53.01
+RO,Romania,MRSA,Meticillin (MRSA),2007,26.19
+RO,Romania,MRSA,Meticillin (MRSA),2008,33.33
+RO,Romania,MRSA,Meticillin (MRSA),2009,34.04
+RO,Romania,MRSA,Meticillin (MRSA),2010,39.13
+RO,Romania,MRSA,Meticillin (MRSA),2011,49.54
+RO,Romania,MRSA,Meticillin (MRSA),2012,53.28
+RO,Romania,MRSA,Meticillin (MRSA),2013,64.49
+RO,Romania,MRSA,Meticillin (MRSA),2014,56.01
+RO,Romania,MRSA,Meticillin (MRSA),2015,57.24
+RO,Romania,MRSA,Meticillin (MRSA),2016,50.73
+RO,Romania,MRSA,Meticillin (MRSA),2017,45.36
+RO,Romania,MRSA,Meticillin (MRSA),2018,43.0
+RO,Romania,MRSA,Meticillin (MRSA),2019,46.88
+RO,Romania,MRSA,Meticillin (MRSA),2020,47.29
+RO,Romania,MRSA,Meticillin (MRSA),2021,41.0
+RO,Romania,MRSA,Meticillin (MRSA),2022,38.93
+RO,Romania,MRSA,Meticillin (MRSA),2023,39.39
+RO,Romania,MRSA,Meticillin (MRSA),2024,36.83
+RO,Romania,MRSA,Meticillin (MRSA),2025,34.05
+SK,Slovakia,MRSA,Meticillin (MRSA),2001,5.41
+SK,Slovakia,MRSA,Meticillin (MRSA),2002,8.49
+SK,Slovakia,MRSA,Meticillin (MRSA),2003,12.64
+SK,Slovakia,MRSA,Meticillin (MRSA),2004,19.03
+SK,Slovakia,MRSA,Meticillin (MRSA),2005,19.05
+SK,Slovakia,MRSA,Meticillin (MRSA),2011,26.15
+SK,Slovakia,MRSA,Meticillin (MRSA),2012,24.05
+SK,Slovakia,MRSA,Meticillin (MRSA),2013,48.37
+SK,Slovakia,MRSA,Meticillin (MRSA),2014,27.97
+SK,Slovakia,MRSA,Meticillin (MRSA),2015,28.13
+SK,Slovakia,MRSA,Meticillin (MRSA),2016,27.15
+SK,Slovakia,MRSA,Meticillin (MRSA),2017,29.2
+SK,Slovakia,MRSA,Meticillin (MRSA),2018,26.56
+SK,Slovakia,MRSA,Meticillin (MRSA),2019,27.18
+SK,Slovakia,MRSA,Meticillin (MRSA),2020,24.81
+SK,Slovakia,MRSA,Meticillin (MRSA),2021,22.34
+SK,Slovakia,MRSA,Meticillin (MRSA),2022,17.99
+SK,Slovakia,MRSA,Meticillin (MRSA),2023,14.42
+SK,Slovakia,MRSA,Meticillin (MRSA),2024,19.26
+SK,Slovakia,MRSA,Meticillin (MRSA),2025,17.71
+SI,Slovenia,MRSA,Meticillin (MRSA),2000,21.05
+SI,Slovenia,MRSA,Meticillin (MRSA),2001,19.63
+SI,Slovenia,MRSA,Meticillin (MRSA),2002,13.77
+SI,Slovenia,MRSA,Meticillin (MRSA),2003,12.71
+SI,Slovenia,MRSA,Meticillin (MRSA),2004,11.82
+SI,Slovenia,MRSA,Meticillin (MRSA),2005,10.32
+SI,Slovenia,MRSA,Meticillin (MRSA),2006,7.12
+SI,Slovenia,MRSA,Meticillin (MRSA),2007,8.29
+SI,Slovenia,MRSA,Meticillin (MRSA),2008,7.18
+SI,Slovenia,MRSA,Meticillin (MRSA),2009,9.55
+SI,Slovenia,MRSA,Meticillin (MRSA),2010,11.97
+SI,Slovenia,MRSA,Meticillin (MRSA),2011,7.11
+SI,Slovenia,MRSA,Meticillin (MRSA),2012,10.34
+SI,Slovenia,MRSA,Meticillin (MRSA),2013,9.03
+SI,Slovenia,MRSA,Meticillin (MRSA),2014,13.13
+SI,Slovenia,MRSA,Meticillin (MRSA),2015,9.16
+SI,Slovenia,MRSA,Meticillin (MRSA),2016,11.05
+SI,Slovenia,MRSA,Meticillin (MRSA),2017,9.03
+SI,Slovenia,MRSA,Meticillin (MRSA),2018,11.72
+SI,Slovenia,MRSA,Meticillin (MRSA),2019,7.47
+SI,Slovenia,MRSA,Meticillin (MRSA),2020,9.85
+SI,Slovenia,MRSA,Meticillin (MRSA),2021,7.81
+SI,Slovenia,MRSA,Meticillin (MRSA),2022,8.7
+SI,Slovenia,MRSA,Meticillin (MRSA),2023,10.1
+SI,Slovenia,MRSA,Meticillin (MRSA),2024,8.7
+SI,Slovenia,MRSA,Meticillin (MRSA),2025,11.06
+ES,Spain,MRSA,Meticillin (MRSA),2000,29.4
+ES,Spain,MRSA,Meticillin (MRSA),2001,24.45
+ES,Spain,MRSA,Meticillin (MRSA),2002,23.33
+ES,Spain,MRSA,Meticillin (MRSA),2003,24.01
+ES,Spain,MRSA,Meticillin (MRSA),2004,26.28
+ES,Spain,MRSA,Meticillin (MRSA),2005,27.08
+ES,Spain,MRSA,Meticillin (MRSA),2006,25.22
+ES,Spain,MRSA,Meticillin (MRSA),2007,25.46
+ES,Spain,MRSA,Meticillin (MRSA),2008,26.69
+ES,Spain,MRSA,Meticillin (MRSA),2009,25.95
+ES,Spain,MRSA,Meticillin (MRSA),2010,25.33
+ES,Spain,MRSA,Meticillin (MRSA),2011,22.46
+ES,Spain,MRSA,Meticillin (MRSA),2012,24.28
+ES,Spain,MRSA,Meticillin (MRSA),2013,22.57
+ES,Spain,MRSA,Meticillin (MRSA),2014,21.67
+ES,Spain,MRSA,Meticillin (MRSA),2015,25.29
+ES,Spain,MRSA,Meticillin (MRSA),2016,25.81
+ES,Spain,MRSA,Meticillin (MRSA),2017,25.22
+ES,Spain,MRSA,Meticillin (MRSA),2018,24.67
+ES,Spain,MRSA,Meticillin (MRSA),2019,23.31
+ES,Spain,MRSA,Meticillin (MRSA),2020,23.09
+ES,Spain,MRSA,Meticillin (MRSA),2021,27.37
+ES,Spain,MRSA,Meticillin (MRSA),2022,25.71
+ES,Spain,MRSA,Meticillin (MRSA),2023,25.88
+ES,Spain,MRSA,Meticillin (MRSA),2024,23.69
+ES,Spain,MRSA,Meticillin (MRSA),2025,23.35
+SE,Sweden,MRSA,Meticillin (MRSA),2000,0.61
+SE,Sweden,MRSA,Meticillin (MRSA),2001,0.86
+SE,Sweden,MRSA,Meticillin (MRSA),2002,0.65
+SE,Sweden,MRSA,Meticillin (MRSA),2003,0.86
+SE,Sweden,MRSA,Meticillin (MRSA),2004,0.73
+SE,Sweden,MRSA,Meticillin (MRSA),2005,1.01
+SE,Sweden,MRSA,Meticillin (MRSA),2006,0.86
+SE,Sweden,MRSA,Meticillin (MRSA),2007,0.51
+SE,Sweden,MRSA,Meticillin (MRSA),2008,0.66
+SE,Sweden,MRSA,Meticillin (MRSA),2010,0.53
+SE,Sweden,MRSA,Meticillin (MRSA),2011,0.81
+SE,Sweden,MRSA,Meticillin (MRSA),2012,0.74
+SE,Sweden,MRSA,Meticillin (MRSA),2013,1.07
+SE,Sweden,MRSA,Meticillin (MRSA),2014,0.95
+SE,Sweden,MRSA,Meticillin (MRSA),2015,0.8
+SE,Sweden,MRSA,Meticillin (MRSA),2016,2.26
+SE,Sweden,MRSA,Meticillin (MRSA),2017,1.16
+SE,Sweden,MRSA,Meticillin (MRSA),2018,1.92
+SE,Sweden,MRSA,Meticillin (MRSA),2019,1.8
+SE,Sweden,MRSA,Meticillin (MRSA),2020,2.33
+SE,Sweden,MRSA,Meticillin (MRSA),2021,1.97
+SE,Sweden,MRSA,Meticillin (MRSA),2022,1.85
+SE,Sweden,MRSA,Meticillin (MRSA),2023,2.12
+SE,Sweden,MRSA,Meticillin (MRSA),2024,2.6
+SE,Sweden,MRSA,Meticillin (MRSA),2025,2.4
+UK,United Kingdom,MRSA,Meticillin (MRSA),2000,41.44
+UK,United Kingdom,MRSA,Meticillin (MRSA),2001,47.26
+UK,United Kingdom,MRSA,Meticillin (MRSA),2002,46.66
+UK,United Kingdom,MRSA,Meticillin (MRSA),2003,44.02
+UK,United Kingdom,MRSA,Meticillin (MRSA),2004,43.65
+UK,United Kingdom,MRSA,Meticillin (MRSA),2005,42.95
+UK,United Kingdom,MRSA,Meticillin (MRSA),2006,42.08
+UK,United Kingdom,MRSA,Meticillin (MRSA),2007,35.61
+UK,United Kingdom,MRSA,Meticillin (MRSA),2008,30.72
+UK,United Kingdom,MRSA,Meticillin (MRSA),2009,27.82
+UK,United Kingdom,MRSA,Meticillin (MRSA),2010,21.57
+UK,United Kingdom,MRSA,Meticillin (MRSA),2011,13.64
+UK,United Kingdom,MRSA,Meticillin (MRSA),2012,14.16
+UK,United Kingdom,MRSA,Meticillin (MRSA),2013,13.89
+UK,United Kingdom,MRSA,Meticillin (MRSA),2014,11.29
+UK,United Kingdom,MRSA,Meticillin (MRSA),2015,10.74
+UK,United Kingdom,MRSA,Meticillin (MRSA),2016,6.73
+UK,United Kingdom,MRSA,Meticillin (MRSA),2017,6.92
+UK,United Kingdom,MRSA,Meticillin (MRSA),2018,7.25
+UK,United Kingdom,MRSA,Meticillin (MRSA),2019,5.88
