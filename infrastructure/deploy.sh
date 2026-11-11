@@ -16,7 +16,7 @@ gcloud run deploy $SERVICE_NAME \
   --port 8080 \
   --memory 2Gi \
   --cpu 2 \
-  --min-instances 1 \
+  --min-instances 0 \
   --max-instances 10 \
   --set-env-vars GCP_PROJECT_ID=$PROJECT_ID,GCP_LOCATION=$REGION,PHARMAGUARD_EDGE_NODE=edge-india-south-01 \
   --project $PROJECT_ID

@@ -41,7 +41,7 @@ class PatientCase(BaseModel):
 
 class PredictRequest(BaseModel):
     """Input schema for /predict endpoint."""
-    country: str = Field(..., description="Country name for WHO GLASS lookup")
+    country: str = Field(..., description="Country name or ISO code (EU/EEA countries: ECDC data; India: ICMR AMRSN data)")
     pathogen: str = Field(..., description="Pathogen to forecast resistance for")
     antibiotic: Optional[str] = Field(default=None, description="Specific antibiotic to forecast")
     horizon_months: int = Field(default=6, ge=1, le=24, description="Forecast horizon in months")

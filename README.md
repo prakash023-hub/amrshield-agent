@@ -35,9 +35,9 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 │                      └──────┬───────┘    │  Experiments/       │  │
 │  ┌──────────────┐           │            │  Annotations        │  │
 │  │ Surveillance │    ┌──────▼───────┐    └─────────────────────┘  │
-│  │     Map      │    │ ECDC EARS-Net│                             │
-│  │  Dashboard   │    │ + DDInter +  │    Vertex AI Gemini +      │
-│  └──────────────┘    │  synthetic   │    Cloud Run               │
+│  │     Map      │    │ ICMR AMRSN + │                             │
+│  │  Dashboard   │    │ECDC + DDInter│    Vertex AI Gemini +      │
+│  └──────────────┘    │    data      │    Cloud Run               │
 │                      └──────────────┘                             │
 │  ┌──────────────┐                                                  │
 │  │ Audit Console│◀─── Real-time Phoenix traces streaming ─────────│
@@ -182,7 +182,7 @@ amrshield-agent/
 │   │   ├── tools.py                 ← AWaRe lookup, Cockcroft-Gault CrCl, interactions, allergy, renal dosing, antibiogram
 │   │   └── physician_ready.py       ← Physician-ready order formatting
 │   ├── prediction_agent/
-│   │   └── agent.py                 ← Damped Holt forecast on real ECDC data (synthetic fallback)
+│   │   └── agent.py                 ← Damped Holt forecast on real ECDC (Europe) and ICMR (India) data
 │   └── audit_agent/
 │       └── agent.py                 ← Self-Audit Agent (MCP checks + Gemini review)
 ├── mcp_tools/
@@ -197,6 +197,7 @@ amrshield-agent/
 ├── dashboards/                      ← Standalone Streamlit apps (one per dashboard)
 ├── agent_builder/amrshield_agent.py ← ADK agent definition (not used by the running app)
 ├── data/
+│   ├── antibiogram/                 ← ICMR AMRSN 2022 antibiogram + India trends (real)
 │   ├── surveillance/                ← ECDC EARS-Net resistance data (real)
 │   └── interactions/                ← DDInter antibiotic pairs (CC BY-NC-SA 4.0)
 ├── scripts/                         ← Rebuild the data files from the raw downloads

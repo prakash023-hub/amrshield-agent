@@ -97,10 +97,11 @@ with col4:
 - **60+ antibiotics** in WHO AWaRe database  
 - **5 clinical trap cases** in Phoenix evaluation dataset  
 - **Cockcroft-Gault CrCl** calculator built-in  
-- **Drug interaction checker** for 40+ combinations  
-- **Synthetic antibiogram** (replace with real hospital data)  
+- **Drug interaction checker** — 7,558 antibiotic pairs (DDInter) + curated table  
+- **Real Indian antibiogram** — ICMR AMRSN 2022 national surveillance  
+- **Resistance forecasting** on real ECDC (Europe) and ICMR (India) data  
 - **IDSA / WHO / CDC** guideline citations  
     """)
 
 st.divider()
-st.caption("AMRShield v1.0 · Built by Prakash Raj K, M.Pharm · Sri Balaji Vidyapeeth, Puducherry")
+st.caption("AMRShield · Built by Prakash Raj K, M.Pharm · Research prototype, not for clinical use")
