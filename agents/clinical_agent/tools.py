@@ -3,6 +3,11 @@ AMRShield - Clinical Agent Tools
 Reusable from AMS-Gemma4 project — ported and expanded.
 """
 
+import csv
+import json
+import re
+from functools import lru_cache
+from pathlib import Path
 from typing import Optional
 
 
@@ -250,24 +255,72 @@ def _med_matches_interactor(med_lower: str, interacting_drug: str) -> bool:
     return False
 
 
+# DDInter subset (CC BY-NC-SA 4.0, non-commercial) — optional data file.
+# Built by scripts/build_ddinter_subset.py; if absent, only the curated table is used.
+_DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "interactions"
+DDINTER_PATH = _DATA_DIR / "ddinter_antibiotic_pairs.csv"
+DDINTER_META = _DATA_DIR / "ddinter_metadata.json"
+DDINTER_SEVERITY = {"Major": "HIGH", "Moderate": "MEDIUM", "Minor": "LOW", "Unknown": "UNKNOWN"}
+_SEVERITY_RANK = {"HIGH": 3, "UNKNOWN": 2, "MEDIUM": 2, "LOW": 1}
+ATC_NAMES = {"A": "alimentary/metabolism", "B": "blood", "C": "cardiovascular", "D": "dermatological",
+             "G": "genito-urinary/sex hormones", "H": "systemic hormonal", "J": "anti-infective",
+             "L": "antineoplastic/immunomodulating", "M": "musculo-skeletal", "N": "nervous system",
+             "P": "antiparasitic", "R": "respiratory", "S": "sensory organ", "V": "various"}
+
+
+@lru_cache(maxsize=1)
+def _ddinter_pairs() -> dict:
+    """{antibiotic: {other_drug_lower: (other_drug, level)}} from the DDInter subset."""
+    pairs: dict = {}
+    if not DDINTER_PATH.exists():
+        return pairs
+    with open(DDINTER_PATH, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            pairs.setdefault(row["antibiotic"], {})[row["other_drug"].lower()] = (row["other_drug"], row["level"])
+    return pairs
+
+
+@lru_cache(maxsize=1)
+def _ddinter_missing_classes() -> list:
+    """ATC groups whose DDInter file was not included (their pairs may be missing)."""
+    if not DDINTER_META.exists():
+        return []
+    included = set(json.loads(DDINTER_META.read_text())["atc_files_included"])
+    return [ATC_NAMES[c] for c in ATC_NAMES if c not in included]
+
+
+def _ddinter_match(med_lower: str, table: dict):
+    """Match a free-text medication ("Warfarin 5 mg") to a DDInter drug name."""
+    if med_lower in table:
+        return table[med_lower]
+    for name, entry in table.items():
+        if re.search(r"\b" + re.escape(name) + r"\b", med_lower):
+            return entry
+    return None
+
+
 def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
     """
     Check for drug-drug interactions between proposed antibiotic and current meds.
+
+    Two deterministic sources: a hand-curated table (with clinical-effect text)
+    and the DDInter antibiotic subset (severity only). The more severe finding
+    wins; curated text is kept when both match.
 
     Args:
         antibiotic: Proposed antibiotic (generic name)
         current_medications: List of current medications
 
     Returns:
-        Dict with interaction list and severity summary
+        Dict with interaction list, severity summary and coverage note
     """
     antibiotic_key = antibiotic.lower().strip()
-    interactions_found = []
+    curated = INTERACTION_DB.get(antibiotic_key)
+    ddinter = _ddinter_pairs().get(antibiotic_key)
 
-    # An antibiotic missing from the curated table was NOT checked. Saying
-    # "no interactions" here would be false reassurance (e.g. clarithromycin,
-    # co-trimoxazole + warfarin), so report it as not screened instead.
-    if antibiotic_key not in INTERACTION_DB:
+    # An antibiotic missing from both sources was NOT checked. Saying
+    # "no interactions" here would be false reassurance, so report it as not screened.
+    if curated is None and ddinter is None:
         return {
             "antibiotic_checked": antibiotic,
             "medications_screened": current_medications,
@@ -281,30 +334,49 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
             ),
         }
 
-    drug_interactions = INTERACTION_DB[antibiotic_key]
-
+    interactions_found = []
     for med in current_medications:
         med_lower = str(med).lower().strip()
-        for interacting_drug, details in drug_interactions.items():
+        hit = None
+        for interacting_drug, details in (curated or {}).items():
             if _med_matches_interactor(med_lower, interacting_drug):
-                interactions_found.append({
-                    "interacting_drug": med,
-                    "severity": details["severity"],
-                    "clinical_effect": details["effect"],
-                })
-    
-    has_critical = any(i["severity"] == "HIGH" for i in interactions_found)
-    
+                hit = {"interacting_drug": med, "severity": details["severity"],
+                       "clinical_effect": details["effect"], "source": "curated"}
+                break
+        dd = _ddinter_match(med_lower, ddinter) if ddinter else None
+        if dd:
+            dd_sev = DDINTER_SEVERITY.get(dd[1], "UNKNOWN")
+            if hit is None:
+                effect = (f"DDInter: {dd[1].lower()} interaction with {dd[0]} — check mechanism and management"
+                          if dd[1] != "Unknown" else
+                          f"DDInter: interaction with {dd[0]} reported, severity not graded — review")
+                hit = {"interacting_drug": med, "severity": dd_sev, "clinical_effect": effect, "source": "DDInter"}
+            elif _SEVERITY_RANK[dd_sev] > _SEVERITY_RANK.get(hit["severity"], 0):
+                hit["severity"] = dd_sev
+                hit["source"] = "curated + DDInter"
+        if hit:
+            interactions_found.append(hit)
+
+    requires_review = any(i["severity"] in ("HIGH", "UNKNOWN") for i in interactions_found)
+    missing = _ddinter_missing_classes() if ddinter else []
+    coverage_note = (
+        f"Co-medications in these drug classes are only partly covered: {', '.join(missing)}."
+        if missing else ("Curated table only (DDInter data not installed)." if not ddinter else "")
+    )
+
     return {
         "antibiotic_checked": antibiotic,
         "medications_screened": current_medications,
         "screening_status": "SCREENED",
+        "sources": [x for x, used in (("curated", curated), ("DDInter", ddinter)) if used],
         "interactions_found": interactions_found,
         "interaction_count": len(interactions_found),
-        "requires_review": has_critical,
+        "requires_review": requires_review,
+        "coverage_note": coverage_note,
         "summary": (
             f"⚠️ {len(interactions_found)} interaction(s) found — review before prescribing"
-            if interactions_found else "✅ No significant interactions detected"
+            if interactions_found else
+            "✅ No interactions found in the screened sources" + (f" — {coverage_note}" if coverage_note else "")
         ),
     }
 

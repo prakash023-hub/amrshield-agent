@@ -1,0 +1,16 @@
+{
+  "source": "DDInter, https://ddinter.scbdd.com",
+  "citation": "Xiong G. et al. DDInter: an online drug-drug interaction database. Nucleic Acids Res. 2022;50(D1):D1200-D1207",
+  "licence": "CC BY-NC-SA 4.0 (non-commercial)",
+  "atc_files_included": [
+    "A",
+    "B",
+    "D",
+    "H",
+    "L",
+    "P",
+    "R",
+    "V"
+  ],
+  "rows": 7558
+}

@@ -101,7 +101,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 | **Hosting** | Google Cloud Run |
 | **Dashboards** | Streamlit (4 apps) |
 | **Database** | Cloud Firestore (patient cases, audit logs) |
-| **Data Sources** | Real ECDC EARS-Net resistance data (forecasting); synthetic antibiogram, patient cases and non-EU series |
+| **Data Sources** | Real ECDC EARS-Net resistance data (forecasting); DDInter drug-drug interactions; synthetic antibiogram, patient cases and non-EU series |
 | **Forecasting** | Damped-trend Holt baseline (NumPy), backtested against a naive forecast |
 | **Testing** | pytest (offline unit tests for deterministic components) |
 
@@ -224,7 +224,8 @@ AMRShield has **not** been evaluated on real patients or in a hospital, so no ou
 
 - **Mostly synthetic clinical data** — the antibiogram and patient cases are synthetic, and resistance series outside the EU/EEA are synthetic. This protects privacy, but there is **no clinical validation**.
 - **Forecast is a baseline** — on real ECDC data it only ties the naive forecast; ECDC data is European, so it does not represent Indian resistance levels.
-- **Drug-interaction table is small** (7 antibiotics); other antibiotics are reported as **NOT_SCREENED**, never as safe.
+- **Drug-interaction coverage is partial** — 7,558 antibiotic pairs from DDInter plus a curated table, but co-medications in some drug classes (cardiovascular, nervous system, hormonal, anti-infective) are only partly covered, and this is stated in every result. Antibiotics in neither source are reported as **NOT_SCREENED**, never as safe.
+- **DDInter data is non-commercial (CC BY-NC-SA 4.0)** — any commercial deployment must replace it with a commercially licensed interaction source.
 - **Grounding check is rule-based** — it verifies specific claim types, not free-text reasoning.
 - **Small evaluation set** — 5 synthetic cases; a larger, clinician-labelled set is needed before any accuracy figure can be reported.
 - Dashboards display synthetic demo KPIs where no live data source exists.
@@ -234,6 +235,7 @@ AMRShield has **not** been evaluated on real patients or in a hospital, so no ou
 ## 📚 Data Sources & Attribution
 
 - **ECDC Surveillance Atlas of Infectious Diseases** (EARS-Net), indicator *R - resistant isolates, percentage*, 2000–2025, accessed November 2026. Source: European Centre for Disease Prevention and Control, https://atlas.ecdc.europa.eu. Tidy file: `data/surveillance/ecdc_ears_net_resistance.csv`, rebuilt from the raw exports with `python scripts/build_ecdc_dataset.py <exports...>`.
+- **DDInter** drug-drug interaction database — Xiong G. et al., *Nucleic Acids Res.* 2022;50(D1):D1200–D1207, https://ddinter.scbdd.com. Licensed **CC BY-NC-SA 4.0**: the derived file `data/interactions/ddinter_antibiotic_pairs.csv` (7,558 antibiotic pairs, built with `scripts/build_ddinter_subset.py`) is shared under the same non-commercial licence and is **not** covered by this repository's MIT licence.
 - **WHO AWaRe classification** (antibiotic tiers).
 
 ---

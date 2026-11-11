@@ -68,8 +68,8 @@ def test_linezolid_plus_ssri_name_is_flagged():
 
 
 def test_uncovered_antibiotic_is_not_screened_not_safe():
-    # clarithromycin is not in the table; must never report "no interactions".
-    r = check_drug_interactions("clarithromycin", ["warfarin"])
+    # temocillin is in neither source; must never report "no interactions".
+    r = check_drug_interactions("temocillin", ["warfarin"])
     assert r["screening_status"] == "NOT_SCREENED"
     assert r["requires_review"] is True
     assert "No significant interactions" not in r["summary"]
@@ -96,3 +96,33 @@ def test_known_antibiotic_still_resolves():
 def test_missing_site_is_warned_not_silently_swapped():
     r = query_local_antibiogram("E. coli", "pneumonia")  # E. coli has no pneumonia entry
     assert "site_warning" in r
+
+
+# ── DDInter subset ───────────────────────────────────────────────────
+
+def test_ddinter_catches_clarithromycin_warfarin():
+    # Previously NOT_SCREENED; DDInter grades this pair Major.
+    r = check_drug_interactions("clarithromycin", ["Warfarin 5 mg"])
+    assert r["screening_status"] == "SCREENED"
+    assert r["interactions_found"][0]["severity"] == "HIGH"
+    assert r["interactions_found"][0]["source"] == "DDInter"
+    assert r["requires_review"] is True
+
+
+def test_combination_antibiotic_uses_components():
+    r = check_drug_interactions("co-trimoxazole", ["warfarin"])
+    assert r["screening_status"] == "SCREENED"
+    assert r["interaction_count"] == 1
+
+
+def test_curated_text_kept_when_both_sources_match():
+    r = check_drug_interactions("ciprofloxacin", ["warfarin"])
+    hit = r["interactions_found"][0]
+    assert "INR" in hit["clinical_effect"]
+    assert hit["severity"] == "HIGH"
+
+
+def test_no_hit_summary_states_partial_coverage():
+    r = check_drug_interactions("azithromycin", ["paracetamol"])
+    assert r["interaction_count"] == 0
+    assert "cardiovascular" in r["coverage_note"]
