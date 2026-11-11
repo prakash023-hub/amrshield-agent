@@ -133,9 +133,15 @@ async def antibiogram_summary():
     """
     Local antibiogram summary — used by Stewardship Admin dashboard.
     """
-    from agents.clinical_agent.tools import SYNTHETIC_ANTIBIOGRAM
+    from agents.clinical_agent.tools import query_local_antibiogram
+    data = {
+        f"{p} ({site})": query_local_antibiogram(p, site)["susceptibility_data"]
+        for p in ("E. coli", "K. pneumoniae", "S. aureus", "P. aeruginosa", "A. baumannii")
+        for site in ("urine", "blood", "pus")
+        if query_local_antibiogram(p, site).get("specimen") == site
+    }
     return {
-        "pathogens": list(SYNTHETIC_ANTIBIOGRAM.keys()),
-        "data": SYNTHETIC_ANTIBIOGRAM,
-        "source": "Synthetic Hospital Antibiogram 2025 (Demo)",
+        "pathogens": list(data.keys()),
+        "data": data,
+        "source": "ICMR AMRSN Annual Report 2022 (national, India)",
     }

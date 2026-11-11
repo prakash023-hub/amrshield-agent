@@ -149,6 +149,36 @@ def load_surveillance() -> pd.DataFrame:
     return pd.read_csv(ECDC_PATH)
 
 
+# India: ICMR AMRSN yearly susceptibility (2017-2022), extracted by
+# scripts/extract_amrsn_2022.py. Reported as % NON-susceptible (100 - %S), which
+# includes intermediate isolates, so it is not identical to ECDC's "% resistant".
+AMRSN_PATH = Path(__file__).resolve().parents[2] / "data" / "antibiogram" / "amrsn_yearly_trend.csv"
+AMRSN_SOURCE = ("ICMR AMRSN Annual Report 2022, India, % non-susceptible (100 - % susceptible); "
+                "Enterobacterales: all specimens except faeces and urine")
+AMRSN_DRUG_FOR_GROUP = {
+    "fluoroquinolones": "Ciprofloxacin",
+    "third-generation cephalosporins": "Cefotaxime",
+    "carbapenems": "Meropenem",
+    "meticillin (mrsa)": "Cefoxitin",
+}
+
+
+def _india_history(pathogen: str, group: str | None) -> pd.Series | None:
+    if not AMRSN_PATH.exists() or not group:
+        return None
+    drug = AMRSN_DRUG_FOR_GROUP.get(group.lower())
+    amrsn_pathogen = "S. aureus" if pathogen == "MRSA" else pathogen
+    df = pd.read_csv(AMRSN_PATH)
+    rows = df[(df["pathogen"] == amrsn_pathogen) & (df["antibiotic"] == drug)].sort_values("year")
+    if len(rows) < MIN_REAL_YEARS:
+        return None
+    out = pd.Series(rows["pct_non_susceptible"].to_numpy(dtype=float),
+                    index=rows["year"].astype(str).to_numpy(), name="resistance_pct")
+    out.attrs.update(antibiotic_group=f"{group} ({drug.lower()})", imputed_years=0,
+                     source=AMRSN_SOURCE, metric="% non-susceptible")
+    return out
+
+
 def real_history(country: str, pathogen: str, antibiotic_group: str | None = None) -> pd.Series | None:
     """
     Annual real resistance series for a country (name or ISO code), or None.
@@ -160,6 +190,8 @@ def real_history(country: str, pathogen: str, antibiotic_group: str | None = Non
     pathogen = PATHOGEN_ALIASES.get(str(pathogen).strip().lower(), pathogen)
     group = antibiotic_group or DEFAULT_GROUP.get(pathogen)
     c = str(country).strip().lower()
+    if c in ("india", "in"):
+        return _india_history(pathogen, group)
     c = {"gr": "el", "gb": "uk", "united kingdom": "uk"}.get(c, c)
     rows = df[
         ((df["country"].str.lower() == c) | (df["country_code"].str.lower() == c))
@@ -183,6 +215,8 @@ def real_history(country: str, pathogen: str, antibiotic_group: str | None = Non
     out = pd.Series(full.to_numpy(), index=full.index.astype(str), name="resistance_pct")
     out.attrs["antibiotic_group"] = rows["antibiotic_group"].iloc[0]
     out.attrs["imputed_years"] = imputed
+    out.attrs["source"] = ECDC_SOURCE
+    out.attrs["metric"] = "% resistant"
     return out
 
 
@@ -284,7 +318,8 @@ def _forecast_real(country: str, pathogen: str, history: pd.Series, horizon_mont
         "backtest": backtest_holt(history),
         "method": (f"Damped-trend Holt smoothing (alpha={REAL_ALPHA}, beta={REAL_BETA}, phi={REAL_PHI}) — "
                    "baseline; matches but does not beat the naive forecast on held-out ECDC data"),
-        "data_source": ECDC_SOURCE,
+        "data_source": history.attrs.get("source", ECDC_SOURCE),
+        "metric": history.attrs.get("metric", "% resistant"),
         "real_data": True,
         "validated": False,
         "generated_at": datetime.now(timezone.utc).isoformat(),

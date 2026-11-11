@@ -126,3 +126,38 @@ def test_no_hit_summary_states_partial_coverage():
     r = check_drug_interactions("azithromycin", ["paracetamol"])
     assert r["interaction_count"] == 0
     assert "cardiovascular" in r["coverage_note"]
+
+
+# ── Antibiogram: ICMR AMRSN 2022 (real data) ─────────────────────────
+
+def test_antibiogram_pools_amrsn_counts():
+    # Table 2.13, E. coli urine nitrofurantoin: (5259+3625+398)/(5762+4056+469) = 90.2%
+    r = query_local_antibiogram("E. coli", "UTI")
+    assert r["specimen"] == "urine"
+    assert r["susceptibility_data"]["nitrofurantoin"] == 90.2
+    assert "AMRSN" in r["data_source"]
+
+
+def test_antibiogram_icu_setting_uses_icu_counts_only():
+    # Table 2.13, E. coli urine nitrofurantoin ICU: 398/469 = 84.9%
+    r = query_local_antibiogram("E. coli", "UTI", "ICU")
+    assert r["susceptibility_data"]["nitrofurantoin"] == 84.9
+
+
+def test_reserve_agents_never_preferred():
+    r = query_local_antibiogram("E. coli", "UTI")
+    assert "colistin" not in r["preferred_agents"]
+    assert "colistin" in r["reserve_agents"]
+
+
+def test_small_samples_are_not_reported():
+    # Table 2.18, E. coli pus nitrofurantoin: 22/28 isolates pooled -> below 30, suppressed
+    r = query_local_antibiogram("E. coli", "skin")
+    assert "nitrofurantoin" not in r["susceptibility_data"]
+    assert r["isolates_tested"]["nitrofurantoin"] < 30
+
+
+def test_mrsa_request_carries_mixed_population_warning():
+    r = query_local_antibiogram("MRSA", "skin")
+    assert "MRSA and MSSA" in r["note"]
+    assert "cefoxitin" not in r["preferred_agents"]

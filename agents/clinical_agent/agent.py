@@ -79,12 +79,14 @@ CLINICAL_TOOLS = [
         ),
         types.FunctionDeclaration(
             name="query_local_antibiogram",
-            description="Query local hospital antibiogram for pathogen susceptibility patterns",
+            description=("Query the ICMR AMRSN 2022 national Indian antibiogram for % susceptibility "
+                         "by pathogen and infection site; Reserve-tier agents are returned separately"),
             parameters=types.Schema(
                 type=types.Type.OBJECT,
                 properties={
                     "pathogen": types.Schema(type=types.Type.STRING, description="Pathogen name"),
-                    "infection_site": types.Schema(type=types.Type.STRING, description="Site of infection"),
+                    "infection_site": types.Schema(type=types.Type.STRING, description="Site of infection (UTI, bloodstream, skin)"),
+                    "care_setting": types.Schema(type=types.Type.STRING, description="Optional: OPD, Ward or ICU"),
                 },
                 required=["pathogen"],
             ),

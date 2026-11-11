@@ -47,8 +47,8 @@ def test_aware_tiers():
 # ── Prediction agent ─────────────────────────────────────────
 
 def test_forecast_is_deterministic():
-    a = run_prediction_agent("India", "E. coli", 6)
-    b = run_prediction_agent("India", "E. coli", 6)
+    a = run_prediction_agent("Bangladesh", "E. coli", 6)
+    b = run_prediction_agent("Bangladesh", "E. coli", 6)
     assert a["forecast"] == b["forecast"]
     assert len(a["forecast"]) == 6
     assert a["validated"] is False
@@ -109,7 +109,7 @@ def test_covered_country_uses_real_annual_data():
 
 
 def test_uncovered_country_is_labelled_synthetic():
-    r = run_prediction_agent("India", "E. coli", 6)
+    r = run_prediction_agent("Bangladesh", "E. coli", 6)
     assert r["real_data"] is False
     assert "SYNTHETIC" in r["data_source"]
 
@@ -131,3 +131,19 @@ def test_backtest_reports_holt_and_naive():
     b = backtest_holt(real_history("France", "MRSA"))
     assert b["n_forecasts"] > 5
     assert b["holt_mae_pp"] >= 0 and b["naive_mae_pp"] >= 0
+
+
+def test_india_uses_real_amrsn_data():
+    r = run_prediction_agent("India", "K. pneumoniae", 12, "Carbapenems")
+    assert r["real_data"] is True
+    assert "AMRSN" in r["data_source"]
+    assert r["metric"] == "% non-susceptible"
+    # Table 3.7 meropenem 2022: 6404/14619 susceptible -> 56.2% non-susceptible
+    assert r["current_resistance_pct"] == 56.2
+    assert r["latest_year"] == 2022
+
+
+def test_india_mrsa_uses_cefoxitin_screen():
+    r = run_prediction_agent("India", "MRSA", 12)
+    # Table 6.4 cefoxitin 2022: 4657/8387 susceptible -> 44.5% non-susceptible
+    assert r["current_resistance_pct"] == 44.5

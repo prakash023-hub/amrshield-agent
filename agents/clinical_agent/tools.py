@@ -382,90 +382,63 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
 
 
 # ─────────────────────────────────────────────
-# Local Antibiogram (Synthetic Hospital Data)
-# Replace with real hospital antibiogram data
+# Antibiogram — ICMR AMRSN Annual Report 2022 (national, real data)
+# data/antibiogram/amrsn_2022_by_specimen.csv, built by
+# scripts/extract_amrsn_2022.py; provenance in data/antibiogram/SOURCES.md
 # ─────────────────────────────────────────────
 
-SYNTHETIC_ANTIBIOGRAM = {
-    "e. coli": {
-        "UTI": {
-            "nitrofurantoin": 88,
-            "co-trimoxazole": 62,
-            "ciprofloxacin": 71,
-            "ceftriaxone": 79,
-            "amoxicillin-clavulanate": 72,
-        },
-        "bloodstream": {
-            "ceftriaxone": 81,
-            "piperacillin-tazobactam": 88,
-            "meropenem": 97,
-            "ciprofloxacin": 70,
-        },
-    },
-    "staphylococcus aureus": {
-        "skin": {
-            "cefalexin": 72,  # MSSA
-            "clindamycin": 78,
-            "co-trimoxazole": 91,
-            "vancomycin": 100,  # All S. aureus susceptible
-        },
-    },
-    "klebsiella pneumoniae": {
-        "pneumonia": {
-            "ceftriaxone": 75,
-            "piperacillin-tazobactam": 78,
-            "meropenem": 96,
-            "ciprofloxacin": 73,
-        },
-        "UTI": {
-            "nitrofurantoin": 40,
-            "ciprofloxacin": 73,
-            "ceftriaxone": 75,
-            "meropenem": 96,
-        },
-    },
-    "pseudomonas aeruginosa": {
-        "pneumonia": {
-            "piperacillin-tazobactam": 72,
-            "ceftazidime": 76,
-            "meropenem": 81,
-            "ciprofloxacin": 68,
-            "colistin": 95,
-        },
-    },
-    "mrsa": {
-        "bloodstream": {
-            "vancomycin": 98,
-            "linezolid": 96,
-            "daptomycin": 97,
-            "co-trimoxazole": 92,
-        },
-        "pneumonia": {
-            "vancomycin": 98,
-            "linezolid": 96,
-            "clindamycin": 45,
-        },
-        "skin": {
-            "co-trimoxazole": 92,
-            "clindamycin": 78,
-            "vancomycin": 98,
-            "doxycycline": 88,
-        },
-    },
-    "esbl": {
-        "UTI": {
-            "nitrofurantoin": 55,
-            "fosfomycin": 82,
-            "meropenem": 99,
-            "piperacillin-tazobactam": 35,
-        },
-        "bloodstream": {
-            "meropenem": 99,
-            "cefepime": 40,
-            "piperacillin-tazobactam": 30,
-        },
-    },
+ANTIBIOGRAM_PATH = Path(__file__).resolve().parents[2] / "data" / "antibiogram" / "amrsn_2022_by_specimen.csv"
+ANTIBIOGRAM_SOURCE = "ICMR AMRSN Annual Report 2022 (national multi-centre surveillance, India)"
+MIN_ISOLATES = 30          # CLSI M39: report % susceptible only with >= 30 isolates
+
+ANTIBIOGRAM_PATHOGENS = {
+    "e. coli": "E. coli", "escherichia coli": "E. coli", "ecoli": "E. coli",
+    "k. pneumoniae": "K. pneumoniae", "klebsiella pneumoniae": "K. pneumoniae", "klebsiella": "K. pneumoniae",
+    "s. aureus": "S. aureus", "staphylococcus aureus": "S. aureus", "mrsa": "S. aureus", "mssa": "S. aureus",
+    "p. aeruginosa": "P. aeruginosa", "pseudomonas aeruginosa": "P. aeruginosa", "pseudomonas": "P. aeruginosa",
+    "a. baumannii": "A. baumannii", "acinetobacter baumannii": "A. baumannii", "acinetobacter": "A. baumannii",
 }
+# Clinical infection site -> AMRSN specimen
+SITE_TO_SPECIMEN = {
+    "uti": "urine", "urine": "urine", "urinary": "urine", "cystitis": "urine", "pyelonephritis": "urine",
+    "bloodstream": "blood", "blood": "blood", "bacteremia": "blood", "bacteraemia": "blood", "sepsis": "blood",
+    "skin": "pus", "ssti": "pus", "soft tissue": "pus", "wound": "pus", "pus": "pus", "abscess": "pus",
+    "cellulitis": "pus",
+}
+# Laboratory screening markers, not drugs to prescribe
+SCREENING_MARKERS = {"cefoxitin", "oxacillin"}
+CARE_SETTINGS = {"opd": "OPD", "outpatient": "OPD", "ward": "Ward", "inpatient": "Ward", "icu": "ICU"}
+
+
+def _amr_name(antibiotic: str) -> str:
+    """AMRSN antibiotic name -> AMRShield name."""
+    a = antibiotic.lower()
+    return {"trimethoprim-sulfamethoxazole": "co-trimoxazole"}.get(a, a)
+
+
+@lru_cache(maxsize=1)
+def _antibiogram_rows() -> list:
+    if not ANTIBIOGRAM_PATH.exists():
+        return []
+    with open(ANTIBIOGRAM_PATH, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def _susceptibility(pathogen: str, specimen: str, setting: Optional[str]) -> tuple[dict, dict, str]:
+    """Pooled % susceptible (and isolate counts) for one pathogen/specimen."""
+    totals: dict = {}
+    tables = set()
+    for r in _antibiogram_rows():
+        if r["pathogen"] != pathogen or r["specimen"] != specimen:
+            continue
+        if setting and r["location"] != setting:
+            continue
+        s, n = totals.get(r["antibiotic"], (0, 0))
+        totals[r["antibiotic"]] = (s + int(r["susceptible"]), n + int(r["tested"]))
+        tables.add(r["source"].replace("AMRSN 2022 ", ""))
+    pct = {_amr_name(a): round(100 * s / n, 1) for a, (s, n) in totals.items() if n >= MIN_ISOLATES}
+    counts = {_amr_name(a): n for a, (s, n) in totals.items()}
+    return pct, counts, ", ".join(sorted(tables))
 
 
 # ─────────────────────────────────────────────
@@ -608,69 +581,80 @@ def suggest_renal_dose(antibiotic: str, crcl: float) -> dict:
 
 def query_local_antibiogram(
     pathogen: str,
-    infection_site: Optional[str] = None
+    infection_site: Optional[str] = None,
+    care_setting: Optional[str] = None,
 ) -> dict:
     """
-    Query synthetic local antibiogram for susceptibility data.
-    
+    Susceptibility data from the ICMR AMRSN 2022 national antibiogram.
+
     Args:
         pathogen: Pathogen name (e.g., "E. coli", "MRSA")
-        infection_site: Infection site for site-specific susceptibility
-    
+        infection_site: Clinical site (UTI, bloodstream, skin...) mapped to the
+            AMRSN specimen (urine, blood, pus)
+        care_setting: Optional "OPD", "Ward" or "ICU"; default pools all three
+
     Returns:
-        Dict with susceptibility percentages and recommended agents
+        Dict with % susceptible per antibiotic, preferred (>=80%) and alternative
+        (60-79%) agents, isolate counts and the data source. This is national
+        Indian data, not the patient's own hospital antibiogram.
     """
-    pathogen_key = pathogen.lower().strip()
-    
-    # Find matching pathogen
-    matched_pathogen = None
-    for db_key in SYNTHETIC_ANTIBIOGRAM:
-        if db_key in pathogen_key or pathogen_key in db_key:
-            matched_pathogen = db_key
-            break
-    
-    if not matched_pathogen:
+    key = pathogen.lower().strip()
+    matched = next((v for k, v in ANTIBIOGRAM_PATHOGENS.items() if k == key or k in key), None)
+    if not matched or not _antibiogram_rows():
         return {
             "pathogen": pathogen,
-            "message": "Pathogen not in local antibiogram — use national guidelines or empirical therapy",
+            "message": "Pathogen not in the antibiogram — use national guidelines or empirical therapy",
             "recommendation": "Consider infectious disease consultation for unusual pathogens",
+            "data_source": ANTIBIOGRAM_SOURCE,
         }
-    
-    pathogen_data = SYNTHETIC_ANTIBIOGRAM[matched_pathogen]
 
-    # Get site-specific data; do NOT silently mislabel another site's data as the
-    # requested one. If the requested site is absent, say so explicitly.
+    setting = CARE_SETTINGS.get(str(care_setting).lower().strip()) if care_setting else None
     site_note = None
-    resolved_site = infection_site or "general"
+    specimen = None
     if infection_site:
         site_key = infection_site.lower()
-        match = next(
-            ((k, v) for k, v in pathogen_data.items() if k in site_key or site_key in k),
-            None,
-        )
-        if match:
-            resolved_site, susceptibility = match[0], match[1]
-        else:
-            resolved_site, susceptibility = list(pathogen_data.items())[0]
-            site_note = (
-                f"No antibiogram for '{infection_site}' in {matched_pathogen}; "
-                f"showing '{resolved_site}' data instead — interpret with caution"
-            )
-    else:
-        resolved_site, susceptibility = list(pathogen_data.items())[0]
+        specimen = next((v for k, v in SITE_TO_SPECIMEN.items() if k in site_key), None)
+    available = sorted({r["specimen"] for r in _antibiogram_rows() if r["pathogen"] == matched})
+    if specimen not in available:
+        fallback = "blood" if "blood" in available else available[0]
+        if infection_site:
+            site_note = (f"No AMRSN specimen data for '{infection_site}' in {matched}; "
+                         f"showing '{fallback}' isolates instead — interpret with caution")
+        specimen = fallback
 
-    # Identify best agents (>80% susceptibility)
-    preferred_agents = {k: v for k, v in susceptibility.items() if v >= 80}
-    alternative_agents = {k: v for k, v in susceptibility.items() if 60 <= v < 80}
-    
+    susceptibility, isolates, tables = _susceptibility(matched, specimen, setting)
+    usable = {k: v for k, v in susceptibility.items() if k not in SCREENING_MARKERS}
+    # WHO AWaRe Reserve agents are last-resort: never offered as preferred empirical choices
+    reserve_agents = {k: v for k, v in sorted(usable.items(), key=lambda x: -x[1])
+                      if lookup_aware_tier(k).get("aware_tier") == "Reserve"}
+    usable = {k: v for k, v in usable.items() if k not in reserve_agents}
+    preferred_agents = {k: v for k, v in sorted(usable.items(), key=lambda x: -x[1]) if v >= 80}
+    alternative_agents = {k: v for k, v in sorted(usable.items(), key=lambda x: -x[1]) if 60 <= v < 80}
+
+    notes = ["National Indian surveillance data, not this hospital's antibiogram — "
+             "use a local antibiogram when available."]
+    if reserve_agents:
+        notes.append("Reserve-tier agents are listed separately: use only for confirmed "
+                     "multidrug-resistant infections, with stewardship approval.")
+    if key in ("mrsa", "mssa"):
+        notes.append("AMRSN S. aureus tables include both MRSA and MSSA; for MRSA, beta-lactam "
+                     "susceptibility does not apply.")
+    if "cefoxitin" in susceptibility:
+        notes.append(f"Cefoxitin is the MRSA screen: {susceptibility['cefoxitin']}% susceptible "
+                     f"means about {round(100 - susceptibility['cefoxitin'], 1)}% of isolates are MRSA.")
+
     result = {
         "pathogen": pathogen,
-        "infection_site": resolved_site,
+        "infection_site": infection_site or specimen,
+        "specimen": specimen,
+        "care_setting": setting or "OPD + Ward + ICU (pooled)",
         "susceptibility_data": susceptibility,
+        "isolates_tested": isolates,
         "preferred_agents": preferred_agents,
         "alternative_agents": alternative_agents,
-        "data_source": "Synthetic Hospital Antibiogram 2025 (Demo Data)",
-        "note": "Replace with your hospital's actual antibiogram data — WHONET format recommended",
+        "reserve_agents": reserve_agents,
+        "data_source": f"{ANTIBIOGRAM_SOURCE}, {tables}",
+        "note": " ".join(notes),
     }
     if site_note:
         result["site_warning"] = site_note

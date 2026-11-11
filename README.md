@@ -66,6 +66,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 - Applies WHO AWaRe classification logic
 - Recommends antibiotic with dose + duration + monitoring plan
 - Tools: `query_local_antibiogram`, `check_drug_interactions`, `calculate_crcl`, `lookup_aware_tier`
+- **Antibiogram: real Indian data** — ICMR AMRSN 2022 national surveillance (456 verified values: E. coli, K. pneumoniae, S. aureus, P. aeruginosa, A. baumannii × blood / urine / pus × OPD / ward / ICU). Fewer than 30 isolates are not reported (CLSI M39), and WHO **Reserve** antibiotics are never offered as preferred agents
 
 ### 2. AMR Prediction Agent *(baseline — not a trained model)*
 - **Real data:** annual EARS-Net resistance percentages for **30 EU/EEA countries, up to 2025** (ECDC Surveillance Atlas) — *E. coli* (fluoroquinolones, 3rd-gen cephalosporins), *K. pneumoniae* (carbapenems, 3rd-gen cephalosporins) and MRSA
@@ -79,7 +80,8 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
   | Original Holt (α 0.5, β 0.2) | ~2.8 percentage points |
 
   Damped Holt **matches but does not beat** the naive baseline on annual data, so any future model (ARIMA, Chronos) must beat both.
-- Countries ECDC does not cover (e.g. India) still use a **clearly labelled synthetic** series; India data (WHO GLASS / ICMR) is the next step
+- **India:** real yearly data 2017–2022 from the ICMR AMRSN report (% non-susceptible for E. coli, K. pneumoniae and MRSA). Six years is a short series, so India forecasts are indicative only
+- Countries in neither source still use a **clearly labelled synthetic** series
 
 ### 3. Self-Audit Agent ⭐ *(The Novel Differentiator)*
 - Monitors every Clinical Agent decision via Phoenix MCP
@@ -101,7 +103,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
 | **Hosting** | Google Cloud Run |
 | **Dashboards** | Streamlit (4 apps) |
 | **Storage** | Local audit-event store (`mcp_tools/audit_store.py`); CSV data files in `data/` |
-| **Data Sources** | Real ECDC EARS-Net resistance data (forecasting); DDInter drug-drug interactions; synthetic antibiogram, patient cases and non-EU series |
+| **Data Sources** | ICMR AMRSN 2022 (Indian antibiogram + India trends); ECDC EARS-Net (Europe trends); DDInter (drug interactions); synthetic patient cases |
 | **Forecasting** | Damped-trend Holt baseline (NumPy), backtested against a naive forecast |
 | **Testing** | pytest (offline unit tests for deterministic components) |
 
@@ -158,7 +160,7 @@ streamlit run dashboards/audit_console/app.py --server.port 8504
 pytest -q tests
 ```
 
-31 offline tests cover the Cockcroft-Gault calculator, AWaRe lookups, renal dosing, allergy matching, drug-interaction screening (curated + DDInter, NOT_SCREENED handling), real-data forecasting and backtesting, and the grounding check.
+38 offline tests cover the Cockcroft-Gault calculator, AWaRe lookups, renal dosing, allergy matching, drug-interaction screening (curated + DDInter, NOT_SCREENED handling), the AMRSN antibiogram (pooling, ICU filter, small-sample and Reserve-tier rules), real-data forecasting for Europe and India and backtesting, and the grounding check.
 
 ### 6. Deploy to Cloud Run
 
@@ -227,8 +229,9 @@ AMRShield has **not** been evaluated on real patients or in a hospital, so no ou
 
 ## 🚧 Known Limitations
 
-- **Mostly synthetic clinical data** — the antibiogram and patient cases are synthetic, and resistance series outside the EU/EEA are synthetic. This protects privacy, but there is **no clinical validation**.
-- **Forecast is a baseline** — on real ECDC data it only ties the naive forecast; ECDC data is European, so it does not represent Indian resistance levels.
+- **National, not local, antibiogram** — the AMRSN data describes Indian surveillance centres, not the patient's own hospital. Hospitals should replace it with their own antibiogram.
+- **Synthetic patient cases** — evaluation cases are synthetic, so there is **no clinical validation**.
+- **Forecast is a baseline** — on real ECDC data it only ties the naive forecast. India has only six years of data (2017–2022), and AMRSN reports % non-susceptible while ECDC reports % resistant, so the two are not directly comparable.
 - **Drug-interaction coverage is partial** — 7,558 antibiotic pairs from DDInter plus a curated table, but co-medications in some drug classes (cardiovascular, nervous system, anti-infective and a few others) are only partly covered, and this is stated in every result. Antibiotics in neither source are reported as **NOT_SCREENED**, never as safe.
 - **DDInter data is non-commercial (CC BY-NC-SA 4.0)** — any commercial deployment must replace it with a commercially licensed interaction source.
 - **Grounding check is rule-based** — it verifies specific claim types, not free-text reasoning.
@@ -241,6 +244,8 @@ AMRShield has **not** been evaluated on real patients or in a hospital, so no ou
 
 - **ECDC Surveillance Atlas of Infectious Diseases** (EARS-Net), indicator *R - resistant isolates, percentage*, 2000–2025, accessed November 2026. Source: European Centre for Disease Prevention and Control, https://atlas.ecdc.europa.eu. Tidy file: `data/surveillance/ecdc_ears_net_resistance.csv`, rebuilt from the raw exports with `python scripts/build_ecdc_dataset.py <exports...>`.
 - **DDInter** drug-drug interaction database — Xiong G. et al., *Nucleic Acids Res.* 2022;50(D1):D1200–D1207, https://ddinter.scbdd.com. Licensed **CC BY-NC-SA 4.0**: the derived file `data/interactions/ddinter_antibiotic_pairs.csv` (7,558 antibiotic pairs, built with `scripts/build_ddinter_subset.py`) is shared under the same non-commercial licence and is **not** covered by this repository's MIT licence.
+- **ICMR AMRSN Annual Report 2022** — Indian Council of Medical Research, Antimicrobial Resistance Research and Surveillance Network, January–December 2022. Chapter 2 specimen tables and the yearly trend tables 3.6, 3.7 and 6.4 were extracted with `scripts/extract_amrsn_2022.py`, which recomputes every percentage from its printed counts (0 disagreements). Files and full provenance: `data/antibiogram/` (see `data/antibiogram/SOURCES.md`).
+- **Single-hospital studies (regional reference only)** — Kumari N et al. 2023 (Patna, Bihar) and Yadav et al. 2024 (Rajpura, Punjab), *Int J Pharm Clin Res*, CC BY 4.0. Rows that failed consistency checks were excluded; the exclusions are listed in `SOURCES.md`.
 - **WHO AWaRe classification** (antibiotic tiers).
 
 ---
@@ -258,4 +263,4 @@ AMRShield has **not** been evaluated on real patients or in a hospital, so no ou
 **Domain Background:** M.Pharm (Industrial Pharmacy) | Ex-Associate Professor, Dept. of Pharmaceutics  
 **Specializations:** Multi-Agent Systems, Reinforcement Learning, Clinical Data Architectures, Pharmacometrics.  
 *   [LinkedIn Profile](https://www.linkedin.com/in/prakashraj-pharmaai/)
-*   [GitHub Portfolio](https://github.com/prakash023-hub)
+*   [GitHub Portfolio](https://github.com/prakash023-hub)  
