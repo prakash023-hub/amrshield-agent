@@ -125,7 +125,7 @@ ECDC_SOURCE = "ECDC Surveillance Atlas (EARS-Net), R - resistant isolates %, ann
 MIN_REAL_YEARS = 5
 # Damped-trend settings for annual real data. Chosen on half of the ECDC
 # countries and checked on the other half (one-step-ahead MAE):
-#   damped Holt 2.16 pp | naive "same as last year" 2.16 pp | old Holt (0.5, 0.2) 2.76 pp
+#   damped Holt 2.06 pp | naive "same as last year" 2.07 pp | old Holt (0.5, 0.2) 2.63 pp
 REAL_ALPHA, REAL_BETA, REAL_PHI = 0.7, 0.2, 0.5
 
 PATHOGEN_ALIASES = {

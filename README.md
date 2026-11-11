@@ -77,7 +77,7 @@ Most AMS tools give you a recommendation. AMRShield gives you a recommendation *
   |---|---|
   | Damped Holt (α 0.7, β 0.2, φ 0.5) | **2.06** percentage points |
   | Naive "same as last year" | 2.07 percentage points |
-  | Original Holt (α 0.5, β 0.2) | ~2.8 percentage points |
+  | Original Holt (α 0.5, β 0.2) | 2.63 percentage points |
 
   Damped Holt **matches but does not beat** the naive baseline on annual data, so any future model (ARIMA, Chronos) must beat both.
 - **India:** real yearly data 2017–2022 from the ICMR AMRSN report (% non-susceptible for E. coli, K. pneumoniae and MRSA). Six years is a short series, so India forecasts are indicative only
