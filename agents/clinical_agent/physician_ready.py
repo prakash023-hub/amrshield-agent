@@ -46,7 +46,10 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
     antibiotic = recommendation.get("antibiotic", "")
 
     allergy_check = check_allergy_conflict(antibiotic, recommendation.get("drug_class", ""), allergies)
-    interaction_check = check_drug_interactions(antibiotic, meds) if antibiotic else {"interactions_found": []}
+    interaction_check = (
+        check_drug_interactions(antibiotic, meds, route=str(recommendation.get("route") or ""))
+        if antibiotic else {"interactions_found": []}
+    )
     renal_dose = suggest_renal_dose(antibiotic, crcl) if antibiotic else {}
     antibiogram = query_local_antibiogram(pathogen, site)
     guideline = get_indication_guideline(diagnosis, pathogen)
@@ -56,7 +59,7 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
     if allergy_check.get("conflict"):
         contraindications.append({
             "type": "ALLERGY",
-            "severity": "ABSOLUTE",
+            "severity": allergy_check["severity"],
             "detail": allergy_check.get("message"),
         })
     for issue in interaction_check.get("interactions_found", []):

@@ -160,7 +160,7 @@ streamlit run dashboards/audit_console/app.py --server.port 8504
 pytest -q tests
 ```
 
-38 offline tests cover the Cockcroft-Gault calculator, AWaRe lookups, renal dosing, allergy matching, drug-interaction screening (curated + DDInter, NOT_SCREENED handling), the AMRSN antibiogram (pooling, ICU filter, small-sample and Reserve-tier rules), real-data forecasting for Europe and India and backtesting, and the grounding check.
+133 offline tests cover the Cockcroft-Gault calculator, AWaRe lookups, renal dosing, allergy matching, drug-interaction screening (curated + DDInter, NOT_SCREENED handling), the AMRSN antibiogram (pooling, ICU filter, small-sample and Reserve-tier rules), real-data forecasting for Europe and India and backtesting, and the grounding check. Audit regressions verify that missing or invalid required inputs, incomplete dose/route/frequency, documented allergy conflicts, and failed safety assessments return **HOLD**. A broad beta-lactam allergy label requires clinician review before proceeding, and ceftriaxone screening distinguishes oral calcium, IV calcium, and an unknown calcium route.
 
 ### 6. Deploy to Cloud Run
 

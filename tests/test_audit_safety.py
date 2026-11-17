@@ -47,7 +47,9 @@ def recommendation():
         "antibiotic": "meropenem",
         "drug_class": "Carbapenem",
         "aware_tier": "Watch",
-        "dose": "Synthetic regimen",
+        "dose": "1 g",
+        "route": "IV",
+        "frequency": "Every 8 hours",
         "trace_id": "TR-AUDIT-TEST",
     }
 
@@ -193,9 +195,9 @@ def test_upstream_review_flag_is_preserved(patient, recommendation):
     ("meropenem", None, "INTERACTION_NOT_SCREENED"),
     ("ciprofloxacin", ["warfarin"], "DRUG_INTERACTION"),
 ])
-def test_interaction_uncertainty_and_known_conflicts_require_review(patient, drug, meds, issue):
+def test_interaction_uncertainty_and_known_conflicts_require_review(patient, recommendation, drug, meds, issue):
     patient["current_medications"] = meds
-    assert_review(audit_agent.run_audit_agent({"antibiotic": drug}, patient), "FLAG", issue)
+    assert_review(audit_agent.run_audit_agent({**recommendation, "antibiotic": drug, "aware_tier": ""}, patient), "FLAG", issue)
 
 
 @pytest.mark.parametrize("tool", ["detect_hallucination", "evaluate_clinical_accuracy"])
@@ -284,3 +286,93 @@ def test_api_preserves_validation_error_contract(patient, monkeypatch):
     patient["serum_creatinine"] = "Infinity"
     assert api.post("/recommend", json=patient).status_code == 422
     clinical.assert_not_called()
+
+
+@pytest.mark.parametrize("field,value", [("dose", None), ("route", " "), ("frequency", "TBD"), ("dose", 1)])
+def test_incomplete_regimen_holds(patient, recommendation, offline_services, field, value):
+    recommendation[field] = value
+    audit = audit_agent.run_audit_agent(recommendation, patient)
+    assert_review(audit, "HOLD", "INCOMPLETE_REGIMEN")
+    offline_services.assert_not_called()
+
+
+def test_drug_only_recommendation_holds(patient, offline_services):
+    audit = audit_agent.run_audit_agent({"antibiotic": "meropenem"}, patient)
+    assert_review(audit, "HOLD", "INCOMPLETE_REGIMEN")
+    offline_services.assert_not_called()
+
+
+@pytest.mark.parametrize("entry", ["Vancomycin (anaphylaxis)", "vancomycin: anaphylaxis", "VANCOMYCIN — anaphylaxis"])
+def test_named_drug_allergy_with_reaction_holds(patient, recommendation, offline_services, entry):
+    patient["allergies"] = [entry]
+    recommendation["antibiotic"] = "vancomycin"
+    audit = audit_agent.run_audit_agent(recommendation, patient)
+    assert_review(audit, "HOLD", "ALLERGY_CONFLICT")
+    offline_services.assert_not_called()
+
+
+def test_named_drug_match_requires_full_name(patient, recommendation):
+    patient["allergies"] = ["Vancomycin-like compound (anaphylaxis)"]
+    recommendation["antibiotic"] = "vancomycin"
+    audit = audit_agent.run_audit_agent(recommendation, patient)
+    assert audit["overall_result"] == "PASS"
+
+
+@pytest.mark.parametrize("drug", ["piperacillin-tazobactam", "ceftriaxone", "meropenem"])
+def test_broad_beta_lactam_label_blocks_proceeding_without_absolute_contraindication(
+    patient, recommendation, drug
+):
+    patient["allergies"] = ["Beta-lactam allergy"]
+    recommendation.update(antibiotic=drug, drug_class="")
+    audit = audit_agent.run_audit_agent(recommendation, patient)
+    assert_review(audit, "FLAG", "ALLERGY_REVIEW_REQUIRED")
+    assert not any(issue["type"] == "ALLERGY_CONFLICT" for issue in audit["issues_found"])
+    order = enrich_for_physician(recommendation, patient)
+    assert order["safe_to_sign"] is False
+    assert order["allergy_screen"]["severity"] == "HIGH"
+
+
+def test_specific_allergy_still_holds_with_broad_label(patient, recommendation, offline_services):
+    patient["allergies"] = ["β-lactam allergy", "Ceftriaxone (anaphylaxis)"]
+    recommendation["antibiotic"] = "ceftriaxone"
+    audit = audit_agent.run_audit_agent(recommendation, patient)
+    assert_review(audit, "HOLD", "ALLERGY_CONFLICT")
+    offline_services.assert_not_called()
+
+
+def test_broad_beta_lactam_label_does_not_flag_unrelated_drug(patient, recommendation):
+    patient["allergies"] = ["Beta-lactam allergy"]
+    recommendation.update(antibiotic="vancomycin", drug_class="Glycopeptide")
+    assert audit_agent.run_audit_agent(recommendation, patient)["overall_result"] == "PASS"
+
+
+@pytest.mark.parametrize("medication,route,expected", [
+    ("calcium carbonate", "IV", None),
+    ("oral calcium gluconate", "IV", None),
+    ("calcium gluconate IV", "IV", "HIGH"),
+    ("lactated Ringer's", "IV", "HIGH"),
+    ("calcium gluconate", "IV", "UNKNOWN"),
+    ("calcium gluconate IV", "IM", None),
+    ("calcium chloride injection", "", "HIGH"),
+])
+def test_ceftriaxone_calcium_screen_respects_both_routes(medication, route, expected):
+    from agents.clinical_agent.tools import check_drug_interactions
+
+    result = check_drug_interactions("ceftriaxone", [medication], route=route)
+    assert [item["severity"] for item in result["interactions_found"]] == (
+        [expected] if expected else []
+    )
+    assert result["requires_review"] == bool(expected)
+
+
+@pytest.mark.parametrize("medication,expected_interaction", [
+    ("calcium carbonate 500 mg tablet", False), ("IV calcium chloride", True), ("calcium", True),
+])
+def test_ceftriaxone_calcium_audit_distinguishes_known_oral_and_uncertain_routes(
+    patient, recommendation, medication, expected_interaction
+):
+    patient["current_medications"] = [medication]
+    recommendation.update(antibiotic="ceftriaxone", drug_class="Cephalosporin")
+    audit = audit_agent.run_audit_agent(recommendation, patient)
+    # Other coverage limits are still reported for non-empty medication lists.
+    assert ("DRUG_INTERACTION" in {issue["type"] for issue in audit["issues_found"]}) == expected_interaction

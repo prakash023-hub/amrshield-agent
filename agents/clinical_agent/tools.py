@@ -225,9 +225,7 @@ INTERACTION_DB = {
         "tramadol": {"severity": "HIGH", "effect": "Serotonin syndrome risk — avoid"},
         "tyramine": {"severity": "MEDIUM", "effect": "MAO inhibition — avoid tyramine-rich foods"},
     },
-    "ceftriaxone": {
-        "calcium": {"severity": "HIGH", "effect": "Ceftriaxone-calcium precipitate — do not co-administer IV in neonates"},
-    },
+    "ceftriaxone": {},  # Calcium is screened separately because the route changes the risk.
     "rifampicin": {
         "warfarin": {"severity": "HIGH", "effect": "Strong CYP inducer — reduces warfarin effect significantly"},
         "hiv_medications": {"severity": "HIGH", "effect": "Multiple interactions — specialist consultation required"},
@@ -245,7 +243,6 @@ INTERACTION_SYNONYMS = {
         "escitalopram", "fluvoxamine", "ssri",
     ],
     "antacids": ["antacid", "sucralfate", "aluminium hydroxide", "magnesium hydroxide", "calcium carbonate"],
-    "calcium": ["calcium", "calcium gluconate", "calcium chloride"],
     "alcohol": ["alcohol", "ethanol"],
     "tyramine": ["tyramine"],
     "oral_contraceptives": ["oral contraceptive", "ethinylestradiol", "ethinyl estradiol", "levonorgestrel", "ocp"],
@@ -307,7 +304,29 @@ def _ddinter_match(med_lower: str, table: dict):
     return None
 
 
-def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
+def _ceftriaxone_calcium_interaction(medication: str) -> dict | None:
+    """Apply the ceftriaxone label's route-specific calcium precautions."""
+    iv_fluid = bool(re.search(r"\b(?:ringer(?:s|'s)?|hartmann(?:s|'s)?|tpn|parenteral nutrition)\b", medication))
+    intravenous = iv_fluid or bool(re.search(r"\b(?:iv|intravenous|infusion|injectable|injection)\b", medication))
+    if not iv_fluid and not re.match(r"^(?:(?:oral|po|iv|intravenous)\s+)?calcium\b", medication):
+        return None
+    if intravenous:
+        return {
+            "severity": "HIGH",
+            "clinical_effect": (
+                "Ceftriaxone and IV calcium require review. IV calcium is contraindicated "
+                "with ceftriaxone in neonates; avoid simultaneous IV administration at any age."
+            ),
+        }
+    if re.search(r"\b(?:oral|po|tablets?|capsules?|chewables?)\b|\bcalcium carbonate\b", medication):
+        return {"severity": "NONE"}
+    return {
+        "severity": "UNKNOWN",
+        "clinical_effect": "Verify the calcium route before proceeding with ceftriaxone.",
+    }
+
+
+def check_drug_interactions(antibiotic: str, current_medications: list, *, route: str = "") -> dict:
     """
     Check for drug-drug interactions between proposed antibiotic and current meds.
 
@@ -318,6 +337,7 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
     Args:
         antibiotic: Proposed antibiotic (generic name)
         current_medications: List of current medications
+        route: Documented antibiotic route, if known
 
     Returns:
         Dict with interaction list, severity summary and coverage note
@@ -345,6 +365,11 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
     interactions_found = []
     for med in current_medications:
         med_lower = str(med).lower().strip()
+        if antibiotic_key == "ceftriaxone" and (calcium := _ceftriaxone_calcium_interaction(med_lower)):
+            if calcium["severity"] != "NONE" and route.strip().casefold() not in ("im", "intramuscular"):
+                interactions_found.append({"interacting_drug": med, **calcium, "source": "curated"})
+            # DDInter calcium entries lack route context. Apply the label-based result.
+            continue
         hit = None
         for interacting_drug, details in (curated or {}).items():
             if _med_matches_interactor(med_lower, interacting_drug):
@@ -376,7 +401,7 @@ def check_drug_interactions(antibiotic: str, current_medications: list) -> dict:
         "antibiotic_checked": antibiotic,
         "medications_screened": current_medications,
         "screening_status": "SCREENED",
-        "sources": [x for x, used in (("curated", curated), ("DDInter", ddinter)) if used],
+        "sources": [x for x, used in (("curated", curated), ("DDInter", ddinter)) if used is not None],
         "interactions_found": interactions_found,
         "interaction_count": len(interactions_found),
         "requires_review": requires_review,
@@ -535,14 +560,22 @@ def check_allergy_conflict(antibiotic: str, drug_class: str, allergies: list) ->
     so real-world entries like "Penicillin (anaphylaxis)", "penicillins" or
     "sulfa drugs" are caught — the previous exact list-membership test missed them.
     """
-    ab = antibiotic.lower()
+    ab = antibiotic.strip().lower()
     dc = drug_class.lower()
+    if ab:
+        # Match a documented drug name followed by a reaction annotation.
+        # Require the full name, so a similarly named drug cannot match.
+        name = re.escape(ab)
+        if any(re.match(rf"^{name}\s*(?:$|[(:–—]|-\s)", str(entry).strip().lower())
+               for entry in allergies):
+            return {"conflict": True, "severity": "ABSOLUTE",
+                    "message": "The proposed antibiotic is listed in the allergy history."}
     allergy_text = " ".join(str(a).lower() for a in allergies)
 
     def allergic_to(*terms: str) -> bool:
         return any(t in allergy_text for t in terms)
 
-    if allergic_to("penicillin", "amoxicillin", "ampicillin", "augmentin", "beta-lactam", "betalactam") and (
+    if allergic_to("penicillin", "amoxicillin", "ampicillin", "augmentin") and (
         any(p in ab for p in PENICILLIN_CLASS) or "penicillin" in dc or "aminopenicillin" in dc
     ):
         return {"conflict": True, "severity": "ABSOLUTE", "message": "Penicillin allergy — avoid penicillin-class agents"}
@@ -559,6 +592,20 @@ def check_allergy_conflict(antibiotic: str, drug_class: str, allergies: list) ->
 
     if allergic_to("fluoroquinolone", "quinolone", "floxacin") and ("floxacin" in ab or "fluoroquinolone" in dc):
         return {"conflict": True, "severity": "ABSOLUTE", "message": "Fluoroquinolone allergy — avoid quinolone class"}
+
+    reference_class = AWARE_DB.get(ab, {}).get("class", "").lower()
+    beta_lactam = (
+        any(group in f"{dc} {reference_class}" for group in
+            ("penicillin", "cephalosporin", "carbapenem", "monobactam", "beta-lactam"))
+        or any(drug in ab for drug in PENICILLIN_CLASS | CEPHALOSPORIN_CLASS)
+        or ab in {"aztreonam", "ertapenem", "doripenem", "imipenem"}
+    )
+    if beta_lactam and re.search(r"\b(?:beta|β)[\s‐‑–-]*lactam", allergy_text):
+        return {
+            "conflict": True,
+            "severity": "HIGH",
+            "message": "Broad beta-lactam allergy label. Verify the culprit drug and reaction before proceeding.",
+        }
 
     return {"conflict": False, "severity": "NONE", "message": "No allergy conflict detected"}
 
