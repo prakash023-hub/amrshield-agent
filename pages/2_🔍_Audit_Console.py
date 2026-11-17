@@ -77,45 +77,43 @@ def _synthetic_traces(n=50):
 
 @st.cache_data(ttl=15)
 def load_traces(n=50):
-    live = get_audit_traces(limit=n)
-    if live:
-        for row in live:
-            row.setdefault("source", "live")
-        if len(live) < n:
-            padding = _synthetic_traces(n - len(live))
-            live.extend(padding)
-        return pd.DataFrame(live[:n])
-
-    return pd.DataFrame(_synthetic_traces(n))
+    return pd.DataFrame([
+        row for row in get_audit_traces(limit=n)
+        if row.get("source") != "demo_seed" and row.get("result") in ("PASS", "FLAG", "HOLD")
+    ])
 
 
-df = load_traces()
-if "source" in df.columns:
-    live_count = int((df["source"] != "demo_seed").sum())
+live = load_traces()
+has_live = not live.empty
+if has_live:
+    df = live
+    st.success(f"📡 {len(live)} live audit trace(s)")
 else:
-    live_count = 0
-if live_count > 0:
-    st.success(f"📡 {live_count} live audit trace(s) from Phoenix MCP pipeline")
-else:
-    st.info("Run a case in **Clinician Console** to populate live Phoenix MCP audit traces. Showing demo history below.")
-
-pass_c = len(df[df.result == "PASS"])
-flag_c = len(df[df.result == "FLAG"])
-hold_c = len(df[df.result == "HOLD"])
+    df = pd.DataFrame(_synthetic_traces(50))
+    st.info("No live data. Charts and traces below show demo data.")
 
 m1, m2, m3, m4, m5, m6 = st.columns(6)
-m1.metric("Total Traces", len(df))
-m2.metric("✅ Passed", pass_c)
-m3.metric("⚠️ Flagged", flag_c)
-m4.metric("🛑 Held", hold_c)
-m5.metric("Pass Rate", f"{round(pass_c / len(df) * 100, 1)}%")
-m6.metric("Avg Latency", f"{int(df.latency_ms.mean())}ms")
+if has_live:
+    counts = live["result"].value_counts()
+    pass_count = int(counts.get("PASS", 0))
+    m1.metric("Total Traces", len(live))
+    m2.metric("✅ Passed", pass_count)
+    m3.metric("⚠️ Flagged", int(counts.get("FLAG", 0)))
+    m4.metric("🛑 Held", int(counts.get("HOLD", 0)))
+    m5.metric("Pass Rate", f"{pass_count / len(live):.1%}")
+    m6.metric("Avg Latency", f"{int(live.latency_ms.mean())}ms")
+else:
+    for metric, label in zip(
+        (m1, m2, m3, m4, m5, m6),
+        ("Total Traces", "✅ Passed", "⚠️ Flagged", "🛑 Held", "Pass Rate", "Avg Latency"),
+    ):
+        metric.metric(label, "No live data")
 
 st.divider()
 col_l, col_r = st.columns([2, 3])
 
 with col_l:
-    st.markdown("#### 📡 Live Trace Stream")
+    st.markdown("#### 📡 Live Trace Stream" if has_live else "#### Demo Trace Stream")
     for _, row in df.head(12).iterrows():
         rc = {"PASS": "trace-pass", "FLAG": "trace-flag", "HOLD": "trace-hold"}[row.result]
         bc = {"PASS": "bp", "FLAG": "bf", "HOLD": "bh"}[row.result]
@@ -125,7 +123,7 @@ with col_l:
         if row.flag_count > 0:
             flags_html += f'<span class="badge bf" style="margin-left:4px">{int(row.flag_count)} FLAGS</span>'
         live_badge = ""
-        if row.get("source") == "live" or (isinstance(row.get("phoenix_mcp_tools"), list) and row.get("phoenix_mcp_tools")):
+        if has_live:
             live_badge = '<span class="badge bp" style="margin-left:6px">LIVE MCP</span>'
         st.markdown(f"""<div class='trace-card {rc}'>
 <span style='color:#8B949E'>{row.time}</span>&nbsp;
@@ -200,7 +198,7 @@ if len(hall_df) > 0:
     )
 
 st.divider()
-st.markdown("#### 🩺 Physician Review Queue")
+st.markdown("#### 🩺 Physician Review Queue" if has_live else "#### Demo Review Queue")
 review_df = df[df.physician_review].head(5)
 for _, row in review_df.iterrows():
     badge = "🛑 HOLD" if row.result == "HOLD" else "⚠️ FLAG"
@@ -211,6 +209,6 @@ for _, row in review_df.iterrows():
             f"{int(row.flag_count)} issue(s)"
         )
     with c2:
-        st.button("✅ Approve", key=f"a_{row.trace_id}")
+        st.button("✅ Approve", key=f"a_{row.trace_id}", disabled=not has_live)
     with c3:
-        st.button("🔄 Override", key=f"o_{row.trace_id}")
+        st.button("🔄 Override", key=f"o_{row.trace_id}", disabled=not has_live)

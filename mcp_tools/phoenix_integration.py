@@ -172,7 +172,9 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
 
     # 4. Safety statements contradicted by tool outputs
     if drug and patient.get("current_medications") is not None:
-        ddi = check_drug_interactions(drug, patient.get("current_medications", []))
+        ddi = check_drug_interactions(
+            drug, patient.get("current_medications", []), route=str(rec.get("route") or ""),
+        )
         if "no interaction" in text or "no significant interaction" in text:
             add("No drug interactions", ddi["screening_status"] == "SCREENED"
                 and ddi["interaction_count"] == 0
@@ -180,7 +182,8 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
     if drug and patient.get("allergies"):
         allergy = check_allergy_conflict(drug, str(rec.get("drug_class", "")), patient["allergies"])
         if "no allergy" in text or "allergy-safe" in text or "safe with" in text:
-            add("No allergy conflict", not allergy["conflict"], allergy["message"], "CRITICAL")
+            add("No allergy conflict", not allergy["conflict"], allergy["message"],
+                "CRITICAL" if allergy["severity"] == "ABSOLUTE" else "HIGH")
 
     # 5. Absolutist language — stylistic signal, low weight
     flagged = [p for p in ABSOLUTIST_PHRASES if p in text]
@@ -242,6 +245,15 @@ def evaluate_clinical_accuracy(recommendation: dict, patient_profile: dict, guid
     drug = str(recommendation.get("antibiotic") or "").strip()
     if not drug or lookup_aware_tier(drug)["aware_tier"] == "Not classified":
         flag("UNKNOWN_ANTIBIOTIC", "HIGH", "Antibiotic could not be verified in the reference table.")
+    placeholders = {"unknown", "n/a", "na", "none", "null", "tbd", "-", "—", "not specified"}
+    incomplete = [
+        field for field in ("dose", "route", "frequency")
+        if not isinstance(value := recommendation.get(field), str)
+        or not value.strip() or value.strip().casefold() in placeholders
+    ]
+    if drug and incomplete:
+        flag("INCOMPLETE_REGIMEN", "CRITICAL",
+             f"Missing or unspecified regimen fields: {', '.join(incomplete)}.")
     if recommendation.get("demo_mode") or recommendation.get("error"):
         flag("RECOMMENDATION_UNAVAILABLE", "HIGH", "A clinical recommendation could not be verified.")
     if recommendation.get("physician_review_required") or recommendation.get("safe_to_sign") is False:
@@ -257,9 +269,10 @@ def evaluate_clinical_accuracy(recommendation: dict, patient_profile: dict, guid
     if drug and known_allergies:
         allergy = check_allergy_conflict(drug, str(recommendation.get("drug_class") or ""), known_allergies)
         if allergy["conflict"]:
-            flag("ALLERGY_CONFLICT", "CRITICAL", allergy["message"])
-        elif drug.casefold() in {entry.strip().casefold() for entry in known_allergies}:
-            flag("ALLERGY_CONFLICT", "CRITICAL", "The proposed antibiotic is listed in the allergy history.")
+            if allergy["severity"] == "ABSOLUTE":
+                flag("ALLERGY_CONFLICT", "CRITICAL", allergy["message"])
+            else:
+                flag("ALLERGY_REVIEW_REQUIRED", "HIGH", allergy["message"])
 
     if crcl is not None and drug:
         renal_dose = suggest_renal_dose(drug, crcl)
@@ -272,13 +285,17 @@ def evaluate_clinical_accuracy(recommendation: dict, patient_profile: dict, guid
     if not isinstance(meds, list) or any(not isinstance(m, str) or not m.strip() for m in meds):
         flag("INTERACTION_NOT_SCREENED", "HIGH", "Medication history could not be screened.")
     elif drug:
-        ddi = check_drug_interactions(drug, meds)
+        ddi = check_drug_interactions(drug, meds, route=str(recommendation.get("route") or ""))
         if ddi["screening_status"] != "SCREENED" or (meds and ddi["coverage_note"]):
             flag("INTERACTION_NOT_SCREENED", "HIGH", "Interaction reference coverage is incomplete.")
         for interaction in ddi["interactions_found"]:
             severity = interaction["severity"]
-            flag("DRUG_INTERACTION", "HIGH" if severity == "UNKNOWN" else severity,
-                 "A potential drug interaction requires clinician review.")
+            message = (
+                interaction["clinical_effect"]
+                if drug.casefold() == "ceftriaxone" and interaction["source"] == "curated"
+                else "A potential drug interaction requires clinician review."
+            )
+            flag("DRUG_INTERACTION", "HIGH" if severity == "UNKNOWN" else severity, message)
 
     aware_tier = recommendation.get("aware_tier", "")
     indication = str(patient_profile.get("diagnosis") or "").lower()
