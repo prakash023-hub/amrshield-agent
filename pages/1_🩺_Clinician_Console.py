@@ -276,7 +276,13 @@ if run_btn:
             attestation = st.checkbox(rec.get("attestation_text", "I attest I have reviewed this recommendation."))
             c_ap, c_esc = st.columns(2)
             with c_ap:
-                if st.button("✅ Approve & Sign Order", type="primary", disabled=not attestation):
+                can_sign = (
+                    attestation
+                    and rec.get("safe_to_sign", False)
+                    and audit.get("recommendation_safe_to_proceed", False)
+                    and not audit.get("physician_review_required", True)
+                )
+                if st.button("✅ Approve & Sign Order", type="primary", disabled=not can_sign):
                     from agents.clinical_agent.physician_ready import record_physician_attestation
                     record_physician_attestation(po.get("order_id", ""), physician_id, "APPROVED")
                     st.success(f"Order {po.get('order_id')} signed by {physician_id}")

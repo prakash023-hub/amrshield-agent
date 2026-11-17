@@ -3,7 +3,7 @@ AMRShield - API Schemas
 Pydantic models for request/response validation.
 """
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from typing import Optional
 
 
@@ -13,13 +13,20 @@ class PatientCase(BaseModel):
     age: int = Field(..., ge=0, le=120, description="Age in years")
     sex: str = Field(..., pattern="^(male|female)$", description="Biological sex")
     weight: float = Field(..., gt=0, le=300, description="Weight in kg")
-    serum_creatinine: float = Field(..., gt=0, description="Serum creatinine in mg/dL")
+    serum_creatinine: float = Field(..., gt=0, allow_inf_nan=False, description="Serum creatinine in mg/dL")
     diagnosis: str = Field(..., description="Clinical diagnosis")
     infection_site: str = Field(..., description="Site of infection")
     suspected_pathogen: str = Field(default="Unknown (empirical)")
     allergies: list[str] = Field(default_factory=list)
     current_medications: list[str] = Field(default_factory=list)
     culture_results: Optional[dict] = Field(default=None)
+
+    @field_validator("age", "weight", "serum_creatinine", mode="before")
+    @classmethod
+    def reject_boolean_measurements(cls, value):
+        if isinstance(value, bool):
+            raise ValueError("Clinical measurements must be numeric, not boolean.")
+        return value
 
     class Config:
         json_schema_extra = {
