@@ -4,6 +4,8 @@ Reusable from AMS-Gemma4 project — ported and expanded.
 """
 
 import csv
+import math
+import sys
 import json
 import re
 from functools import lru_cache
@@ -124,7 +126,9 @@ def calculate_crcl(
     weight: float,
     serum_creatinine: float,
     sex: str,
-    use_ibw: bool = False
+    use_ibw: bool = False,
+    *,
+    round_result: bool = True,
 ) -> dict:
     """
     Calculate creatinine clearance using Cockcroft-Gault equation.
@@ -135,16 +139,17 @@ def calculate_crcl(
         serum_creatinine: Serum creatinine in mg/dL
         sex: 'male' or 'female'
         use_ibw: Whether to use ideal body weight
+        round_result: Return one decimal place for display. Use full precision for dose cutoffs.
     
     Returns:
         Dict with CrCl value and renal function category
     """
-    if serum_creatinine <= 0:
-        return {"error": "Invalid serum creatinine value (must be > 0 mg/dL)"}
-    if not isinstance(age, (int, float)) or not (0 < age <= 120):
-        return {"error": f"Invalid age '{age}' (expected 0-120 years)"}
-    if not isinstance(weight, (int, float)) or not (0 < weight <= 400):
-        return {"error": f"Invalid weight '{weight}' (expected 0-400 kg)"}
+    if type(age) not in (int, float) or not 18 <= age <= 120:
+        return {"error": "Cockcroft-Gault requires an adult age of 18–120 years."}
+    if type(weight) not in (int, float) or not 0 < weight <= 400:
+        return {"error": "Invalid body weight (must be > 0 and ≤ 400 kg)."}
+    if type(serum_creatinine) not in (int, float) or not 0 < serum_creatinine <= sys.float_info.max:
+        return {"error": "Invalid serum creatinine (must be finite and > 0 mg/dL)."}
 
     # Validate sex explicitly — do NOT silently treat an unrecognised value as
     # female, which would under-estimate CrCl by 15% and mis-dose the patient.
@@ -154,11 +159,14 @@ def calculate_crcl(
     elif sex_norm in ("female", "f", "woman"):
         sex_factor = 0.85
     else:
-        return {"error": f"Unrecognised sex '{sex}' (expected 'male' or 'female')"}
+        return {"error": "Unsupported sex for Cockcroft-Gault (expected male or female)."}
 
     # Cockcroft-Gault
-    crcl = ((140 - age) * weight * sex_factor) / (72 * serum_creatinine)
-    crcl = round(crcl, 1)
+    crcl = ((140 - age) * weight * sex_factor) / serum_creatinine / 72
+    if not math.isfinite(crcl) or crcl <= 0:
+        return {"error": "Unable to calculate a finite, positive creatinine clearance."}
+    if round_result:
+        crcl = round(crcl, 1)
     
     # Classify renal function
     if crcl >= 90:

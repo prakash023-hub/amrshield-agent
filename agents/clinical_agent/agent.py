@@ -163,6 +163,13 @@ def run_clinical_agent(patient_profile: dict) -> dict:
     Run the Clinical Recommendation Agent for a patient case.
     Uses google.genai SDK with Vertex AI ADC authentication.
     """
+    renal = calculate_crcl(
+        patient_profile.get("age"), patient_profile.get("weight"),
+        patient_profile.get("serum_creatinine"), patient_profile.get("sex"),
+    )
+    if "error" in renal:
+        return {"error": renal["error"], "physician_review_required": True}
+
     ensure_phoenix_tracing()
     case_prompt = f"""
 Please evaluate this antibiotic stewardship case and provide a recommendation:
@@ -217,9 +224,7 @@ Please:
             except Exception:
                 recommendation = {"raw_response": final_text}
 
-            recommendation["trace_id"] = get_current_trace_id(
-                fallback=f"TRACE-{patient_profile.get('patient_id', 'ANON')}-{iteration}"
-            )
+            recommendation["trace_id"] = get_current_trace_id()
             recommendation["patient_id"] = patient_profile.get("patient_id", "ANON")
 
             from agents.clinical_agent.physician_ready import enrich_for_physician

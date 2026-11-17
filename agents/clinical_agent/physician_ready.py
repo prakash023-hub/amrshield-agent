@@ -24,10 +24,10 @@ PHYSICIAN_DISCLAIMER = (
 
 def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
     """Build physician-ready order set from agent recommendation + deterministic checks."""
-    age = patient_profile.get("age", 50)
-    weight = patient_profile.get("weight", 70)
-    sex = patient_profile.get("sex", "male")
-    cr = patient_profile.get("serum_creatinine", 1.0)
+    age = patient_profile.get("age")
+    weight = patient_profile.get("weight")
+    sex = patient_profile.get("sex")
+    cr = patient_profile.get("serum_creatinine")
     allergies = patient_profile.get("allergies", [])
     meds = patient_profile.get("current_medications", [])
     diagnosis = patient_profile.get("diagnosis", "")
@@ -35,7 +35,14 @@ def enrich_for_physician(recommendation: dict, patient_profile: dict) -> dict:
     site = patient_profile.get("infection_site", diagnosis)
 
     crcl_data = calculate_crcl(age, weight, cr, sex)
-    crcl = crcl_data.get("crcl_ml_min", 90)
+    if "error" in crcl_data:
+        return {
+            **recommendation,
+            "renal_function": crcl_data,
+            "safe_to_sign": False,
+            "physician_review_required": True,
+        }
+    crcl = crcl_data["crcl_ml_min"]
     antibiotic = recommendation.get("antibiotic", "")
 
     allergy_check = check_allergy_conflict(antibiotic, recommendation.get("drug_class", ""), allergies)

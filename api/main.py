@@ -71,13 +71,22 @@ async def recommend(case: PatientCase):
     3. Returns both — dashboard shows recommendation + audit verdict
     """
     try:
-        patient_dict = case.dict()
+        patient_dict = case.model_dump()
 
         # Step 1: Clinical recommendation
         recommendation = app.state.run_clinical(patient_dict)
 
         # Step 2: Immediate self-audit
-        audit = app.state.run_audit(recommendation, patient_dict)
+        # Omitted histories remain unknown to the audit. An explicit empty list
+        # still represents a reported history with no entries.
+        audit_patient = {**patient_dict}
+        for history in ("allergies", "current_medications"):
+            if history not in case.model_fields_set:
+                audit_patient.pop(history)
+        audit = app.state.run_audit(recommendation, audit_patient)
+
+        if "safe_to_sign" in recommendation and not audit["recommendation_safe_to_proceed"]:
+            recommendation = {**recommendation, "safe_to_sign": False}
 
         return {
             "recommendation": recommendation,

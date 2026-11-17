@@ -5,9 +5,11 @@ Auto-tracing via GoogleGenAIInstrumentor + MCP tool dispatch for Self-Audit Agen
 
 import os
 import json
+import logging
 import time
 from datetime import datetime
-from typing import Any, Optional
+from typing import Optional
+from uuid import uuid4
 
 from mcp_tools.audit_store import append_audit_event, list_audit_events
 
@@ -73,7 +75,7 @@ def get_current_trace_id(fallback: str = "") -> str:
             return format(ctx.trace_id, "032x")
     except Exception:
         pass
-    return fallback or f"TR-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+    return fallback or f"TR-{uuid4().hex}"
 
 
 # ─────────────────────────────────────────────
@@ -134,7 +136,7 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
     against tool outputs and guideline text, scored on a labelled eval set.
     """
     from agents.clinical_agent.tools import (
-        calculate_crcl, check_allergy_conflict, check_drug_interactions, lookup_aware_tier,
+        check_allergy_conflict, check_drug_interactions, lookup_aware_tier,
     )
 
     rec = context.get("recommendation", {}) or {}
@@ -162,10 +164,9 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
     # 3. Quoted CrCl vs calculated CrCl
     import re
     quoted = re.findall(r"crcl[^0-9]{0,15}(\d{1,3}(?:\.\d+)?)", text)
-    scr = patient.get("serum_creatinine")
-    if quoted and all(k in patient for k in ("age", "weight", "sex")) and isinstance(scr, (int, float)) and scr > 0:
-        calc = calculate_crcl(patient["age"], patient["weight"], scr, patient["sex"]).get("crcl_ml_min")
-        if isinstance(calc, (int, float)):
+    if quoted:
+        calc = _patient_crcl(patient).get("crcl_ml_min")
+        if calc is not None:
             for q in quoted:
                 add(f"CrCl ≈ {q} mL/min", abs(float(q) - calc) <= 5, f"Cockcroft-Gault = {calc} mL/min")
 
@@ -173,7 +174,9 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
     if drug and patient.get("current_medications") is not None:
         ddi = check_drug_interactions(drug, patient.get("current_medications", []))
         if "no interaction" in text or "no significant interaction" in text:
-            add("No drug interactions", ddi["interaction_count"] == 0, ddi["summary"])
+            add("No drug interactions", ddi["screening_status"] == "SCREENED"
+                and ddi["interaction_count"] == 0
+                and not (patient["current_medications"] and ddi["coverage_note"]), ddi["summary"])
     if drug and patient.get("allergies"):
         allergy = check_allergy_conflict(drug, str(rec.get("drug_class", "")), patient["allergies"])
         if "no allergy" in text or "allergy-safe" in text or "safe with" in text:
@@ -205,56 +208,92 @@ def detect_hallucination(trace_id: str, agent_output: str, context: dict) -> dic
     }
 
 
+def _patient_crcl(patient_profile: dict) -> dict:
+    from agents.clinical_agent.tools import calculate_crcl
+
+    fields = ("age", "weight", "serum_creatinine", "sex")
+    values = [patient_profile.get(field) for field in fields]
+    missing = [
+        field for field, value in zip(fields, values)
+        if value is None or isinstance(value, str) and not value.strip()
+    ]
+    if missing:
+        return {"error": f"Missing required clinical data: {', '.join(missing)}.",
+                "issue_type": "MISSING_CLINICAL_DATA"}
+    return calculate_crcl(*values, round_result=False)
+
+
 def evaluate_clinical_accuracy(recommendation: dict, patient_profile: dict, guideline_source: str = "IDSA") -> dict:
-    """Evaluate recommendation against guidelines (MCP: evaluate_clinical_accuracy)."""
+    """Evaluate recommendation using the existing deterministic clinical tools."""
+    from agents.clinical_agent.tools import (
+        check_allergy_conflict, check_drug_interactions, lookup_aware_tier, suggest_renal_dose,
+    )
+
     flags = []
-    score = 1.0
 
-    age = patient_profile.get("age", 50)
-    weight = patient_profile.get("weight", 70)
-    serum_cr = patient_profile.get("serum_creatinine", patient_profile.get("crcl_ml_min", 1.0))
-    if isinstance(serum_cr, (int, float)) and serum_cr > 20:
-        crcl = serum_cr
-    else:
-        sex = patient_profile.get("sex", "male")
-        sex_factor = 1.0 if sex == "male" else 0.85
-        crcl = ((140 - age) * weight * sex_factor) / (72 * max(serum_cr, 0.1))
+    def flag(kind, severity, message):
+        flags.append({"type": kind, "severity": severity, "message": message})
 
-    drug = recommendation.get("antibiotic", "").lower()
-    renally_cleared = ["vancomycin", "ciprofloxacin", "piperacillin", "meropenem", "gentamicin", "nitrofurantoin"]
+    renal = _patient_crcl(patient_profile)
+    crcl = renal.get("crcl_ml_min")
+    if "error" in renal:
+        flag(renal.get("issue_type", "INVALID_RENAL_PARAMETERS"), "CRITICAL", renal["error"])
 
-    if crcl < 30 and any(d in drug for d in renally_cleared):
-        flags.append({
-            "type": "RENAL_DOSE_ADJUSTMENT",
-            "severity": "HIGH",
-            "message": f"CrCl {crcl:.0f} mL/min — dose adjustment required for {drug}",
-        })
-        score -= 0.3
+    drug = str(recommendation.get("antibiotic") or "").strip()
+    if not drug or lookup_aware_tier(drug)["aware_tier"] == "Not classified":
+        flag("UNKNOWN_ANTIBIOTIC", "HIGH", "Antibiotic could not be verified in the reference table.")
+    if recommendation.get("demo_mode") or recommendation.get("error"):
+        flag("RECOMMENDATION_UNAVAILABLE", "HIGH", "A clinical recommendation could not be verified.")
+    if recommendation.get("physician_review_required") or recommendation.get("safe_to_sign") is False:
+        flag("CLINICAL_REVIEW_REQUIRED", "HIGH", "The clinical recommendation requires physician review.")
+    if any(item.get("severity") in ("ABSOLUTE", "CRITICAL")
+           for item in (recommendation.get("contraindications") or []) if isinstance(item, dict)):
+        flag("CLINICAL_CONTRAINDICATION", "CRITICAL", "The clinical recommendation reports a contraindication.")
 
-    allergies = [a.lower() for a in patient_profile.get("allergies", [])]
-    drug_class = recommendation.get("drug_class", "").lower()
-    if "penicillin" in allergies and "penicillin" in drug_class.lower():
-        flags.append({
-            "type": "ALLERGY_CONFLICT",
-            "severity": "CRITICAL",
-            "message": "Penicillin allergy conflict — CONTRAINDICATED",
-        })
-        score = 0.0
+    allergies = patient_profile.get("allergies")
+    known_allergies = [a for a in allergies if isinstance(a, str) and a.strip()] if isinstance(allergies, list) else []
+    if not isinstance(allergies, list) or len(known_allergies) != len(allergies):
+        flag("ALLERGY_HISTORY_INCOMPLETE", "HIGH", "Allergy history could not be fully screened.")
+    if drug and known_allergies:
+        allergy = check_allergy_conflict(drug, str(recommendation.get("drug_class") or ""), known_allergies)
+        if allergy["conflict"]:
+            flag("ALLERGY_CONFLICT", "CRITICAL", allergy["message"])
+        elif drug.casefold() in {entry.strip().casefold() for entry in known_allergies}:
+            flag("ALLERGY_CONFLICT", "CRITICAL", "The proposed antibiotic is listed in the allergy history.")
+
+    if crcl is not None and drug:
+        renal_dose = suggest_renal_dose(drug, crcl)
+        if renal_dose["adjustment_required"]:
+            severity = renal_dose["severity"]
+            flag("RENAL_DOSE_ADJUSTMENT", "CRITICAL" if severity == "ABSOLUTE" else severity,
+                 "Renal dosing screen requires clinician verification of the proposed regimen.")
+
+    meds = patient_profile.get("current_medications")
+    if not isinstance(meds, list) or any(not isinstance(m, str) or not m.strip() for m in meds):
+        flag("INTERACTION_NOT_SCREENED", "HIGH", "Medication history could not be screened.")
+    elif drug:
+        ddi = check_drug_interactions(drug, meds)
+        if ddi["screening_status"] != "SCREENED" or (meds and ddi["coverage_note"]):
+            flag("INTERACTION_NOT_SCREENED", "HIGH", "Interaction reference coverage is incomplete.")
+        for interaction in ddi["interactions_found"]:
+            severity = interaction["severity"]
+            flag("DRUG_INTERACTION", "HIGH" if severity == "UNKNOWN" else severity,
+                 "A potential drug interaction requires clinician review.")
 
     aware_tier = recommendation.get("aware_tier", "")
-    indication = patient_profile.get("diagnosis", "").lower()
+    indication = str(patient_profile.get("diagnosis") or "").lower()
     if aware_tier == "Reserve" and any(x in indication for x in ["uncomplicated", "community"]):
         flags.append({
             "type": "RESERVE_OVERUSE",
             "severity": "MEDIUM",
-            "message": f"Reserve-tier antibiotic for {indication} — not first-line per WHO AWaRe",
+            "message": "Reserve-tier antibiotic for a community or uncomplicated indication — review required.",
         })
-        score -= 0.2
-
+    critical = any(f["severity"] == "CRITICAL" for f in flags)
     return {
-        "accuracy_score": max(0.0, score),
+        "accuracy_score": 0.0 if critical else max(0.0, 1.0 - 0.2 * len(flags)),
+        "crcl_ml_min": crcl,
         "flags": flags,
-        "requires_physician_review": score < 0.7 or any(f["severity"] == "CRITICAL" for f in flags),
+        "requires_physician_review": bool(flags),
         "guideline_source": guideline_source,
         "evaluated_at": datetime.utcnow().isoformat(),
         "mcp_tool": "evaluate_clinical_accuracy",
@@ -303,9 +342,13 @@ def invoke_mcp_tool(tool_name: str, **kwargs) -> dict:
     if tool_name not in MCP_TOOLS:
         return {"status": "error", "message": f"Unknown MCP tool: {tool_name}"}
     started = time.perf_counter()
-    result = MCP_TOOLS[tool_name](**kwargs)
-    result["latency_ms"] = int((time.perf_counter() - started) * 1000)
-    result["status"] = result.get("status", "success")
+    try:
+        result = MCP_TOOLS[tool_name](**kwargs)
+        result["latency_ms"] = int((time.perf_counter() - started) * 1000)
+        result.setdefault("status", "success")
+    except Exception:
+        logging.getLogger(__name__).warning("Phoenix MCP tool failed: %s", tool_name)
+        return {"status": "error", "mcp_tool": tool_name}
     return result
 
 
@@ -333,7 +376,6 @@ def run_phoenix_mcp_audit_pipeline(
         trace_id=trace_id,
         agent_output=agent_output,
         context={
-            "patient_id": patient_profile.get("patient_id"),
             "recommendation": recommendation,
             "patient_profile": patient_profile,
         },
@@ -359,14 +401,17 @@ def run_phoenix_mcp_audit_pipeline(
     critical = any(f.get("severity") == "CRITICAL" for f in flags)
     if critical or hallucination.get("hallucination_detected"):
         severity = "CRITICAL" if critical else "HIGH"
-        reason = flags[0]["message"] if flags else hallucination.get("reasoning", "Safety concern")
+        reason = next((f["message"] for f in flags if f["severity"] == "CRITICAL"),
+                      "Recommendation contains unsupported clinical claims.")
         review_hold = invoke_mcp_tool(
             "flag_for_review",
             trace_id=trace_id,
             reason=reason,
             severity=severity,
-            recommendation=recommendation,
+            recommendation={"antibiotic": recommendation.get("antibiotic")},
         )
+        if review_hold.get("status") != "PENDING_PHYSICIAN_REVIEW":
+            review_hold = None
         tools_called.append("flag_for_review")
 
     return {
@@ -383,51 +428,63 @@ def merge_mcp_into_audit(gemini_audit: dict, mcp_pipeline: dict) -> dict:
     """Merge Gemini verdict with deterministic Phoenix MCP tool results."""
     hallucination = mcp_pipeline["hallucination_check"]
     accuracy = mcp_pipeline["accuracy_check"]
-    flags = accuracy.get("flags", [])
-
-    mcp_result = "PASS"
-    if accuracy.get("accuracy_score", 1.0) == 0.0:
-        mcp_result = "HOLD"
-    elif flags or hallucination.get("hallucination_detected"):
-        mcp_result = "FLAG"
-
-    severity_rank = {"PASS": 0, "FLAG": 1, "HOLD": 2}
-    gemini_result = gemini_audit.get("overall_result", "PASS")
-    final_result = gemini_result
-    if severity_rank.get(mcp_result, 0) > severity_rank.get(gemini_result, 0):
-        final_result = mcp_result
-
-    issues = list(gemini_audit.get("issues_found", []))
-    for flag in flags:
-        issues.append(flag)
+    deterministic = list(accuracy.get("flags", []))
 
     if hallucination.get("hallucination_detected"):
-        issues.append({
-            "type": "HALLUCINATION",
-            "severity": "HIGH",
-            "message": hallucination.get("reasoning", "Absolutist language detected"),
-        })
+        severity = "CRITICAL" if any(
+            claim.get("severity") == "CRITICAL" for claim in hallucination["unsupported_claims"]
+        ) else "HIGH"
+        deterministic.append({"type": "HALLUCINATION", "severity": severity,
+                       "message": "Recommendation contains unsupported clinical claims."})
 
-    physician_review = (
-        final_result in ("FLAG", "HOLD")
-        or accuracy.get("requires_physician_review", False)
-        or gemini_audit.get("physician_review_required", False)
+    check_failed = any(check.get("status") != "success" for check in (hallucination, accuracy))
+    if check_failed:
+        deterministic.append({"type": "AUDIT_CHECK_UNAVAILABLE", "severity": "HIGH",
+                       "message": "A Phoenix clinical safety check could not be completed."})
+
+    issues = [*deterministic, *gemini_audit["issues_found"]]
+    if (gemini_audit["overall_result"] == "HOLD" or accuracy.get("accuracy_score") == 0
+            or gemini_audit["severity_level"] == "CRITICAL"
+            or any(issue["severity"] == "CRITICAL" for issue in issues)
+            or check_failed):
+        final_result = "HOLD"
+    elif (gemini_audit["overall_result"] == "FLAG" or issues
+          or gemini_audit["severity_level"] != "LOW"
+          or gemini_audit["physician_review_required"]
+          or not gemini_audit["recommendation_safe_to_proceed"]
+          or accuracy.get("requires_physician_review") or mcp_pipeline.get("review_hold")):
+        final_result = "FLAG"
+    else:
+        final_result = "PASS"
+
+    severity_rank = {"LOW": 0, "MEDIUM": 1, "HIGH": 2, "CRITICAL": 3}
+    severity = max(
+        [gemini_audit["severity_level"], *(issue["severity"] for issue in issues),
+         {"PASS": "LOW", "FLAG": "MEDIUM", "HOLD": "CRITICAL"}[final_result]],
+        key=severity_rank.__getitem__,
     )
 
-    reasoning_parts = [gemini_audit.get("audit_reasoning", "")]
+    if final_result == "PASS":
+        reasoning_parts = [gemini_audit["audit_reasoning"]]
+    else:
+        reasoning_parts = [issue["message"] for issue in deterministic]
+        if not reasoning_parts:
+            reasoning_parts = ["The audit requires physician review."]
+        if any(issue["type"] == "GEMINI_AUDIT_UNAVAILABLE" for issue in gemini_audit["issues_found"]):
+            reasoning_parts.append("Gemini safety assessment was unavailable or invalid.")
     if mcp_pipeline.get("phoenix_mcp_tools"):
         reasoning_parts.append(
             f"Phoenix MCP tools: {', '.join(mcp_pipeline['phoenix_mcp_tools'])}."
         )
     if review_hold := mcp_pipeline.get("review_hold"):
-        reasoning_parts.append(f"Review queued: {review_hold.get('review_id')}.")
+        reasoning_parts.append(f"Review reference: {review_hold.get('review_id')}.")
 
     return {
         "overall_result": final_result,
         "issues_found": issues,
-        "severity_level": "CRITICAL" if final_result == "HOLD" else gemini_audit.get("severity_level", "LOW"),
+        "severity_level": severity,
         "recommendation_safe_to_proceed": final_result == "PASS",
-        "physician_review_required": physician_review,
+        "physician_review_required": final_result != "PASS",
         "audit_reasoning": " ".join(p for p in reasoning_parts if p).strip(),
         "phoenix_mcp_tools": mcp_pipeline.get("phoenix_mcp_tools", []),
         "phoenix_trace_id": mcp_pipeline.get("trace_id"),
@@ -443,19 +500,25 @@ def record_audit_to_store(
     audit_result: dict,
     latency_ms: int,
 ):
-    """Persist audit row for Audit Console."""
+    """Persist the verdict and its deterministic reasoning for Audit Console."""
+    confidence = recommendation.get("confidence_score", 0.75)
+    if type(confidence) not in (int, float) or not 0 <= confidence <= 1:
+        confidence = 0.75
     append_audit_event({
         "trace_id": audit_result.get("phoenix_trace_id") or recommendation.get("trace_id"),
         "antibiotic": recommendation.get("antibiotic", "unknown"),
         "diagnosis": patient_profile.get("diagnosis", "unknown"),
-        "result": audit_result.get("overall_result", "PASS"),
-        "confidence": recommendation.get("confidence_score", 0.75),
+        "result": audit_result["overall_result"],
+        "confidence": confidence,
         "latency_ms": latency_ms,
         "hallucination": audit_result.get("hallucination_detected", False),
         "flag_count": len(audit_result.get("issues_found", [])),
         "aware": recommendation.get("aware_tier", "Access"),
         "physician_review": audit_result.get("physician_review_required", False),
-        "audit_reasoning": audit_result.get("audit_reasoning", ""),
+        "audit_reasoning": (
+            "Available checks passed." if audit_result["overall_result"] == "PASS"
+            else audit_result["audit_reasoning"]
+        ),
         "phoenix_mcp_tools": audit_result.get("phoenix_mcp_tools", []),
     })
 
