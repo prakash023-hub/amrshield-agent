@@ -16,6 +16,6 @@ jobs:
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest numpy pandas
+          python -m pip install pytest numpy pandas fastapi==0.115.0 pydantic==2.9.2 'httpx>=0.28.1,<1' 'google-genai>=1.0,<2'
       - name: Offline unit tests
         run: pytest -q tests
