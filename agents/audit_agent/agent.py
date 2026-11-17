@@ -151,12 +151,51 @@ def _rule_based_audit(recommendation: dict, patient_profile: dict, mcp_pipeline:
         issues.append({"type": "ALLERGY_CONFLICT", "severity": "CRITICAL", "message": "Cephalosporin allergy conflict"})
         score = 0.0
 
-    serum_cr = patient_profile.get("serum_creatinine", 1.0)
-    age = patient_profile.get("age", 50)
-    weight = patient_profile.get("weight", 70)
-    sex = patient_profile.get("sex", "male")
+    
+    required_fields = ["age", "weight", "sex", "serum_creatinine"]
+    
+    missing = [
+        field for field in required_fields
+        if patient_profile.get(field) is None
+    ]
+    
+    if missing:
+        return {
+            "overall_result": "HOLD",
+            "issues_found": [{
+                "type": "MISSING_CLINICAL_DATA",
+                "severity": "CRITICAL",
+                "message": f"Missing required data: {missing}"
+            }],
+            "severity_level": "CRITICAL",
+            "recommendation_safe_to_proceed": False,
+            "physician_review_required": True,
+            "audit_reasoning": "Missing required clinical data."
+        }
+
+    serum_cr = patient_profile["serum_creatinine"]
+    if (
+        not isinstance(serum_cr, (int, float))
+        or isinstance(serum_cr, bool)
+        or not 0 < serum_cr < float("inf")
+    ):
+        return {
+            "overall_result": "HOLD",
+            "issues_found": [{
+                "type": "INVALID_CREATININE",
+                "severity": "CRITICAL",
+                "message": "Invalid serum creatinine"
+            }],
+            "severity_level": "CRITICAL",
+            "recommendation_safe_to_proceed": False,
+            "physician_review_required": True,
+            "audit_reasoning": "Cannot calculate CrCl with invalid serum creatinine."
+        }
+    age = patient_profile["age"]
+    weight = patient_profile["weight"]
+    sex = patient_profile["sex"]
     sex_factor = 1.0 if sex == "male" else 0.85
-    crcl = ((140 - age) * weight * sex_factor) / (72 * serum_cr) if serum_cr > 0 else 90
+    crcl = ((140 - age) * weight * sex_factor) / (72 * serum_cr)
 
     renally_cleared = ["nitrofurantoin", "vancomycin", "ciprofloxacin", "gentamicin", "meropenem"]
     if crcl < 30 and any(d in antibiotic for d in renally_cleared):
